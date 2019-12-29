@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Contact</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+
+	<body>
+		<form th:action="@{/contact}" th:method="post" th:object="${form}">
+			<label>
+				Prénom :
+				<input required type="text" th:field="*{firstName}">
+			</label>
+			<label>
+				Nom de famille :
+				<input required type="text" th:field="*{lastName}">
+			</label>
+			<label>
+				Email :
+				<input required type="email" th:field="*{emailAddress}">
+			</label>
+			<label>
+				Message :
+				<textarea required th:field="*{messageContent}"></textarea>
+			</label>
+			<input type="submit">
+		</form>	
+	</body>
+
+</html>

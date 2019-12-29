@@ -1,0 +1,251 @@
+:root {
+	--maudit-purple: #5b54a2;
+	--background-gray-color: #0a1119;
+}
+
+body {
+	margin: 0;
+}
+
+header {
+	background: var(--maudit-purple);
+/* 	position: sticky; */
+	position: fixed;
+	top: 10px;
+	display: inline-block;
+	padding: 10px;
+	margin-top: 50px;
+	z-index: 100;
+}
+
+header a {
+	color: white;
+	display: inline-block;
+	padding: 10px 0;
+	margin: 0 10px;
+	text-decoration: none;
+	border-bottom: solid 2px transparent;
+	text-transform: uppercase;
+}
+
+header a:hover {
+	border-color: white;
+}
+
+.hero {
+	height: 100vw;
+	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/header-background.jpeg);
+	background-size: cover;
+	background-position: bottom;
+	padding-left: 20%;
+	color: white;
+}
+
+.hero h1 {
+	margin-top: 20vw;
+	font-size: 70px;
+}
+
+.programmation-section {
+	background: url(/img/background-juliet_berto2.png);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-color: var(--background-gray-color);
+	color: white;
+	padding: 5rem;
+}
+
+.link-to-day-recap {
+	color: white;
+	display: inline-block;
+	padding: 10px 0;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.link-to-day-recap:hover {
+	color: var(--maudit-purple);
+}
+
+
+.programmation-section span:last-child {
+	display: none;
+}
+
+.programmation-day-recap-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.programmation-section h4 {
+	text-transform: uppercase;
+	padding-top: 70px;
+}
+
+
+.programmation-day-recap {
+	display: flex;
+	flex-wrap: wrap;
+	border-left: 2px solid var(--maudit-purple);
+	margin-right: 100px;
+}
+
+.white-button {
+	display: inline-block;
+	padding: 10px;
+	color: white;
+	border: 2px solid white;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.white-button:hover {
+	background: white;
+	color: var(--maudit-purple);
+}
+
+.purple-button {
+	display: inline-block;
+	background: var(--maudit-purple);
+	padding: 10px 20px !important;
+	color: white;
+	text-decoration: none;
+}
+
+.film-recap {
+	text-align: center;
+	width: 210px;
+	margin: 10px;
+}
+
+.film-recap img {
+	width: 200px;
+}
+
+.download-section {
+	background: var(--maudit-purple);
+	color: white;
+	fill: white;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 30px;
+	padding: 20px 0;
+	position: relative;
+}
+
+.download-section a{
+	color: inherit;
+	text-decoration: none;
+}
+
+.download-section svg {
+	height: 1em;
+	width: auto;
+}
+
+
+.download-section:before {
+	content: "";
+	background: var(--maudit-purple);
+	position: absolute;
+	top: -80px;
+	left: 0;
+	height: 80px;
+	width: 100%;
+	clip-path: polygon(0 0, 100% 80%, 100% 100%, 0 100%);
+}
+
+.download-section:after {
+	content: "";
+	background: var(--maudit-purple);
+	position: absolute;
+	bottom: -80px;
+	left: 0;
+	height: 80px;
+	width: 100%;
+	clip-path: polygon(0 100%, 100% 50%, 100% 0, 0 0);
+}
+
+.location-information-container {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	margin: auto;
+}
+
+.location-information-container div {
+	flex-grow: 1;
+	padding: 20px;
+}
+
+.gmaps-iframe-container {
+	flex-grow: 1000;
+}
+
+.location-information-container iframe {
+	float: right;
+/* 	margin-left: auto; */
+	display: block;
+}
+
+.partner-section h3 {
+	text-align: center;
+	color: var(--maudit-purple);
+	text-transform: uppercase;
+}
+
+.practical-info-section, .contact-section {
+	background: var(--background-gray-color);
+	color: white;
+}
+
+#gmaps-iframe {
+/* 	width:100%;  */
+	width:800px;
+	max-width:100%;
+	height:600px;
+	border:0;
+}
+
+
+.social-network-links-container a {
+	display: inline-block;
+	background: var(--maudit-purple);
+	border-radius: 1000px;
+	padding: 10px;
+}
+
+.social-network-links-container svg {
+	fill: white;
+	height: 20px;
+	width: 25px;
+	padding: 0px;
+}
+
+.partner-carroussel {
+	width: 80%;
+	margin: auto;
+}
+
+.partner-carroussel a {
+	display: block;
+	margin: 10px;
+}
+
+.partner-carroussel a img{
+	width: 100%;
+}
+
+
+footer {
+	background: var(--background-gray-color);
+	color: white;
+	padding: 80px 0;
+}
+
+.footer-container {
+	display: flex;
+	justify-content: space-around;
+}

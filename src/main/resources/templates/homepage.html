@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Bienvenue sur le site des maudits films</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.1/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.1/slick/slick-theme.css"/>
+<!-- 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
+</head>
+
+<body>
+	<header>
+		<a href="#programmation">La programmation 2020</a> <a href="#pratique">Infos pratiques</a> <a href="#contact">Contact</a>
+	</header>
+	<div class="hero" style="overflow: auto;">
+		<h1>Le Maudit Festival</h1>
+		<h2>Du 16 au 26 Janvier 2020</h2>
+		<a href="#programmation" class="white-button">Voir la programmation</a>
+	</div>
+	<div id="programmation" class="programmation-section">
+		<div>
+			<th:block th:each="day : ${this.days}">
+				<a class="link-to-day-recap" th:text="${day.displayDate}" th:href="'#'+${day.date}">Lundi 17 Mars</a>
+				<span>/</span>
+			</th:block>
+		</div>
+		<div class="programmation-day-recap-container">
+			<div th:each="day : ${this.days}" th:id="${day.date}">
+				<h4 th:text="${day.displayDate}">Jeudi 7</h4>
+				<div class="programmation-day-recap">
+					<div th:each="film : ${day.films}" class="film-recap">
+						<img th:src="${film.imageUrl}"></img>
+						<div th:text="${film.startTime}"></div>
+						<div th:text="${film.title}"></div>
+						<a th:href="@{'/film/'+${film.id}}" class="purple-button">En savoir plus</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="download-section">
+		<a href="/livret.pdf">
+<!-- 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" -->
+<!-- 	 viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;" xml:space="preserve"> -->
+<!-- <path d="M457.7,230.15c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5c-33.4,0-60.5-27.2-60.5-60.5v-124.8 -->
+<!-- c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v124.8c0,48.3,39.3,87.5,87.5,87.5h296.2c48.3,0,87.5-39.3,87.5-87.5v-122.8 -->
+<!-- C471.2,236.25,465.2,230.15,457.7,230.15z"/> -->
+<!-- <path d="M226.1,346.75c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1c-5.3-5.3-13.8-5.3-19.1,0l-62.7,62.8 -->
+<!-- V30.75c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0c-5.3,5.3-5.3,13.8,0,19.1 -->
+<!-- L226.1,346.75z"/> -->
+<!-- </svg> -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<path d="M448.608,351.791c-18.444,0-33.4,14.952-33.4,33.396v52.055H96.788v-52.055c0-18.443-14.952-33.396-33.396-33.396 s-33.396,14.952-33.396,33.396v85.451c0,18.443,14.952,33.4,33.396,33.4h385.217c18.443,0,33.396-14.957,33.396-33.4v-85.451 C482.005,366.743,467.052,351.791,448.608,351.791z"/>
+<path d="M245.918,387.325c5.563,5.559,14.6,5.559,20.157,0l117.039-117.038c3.41-3.41,4.423-8.532,2.579-13 c-1.844-4.45-6.18-7.351-11.012-7.351h-54.954V34.024c0-14.402-11.661-26.063-26.06-26.063h-75.323 c-14.398,0-26.06,11.66-26.06,26.063v215.912h-54.973c-4.827,0-9.163,2.9-11.007,7.351c-1.844,4.468-0.83,9.59,2.575,13 L245.918,387.325z"/>
+</svg>
+
+		Télécharger la programmation</a>
+	</div>
+	<div id="pratique" class="practical-info-section">
+		<div>
+		Tarifs + Billetterie
+		</div>
+		<div>
+		<h4>Les lieux</h4>
+			<div class="location-information-container">
+				<div>
+					<p>Cinéma Juliet Bertho, Passage du Palais de Justice, 38000 Grenoble</p>
+					<p>Pour venir en voiture : …</p>
+					<p>Pour venir en transport en commun: …</p>
+				</div>
+				<div class="gmaps-iframe-container">
+					<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d295.5442748266444!2d5.727772695313013!3d45.1930304161059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sfr!4v1577448601081!5m2!1sen!2sfr" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>		 -->
+					<iframe id="gmaps-iframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQr2ekQY5Ri4ERwZyQWVSwYBqVXczaIe0&q=Salle+Juliet+Bertho,+Grenoble" frameborder="0" allowfullscreen=""></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="contact" class="contact-section" style="overflow: auto;">
+		<h3>Contact</h3>
+	</div>
+	<div class="partner-section">
+		<h3>Merci à nos partenaires</h3>
+		<div class="partner-carroussel">
+			<div th:each="sponsor : ${this.sponsors}">
+				<a th:href="${sponsor.targetUrl}">
+					<img th:src="${sponsor.logoUrl}" th:alt="${sponsor.name}" style="width: 100%;"></img>
+				</a>
+			</div>
+		</div>
+	</div>
+	<footer>
+<!-- 	Thin download icon: -->
+<!-- 		<div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+<!-- 	Bold download icon:-->
+		<div class="footer-container">
+			<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>		<div>Lorem ipsum</div>
+			<div class="social-network-links-container">
+				<a href="https://www.facebook.com/LeMauditFestival/">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 310 310">
+						<path d="M81.703,165.106h33.981V305c0,2.762,2.238,5,5,5h57.616c2.762,0,5-2.238,5-5V165.765h39.064 c2.54,0,4.677-1.906,4.967-4.429l5.933-51.502c0.163-1.417-0.286-2.836-1.234-3.899c-0.949-1.064-2.307-1.673-3.732-1.673h-44.996 V71.978c0-9.732,5.24-14.667,15.576-14.667c1.473,0,29.42,0,29.42,0c2.762,0,5-2.239,5-5V5.037c0-2.762-2.238-5-5-5h-40.545 C187.467,0.023,186.832,0,185.896,0c-7.035,0-31.488,1.381-50.804,19.151c-21.402,19.692-18.427,43.27-17.716,47.358v37.752H81.703 c-2.762,0-5,2.238-5,5v50.844C76.703,162.867,78.941,165.106,81.703,165.106z"/>
+					</svg>
+				</a>
+				<a href="https://twitter.com/MauditFestival">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="50 100 270 200">
+						<path d="M153.6,301.6c94.3,0,145.9-78.2,145.9-145.9c0-2.2,0-4.4-0.1-6.6c10-7.2,18.7-16.3,25.6-26.6 c-9.2,4.1-19.1,6.8-29.5,8.1c10.6-6.3,18.7-16.4,22.6-28.4c-9.9,5.9-20.9,10.1-32.6,12.4c-9.4-10-22.7-16.2-37.4-16.2 c-28.3,0-51.3,23-51.3,51.3c0,4,0.5,7.9,1.3,11.7c-42.6-2.1-80.4-22.6-105.7-53.6c-4.4,7.6-6.9,16.4-6.9,25.8 c0,17.8,9.1,33.5,22.8,42.7c-8.4-0.3-16.3-2.6-23.2-6.4c0,0.2,0,0.4,0,0.7c0,24.8,17.7,45.6,41.1,50.3c-4.3,1.2-8.8,1.8-13.5,1.8 c-3.3,0-6.5-0.3-9.6-0.9c6.5,20.4,25.5,35.2,47.9,35.6c-17.6,13.8-39.7,22-63.7,22c-4.1,0-8.2-0.2-12.2-0.7 C97.7,293.1,124.7,301.6,153.6,301.6"/>
+					</svg>
+				</a>
+				<a href="https://www.instagram.com/lemauditfestival/">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300">
+						<path d="M38.52,0.012h222.978C282.682,0.012,300,17.336,300,38.52v222.978c0,21.178-17.318,38.49-38.502,38.49 H38.52c-21.184,0-38.52-17.313-38.52-38.49V38.52C0,17.336,17.336,0.012,38.52,0.012z M218.546,33.329 c-7.438,0-13.505,6.091-13.505,13.525v32.314c0,7.437,6.067,13.514,13.505,13.514h33.903c7.426,0,13.506-6.077,13.506-13.514 V46.854c0-7.434-6.08-13.525-13.506-13.525H218.546z M266.084,126.868h-26.396c2.503,8.175,3.86,16.796,3.86,25.759 c0,49.882-41.766,90.34-93.266,90.34c-51.487,0-93.254-40.458-93.254-90.34c0-8.963,1.37-17.584,3.861-25.759H33.35v126.732 c0,6.563,5.359,11.902,11.916,11.902h208.907c6.563,0,11.911-5.339,11.911-11.902V126.868z M150.283,90.978 c-33.26,0-60.24,26.128-60.24,58.388c0,32.227,26.98,58.375,60.24,58.375c33.278,0,60.259-26.148,60.259-58.375 C210.542,117.105,183.561,90.978,150.283,90.978z"/>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</footer>
+<script type="text/javascript" src="/plugins/jquery-3.4.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="/plugins/slick-1.8.1/slick/slick.min.js"></script>
+<!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
+<script>
+$('.partner-carroussel').slick({
+	infinite: true,
+	slidesToShow: 3,
+	slidesToScroll: 1,
+// 	autoplay: true,
+	centerMode: false
+});
+</script>
+</body>
+</html>

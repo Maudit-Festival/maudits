@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title  th:text="${filmDisplayer.title}">Titre du film</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+
+    <h1 th:text="${filmDisplayer.title}">Titre du film</h1>
+
+    <span th:text="${filmDisplayer.date}">Date</span>
+    <span th:text="${filmDisplayer.startTime}">Heure</span>
+
+    <div th:text="${filmDisplayer.description}">Description du film</div>
+  
+
+  </body>
+
+</html>
