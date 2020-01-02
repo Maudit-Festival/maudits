@@ -10,13 +10,8 @@
 </head>
 
 <body>
-	<header>
-		<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo">
-		<a href="/#programmation">La programmation 2020</a>
-		<a href="/#pratique">Infos pratiques</a>
-		<a href="/contact">Contact</a>
-	</header>
-	<div class="hero" style="overflow: auto;">
+	<header th:replace="/fragments/common.html :: common-navbar"></header>
+	<div class="hero">
 		<h1>Le Maudit Festival</h1>
 		<h2>Du 16 au 26 Janvier 2020</h2>
 		<a href="#programmation" class="white-button">Voir la programmation</a>

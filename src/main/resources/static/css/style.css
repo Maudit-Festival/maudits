@@ -23,8 +23,8 @@ button, input, textarea {
 
 header {
 	background: var(--maudit-purple);
-/* 	position: sticky; */
-	position: fixed;
+	position: sticky;
+/* 	position: fixed; */
 	top: 10px;
 /* 	display: inline-block; */
 	display: inline-flex;
@@ -60,6 +60,8 @@ header a:hover {
 	background-position: bottom;
 	padding-left: 20%;
 	color: white;
+	overflow: auto;
+	margin-top: -120px;
 }
 
 .hero.short-hero {
@@ -124,6 +126,7 @@ header a:hover {
 	border: 2px solid white;
 	text-decoration: none;
 	text-transform: uppercase;
+	transition-duration: 0.25s;
 }
 
 .white-button:hover {
