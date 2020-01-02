@@ -1,30 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>Contact</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	</head>
+<head>
+	<title>Bienvenue sur le site des maudits films</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
 
-	<body>
-		<form th:action="@{/contact}" th:method="post" th:object="${form}">
-			<label>
-				Prénom :
-				<input required type="text" th:field="*{firstName}">
-			</label>
-			<label>
-				Nom de famille :
-				<input required type="text" th:field="*{lastName}">
-			</label>
-			<label>
-				Email :
-				<input required type="email" th:field="*{emailAddress}">
-			</label>
-			<label>
-				Message :
-				<textarea required th:field="*{messageContent}"></textarea>
-			</label>
-			<input type="submit">
-		</form>	
-	</body>
-
+<body>
+	<header>
+		<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo">
+		<a href="/#programmation">La programmation 2020</a>
+		<a href="/#pratique">Infos pratiques</a>
+		<a href="/contact">Contact</a>
+	</header>
+	<div class="hero short-hero">
+	</div>
+	<div class="contact-section">
+		<div class="contact-section-inner">
+			<p th:if="${success}" class="contact-message-confirm-success">
+				Votre message a bien été envoyé !
+			</p>
+			<form th:action="@{/contact}" th:method="post" th:object="${form}" th:unless="${success}">
+				<p th:if="${error}" class="error-message contact-error-message">Une erreur n'a pas permis d'envoyer votre message.</p>
+				<p th:unless="${error}">Pour toute demande de renseignements, remarques ou envies de partager des informations, 
+				n'hésitez pas à remplir le formulaire de contact ci-dessous.</p>
+				<p th:unless="${error}">Nous vous répondrons avec grand plaisir !</p>
+				
+				 
+				<input required type="text" th:field="*{lastName}" placeholder="Nom">
+				<input required type="text" th:field="*{firstName}" placeholder="Prénom">
+				<input required type="email" th:field="*{emailAddress}" placeholder="Adresse Email">
+				<textarea rows="8" required th:field="*{messageContent}" placeholder="Message"></textarea>
+				<div class="contact-submit-container">
+					<div class="g-recaptcha" data-sitekey="6Lc1f8sUAAAAAEny4IOhtnV77Jsb74GWhS2v6cGZ" data-callback="unlock" data-expired-callback="lock"></div> <p id="captcha-error-message" style="color: red; display: none;">**ERROR</p>
+					<script>
+						function unlock() {
+							document.getElementById("submit-button").disabled=false;
+						}
+						function lock() {
+							document.getElementById("submit-button").disabled=true;
+						}
+					</script>
+					<button id="submit-button" type="submit" class="purple-button" disabled>Envoyer</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="/fragments/common.html :: common-footer">
+	</footer>
+</body>
 </html>

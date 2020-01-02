@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="${filmDisplayer.title}">Titre du film</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
 
-  <head>
-    <title  th:text="${filmDisplayer.title}">Titre du film</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  </head>
-
-  <body>
-
-    <h1 th:text="${filmDisplayer.title}">Titre du film</h1>
-
-    <span th:text="${filmDisplayer.date}">Date</span>
-    <span th:text="${filmDisplayer.startTime}">Heure</span>
-
-    <div th:text="${filmDisplayer.description}">Description du film</div>
-  
-
-  </body>
-
+<body>
+	<header>
+		<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo">
+		<a href="#programmation">La programmation 2020</a>
+		<a href="#pratique">Infos pratiques</a>
+		<a href="#contact">Contact</a>
+	</header>
+	<div class="hero short-hero">
+	</div>
+	<div class="film-recap-section">
+		<div class="film-recap-container">
+			<div class="technical-info-sidebar">
+				<div class="film-screening-date">
+					<span class="calendar-date" th:text="${filmDisplayer.date}">Vendredi 13 Avril</span>
+					à
+					<span class="start-time" th:text="${filmDisplayer.startTime}">23h</span>
+				</div>
+				<div class="technical-info-sidebar-inner">
+					<img class="poster" th:src="${filmDisplayer.posterUrl}" th:alt="${'Poster de «' + filmDisplayer.title + '»'}">
+					<div class="film-date-and-time-center">
+						<th:block th:text="${filmDisplayer.releaseDate}"></th:block>
+						-
+						<th:block th:text="${filmDisplayer.duration}"></th:block>
+					</div>
+					<div th:text="${'Réalisé par ' + filmDisplayer.director}">Réalisé par Bugs Bunny</div>
+					<div th:text="${'Scénario par ' + filmDisplayer.scenarist}">Scénario par Bugs Bunny</div>
+					<div th:text="${'Avec ' + filmDisplayer.casting}">avec Bugs Bunny</div>
+	
+					<div class="partnership" th:if="${filmDisplayer.partner != null && filmDisplayer.partner != ''}" 
+					th:text="${'En partenariat avec ' + filmDisplayer.partner}">avec Bugs Bunny</div>
+					
+					<a class="purple-button" 
+					href="https://www.helloasso.com/associations/terreur-nocturne/evenements/le-maudit-festival" target="maudit-shop">
+						Acheter ma place
+					</a>
+				</div>
+			</div>
+			<div class="description-container">
+				<h1 th:text="${filmDisplayer.title}">Qui veut la peau de Bugs Bunny?</h1>
+				<img th:src="${filmDisplayer.sampleImageUrl}" th:alt="${'Extrait de «' + filmDisplayer.title + '»'}">
+				<p th:utext="${#strings.replace( #strings.escapeXml(filmDisplayer.description),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" >Ce film n'existe pas lol.</p>
+			</div>
+		</div>
+	
+	</div>
+	<footer th:replace="/fragments/common.html :: common-footer">
+	</footer>
+</body>
 </html>

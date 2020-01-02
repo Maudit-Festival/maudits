@@ -2,6 +2,7 @@ package com.maudits.website.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +79,7 @@ public class MauditService {
 		for (Sponsor sponsor : sponsorRepository.findAll()) {
 			sponsors.add(new SponsorDisplayer(sponsor));
 		}
+		Collections.shuffle(sponsors);
 		return new HomepageDisplayer(days, sponsors);
 	}
 

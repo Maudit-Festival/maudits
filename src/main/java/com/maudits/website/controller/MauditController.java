@@ -7,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maudits.website.domain.form.ContactMessageForm;
 import com.maudits.website.domain.form.FilmForm;
+import com.maudits.website.service.CaptchaService;
 import com.maudits.website.service.ContactService;
 import com.maudits.website.service.MauditService;
 
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MauditController {
 	private final MauditService mauditService;
+	private final CaptchaService captchaService;
 	private final ContactService contactService;
 
 	@GetMapping("/")
@@ -40,9 +43,21 @@ public class MauditController {
 	}
 
 	@PostMapping("/contact")
-	public String sendEmail(ContactMessageForm form, Model model) {
-		contactService.sendEmail(form);
-		return "redirect:/contact";
+	public String sendEmail(ContactMessageForm form, @RequestParam("g-recaptcha-response") String reCaptchaResponse,
+			Model model) {
+		boolean success = captchaService.checkResponse(reCaptchaResponse);
+		if (success) {
+			success &= contactService.sendEmail(form);
+		}
+		if (success) {
+			model.addAttribute("success", true);
+			model.addAttribute("form", form);
+			return "contact";
+		} else {
+			model.addAttribute("error", true);
+			model.addAttribute("form", form);
+			return "contact";
+		}
 	}
 
 	@GetMapping("bo/film/edit/{id}")

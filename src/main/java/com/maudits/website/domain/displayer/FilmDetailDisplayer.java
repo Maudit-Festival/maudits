@@ -1,7 +1,7 @@
 package com.maudits.website.domain.displayer;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import com.maudits.website.repository.entities.Film;
 
@@ -11,21 +11,30 @@ import lombok.Getter;
 public class FilmDetailDisplayer {
 	private final String title;
 	private final String description;
-	private final LocalDate date;
-	private final LocalTime startTime;
+	private final String date;
+	private final String startTime;
 	private final String posterUrl;
+	private final String sampleImageUrl;
 	private final String releaseDate;
+	private final String director;
+	private final String scenarist;
 	private final String casting;
-	private final String format;
+	private final String duration;
+	private final String partner;
 
 	public FilmDetailDisplayer(Film film) {
 		this.title = film.getTitle();
 		this.description = film.getDescription();
-		this.date = film.getDate();
-		this.startTime = film.getStartTime();
-		this.posterUrl = film.getPosterUrl();
+		this.date = film.getDate().format(DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.FRANCE));
+		this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"));
+
+		this.posterUrl = film.getThumbnailPosterUrl();
+		this.sampleImageUrl = film.getSampleImageUrl();
 		this.releaseDate = film.getReleaseDate();
+		this.director = film.getDirector();
+		this.scenarist = film.getScenarist();
 		this.casting = film.getCasting();
-		this.format = film.getFormat();
+		this.duration = film.getDuration();
+		this.partner = film.getPartner();
 	}
 }
