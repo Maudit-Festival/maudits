@@ -26,7 +26,9 @@ public class FilmDetailDisplayer {
 		this.title = film.getTitle();
 		this.description = film.getDescription();
 		this.date = film.getDate().format(DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.FRANCE));
-		this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"));
+		this.startTime = (film.getStartTime().getHour() != 0)
+				? film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"))
+				: "Minuit";
 
 		this.posterUrl = film.getThumbnailPosterUrl();
 		this.sampleImageUrl = film.getSampleImageUrl();

@@ -3,6 +3,7 @@
 <head>
 	<title>Bienvenue sur le site des maudits films</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.1/slick/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.1/slick/slick-theme.css"/>
@@ -10,7 +11,7 @@
 </head>
 
 <body>
-	<header th:replace="/fragments/common.html :: common-navbar"></header>
+	<header th:replace="fragments/common.html :: common-navbar"></header>
 	<div class="hero">
 		<h1>Le Maudit Festival</h1>
 		<h2>Du 16 au 26 Janvier 2020</h2>
@@ -24,7 +25,7 @@
 			</th:block>
 		</div>
 		<div class="programmation-day-recap-container">
-			<div th:each="day : ${this.days}" th:id="${day.date}">
+			<div th:each="day : ${this.days}" th:id="${day.date}" class="programmation-day-recap-div">
 				<h4 th:text="${day.displayDate}">Jeudi 7</h4>
 				<div class="programmation-day-recap">
 					<div th:each="film : ${day.films}" class="film-recap">
@@ -62,7 +63,7 @@
 			<ul>
 				<li>La séance : <span class="tarif">6,50€</span></li>
 				<li>Pass 5 films : <span class="tarif">27,50€</span><br/>
-				<span class="tarif-comment">Ce pass donne accès à toutes les séances se déroulant dans le cinéma Juliet Berto.</span></li>
+				<span class="tarif-comment">Cliquez <a href="https://www.helloasso.com/associations/terreur-nocturne/evenements/le-maudit-festival">ici</a> pour acheter en ligne. Ce pass donne accès à toutes les séances se déroulant dans le cinéma Juliet Berto.</span></li>
 				<li>Séance GrindHouse - double programme : <span class="tarif">12€</span></li>
 				<li>Séance «&nbsp;Courts&nbsp;Maudits&nbsp;» : <span class="tarif">Entrée libre</span></li>
 			</ul>
@@ -90,12 +91,13 @@
 		<div class="partner-carroussel">
 			<div th:each="sponsor : ${this.sponsors}">
 				<a th:href="${sponsor.targetUrl}" target="_blank">
-					<img th:src="${sponsor.logoUrl}" th:alt="${sponsor.name}"></img>
+<!-- 					<img th:src="${sponsor.logoUrl}" th:alt="${sponsor.name}"></img> -->
+						<div th:style="${'background-image:url(' + sponsor.logoUrl +');'}" class="partner_image"></div>
 				</a>
 			</div>
 		</div>
 	</div>
-	<footer th:replace="/fragments/common.html :: common-footer">
+	<footer th:replace="fragments/common.html :: common-footer">
 	</footer>
 <script type="text/javascript" src="/plugins/jquery-3.4.1.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->

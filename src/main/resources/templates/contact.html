@@ -4,11 +4,12 @@
 	<title>Bienvenue sur le site des maudits films</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
-	<header th:replace="/fragments/common.html :: common-navbar"></header>
+	<header th:replace="fragments/common.html :: common-navbar"></header>
 	<div class="hero short-hero">
 	</div>
 	<div class="contact-section">
@@ -42,7 +43,7 @@
 			</form>
 		</div>
 	</div>
-	<footer th:replace="/fragments/common.html :: common-footer">
+	<footer th:replace="fragments/common.html :: common-footer">
 	</footer>
 </body>
 </html>
