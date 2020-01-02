@@ -3,10 +3,15 @@
 <head></head>
 <body>
 	<header th:fragment="common-navbar">
-		<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo">
-		<a href="/#programmation">La programmation 2020</a>
-		<a href="/#pratique">Infos pratiques</a>
-		<a href="/contact">Contact</a>
+		<label for="mobile_menu">
+			<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo">
+		</label>
+		<input style="display: none;" type="checkbox" id="mobile_menu">
+		<div>
+			<a href="/#programmation">La programmation 2020</a>
+			<a href="/#pratique">Infos pratiques</a>
+			<a href="/contact">Contact</a>
+		</div>
 	</header>
 	
 
