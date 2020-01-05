@@ -30,4 +30,6 @@ public class Film extends EntityWithId {
 	private String casting;
 	private String partner;
 	private String format;
+	private String buyUrl;
+	private String ageRating;
 }

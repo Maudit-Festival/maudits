@@ -22,26 +22,28 @@
 				<div class="technical-info-sidebar-inner">
 					<img class="poster" th:src="${filmDisplayer.posterUrl}" th:alt="${'Poster de «' + filmDisplayer.title + '»'}">
 					<div class="film-date-and-time-center">
-						<th:block th:text="${filmDisplayer.releaseDate}"></th:block>
-						-
-						<th:block th:text="${filmDisplayer.duration}"></th:block>
+						<th:block th:if="${filmDisplayer.releaseDate != null}" th:text="${filmDisplayer.releaseDate}"></th:block>
+						<th:block th:if="${filmDisplayer.releaseDate != null && filmDisplayer.duration != null}">-</th:block>
+						<th:block th:if="${filmDisplayer.duration != null}" th:text="${filmDisplayer.duration}"></th:block>
 					</div>
-					<div th:text="${'Réalisé par ' + filmDisplayer.director}">Réalisé par Bugs Bunny</div>
-					<div th:text="${'Scénario par ' + filmDisplayer.scenarist}">Scénario par Bugs Bunny</div>
-					<div th:text="${'Avec ' + filmDisplayer.casting}">avec Bugs Bunny</div>
+					<div th:if="${filmDisplayer.ageRating != null}" th:text="${filmDisplayer.ageRating}">Interdit aux plus de 20 ans</div>
+					<div th:if="${filmDisplayer.director != null}" th:text="${'Réalisé par ' + filmDisplayer.director}">Réalisé par Bugs Bunny</div>
+					<div th:if="${filmDisplayer.scenarist != null}" th:text="${'Scénario par ' + filmDisplayer.scenarist}">Scénario par Bugs Bunny</div>
+					<div th:if="${filmDisplayer.casting != null}" th:text="${'Avec ' + filmDisplayer.casting}">avec Bugs Bunny</div>
 	
 					<div class="partnership" th:if="${filmDisplayer.partner != null && filmDisplayer.partner != ''}" 
 					th:text="${'En partenariat avec ' + filmDisplayer.partner}">avec Bugs Bunny</div>
 					
 					<a class="purple-button" 
-					href="https://www.helloasso.com/associations/terreur-nocturne/evenements/le-maudit-festival" target="maudit-shop">
+					th:if="${filmDisplayer.buyUrl != null}" th:href="${filmDisplayer.buyUrl}" target="maudit-shop">
 						Acheter ma place
 					</a>
 				</div>
 			</div>
 			<div class="description-container">
 				<h1 th:text="${filmDisplayer.title}">Qui veut la peau de Bugs Bunny?</h1>
-				<img th:src="${filmDisplayer.sampleImageUrl}" th:alt="${'Extrait de «' + filmDisplayer.title + '»'}">
+				<img th:if="${filmDisplayer.sampleImageUrl != null}" th:src="${filmDisplayer.sampleImageUrl}" 
+					th:alt="${'Extrait de «' + filmDisplayer.title + '»'}">
 				<p th:utext="${#strings.replace( #strings.escapeXml(filmDisplayer.description),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" >Ce film n'existe pas lol.</p>
 			</div>
 		</div>

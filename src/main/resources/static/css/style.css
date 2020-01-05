@@ -22,6 +22,7 @@ button, input, textarea {
 }
 
 header {
+	background: #682b95;
 	background: var(--maudit-purple);
 	position: sticky;
 /* 	position: fixed; */
@@ -71,6 +72,7 @@ header a:hover {
 
 .hero.short-hero:after {
 	content:"";
+	background-color: #682b95;
 	background-color: var(--maudit-purple);
 	position: absolute;
 	bottom: 0;
@@ -78,6 +80,9 @@ header a:hover {
 	display: block;
 	height: 20vh;
 	width: 100%;
+	-webkit-clip-path: polygon(0 0, 0 100%, 100.00% 100%, 100% 0, 50% 90%);
+	-o-clip-path: polygon(0 0, 0 100%, 100.00% 100%, 100% 0, 50% 90%);
+	-ms-clip-path: polygon(0 0, 0 100%, 100.00% 100%, 100% 0, 50% 90%);
 	clip-path: polygon(0 0, 0 100%, 100.00% 100%, 100% 0, 50% 90%);
 }
 
@@ -106,6 +111,7 @@ header a:hover {
 }
 
 .link-to-day-recap:hover {
+	color: #682b95;
 	color: var(--maudit-purple);
 }
 
@@ -128,6 +134,7 @@ header a:hover {
 .programmation-day-recap {
 	display: flex;
 	flex-wrap: wrap;
+	border-left: 2px solid #682b95;
 	border-left: 2px solid var(--maudit-purple);
 	margin-right: 100px;
 }
@@ -144,11 +151,13 @@ header a:hover {
 
 .white-button:hover {
 	background: white;
+	color: #682b95;
 	color: var(--maudit-purple);
 }
 
 .purple-button {
 	display: inline-block;
+	background: #682b95;
 	background: var(--maudit-purple);
 	padding: 10px 20px !important;
 	color: white;
@@ -181,6 +190,7 @@ header a:hover {
 }
 
 .download-section {
+	background: #682b95;
 	background: var(--maudit-purple);
 	color: white;
 	fill: white;
@@ -205,23 +215,31 @@ header a:hover {
 
 .download-section:before {
 	content: "";
+	background: #682b95;
 	background: var(--maudit-purple);
 	position: absolute;
-	top: -80px;
+	top: -79px;
 	left: 0;
 	height: 80px;
 	width: 100%;
+	-webkit-clip-path: polygon(0 0, 100% 80%, 100% 100%, 0 100%);
+	-o-clip-path: polygon(0 0, 100% 80%, 100% 100%, 0 100%);
+	-ms-clip-path: polygon(0 0, 100% 80%, 100% 100%, 0 100%);
 	clip-path: polygon(0 0, 100% 80%, 100% 100%, 0 100%);
 }
 
 .download-section:after {
 	content: "";
+	background: #682b95;
 	background: var(--maudit-purple);
 	position: absolute;
 	bottom: -80px;
 	left: 0;
 	height: 80px;
 	width: 100%;
+	-webkit-clip-path: polygon(0 100%, 100% 50%, 100% 0, 0 0);
+	-o-clip-path: polygon(0 100%, 100% 50%, 100% 0, 0 0);
+	-ms-clip-path: polygon(0 100%, 100% 50%, 100% 0, 0 0);
 	clip-path: polygon(0 100%, 100% 50%, 100% 0, 0 0);
 }
 
@@ -231,6 +249,7 @@ header a:hover {
 }
 
 .practical-info-section h4 {
+	color: #682b95;
 	color: var(--maudit-purple);
 	margin-left: 20%;
 	font-size: 35px;
@@ -246,6 +265,7 @@ header a:hover {
 
 
 .tarif {
+	color: #682b95;
 	color: var(--maudit-purple);
 }
 
@@ -254,6 +274,7 @@ header a:hover {
 }
 
 .tarif-comment a {
+	color: #682b95;
 	color: var(--maudit-purple);
 }
 
@@ -283,6 +304,7 @@ header a:hover {
 
 .partner-section h3 {
 	text-align: center;
+	color: #682b95;
 	color: var(--maudit-purple);
 	text-transform: uppercase;
 }
@@ -295,6 +317,7 @@ header a:hover {
 
 .contact-section, .film-recap-section{
 	background: var(--background-gray-color);
+	background-image: radial-gradient(circle farthest-side at 200% 90%, #682b95, transparent);
 	background-image: radial-gradient(circle farthest-side at 200% 90%, var(--maudit-purple), transparent);
 	padding: 20px 0
 }
@@ -355,6 +378,7 @@ header a:hover {
 }
 
 .contact-section input:focus, .contact-section textarea:focus {
+	border-bottom: 1px solid #682b95;
 	border-bottom: 1px solid var(--maudit-purple);
 }
 
@@ -383,6 +407,7 @@ header a:hover {
 }
 
 .film-screening-date {
+	background-color: #682b95;
 	background-color: var(--maudit-purple);
 	text-align: center;
 	font-size: 20px;
@@ -460,6 +485,7 @@ footer {
 }
 
 footer h4 {
+	color: #682b95;
 	color: var(--maudit-purple);
 	font-size: 20px;
 	margin: 0px;
@@ -482,18 +508,21 @@ footer a {
 }
 
 footer a.external_link {
+	color: #682b95;
 	color: var(--maudit-purple);
 	text-decoration-color: white;
 }
 
 footer a.external_link:hover {
 	text-decoration-line: underline;
+	text-decoration-color: #682b95;
 	text-decoration-color: var(--maudit-purple);
 }
 
 .social-network-links-container a {
 	margin-top: 10px;
 	display: inline-block;
+	background: #682b95;
 	background: var(--maudit-purple);
 	border-radius: 1000px;
 	padding: 10px;
@@ -513,7 +542,9 @@ footer a.external_link:hover {
 }
 
 .social-network-links-container a:hover svg {
+	fill: #682b95;
 	fill: var(--maudit-purple);
+	stroke: #682b95;
 	stroke: var(--maudit-purple);
 }
 
@@ -555,6 +586,7 @@ footer a.external_link:hover {
 		display: none;
 		flex-direction: column;
 		position: absolute;
+		background-color: #682b95;
 		background-color: var(--maudit-purple);
 		top: 0;
 		left: 0;

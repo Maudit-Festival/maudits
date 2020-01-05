@@ -21,6 +21,8 @@ public class FilmDetailDisplayer {
 	private final String casting;
 	private final String duration;
 	private final String partner;
+	private final String buyUrl;
+	private final String ageRating;
 
 	public FilmDetailDisplayer(Film film) {
 		this.title = film.getTitle();
@@ -38,5 +40,7 @@ public class FilmDetailDisplayer {
 		this.casting = film.getCasting();
 		this.duration = film.getDuration();
 		this.partner = film.getPartner();
+		this.buyUrl = film.getBuyUrl();
+		this.ageRating = film.getAgeRating();
 	}
 }
