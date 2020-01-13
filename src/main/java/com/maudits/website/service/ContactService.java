@@ -16,9 +16,7 @@ public class ContactService {
 	public boolean sendEmail(ContactMessageForm form) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom("contact.maudits@gmail.com");
-		// TODO Change to correct address
-		message.setTo("contact.maudits@gmail.com");
-//		message.setTo("terreur.nocture.asso@gmail.com");
+		message.setTo("terreur.nocturne.asso@gmail.com");
 		message.setSubject("[Formulaire de contact mauditfestival.com] Un nouveau message de " + form.getFirstName()
 				+ " " + form.getLastName() + " ( " + form.getEmailAddress() + ")");
 		message.setReplyTo(form.getEmailAddress());

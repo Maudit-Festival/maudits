@@ -23,6 +23,8 @@ public class FilmDetailDisplayer {
 	private final String partner;
 	private final String buyUrl;
 	private final String ageRating;
+	private final String locationName;
+	private final String locationAddress;
 
 	public FilmDetailDisplayer(Film film) {
 		this.title = film.getTitle();
@@ -42,5 +44,7 @@ public class FilmDetailDisplayer {
 		this.partner = film.getPartner();
 		this.buyUrl = film.getBuyUrl();
 		this.ageRating = film.getAgeRating();
+		this.locationName = film.getLocationName();
+		this.locationAddress = film.getLocationAddress();
 	}
 }

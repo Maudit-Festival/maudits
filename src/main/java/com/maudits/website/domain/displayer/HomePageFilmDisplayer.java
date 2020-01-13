@@ -13,6 +13,7 @@ public class HomePageFilmDisplayer {
 	private final String description;
 	private final String startTime;
 	private final String imageUrl;
+	private final String locationName;
 
 	public HomePageFilmDisplayer(Film film) {
 		this.id = film.getId();
@@ -22,5 +23,6 @@ public class HomePageFilmDisplayer {
 				? film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"))
 				: "Minuit";
 		this.imageUrl = film.getThumbnailPosterUrl();
+		this.locationName = film.getLocationName();
 	}
 }

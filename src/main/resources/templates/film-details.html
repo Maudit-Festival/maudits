@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
 	<title th:text="${filmDisplayer.title}">Titre du film</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -19,6 +19,7 @@
 					à
 					<span class="start-time" th:text="${filmDisplayer.startTime}">23h</span>
 				</div>
+				<div class="location-infos" th:text="${filmDisplayer.locationName + ', ' +filmDisplayer.locationAddress}"></div>
 				<div class="technical-info-sidebar-inner">
 					<img class="poster" th:src="${filmDisplayer.posterUrl}" th:alt="${'Poster de «' + filmDisplayer.title + '»'}">
 					<div class="film-date-and-time-center">

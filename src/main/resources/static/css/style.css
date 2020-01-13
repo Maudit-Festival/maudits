@@ -68,6 +68,7 @@ header a:hover {
 	height: 30vh;
 	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/header-background-short.jpeg);
 	position: relative;
+	overflow: hidden;
 }
 
 .hero.short-hero:after {
@@ -75,7 +76,7 @@ header a:hover {
 	background-color: #682b95;
 	background-color: var(--maudit-purple);
 	position: absolute;
-	bottom: 0;
+	bottom: -1px;
 	left: 0;
 	display: block;
 	height: 20vh;
@@ -89,6 +90,7 @@ header a:hover {
 
 .hero h1 {
 	margin-top: 20vw;
+	margin-bottom: 19px;
 	font-size: 70px;
 }
 
@@ -178,15 +180,15 @@ header a:hover {
 	margin: 10px;
 }
 
-.film-recap img {
-	width: 200px;
-}
-
 .film-recap .film_poster {
 	width: 200px;
 	height: 275px;
 	background-size: cover;
 	background-position: center;
+}
+
+.film-recap .purple-button {
+	margin-top: 10px;
 }
 
 .download-section {
@@ -233,7 +235,7 @@ header a:hover {
 	background: #682b95;
 	background: var(--maudit-purple);
 	position: absolute;
-	bottom: -80px;
+	bottom: -79px;
 	left: 0;
 	height: 80px;
 	width: 100%;
@@ -255,8 +257,9 @@ header a:hover {
 	font-size: 35px;
 }
 
-.practical-info-section ul {
+.left-margin {
 	margin-left: 10%;
+	margin-right: 10%;
 }
 
 .practical-info-section li {
@@ -265,8 +268,18 @@ header a:hover {
 
 
 .tarif {
-	color: #682b95;
-	color: var(--maudit-purple);
+/* 	color: #682b95; */
+/* 	color: var(--maudit-purple); */
+/* 	text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white; */
+
+
+/* 	color: white; */
+	text-shadow: 0 0 2px var(--maudit-purple), 0 0 2px var(--maudit-purple), 0 0 2px var(--maudit-purple), 0 0 3px var(--maudit-purple), 0 0 4px var(--maudit-purple);
+/* 	text-shadow: 0 0 10px var(--maudit-purple), 0 0 20px var(--maudit-purple), 0 0 30px var(--maudit-purple), 0 0 40px var(--maudit-purple), 0 0 50px var(--maudit-purple), 0 0 60px var(--maudit-purple), 0 0 70px var(--maudit-purple); */
+
+/* 	display: inline-block; */
+/* 	box-shadow: 0 0 2px white; */
+/* 	background: white; */
 }
 
 .tarif-comment {
@@ -279,27 +292,17 @@ header a:hover {
 }
 
 
+.practical-info-section em {
+	font-style: normal;
+	text-decoration: underline solid var(--maudit-purple);
+}
+
+.practical-info-section ul {
+	margin-bottom: 50px;
+}
+
 .location-information-container {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: flex-end;
-	flex-wrap: wrap;
-	margin: auto;
-}
-
-.location-information-container div {
-	flex-grow: 1;
-	padding: 20px;
-}
-
-.gmaps-iframe-container {
-	flex-grow: 1000;
-}
-
-.location-information-container iframe {
-	float: right;
-/* 	margin-left: auto; */
-	display: block;
+	max-width: 800px;
 }
 
 .partner-section h3 {
@@ -324,8 +327,8 @@ header a:hover {
 
 #gmaps-iframe {
 /* 	width:100%;  */
-	width:800px;
-	max-width:100%;
+	max-width:800px;
+	width:100%;
 	height:600px;
 	border:0;
 }
@@ -419,6 +422,10 @@ header a:hover {
 	text-transform: capitalize;
 }
 
+.technical-info-sidebar .location-infos {
+	text-align: center;
+}
+
 .technical-info-sidebar-inner {
 	width: 200px;
 	margin: auto;
@@ -454,6 +461,7 @@ header a:hover {
 
 .description-container img {
 	max-height: 500px;
+	max-width: 100%;
 }
 
 footer {
@@ -473,16 +481,22 @@ footer {
 /* 	margin-left: 60px; */
 /* } */
 
-.footer-container > .footer-logo-container {
-	display: flex;
-	margin-left: 0;
-}
+/* .footer-container > .footer-logo-container { */
+/* 	display: flex; */
+/* 	margin-left: 0; */
+/* } */
+
+/* .footer-logo { */
+/* 	height: 50px; */
+/* 	width: 50px; */
+/* 	margin-right: 10px; */
+/* } */
 
 .footer-logo {
 	height: 50px;
-	width: 50px;
-	margin-right: 10px;
+	display: block;
 }
+
 
 footer h4 {
 	color: #682b95;
@@ -560,6 +574,12 @@ footer a.external_link:hover {
 	}
 }
 
+@media(max-width: 999px) {
+	.location-information-container {
+		margin: auto;
+	}
+}
+
 @media (max-width: 850px) {
 	.footer-container {
 		flex-direction: column;
@@ -610,7 +630,6 @@ footer a.external_link:hover {
 	}
 	
 	.programmation-day-recap {
-		direction: ;
 		flex-direction: column;
 	}
 	

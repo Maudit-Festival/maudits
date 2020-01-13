@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
 	<title>Bienvenue sur le site des maudits films</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -33,6 +33,7 @@
 						<div class="film_poster" th:style="'background-image:url(' + ${film.imageUrl} + ');'"></div>
 						<div th:text="${film.startTime}"></div>
 						<div th:text="${film.title}"></div>
+						<div th:text="${film.locationName}"></div>
 						<a th:href="@{'/film/'+${film.id}}" class="purple-button">En savoir plus</a>
 					</div>
 				</div>
@@ -60,29 +61,55 @@
 	<div id="pratique" class="practical-info-section">
 		<div>
 			<h4>Tarifs</h4>
-			<ul>
-				<li>La séance : <span class="tarif">6,50€</span></li>
-				<li>Pass 5 films : <span class="tarif">27,50€</span><br/>
-				<span class="tarif-comment">Cliquez <a href="https://www.helloasso.com/associations/terreur-nocturne/evenements/le-maudit-festival">ici</a> pour acheter en ligne. Ce pass donne accès à toutes les séances se déroulant dans le cinéma Juliet Berto.</span></li>
-				<li>Séance GrindHouse - double programme : <span class="tarif">12€</span></li>
-				<li>Séance «&nbsp;Courts&nbsp;Maudits&nbsp;» : <span class="tarif">Entrée libre</span></li>
-			</ul>
-		</div>
+			<div class="left-margin">
+				<p>
+					Le festival étant accueilli par différentes structures, les prix peuvent différer. Merci de vous référer aux fiches de chaque séance.<br/>
+					Les tarifs donnés ici correspondent aux séances en salle Juliet Berto, sauf la séance « Le Renne blanc » du Mecredi 22 Janvier, qui est aux tarifs du ciné-club de Grenoble.
+				</p>
+				<ul>
+					<li>La séance, plein tarif : <span class="tarif">6,50€</span></li>
+					<li>Tarif jeune (moins de 14 ans) : <span class="tarif">4€</span></li>
+					<li>Tarif réduit (moins de 26 ans, plus de 65 ans, demandeur d'emploi, carte mc2, carte tag, ticket ciné indépendant) : <span class="tarif">5€50</span></li>
+					<li>Ticket suspendu : <span class="tarif">4€</span></li>
+					
+					<li>Pass 5 films : <span class="tarif">27,50€</span><br/>
+					<span class="tarif-comment">Cliquez <a href="https://www.helloasso.com/associations/terreur-nocturne/evenements/le-maudit-festival">ici</a> pour acheter en ligne. Ce pass donne accès à toutes les séances se déroulant dans le cinéma Juliet Berto.</span></li>
+					<li>Séance GrindHouse - double programme : <span class="tarif">12€</span></li>
+					<li>Séance «&nbsp;Courts&nbsp;Maudits&nbsp;» : <span class="tarif">Entrée libre</span></li>
+				</ul>
+				<p>
+					Pour la séance Cinéclub du Mercredi 22 Janvier :
+				</p>
+				<ul>
+					<li>Tarif adhérent (sur présentation de la carte adhérent) : <span class="tarif">5€50</span></li>
+					<li>Une place + adhésion annuelle au cinéclub : <span class="tarif">12€</span></li>
+					<li>Une place + adhésion annuelle au cinéclub, tarif étudiants et demandeurs d'emploi : <span class="tarif">7€</span></li>
+					<li>Pour les non-adhérents au Ciné Club : merci d'acheter vos places directement le jour de la séance au cinéma Juliet Berto</li>
+				</ul>
+				<p>
+					<em>Nous ne pourrons malheureusement pas prendre la carte bancaire les soirs de projections au Cinéma Juliet Berto ni pour le ciné-brunch.</em> Cependant, vous pouvez acheter vos places via notre billetterie en ligne <a href="https://www.helloasso.com/associations/terreur-nocturne/annuaire">ici</a>.
+				</p>
+				</div>
+			</div>
 		<div>
-		<h4>Les lieux</h4>
-			<div class="location-information-container">
-				<div>
+<!-- 		<h4>Les lieux</h4> -->
+		<h4>Le lieu</h4>
+			<p class="left-margin">
+				Cinéma Juliet,<br/>Passage du Palais de Justice,<br/>38000 Grenoble.<br/>
+				La salle est accessible aux PMR (personnes à mobilité réduite).
+			</p>
+			<div class="location-information-container left-margin">
+<!-- 				<div> -->
+<!-- 					Sauf indications spécifiques, les projections se déroulent dans le mythique Cinéma Juliet Berto.<br/> La salle est accessible aux PMR (personnes à mobilité réduite).  -->
 <!-- 					<p>Cinéma Juliet Berto, Passage du Palais de Justice, 38000 Grenoble</p> -->
 <!-- 					<p>Pour venir en voiture : …</p> -->
 <!-- 					<p>Pour venir en transport en commun: …</p> -->
-				</div>
-				<div class="gmaps-iframe-container">
-					<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d295.5442748266444!2d5.727772695313013!3d45.1930304161059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sfr!4v1577448601081!5m2!1sen!2sfr" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>		 -->
-					<iframe id="gmaps-iframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQr2ekQY5Ri4ERwZyQWVSwYBqVXczaIe0&q=Salle+Juliet+Bertho,+Grenoble" frameborder="0" allowfullscreen=""></iframe>
+<!-- 				</div> -->
+<!-- 				<div class="gmaps-iframe-container"> -->
+					<iframe id="gmaps-iframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQr2ekQY5Ri4ERwZyQWVSwYBqVXczaIe0&q=Salle+Juliet+Bertho,+Grenoble" allowfullscreen=""></iframe>
 				</div>
 			</div>
 		</div>
-	</div>
 <!-- 	<div id="contact" class="contact-section" style="overflow: auto;"> -->
 <!-- 		<h3>Contact</h3> -->
 <!-- 	</div> -->
@@ -99,9 +126,9 @@
 	</div>
 	<footer th:replace="fragments/common.html :: common-footer">
 	</footer>
-<script type="text/javascript" src="/plugins/jquery-3.4.1.min.js"></script>
+<script src="/plugins/jquery-3.4.1.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
-<script type="text/javascript" src="/plugins/slick-1.8.1/slick/slick.min.js"></script>
+<script src="/plugins/slick-1.8.1/slick/slick.min.js"></script>
 <!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
 <script>
 $('.partner-carroussel').slick({
