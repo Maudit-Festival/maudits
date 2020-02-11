@@ -19,9 +19,16 @@ public class HomePageFilmDisplayer {
 		this.id = film.getId();
 		this.title = film.getTitle();
 		this.description = film.getDescription();
-		this.startTime = (film.getStartTime().getHour() != 0)
-				? film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"))
-				: "Minuit";
+		if (film.getStartTime().getHour() == 0) {
+			this.startTime = "Minuit";
+		} else if (film.getStartTime().getMinute() == 0) {
+			this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"));
+		} else {
+			this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'mm"));
+		}
+//		this.startTime = (film.getStartTime().getHour() != 0)
+//				? film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"))
+//				: "Minuit";
 		this.imageUrl = film.getThumbnailPosterUrl();
 		this.locationName = film.getLocationName();
 	}

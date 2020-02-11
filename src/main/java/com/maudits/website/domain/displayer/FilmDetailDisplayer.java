@@ -30,9 +30,13 @@ public class FilmDetailDisplayer {
 		this.title = film.getTitle();
 		this.description = film.getDescription();
 		this.date = film.getDate().format(DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.FRANCE));
-		this.startTime = (film.getStartTime().getHour() != 0)
-				? film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"))
-				: "Minuit";
+		if (film.getStartTime().getHour() == 0) {
+			this.startTime = "Minuit";
+		} else if (film.getStartTime().getMinute() == 0) {
+			this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"));
+		} else {
+			this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'mm"));
+		}
 
 		this.posterUrl = film.getThumbnailPosterUrl();
 		this.sampleImageUrl = film.getSampleImageUrl();
