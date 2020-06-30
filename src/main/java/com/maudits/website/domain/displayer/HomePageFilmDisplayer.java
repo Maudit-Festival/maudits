@@ -28,9 +28,6 @@ public class HomePageFilmDisplayer {
 		} else {
 			this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'mm"));
 		}
-//		this.startTime = (film.getStartTime().getHour() != 0)
-//				? film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"))
-//				: "Minuit";
 		this.imageUrl = film.getThumbnailPosterUrl();
 		this.locationName = film.getLocationName();
 	}

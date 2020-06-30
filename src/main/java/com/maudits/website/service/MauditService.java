@@ -34,7 +34,9 @@ public class MauditService {
 	private final SponsorRepository sponsorRepository;
 
 	public FilmDetailDisplayer findFilmDisplayerFromTextualId(String textualId) {
-		return new FilmDetailDisplayer(filmRepository.findOneByTextualId(textualId).orElseThrow());
+		return new FilmDetailDisplayer(filmRepository.findOneByTextualId(textualId)
+				.or(() -> filmRepository.findById(Long.valueOf(textualId)))
+				.orElseThrow());
 	}
 
 	public FilmForm findFilmFormFromId(Long id) {
