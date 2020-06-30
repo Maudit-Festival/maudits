@@ -33,8 +33,8 @@ public class MauditService {
 	private final FilmRepository filmRepository;
 	private final SponsorRepository sponsorRepository;
 
-	public FilmDetailDisplayer findFilmDisplayerFromId(Long id) {
-		return new FilmDetailDisplayer(filmRepository.findById(id).orElseThrow());
+	public FilmDetailDisplayer findFilmDisplayerFromTextualId(String textualId) {
+		return new FilmDetailDisplayer(filmRepository.findOneByTextualId(textualId).orElseThrow());
 	}
 
 	public FilmForm findFilmFormFromId(Long id) {

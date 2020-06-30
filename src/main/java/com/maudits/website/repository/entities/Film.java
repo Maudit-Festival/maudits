@@ -16,6 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Film extends EntityWithId {
+	private String textualId;
 	private String title;
 	private String description;
 	private LocalDate date;

@@ -10,6 +10,7 @@ import lombok.Getter;
 public class HomePageFilmDisplayer {
 	private final Long id;
 	private final String title;
+	private final String textualId;
 	private final String description;
 	private final String startTime;
 	private final String imageUrl;
@@ -17,6 +18,7 @@ public class HomePageFilmDisplayer {
 
 	public HomePageFilmDisplayer(Film film) {
 		this.id = film.getId();
+		this.textualId = film.getTextualId();
 		this.title = film.getTitle();
 		this.description = film.getDescription();
 		if (film.getStartTime().getHour() == 0) {

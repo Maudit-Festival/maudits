@@ -30,9 +30,9 @@ public class MauditController {
 		return "homepage";
 	}
 
-	@GetMapping("/film/{id}")
-	public String showFilm(@PathVariable Long id, Model model) {
-		model.addAttribute("filmDisplayer", mauditService.findFilmDisplayerFromId(id));
+	@GetMapping("/film/{textualId}")
+	public String showFilm(@PathVariable String textualId, Model model) {
+		model.addAttribute("filmDisplayer", mauditService.findFilmDisplayerFromTextualId(textualId));
 		return "film-details";
 	}
 
