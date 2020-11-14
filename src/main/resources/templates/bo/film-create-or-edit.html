@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title th:text="${'Édition de ' + form.title}">Titre du film</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<form th:action="@{/bo/film/save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data">
+		<input type="hidden" th:field="*{id}">
+		<input type="text" th:field="*{textualId}" placeholder="Token pour URL">
+		<input type="text" th:field="*{title}" placeholder="Titre du film">
+		<textarea th:field="*{description}" placeholder="Description"></textarea>
+		<input type="date" th:field="*{date}">
+		<input type="time" th:field="*{startTime}">
+		
+		<input type="file" th:field="*{posterFile}" accept="image/*" />
+		<input type="file" th:field="*{sampleImageFile}" accept="image/*" />
+		
+		<input type="text" th:field="*{releaseDate}" placeholder="Date de sortie">
+		<input type="text" th:field="*{director}" placeholder="Réalisateur">
+		<input type="text" th:field="*{scenarist}" placeholder="Scénariste">
+		<input type="text" th:field="*{duration}" placeholder="Durée">
+		<input type="text" th:field="*{casting}" placeholder="Casting">
+		<input type="text" th:field="*{partner}" placeholder="Partenaire de la séance">
+		<input type="text" th:field="*{buyUrl}" placeholder="URL pour acheter les places (laisser vide si aucune)">
+		<input type="text" th:field="*{ageRating}" placeholder="Classification/limites d'âge">
+		<input type="text" th:field="*{locationName}" placeholder="Nom du lieu de la séance">
+		<input type="text" th:field="*{locationAddress}" placeholder="Addresse du lieu de la séance">
+		<input type="submit">
+	</form>
+</body>
+
+</html>

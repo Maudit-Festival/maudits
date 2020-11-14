@@ -16,6 +16,6 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class EntityWithId {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 }

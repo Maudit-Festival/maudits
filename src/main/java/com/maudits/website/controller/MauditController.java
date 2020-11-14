@@ -1,7 +1,5 @@
 package com.maudits.website.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maudits.website.domain.form.ContactMessageForm;
-import com.maudits.website.domain.form.FilmForm;
 import com.maudits.website.service.CaptchaService;
 import com.maudits.website.service.ContactService;
 import com.maudits.website.service.MauditService;
@@ -58,17 +55,5 @@ public class MauditController {
 			model.addAttribute("form", form);
 			return "contact";
 		}
-	}
-
-	@GetMapping("bo/film/edit/{id}")
-	public String showFilmEdition(@PathVariable Long id, Model model) {
-		model.addAttribute("form", mauditService.findFilmFormFromId(id));
-		return "film-create-or-edit";
-	}
-
-	@PostMapping("bo/film/save-edit")
-	public String saveFilmEdition(@PathVariable Long id, @Valid FilmForm form, Model model) {
-		mauditService.saveFilm(form);
-		return "redirect:/";
 	}
 }

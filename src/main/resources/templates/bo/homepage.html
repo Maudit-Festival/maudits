@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<a href="bo/film/create">Ajouter un film</a>
+<table>
+<tr th:each="film : ${films}">
+<td th:text="${film.title}"></td>
+<td><a th:href="${'bo/film/edit/' + film.id}">Éditer</a></td>
+</table>
+</body>
+</html>
