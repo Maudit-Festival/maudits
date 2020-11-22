@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.maudits.website.domain.bo.displayer.FilmBoDisplayer;
 import com.maudits.website.domain.form.FilmForm;
+import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.FilmRepository;
+import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Film;
 
 import lombok.RequiredArgsConstructor;
@@ -19,18 +21,31 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BoService {
 	private final FilmRepository filmRepository;
+	private final EditionRepository editionRepository;
 	private final UploadService uploadService;
 
-	public List<FilmBoDisplayer> findAllFilms() {
+	public List<FilmBoDisplayer> findCurrentFilms() {
+		return findFilms(editionRepository.findOneByCurrentTrue());
+	}
+
+	public List<FilmBoDisplayer> findNextFilms() {
+		return findFilms(editionRepository.findOneByNextTrue());
+	}
+
+	private List<FilmBoDisplayer> findFilms(Edition edition) {
 		List<FilmBoDisplayer> result = new ArrayList<>();
-		for (Film film : filmRepository.findAll()) {
+		for (Film film : edition.getFilms()) {
 			result.add(new FilmBoDisplayer(film));
 		}
 		return result;
 	}
 
-	public FilmForm createFilmForm() {
-		return new FilmForm();
+	public FilmForm createFilmFormNextEdition() {
+		return new FilmForm(true);
+	}
+
+	public FilmForm createFilmFormCurrentEdition() {
+		return new FilmForm(false);
 	}
 
 	public FilmForm findFilmFormFromId(Long id) {
@@ -83,6 +98,9 @@ public class BoService {
 		film.setAgeRating(filterEmpty(form.getAgeRating()));
 		film.setLocationName(filterEmpty(form.getLocationName()));
 		film.setLocationAddress(filterEmpty(form.getLocationAddress()));
+
+		film.setEdition(form.isNextEdition() ? editionRepository.findOneByNextTrue()
+				: editionRepository.findOneByCurrentTrue());
 
 		filmRepository.save(film);
 	}

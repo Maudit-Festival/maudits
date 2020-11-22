@@ -9,6 +9,7 @@
 <body>
 	<form th:action="@{/bo/film/save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data">
 		<input type="hidden" th:field="*{id}">
+		<input type="hidden" th:field="*{nextEdition}">
 		<input type="text" th:field="*{textualId}" placeholder="Token pour URL">
 		<input type="text" th:field="*{title}" placeholder="Titre du film">
 		<textarea th:field="*{description}" placeholder="Description"></textarea>

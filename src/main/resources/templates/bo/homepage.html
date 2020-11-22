@@ -6,11 +6,24 @@
 </head>
 
 <body>
-<a href="bo/film/create">Ajouter un film</a>
+<h1>Films de la prochaine édition</h1>
+
+<a href="bo/film/create-next-edition">Ajouter un film</a>
 <table>
-<tr th:each="film : ${films}">
+<tr th:each="film : ${nextFilms}">
 <td th:text="${film.title}"></td>
 <td><a th:href="${'bo/film/edit/' + film.id}">Éditer</a></td>
 </table>
+<a href="bo/next">Preview nouvelle édition</a>
+
+<h1>Films de l'édition actuelle</h1>
+
+<a href="bo/film/create-current-edition">Ajouter un film</a>
+<table>
+<tr th:each="film : ${currentFilms}">
+<td th:text="${film.title}"></td>
+<td><a th:href="${'bo/film/edit/' + film.id}">Éditer</a></td>
+</table>
+
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.maudits.website.domain.form.FilmForm;
 import com.maudits.website.service.BoService;
+import com.maudits.website.service.MauditService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,11 +22,19 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("bo")
 public class BoController {
 	private final BoService boService;
+	private final MauditService mauditService;
 
 	@GetMapping("")
 	public String boHomepage(Model model) {
-		model.addAttribute("films", boService.findAllFilms());
+		model.addAttribute("currentFilms", boService.findCurrentFilms());
+		model.addAttribute("nextFilms", boService.findNextFilms());
 		return "bo/homepage";
+	}
+
+	@GetMapping("/next")
+	public String previewNextEdition(Model model) {
+		model.addAttribute("this", mauditService.makeHomeFilmRecapNextEdition());
+		return "homepage";
 	}
 
 	@GetMapping("film/edit/{id}")
@@ -34,9 +43,15 @@ public class BoController {
 		return "bo/film-create-or-edit";
 	}
 
-	@GetMapping("film/create")
-	public String showFilmCreation(Model model) {
-		model.addAttribute("form", boService.createFilmForm());
+	@GetMapping("film/create-next-edition")
+	public String showFilmCreationNextEdition(Model model) {
+		model.addAttribute("form", boService.createFilmFormNextEdition());
+		return "bo/film-create-or-edit";
+	}
+
+	@GetMapping("film/create-current-edition")
+	public String showFilmCreationCurrentEdition(Model model) {
+		model.addAttribute("form", boService.createFilmFormCurrentEdition());
 		return "bo/film-create-or-edit";
 	}
 

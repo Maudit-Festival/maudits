@@ -17,8 +17,10 @@ import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.domain.displayer.HomePageFilmDisplayer;
 import com.maudits.website.domain.displayer.SponsorDisplayer;
 import com.maudits.website.domain.page.HomepageDisplayer;
+import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.FilmRepository;
 import com.maudits.website.repository.SponsorRepository;
+import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Film;
 import com.maudits.website.repository.entities.Sponsor;
 
@@ -28,12 +30,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MauditService {
 	private final FilmRepository filmRepository;
+	private final EditionRepository editionRepository;
 	private final SponsorRepository sponsorRepository;
 
 	public FilmDetailDisplayer findFilmDisplayerFromTextualId(String textualId) {
 		return new FilmDetailDisplayer(filmRepository.findOneByTextualId(textualId)
-				.or(() -> filmRepository.findById(Long.valueOf(textualId)))
-				.orElseThrow());
+				.or(() -> filmRepository.findById(Long.valueOf(textualId))).orElseThrow());
 	}
 
 	private List<Film> mergeList(List<Film> oldList, List<Film> newList) {
@@ -47,10 +49,18 @@ public class MauditService {
 		}
 	}
 
-	public HomepageDisplayer makeHomeFilmRecap() {
+	public HomepageDisplayer makeHomeFilmRecapCurrentEdition() {
+		return makeHomeFilmRecap(editionRepository.findOneByCurrentTrue());
+	}
+
+	public HomepageDisplayer makeHomeFilmRecapNextEdition() {
+		return makeHomeFilmRecap(editionRepository.findOneByNextTrue());
+	}
+
+	private HomepageDisplayer makeHomeFilmRecap(Edition edition) {
 		List<HomePageDayDisplayer> days = new ArrayList<>();
 		Map<LocalDate, List<Film>> films = new HashMap<>();
-		for (Film film : filmRepository.findAll()) {
+		for (Film film : edition.getFilms()) {
 			films.merge(film.getDate(), List.of(film), this::mergeList);
 		}
 		for (Entry<LocalDate, List<Film>> entry : films.entrySet()) {

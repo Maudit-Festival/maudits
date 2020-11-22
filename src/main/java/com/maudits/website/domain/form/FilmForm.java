@@ -39,6 +39,8 @@ public class FilmForm {
 	private String locationName;
 	private String locationAddress;
 
+	private boolean nextEdition;
+
 	public FilmForm(Film film) {
 		this.id = film.getId();
 		this.textualId = film.getTextualId();
@@ -57,5 +59,12 @@ public class FilmForm {
 		this.ageRating = film.getAgeRating();
 		this.locationName = film.getLocationName();
 		this.locationAddress = film.getLocationAddress();
+
+		this.nextEdition = film.getEdition().isNext();
+	}
+
+	public FilmForm(boolean nextEdition) {
+		super();
+		this.nextEdition = nextEdition;
 	}
 }

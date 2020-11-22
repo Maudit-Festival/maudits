@@ -23,7 +23,7 @@ public class MauditController {
 
 	@GetMapping("/")
 	public String showHomePage(Model model) {
-		model.addAttribute("this", mauditService.makeHomeFilmRecap());
+		model.addAttribute("this", mauditService.makeHomeFilmRecapCurrentEdition());
 		return "homepage";
 	}
 
