@@ -10,7 +10,13 @@
 
 body {
 	margin: 0;
-	font-family: gill
+	font-family: gill;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 button, input, textarea {
@@ -32,7 +38,7 @@ header {
 	padding: 10px;
 	margin-top: 50px;
 	z-index: 100;
-} 
+}
 
 .header-logo {
 	width: 50px;
@@ -389,7 +395,7 @@ header a:hover {
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-evenly;
-	flex-wrap:wrap; 
+	flex-wrap:wrap;
 }
 
 .contact-submit-container button{
@@ -452,7 +458,7 @@ header a:hover {
 	color: white;
 	margin: auto;
 	word-break: break-word;
-	padding: 20px; 
+	padding: 20px;
 }
 
 .description-container h1 {
@@ -562,11 +568,41 @@ footer a.external_link:hover {
 	stroke: var(--maudit-purple);
 }
 
+/*
+* CSS INTERFACE ADMIN
+*/
+.admin_main_nav{
+	margin-top: 1%;
+	margin-bottom: 2%;
+}
+.admin_main_title{
+	margin-left: 25%;
+}
+.admin_sidebar{
+	font-size: 1em;
+	padding:1%;
+	border-radius: 3%;
+	color: white;
+	background-color: #0099cc;
+	text-decoration: none;
+}
+.admin_sidebar h2{
+	font-size: 1.6em;
+	text-align: center;
+}
+.admin_sidebar a{
+	color: white;
+}
+.admin_title_next_edition{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
 @media (max-width: 1299px) {
 	.description-container {
 		width: 80%;
 	}
-	
+
 	.description-container img {
 		margin: auto;
 		display: block;
@@ -585,23 +621,23 @@ footer a.external_link:hover {
 		flex-direction: column;
 		align-content: center;
 	}
-	
+
 	.footer-container > * {
 		margin-bottom: 40px;
 		margin-left: 60px;
 	}
-	
+
 }
 
 @media (max-width: 539px) {
 	.hero h1 {
 		font-size: 35px;
 	}
-	
+
 	header {
 	  align-items: flex-start;
 	}
-	
+
 	header div {
 		display: none;
 		flex-direction: column;
@@ -615,7 +651,7 @@ footer a.external_link:hover {
 		padding-left: 65px;
 		z-index: -1;
 	}
-	
+
 	header input:checked + div {
 		display: flex;
 	}
@@ -624,17 +660,17 @@ footer a.external_link:hover {
 		padding: 0;
 		padding-bottom: 5rem;
 	}
-	
+
 	.programmation-day-recap-div {
 		margin: auto;
 	}
-	
+
 	.programmation-day-recap {
 		flex-direction: column;
 	}
-	
+
 	.practical-info-section ul {
 		margin: 0 10px;
 	}
-	
+
 }

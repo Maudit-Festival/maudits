@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
+	<title>Administration - maudits films</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
-
-<body>
-<h1>Films de la prochaine édition</h1>
-
-<a href="bo/film/create-next-edition">Ajouter un film</a>
-<table>
-<tr th:each="film : ${nextFilms}">
-<td th:text="${film.title}"></td>
-<td><a th:href="${'bo/film/edit/' + film.id}">Éditer</a></td>
-</table>
-<a href="bo/next">Preview nouvelle édition</a>
-
-<h1>Films de l'édition actuelle</h1>
-
-<a href="bo/film/create-current-edition">Ajouter un film</a>
-<table>
-<tr th:each="film : ${currentFilms}">
-<td th:text="${film.title}"></td>
-<td><a th:href="${'bo/film/edit/' + film.id}">Éditer</a></td>
-</table>
-
+<body class="container-fluid">
+	<nav class="row admin_main_nav">
+		<a href="/"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="footer-logo"></a>
+		<h1 class="admin_main_title">Interface administration</h1>
+	</nav>
+<section class="row">
+	<sidebar class="col-md-3 admin_sidebar">
+		<h2 class="admin_title_current_edition">Administration edition {année de l'édition} en cours </h2>
+		<ul>
+			<li> <a href="bo/film/create-current-edition">Ajouter un film</a></li>
+		</ul>
+		<h2 class="admin_title_next_edition" >Administration edition {année de l'édition suivante} </h2>
+		<ul>
+			<li><a href="bo/film/create-next-edition">Ajouter un film</a></li>
+			<li><a href="bo/next">Preview nouvelle édition avec design actuel</a></li>
+			<ul th:each="film : ${nextFilms}">
+				<li th:text="${film.title}">
+					<a th:href="${'bo/film/edit/' + film.id}">Éditer</a>
+				</li>
+			</ul>
+		</ul>
+	</sidebar>
+	<main class="admin_main col-md-8">
+		<article th:each="film : ${currentFilms}" >
+			<!--<header>
+				<a th:href="${'bo/film/edit/' + film.textualId}"><h4 th:text="${film.title}"></h4></a>
+				<div th:text="${film.startTime}"></div>
+				<div th:text="${film.title}"></div>
+				<div th:text="${film.locationName}"></div>
+			</header>
+			<div class="film_poster" th:style="'background-image:url(' + ${film.imageUrl} + ');'"></div> -->
+	</article>
+	</main>
+</section>
 </body>
 </html>
+<script src="/plugins/bootstrap-4.1.3.min.js"></script>
