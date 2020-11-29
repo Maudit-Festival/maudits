@@ -13,12 +13,6 @@ body {
 	font-family: gill;
 }
 
-ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-}
-
 button, input, textarea {
 	font: inherit;
 }
@@ -566,36 +560,6 @@ footer a.external_link:hover {
 	fill: var(--maudit-purple);
 	stroke: #682b95;
 	stroke: var(--maudit-purple);
-}
-
-/*
-* CSS INTERFACE ADMIN
-*/
-.admin_main_nav{
-	margin-top: 1%;
-	margin-bottom: 2%;
-}
-.admin_main_title{
-	margin-left: 25%;
-}
-.admin_sidebar{
-	font-size: 1em;
-	padding:1%;
-	border-radius: 3%;
-	color: white;
-	background-color: #0099cc;
-	text-decoration: none;
-}
-.admin_sidebar h2{
-	font-size: 1.6em;
-	text-align: center;
-}
-.admin_sidebar a{
-	color: white;
-}
-.admin_title_next_edition{
-	margin-top: 2%;
-	margin-bottom: 2%;
 }
 
 @media (max-width: 1299px) {

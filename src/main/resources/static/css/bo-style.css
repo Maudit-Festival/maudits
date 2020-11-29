@@ -1,0 +1,41 @@
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.header-logo {
+	height: 50px;
+	display: block;
+}
+
+/*
+* CSS INTERFACE ADMIN
+*/
+.admin_main_nav{
+	margin-top: 1%;
+	margin-bottom: 2%;
+}
+.admin_main_title{
+	margin-left: 25%;
+}
+.admin_sidebar{
+	font-size: 1em;
+	padding:1%;
+	border-radius: 3%;
+	color: white;
+	background-color: #0099cc;
+	background-color: var(--blue);
+	text-decoration: none;
+	height: max-content;
+	position: sticky;
+	top: 0;
+}
+.admin_sidebar a{
+	color: white;
+}
+.admin_title_next_edition{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
