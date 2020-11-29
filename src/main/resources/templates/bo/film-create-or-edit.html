@@ -6,6 +6,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/bo-style.css" />
+	<script
+			  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+			  crossorigin="anonymous"></script>
+	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
 </head>
 
 <body class="container-fluid">
@@ -38,12 +43,16 @@
 			<input type="time" th:field="*{startTime}" class="form-control" id="movieTime" required>
 		</div>
 		<div class="form-group">
-			<label for="uploadPoster">Poster du film</label>
+			<label for="uploadPoster">Poster du film
+			<img id="filmPosterPreview" class="imageUploadPreview" th:src="*{posterUrl}">
+			</label>
 			<input type="file" th:field="*{posterFile}" accept="image/*" class="form-control-file" id="uploadPoster" required>
 		</div>
 		<div class="form-group">
-			<label for="uploadMiniature">Miniature du film</label>
-			<input type="file" th:field="*{sampleImageFile}" accept="image/*" class="form-control-file" id="uploadMiniature" required>
+			<label for="uploadSample">Extrait du film
+			<img id="filmSamplePreview" class="imageUploadPreview" th:src="*{sampleUrl}">
+			</label>
+			<input type="file" th:field="*{sampleImageFile}" accept="image/*" class="form-control-file" id="uploadSample" required>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
@@ -98,9 +107,26 @@
 			</div>
 		</div>
 
-	<button type="submit" class="btn btn-primary">Submit</button>
+	<a href="/bo" class="btn btn-secondary">Annuler</a>
+	<button type="submit" class="btn btn-primary">Créer</button>
 	</form>
 </body>
-
+<script>
+function showPreviewImage(input, image) {
+	input.change(function(){
+		if (input[0].files && input[0].files[0]) {
+			var reader = new FileReader();
+			
+				reader.onload = function (e) {
+					image.attr('src', e.target.result);
+				}
+			
+			reader.readAsDataURL(input[0].files[0]);
+		}
+	});
+}
+showPreviewImage($("#uploadSample"), $("#filmSamplePreview"));
+showPreviewImage($("#uploadPoster"), $("#filmPosterPreview"));
+// showPreviewImage(input, image);
+</script>
 </html>
-<script src="/plugins/bootstrap-4.1.3.min.js"></script>

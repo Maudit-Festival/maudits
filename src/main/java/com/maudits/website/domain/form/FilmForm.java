@@ -25,7 +25,9 @@ public class FilmForm {
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime startTime;
 
+	private String posterUrl;
 	private MultipartFile posterFile;
+	private String sampleUrl;
 	private MultipartFile sampleImageFile;
 
 	private String releaseDate;
@@ -59,6 +61,9 @@ public class FilmForm {
 		this.ageRating = film.getAgeRating();
 		this.locationName = film.getLocationName();
 		this.locationAddress = film.getLocationAddress();
+
+		this.posterUrl = film.getPosterUrl();
+		this.sampleUrl = film.getSampleImageUrl();
 
 		this.nextEdition = film.getEdition().isNext();
 	}

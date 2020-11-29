@@ -39,3 +39,6 @@ ul {
 	margin-bottom: 2%;
 }
 
+.imageUploadPreview{
+	max-width: 100%;
+}
