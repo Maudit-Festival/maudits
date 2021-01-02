@@ -30,7 +30,9 @@ public class FilmDetailDisplayer {
 		this.title = film.getTitle();
 		this.description = film.getDescription();
 		this.date = film.getDate().format(DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.FRANCE));
-		if (film.getStartTime().getHour() == 0) {
+		if (film.getStartTime() == null) {
+			this.startTime = "Pas encore annoncé";
+		} else if (film.getStartTime().getHour() == 0) {
 			this.startTime = "Minuit";
 		} else if (film.getStartTime().getMinute() == 0) {
 			this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"));

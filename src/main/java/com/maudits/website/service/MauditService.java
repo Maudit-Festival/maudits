@@ -19,7 +19,6 @@ import com.maudits.website.domain.displayer.SponsorDisplayer;
 import com.maudits.website.domain.page.HomepageDisplayer;
 import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.FilmRepository;
-import com.maudits.website.repository.SponsorRepository;
 import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Film;
 import com.maudits.website.repository.entities.Sponsor;
@@ -31,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 public class MauditService {
 	private final FilmRepository filmRepository;
 	private final EditionRepository editionRepository;
-	private final SponsorRepository sponsorRepository;
 
 	public FilmDetailDisplayer findFilmDisplayerFromTextualId(String textualId) {
 		return new FilmDetailDisplayer(filmRepository.findOneByTextualId(textualId)
@@ -72,7 +70,7 @@ public class MauditService {
 		days.sort(Comparator.comparing(HomePageDayDisplayer::getDate));
 
 		List<SponsorDisplayer> sponsors = new ArrayList<>();
-		for (Sponsor sponsor : sponsorRepository.findAll()) {
+		for (Sponsor sponsor : edition.getSponsors()) {
 			sponsors.add(new SponsorDisplayer(sponsor));
 		}
 		Collections.shuffle(sponsors);

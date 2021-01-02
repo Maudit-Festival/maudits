@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class BoService {
+public class BoFilmService {
 	private final FilmRepository filmRepository;
 	private final EditionRepository editionRepository;
 	private final UploadService uploadService;

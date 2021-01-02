@@ -15,7 +15,7 @@
 <body class="container-fluid">
 	<nav class="row admin_main_nav">
 		<a href="/"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
-		<h1 class="admin_main_title">Interface administration</h1>
+		<h1 class="admin_main_title">Sponsors</h1>
 	</nav>
 <section class="row">
 	<div class="col-md-3 admin_sidebar">
@@ -23,22 +23,20 @@
 		<p><a href="#currentEditionAnchor">Édition actuelle</a></p>
 	</div>
 	<main class="admin_main col-md-8">
-		<a href="/bo/sponsors" class="btn btn-primary">Gérer les sponsors</a>
 		<h2 id="nextEditionAnchor" class="admin_title_next_edition" >Administration edition {année de l'édition suivante} </h2>
-		<a href="/bo/film/create-next-edition" class="btn btn-primary">Ajouter un film</a>
-		<a href="/bo/next" class="btn btn-secondary">Preview nouvelle édition avec design actuel</a>
+		<a href="/bo/sponsors/create-next-edition" class="btn btn-primary">Ajouter un sponsor</a>
 		<ul>
-			<li th:each="film : ${nextFilms}">
-				<th:block th:text="${film.title}"></th:block>
-				<a th:href="${'/bo/film/edit/' + film.id}">Éditer</a>
+			<li th:each="sponsor : ${nextSponsors}">
+				<th:block th:text="${sponsor.name}"></th:block>
+				<a th:href="@{${'/bo/sponsors/edit/' + sponsor.id}}">Éditer</a>
 			</li>
 		</ul>
 		<h2 id="currentEditionAnchor" class="admin_title_current_edition">Administration edition {année de l'édition} en cours </h2>
-		<a href="bo/film/create-current-edition" class="btn btn-primary">Ajouter un film</a>
+		<a href="/bo/sponsors/create-current-edition" class="btn btn-primary">Ajouter un sponsor</a>
 		<ul>
-			<li th:each="film : ${currentFilms}">
-				<th:block th:text="${film.title}"></th:block>
-				<a th:href="${'/bo/film/edit/' + film.id}">Éditer</a>
+			<li th:each="sponsor : ${currentSponsors}">
+				<th:block th:text="${sponsor.name}"></th:block>
+				<a th:href="@{${'/bo/sponsors/edit/' + sponsor.id}}">Éditer</a>
 			</li>
 		</ul>
 <!-- 		<article th:each="film : ${currentFilms}" > -->

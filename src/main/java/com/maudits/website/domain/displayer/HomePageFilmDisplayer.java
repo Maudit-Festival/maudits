@@ -21,7 +21,9 @@ public class HomePageFilmDisplayer {
 		this.textualId = film.getTextualId();
 		this.title = film.getTitle();
 		this.description = film.getDescription();
-		if (film.getStartTime().getHour() == 0) {
+		if (film.getStartTime() == null) {
+			this.startTime = "Pas encore annoncé";
+		} else if (film.getStartTime().getHour() == 0) {
 			this.startTime = "Minuit";
 		} else if (film.getStartTime().getMinute() == 0) {
 			this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'"));

@@ -18,6 +18,8 @@ import lombok.Setter;
 public class Edition extends EntityWithId {
 	@OneToMany(mappedBy = "edition")
 	private Collection<Film> films;
+	@OneToMany(mappedBy = "edition")
+	private Collection<Sponsor> sponsors;
 	private boolean current;
 	private boolean next;
 	private String name;
