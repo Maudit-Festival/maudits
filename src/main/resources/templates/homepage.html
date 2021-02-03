@@ -23,7 +23,7 @@
 		<h2><th:block th:text="${page.editionTimePeriod}"/> <th:block th:text="${page.editionName}"/></h2>
 		<a href="#programmation" class="white-button">Voir la programmation</a>
 	</div>
-	<!--
+	<!--/*-->
 	<div id="programmation" class="programmation-section">
 		<div>
 			<th:block th:each="day : ${page.days}">
@@ -46,8 +46,6 @@
 			</div>
 		</div>
 	</div>
--->
-<!--
 	<div class="download-section">
 		<a href="/document/livret.pdf">
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -57,10 +55,10 @@
 
 		Télécharger la programmation</a>
 	</div>
--->
-<div class="practical-info-section-background">
-	<div id="pratique" class="practical-info-section container">
-		<!--
+	<!--*/-->
+	<div class="practical-info-section-background">
+		<div id="pratique" class="practical-info-section container">
+		<!--/*-->
 		<div>
 			<h4>Tarifs</h4>
 			<div class="left-margin">
@@ -92,34 +90,31 @@
 				</div>
 			</div>
 		<div>
-		-->
+		<!--*/-->
 		<h4 class="map_title row">Le lieu</h4>
 			<p class="row">
 				Cinéma Juliet,<br/>Passage du Palais de Justice,<br/>38000 Grenoble.<br/>
 				La salle est accessible aux PMR (personnes à mobilité réduite).
 			</p>
 			<div class="location-information-container left-margin row">
-<!-- 				<div> -->
-<!-- 					Sauf indications spécifiques, les projections se déroulent dans le mythique Cinéma Juliet Berto.<br/> La salle est accessible aux PMR (personnes à mobilité réduite).  -->
-<!-- 					<p>Cinéma Juliet Berto, Passage du Palais de Justice, 38000 Grenoble</p> -->
-<!-- 					<p>Pour venir en voiture : …</p> -->
-<!-- 					<p>Pour venir en transport en commun: …</p> -->
-<!-- 				</div> -->
-<!-- 				<div class="gmaps-iframe-container"> -->
-					<iframe id="gmaps-iframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQr2ekQY5Ri4ERwZyQWVSwYBqVXczaIe0&q=Salle+Juliet+Bertho,+Grenoble" allowfullscreen=""></iframe>
+				<!--/*-->
+				<div>
+					Sauf indications spécifiques, les projections se déroulent dans le mythique Cinéma Juliet Berto.<br/> La salle est accessible aux PMR (personnes à mobilité réduite). 
+					<p>Cinéma Juliet Berto, Passage du Palais de Justice, 38000 Grenoble</p>
+					<p>Pour venir en voiture : …</p>
+					<p>Pour venir en transport en commun: …</p>
 				</div>
+				<!--*/-->
+				<iframe id="gmaps-iframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQr2ekQY5Ri4ERwZyQWVSwYBqVXczaIe0&q=Salle+Juliet+Bertho,+Grenoble" allowfullscreen=""></iframe>
 			</div>
 		</div>
-<!-- 	<div id="contact" class="contact-section" style="overflow: auto;"> -->
-<!-- 		<h3>Contact</h3> -->
-<!-- 	</div> -->
+	</div>
 	<div class="partner-section">
 		<h3>Merci à nos partenaires</h3>
 		<div class="partner-carroussel">
 			<div th:each="sponsor : ${page.sponsors}">
 				<a th:href="${sponsor.targetUrl}" target="_blank">
-<!-- 					<img th:src="${sponsor.logoUrl}" th:alt="${sponsor.name}"></img> -->
-						<div th:style="${'background-image:url(' + sponsor.logoUrl +');'}" class="partner_image"></div>
+					<div th:style="${'background-image:url(' + sponsor.logoUrl +');'}" class="partner_image"></div>
 				</a>
 			</div>
 		</div>
