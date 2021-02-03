@@ -11,43 +11,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.maudits.website.domain.form.ContactMessageForm;
 import com.maudits.website.domain.form.FilmForm;
 import com.maudits.website.service.BoFilmService;
-import com.maudits.website.service.MauditService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("bo")
-public class BoController {
+public class BoFilmController {
 	private final BoFilmService boService;
-	private final MauditService mauditService;
 
 	@GetMapping("")
 	public String boHomepage(Model model) {
 		model.addAttribute("currentFilms", boService.findCurrentFilms());
 		model.addAttribute("nextFilms", boService.findNextFilms());
 		return "bo/homepage";
-	}
-
-	@GetMapping("/next")
-	public String previewNextEdition(Model model) {
-		model.addAttribute("this", mauditService.makeHomeFilmRecapNextEdition());
-		return "new/homepage";
-	}
-
-	@GetMapping("/next/film/{textualId}")
-	public String showFilm(@PathVariable String textualId, Model model) {
-		model.addAttribute("filmDisplayer", mauditService.findFilmDisplayerFromTextualId(textualId));
-		return "new/film-details";
-	}
-
-	@GetMapping("/next/contact")
-	public String showContactPage(Model model) {
-		model.addAttribute("form", new ContactMessageForm());
-		return "new/contact";
 	}
 
 	@GetMapping("film/edit/{id}")

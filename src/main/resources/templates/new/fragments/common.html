@@ -9,7 +9,7 @@
 		</label>
 		<input style="display: none;" type="checkbox" id="mobile_menu">
 		<div>
-			<a href="/bo/next/#programmation">La programmation 2021</a>
+			<a href="/bo/next/#programmation">La programmation <th:block th:text="${page.editionName}"/></a>
 			<a href="/bo/next/#pratique">Infos pratiques</a>
 			<a href="/bo/next/contact">Contact</a>
 		</div>
@@ -25,7 +25,7 @@
 <!-- 				<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="footer-logo"> -->
 				<div>
 					<h4>Le Maudit Festival</h4>
-					Édition 2021 : du 19 au 24 Janvier<br/>
+					Édition <th:block th:text="${page.editionName}"/> : <th:block th:text="${page.editionTimePeriod}"/><br/>
 <!-- 					Icône de téléchargement de <a class="external_link" href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> par <a class="external_link" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a><br/> -->
 					<img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="footer-logo">
 					Terreur Nocturne - 2019

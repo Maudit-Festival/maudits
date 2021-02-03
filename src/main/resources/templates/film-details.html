@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
-	<title th:text="${filmDisplayer.title}">Titre du film</title>
+	<title th:text="${page.filmDisplayer.title}">Titre du film</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
@@ -15,37 +15,37 @@
 		<div class="film-recap-container">
 			<div class="technical-info-sidebar">
 				<div class="film-screening-date">
-					<span class="calendar-date" th:text="${filmDisplayer.date}">Vendredi 13 Avril</span>
+					<span class="calendar-date" th:text="${page.filmDisplayer.date}">Vendredi 13 Avril</span>
 					à
-					<span class="start-time" th:text="${filmDisplayer.startTime}">23h</span>
+					<span class="start-time" th:text="${page.filmDisplayer.startTime}">23h</span>
 				</div>
-				<div class="location-infos" th:text="${filmDisplayer.locationName + ', ' +filmDisplayer.locationAddress}"></div>
+				<div class="location-infos" th:text="${page.filmDisplayer.locationName + ', ' +page.filmDisplayer.locationAddress}"></div>
 				<div class="technical-info-sidebar-inner">
-					<img class="poster" th:src="${filmDisplayer.posterUrl}" th:alt="${'Poster de «' + filmDisplayer.title + '»'}">
+					<img class="poster" th:src="${page.filmDisplayer.posterUrl}" th:alt="${'Poster de «' + page.filmDisplayer.title + '»'}">
 					<div class="film-date-and-time-center">
-						<th:block th:if="${filmDisplayer.releaseDate != null}" th:text="${filmDisplayer.releaseDate}"></th:block>
-						<th:block th:if="${filmDisplayer.releaseDate != null && filmDisplayer.duration != null}">-</th:block>
-						<th:block th:if="${filmDisplayer.duration != null}" th:text="${filmDisplayer.duration}"></th:block>
+						<th:block th:if="${page.filmDisplayer.releaseDate != null}" th:text="${page.filmDisplayer.releaseDate}"></th:block>
+						<th:block th:if="${page.filmDisplayer.releaseDate != null && page.filmDisplayer.duration != null}">-</th:block>
+						<th:block th:if="${page.filmDisplayer.duration != null}" th:text="${page.filmDisplayer.duration}"></th:block>
 					</div>
-					<div th:if="${filmDisplayer.ageRating != null}" th:text="${filmDisplayer.ageRating}">Interdit aux plus de 20 ans</div>
-					<div th:if="${filmDisplayer.director != null}" th:text="${'Réalisé par ' + filmDisplayer.director}">Réalisé par Bugs Bunny</div>
-					<div th:if="${filmDisplayer.scenarist != null}" th:text="${'Scénario par ' + filmDisplayer.scenarist}">Scénario par Bugs Bunny</div>
-					<div th:if="${filmDisplayer.casting != null}" th:text="${'Avec ' + filmDisplayer.casting}">avec Bugs Bunny</div>
+					<div th:if="${page.filmDisplayer.ageRating != null}" th:text="${page.filmDisplayer.ageRating}">Interdit aux plus de 20 ans</div>
+					<div th:if="${page.filmDisplayer.director != null}" th:text="${'Réalisé par ' + page.filmDisplayer.director}">Réalisé par Bugs Bunny</div>
+					<div th:if="${page.filmDisplayer.scenarist != null}" th:text="${'Scénario par ' + page.filmDisplayer.scenarist}">Scénario par Bugs Bunny</div>
+					<div th:if="${page.filmDisplayer.casting != null}" th:text="${'Avec ' + page.filmDisplayer.casting}">avec Bugs Bunny</div>
 	
-					<div class="partnership" th:if="${filmDisplayer.partner != null && filmDisplayer.partner != ''}" 
-					th:text="${'En partenariat avec ' + filmDisplayer.partner}">avec Bugs Bunny</div>
+					<div class="partnership" th:if="${page.filmDisplayer.partner != null && page.filmDisplayer.partner != ''}" 
+					th:text="${'En partenariat avec ' + page.filmDisplayer.partner}">avec Bugs Bunny</div>
 					
 					<a class="purple-button" 
-					th:if="${filmDisplayer.buyUrl != null}" th:href="${filmDisplayer.buyUrl}" target="maudit-shop">
+					th:if="${page.filmDisplayer.buyUrl != null}" th:href="${page.filmDisplayer.buyUrl}" target="maudit-shop">
 						Acheter ma place
 					</a>
 				</div>
 			</div>
 			<div class="description-container">
-				<h1 th:text="${filmDisplayer.title}">Qui veut la peau de Bugs Bunny?</h1>
-				<img th:if="${filmDisplayer.sampleImageUrl != null}" th:src="${filmDisplayer.sampleImageUrl}" 
-					th:alt="${'Extrait de «' + filmDisplayer.title + '»'}">
-				<p th:utext="${#strings.replace( #strings.escapeXml(filmDisplayer.description),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" >Ce film n'existe pas lol.</p>
+				<h1 th:text="${page.filmDisplayer.title}">Qui veut la peau de Bugs Bunny?</h1>
+				<img th:if="${page.filmDisplayer.sampleImageUrl != null}" th:src="${page.filmDisplayer.sampleImageUrl}" 
+					th:alt="${'Extrait de «' + page.filmDisplayer.title + '»'}">
+				<p th:utext="${#strings.replace( #strings.escapeXml(page.filmDisplayer.description),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" >Ce film n'existe pas lol.</p>
 			</div>
 		</div>
 	

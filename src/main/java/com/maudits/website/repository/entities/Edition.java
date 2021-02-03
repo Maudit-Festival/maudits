@@ -23,4 +23,5 @@ public class Edition extends EntityWithId {
 	private boolean current;
 	private boolean next;
 	private String name;
+	private String timePeriod;
 }

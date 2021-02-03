@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.exception.WrongEditionException;
 import com.maudits.website.domain.form.ContactMessageForm;
 import com.maudits.website.service.CaptchaService;
 import com.maudits.website.service.ContactService;
@@ -23,18 +25,24 @@ public class MauditController {
 
 	@GetMapping("/")
 	public String showHomePage(Model model) {
-		model.addAttribute("this", mauditService.makeHomeFilmRecapCurrentEdition());
+		model.addAttribute("page", mauditService.makeHomeFilmRecap(DisplayEdition.CURRENT));
 		return "homepage";
 	}
 
 	@GetMapping("/film/{textualId}")
 	public String showFilm(@PathVariable String textualId, Model model) {
-		model.addAttribute("filmDisplayer", mauditService.findFilmDisplayerFromTextualId(textualId));
-		return "film-details";
+		try {
+			model.addAttribute("page",
+					mauditService.findFilmDetailPageDisplayerFromTextualId(DisplayEdition.CURRENT, textualId));
+			return "film-details";
+		} catch (WrongEditionException e) {
+			return "redirect:/archive";
+		}
 	}
 
 	@GetMapping("/contact")
 	public String showContactPage(Model model) {
+		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
 		model.addAttribute("form", new ContactMessageForm());
 		return "contact";
 	}
@@ -56,4 +64,10 @@ public class MauditController {
 			return "contact";
 		}
 	}
+
+//	@GetMapping("archive")
+//	public String showArchive(Model model) {
+//		model.addAttribute("page", mauditService.makeArchivePage(DisplayEdition.CURRENT));
+//		return "archive";
+//	}
 }

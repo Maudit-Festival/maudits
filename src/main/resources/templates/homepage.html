@@ -5,8 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
-	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.1/slick/slick.css"/>
-	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.1/slick/slick-theme.css"/>
+	<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.1/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.1/slick/slick-theme.css"/>
 <!-- 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
 </head>
 
@@ -14,18 +14,18 @@
 	<header th:replace="fragments/common.html :: common-navbar"></header>
 	<div class="hero">
 		<h1>Le Maudit Festival</h1>
-		<h2>Du 16 au 26 Janvier 2020</h2>
+		<h2><th:block th:text="${page.editionTimePeriod}"/> <th:block th:text="${page.editionName}"/></h2>
 		<a href="#programmation" class="white-button">Voir la programmation</a>
 	</div>
 	<div id="programmation" class="programmation-section">
 		<div>
-			<th:block th:each="day : ${this.days}">
+			<th:block th:each="day : ${page.days}">
 				<a class="link-to-day-recap" th:text="${day.displayDate}" th:href="'#'+${day.date}">Lundi 17 Mars</a>
 				<span class="link-to-day-recap">/</span>
 			</th:block>
 		</div>
 		<div class="programmation-day-recap-container">
-			<div th:each="day : ${this.days}" th:id="${day.date}" class="programmation-day-recap-div">
+			<div th:each="day : ${page.days}" th:id="${day.date}" class="programmation-day-recap-div">
 				<h4 th:text="${day.displayDate}">Jeudi 7</h4>
 				<div class="programmation-day-recap">
 					<div th:each="film : ${day.films}" class="film-recap">
@@ -114,7 +114,7 @@
 	<div class="partner-section">
 		<h3>Merci à nos partenaires</h3>
 		<div class="partner-carroussel">
-			<div th:each="sponsor : ${this.sponsors}">
+			<div th:each="sponsor : ${page.sponsors}">
 				<a th:href="${sponsor.targetUrl}" target="_blank">
 <!-- 					<img th:src="${sponsor.logoUrl}" th:alt="${sponsor.name}"></img> -->
 						<div th:style="${'background-image:url(' + sponsor.logoUrl +');'}" class="partner_image"></div>

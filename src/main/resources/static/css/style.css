@@ -94,6 +94,10 @@ header a:hover {
 	font-size: 70px;
 }
 
+.hero h2::first-letter {
+	text-transform: capitalize;
+}
+
 .programmation-section {
 	background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/background-juliet_berto.jpeg);
 	background-position: bottom;

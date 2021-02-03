@@ -12,10 +12,14 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.maudits.website.domain.displayer.FilmDetailDisplayer;
+import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.domain.displayer.HomePageFilmDisplayer;
 import com.maudits.website.domain.displayer.SponsorDisplayer;
+import com.maudits.website.domain.exception.WrongEditionException;
+import com.maudits.website.domain.page.ArchivePageDisplayer;
+import com.maudits.website.domain.page.FilmDetailPageDisplayer;
+import com.maudits.website.domain.page.FrontPageDisplayer;
 import com.maudits.website.domain.page.HomepageDisplayer;
 import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.FilmRepository;
@@ -31,9 +35,31 @@ public class MauditService {
 	private final FilmRepository filmRepository;
 	private final EditionRepository editionRepository;
 
-	public FilmDetailDisplayer findFilmDisplayerFromTextualId(String textualId) {
-		return new FilmDetailDisplayer(filmRepository.findOneByTextualId(textualId)
-				.or(() -> filmRepository.findById(Long.valueOf(textualId))).orElseThrow());
+	public Edition findEdition(DisplayEdition displayEdition) {
+		switch (displayEdition) {
+		case CURRENT:
+			return editionRepository.findOneByCurrentTrue();
+		case NEXT:
+			return editionRepository.findOneByCurrentTrue();
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
+		}
+	}
+
+	public FrontPageDisplayer makePageDisplayer(DisplayEdition displayEdition) {
+		Edition edition = findEdition(displayEdition);
+		return new FrontPageDisplayer(edition);
+	}
+
+	public FilmDetailPageDisplayer findFilmDetailPageDisplayerFromTextualId(DisplayEdition displayEdition,
+			String textualId) throws WrongEditionException {
+		Edition edition = findEdition(displayEdition);
+		Film film = filmRepository.findOneByTextualId(textualId)
+				.or(() -> filmRepository.findById(Long.valueOf(textualId))).orElseThrow();
+		if (!film.getEdition().equals(edition)) {
+			throw new WrongEditionException();
+		}
+		return new FilmDetailPageDisplayer(edition, film);
 	}
 
 	private List<Film> mergeList(List<Film> oldList, List<Film> newList) {
@@ -47,15 +73,8 @@ public class MauditService {
 		}
 	}
 
-	public HomepageDisplayer makeHomeFilmRecapCurrentEdition() {
-		return makeHomeFilmRecap(editionRepository.findOneByCurrentTrue());
-	}
-
-	public HomepageDisplayer makeHomeFilmRecapNextEdition() {
-		return makeHomeFilmRecap(editionRepository.findOneByNextTrue());
-	}
-
-	private HomepageDisplayer makeHomeFilmRecap(Edition edition) {
+	public HomepageDisplayer makeHomeFilmRecap(DisplayEdition displayEdition) {
+		Edition edition = findEdition(displayEdition);
 		List<HomePageDayDisplayer> days = new ArrayList<>();
 		Map<LocalDate, List<Film>> films = new HashMap<>();
 		for (Film film : edition.getFilms()) {
@@ -74,7 +93,16 @@ public class MauditService {
 			sponsors.add(new SponsorDisplayer(sponsor));
 		}
 		Collections.shuffle(sponsors);
-		return new HomepageDisplayer(days, sponsors);
+		return new HomepageDisplayer(edition, days, sponsors);
+	}
+
+	public ArchivePageDisplayer makeArchivePage(DisplayEdition displayEdition) {
+		Edition edition = findEdition(displayEdition);
+		List<Edition> pastEditions = editionRepository.findAllByCurrentFalseAndNextFalse();
+		if (displayEdition == DisplayEdition.NEXT) {
+			pastEditions.add(0, editionRepository.findOneByCurrentTrue());
+		}
+		return new ArchivePageDisplayer(edition, pastEditions);
 	}
 
 }
