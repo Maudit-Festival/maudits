@@ -6,6 +6,10 @@
 :root {
 	--maudit-purple: #682b95;
 	--background-gray-color: #171c23;
+	--maudit-red : #bb0b0b;
+	--maudit-blue : #0b245c;
+	--maudit-yellow: #ffda00;
+	--maudit-orange : #a53b1c;
 }
 
 body {
@@ -22,15 +26,14 @@ button, input, textarea {
 }
 
 header {
-	background: #682b95;
-	background: var(--maudit-purple);
+	background: var(--maudit-red);
 	position: sticky;
 /* 	position: fixed; */
 	top: 10px;
 	display: inline-flex;
 	align-items: center;
 	padding: 10px;
-	margin-top: 50px;
+	margin-top: 45px;
 	z-index: 100;
 }
 
@@ -51,40 +54,26 @@ header a {
 
 header a:hover {
 	border-color: white;
+	color: white;
+	text-decoration: none;
 }
 
 .hero {
-	height: 100vw;
-	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/header-background.jpeg);
+	height: 50vw;
+	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/logo-header-2021.png);
 	background-size: cover;
-	background-position: bottom;
+	background-position: center;
 	padding-left: 20%;
 	color: white;
 	overflow: auto;
 	margin-top: -124px;
 }
 
-.hero.short-hero {
+.short-hero {
 	height: 30vh;
-	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/header-background-short.jpeg);
+	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/logo-header-2021-short.jpg);
 	position: relative;
 	overflow: hidden;
-}
-
-.hero.short-hero:after {
-	content:"";
-	background-color: #682b95;
-	background-color: var(--maudit-purple);
-	position: absolute;
-	bottom: -1px;
-	left: 0;
-	display: block;
-	height: 20vh;
-	width: 100%;
-	-webkit-clip-path: polygon(0 0, 0 100%, 100.00% 100%, 100% 0, 50% 90%);
-	-o-clip-path: polygon(0 0, 0 100%, 100.00% 100%, 100% 0, 50% 90%);
-	-ms-clip-path: polygon(0 0, 0 100%, 100.00% 100%, 100% 0, 50% 90%);
-	clip-path: polygon(0 0, 0 100%, 100.00% 100%, 100% 0, 50% 90%);
 }
 
 
@@ -118,7 +107,7 @@ header a:hover {
 
 .link-to-day-recap:hover {
 	color: #682b95;
-	color: var(--maudit-purple);
+	color: var(--maudit-red);
 }
 
 
@@ -140,8 +129,7 @@ header a:hover {
 .programmation-day-recap {
 	display: flex;
 	flex-wrap: wrap;
-	border-left: 2px solid #682b95;
-	border-left: 2px solid var(--maudit-purple);
+	border-left: 2px solid var(--maudit-red);
 	margin-right: 100px;
 }
 
@@ -157,14 +145,12 @@ header a:hover {
 
 .white-button:hover {
 	background: white;
-	color: #682b95;
-	color: var(--maudit-purple);
+	color: var(--maudit-red);
 }
 
 .purple-button {
 	display: inline-block;
-	background: #682b95;
-	background: var(--maudit-purple);
+	background: var(--maudit-red);
 	padding: 10px 20px !important;
 	color: white;
 	text-decoration: none;
@@ -172,6 +158,9 @@ header a:hover {
 	transition-timing-function: ease-in;
 	transition-property: background-color;
 	transition-duration: 1s;
+}
+.purple-button:hover{
+	color:white;
 }
 
 .purple-button[disabled] {
@@ -255,9 +244,7 @@ header a:hover {
 }
 
 .practical-info-section h4 {
-	color: #682b95;
-	color: var(--maudit-purple);
-	margin-left: 20%;
+	color: var(--maudit-red);
 	font-size: 35px;
 }
 
@@ -312,20 +299,22 @@ header a:hover {
 .partner-section h3 {
 	text-align: center;
 	color: #682b95;
-	color: var(--maudit-purple);
+	color: var(--maudit-red);
 	text-transform: uppercase;
+}
+
+.practical-info-section-background{
+	background-color: var(--background-gray-color);
 }
 
 .practical-info-section, .contact-section {
 	background: var(--background-gray-color);
 	color: white;
-	overflow: auto;
 }
 
 .contact-section, .film-recap-section{
 	background: var(--background-gray-color);
-	background-image: radial-gradient(circle farthest-side at 200% 90%, #682b95, transparent);
-	background-image: radial-gradient(circle farthest-side at 200% 90%, var(--maudit-purple), transparent);
+	background-image: radial-gradient(circle farthest-side at 200% 200%, var(--maudit-blue), transparent)!important;
 	padding: 20px 0
 }
 
@@ -385,8 +374,7 @@ header a:hover {
 }
 
 .contact-section input:focus, .contact-section textarea:focus {
-	border-bottom: 1px solid #682b95;
-	border-bottom: 1px solid var(--maudit-purple);
+	border-bottom: 1px solid var(--maudit-red);
 }
 
 .contact-submit-container {
@@ -414,8 +402,7 @@ header a:hover {
 }
 
 .film-screening-date {
-	background-color: #682b95;
-	background-color: var(--maudit-purple);
+	background-color: var(--maudit-red);
 	text-align: center;
 	font-size: 20px;
 	margin: 20px 0;
@@ -479,6 +466,10 @@ footer {
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 }
+.footer-container a:hover{
+	text-decoration: none;
+	color: var(--maudit-red);
+}
 
 /* .footer-container > * { */
 /* 	min-width: 300px; */
@@ -503,8 +494,7 @@ footer {
 
 
 footer h4 {
-	color: #682b95;
-	color: var(--maudit-purple);
+	color: var(--maudit-red);
 	font-size: 20px;
 	margin: 0px;
 }
@@ -526,22 +516,19 @@ footer a {
 }
 
 footer a.external_link {
-	color: #682b95;
-	color: var(--maudit-purple);
+	color: var(--maudit-red);
 	text-decoration-color: white;
 }
 
 footer a.external_link:hover {
 	text-decoration-line: underline;
-	text-decoration-color: #682b95;
-	text-decoration-color: var(--maudit-purple);
+	text-decoration-color: var(--maudit-red);
 }
 
 .social-network-links-container a {
 	margin-top: 10px;
 	display: inline-block;
-	background: #682b95;
-	background: var(--maudit-purple);
+	background: var(--maudit-red);
 	border-radius: 1000px;
 	padding: 10px;
 	transition-duration: 0.5s;
@@ -561,9 +548,9 @@ footer a.external_link:hover {
 
 .social-network-links-container a:hover svg {
 	fill: #682b95;
-	fill: var(--maudit-purple);
+	fill: var(--maudit-red);
 	stroke: #682b95;
-	stroke: var(--maudit-purple);
+	stroke: var(--maudit-red);
 }
 
 @media (max-width: 1299px) {
@@ -610,8 +597,7 @@ footer a.external_link:hover {
 		display: none;
 		flex-direction: column;
 		position: absolute;
-		background-color: #682b95;
-		background-color: var(--maudit-purple);
+		background-color: var(--maudit-red);
 		top: 0;
 		left: 0;
 		width: max-content;
