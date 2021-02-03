@@ -4,9 +4,15 @@
 	<title>Bienvenue sur le site du Maudit Festival</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.1/slick/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.1/slick/slick-theme.css"/>
+	<script
+				src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+				integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+				crossorigin="anonymous"></script>
+	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
 <!-- 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
 </head>
 
@@ -17,6 +23,7 @@
 		<h2>Du 16 au 26 Janvier 2020</h2>
 		<a href="#programmation" class="white-button">Voir la programmation</a>
 	</div>
+	<!--
 	<div id="programmation" class="programmation-section">
 		<div>
 			<th:block th:each="day : ${this.days}">
@@ -29,7 +36,6 @@
 				<h4 th:text="${day.displayDate}">Jeudi 7</h4>
 				<div class="programmation-day-recap">
 					<div th:each="film : ${day.films}" class="film-recap">
-<!-- 						<img th:src="${film.imageUrl}"></img> -->
 						<div class="film_poster" th:style="'background-image:url(' + ${film.imageUrl} + ');'"></div>
 						<div th:text="${film.startTime}"></div>
 						<div th:text="${film.title}"></div>
@@ -40,25 +46,21 @@
 			</div>
 		</div>
 	</div>
+-->
+<!--
 	<div class="download-section">
 		<a href="/document/livret.pdf">
-<!-- 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" -->
-<!-- 	 viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;" xml:space="preserve"> -->
-<!-- <path d="M457.7,230.15c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5c-33.4,0-60.5-27.2-60.5-60.5v-124.8 -->
-<!-- c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v124.8c0,48.3,39.3,87.5,87.5,87.5h296.2c48.3,0,87.5-39.3,87.5-87.5v-122.8 -->
-<!-- C471.2,236.25,465.2,230.15,457.7,230.15z"/> -->
-<!-- <path d="M226.1,346.75c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1c-5.3-5.3-13.8-5.3-19.1,0l-62.7,62.8 -->
-<!-- V30.75c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0c-5.3,5.3-5.3,13.8,0,19.1 -->
-<!-- L226.1,346.75z"/> -->
-<!-- </svg> -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
-<path d="M448.608,351.791c-18.444,0-33.4,14.952-33.4,33.396v52.055H96.788v-52.055c0-18.443-14.952-33.396-33.396-33.396 s-33.396,14.952-33.396,33.396v85.451c0,18.443,14.952,33.4,33.396,33.4h385.217c18.443,0,33.396-14.957,33.396-33.4v-85.451 C482.005,366.743,467.052,351.791,448.608,351.791z"/>
-<path d="M245.918,387.325c5.563,5.559,14.6,5.559,20.157,0l117.039-117.038c3.41-3.41,4.423-8.532,2.579-13 c-1.844-4.45-6.18-7.351-11.012-7.351h-54.954V34.024c0-14.402-11.661-26.063-26.06-26.063h-75.323 c-14.398,0-26.06,11.66-26.06,26.063v215.912h-54.973c-4.827,0-9.163,2.9-11.007,7.351c-1.844,4.468-0.83,9.59,2.575,13 L245.918,387.325z"/>
-</svg>
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+			<path d="M448.608,351.791c-18.444,0-33.4,14.952-33.4,33.396v52.055H96.788v-52.055c0-18.443-14.952-33.396-33.396-33.396 s-33.396,14.952-33.396,33.396v85.451c0,18.443,14.952,33.4,33.396,33.4h385.217c18.443,0,33.396-14.957,33.396-33.4v-85.451 C482.005,366.743,467.052,351.791,448.608,351.791z"/>
+			<path d="M245.918,387.325c5.563,5.559,14.6,5.559,20.157,0l117.039-117.038c3.41-3.41,4.423-8.532,2.579-13 c-1.844-4.45-6.18-7.351-11.012-7.351h-54.954V34.024c0-14.402-11.661-26.063-26.06-26.063h-75.323 c-14.398,0-26.06,11.66-26.06,26.063v215.912h-54.973c-4.827,0-9.163,2.9-11.007,7.351c-1.844,4.468-0.83,9.59,2.575,13 L245.918,387.325z"/>
+			</svg>
 
 		Télécharger la programmation</a>
 	</div>
-	<div id="pratique" class="practical-info-section">
+-->
+<div class="practical-info-section-background">
+	<div id="pratique" class="practical-info-section container">
+		<!--
 		<div>
 			<h4>Tarifs</h4>
 			<div class="left-margin">
@@ -71,7 +73,7 @@
 					<li>Tarif jeune (moins de 14 ans) : <span class="tarif">4€</span></li>
 					<li>Tarif réduit (moins de 26 ans, plus de 65 ans, demandeur d'emploi, carte mc2, carte tag, ticket ciné indépendant) : <span class="tarif">5€50</span></li>
 					<li>Ticket suspendu (valable uniquement sur les séances en partenariat avec la Cinémathèque de Grenoble)  : <span class="tarif">4€</span></li>
-					
+
 					<li>Pass 5 films : <span class="tarif">27,50€</span><br/>
 					<span class="tarif-comment">Cliquez <a href="https://www.helloasso.com/associations/terreur-nocturne/evenements/le-maudit-festival">ici</a> pour acheter en ligne. Ce pass donne accès à toutes les séances se déroulant dans le cinéma Juliet Berto.</span></li>
 					<li>Séance GrindHouse - double programme : <span class="tarif">12€</span></li>
@@ -90,13 +92,13 @@
 				</div>
 			</div>
 		<div>
-<!-- 		<h4>Les lieux</h4> -->
-		<h4>Le lieu</h4>
-			<p class="left-margin">
+		-->
+		<h4 class="map_title row">Le lieu</h4>
+			<p class="row">
 				Cinéma Juliet,<br/>Passage du Palais de Justice,<br/>38000 Grenoble.<br/>
 				La salle est accessible aux PMR (personnes à mobilité réduite).
 			</p>
-			<div class="location-information-container left-margin">
+			<div class="location-information-container left-margin row">
 <!-- 				<div> -->
 <!-- 					Sauf indications spécifiques, les projections se déroulent dans le mythique Cinéma Juliet Berto.<br/> La salle est accessible aux PMR (personnes à mobilité réduite).  -->
 <!-- 					<p>Cinéma Juliet Berto, Passage du Palais de Justice, 38000 Grenoble</p> -->
@@ -125,9 +127,7 @@
 	<footer th:replace="fragments/common.html :: common-footer">
 	</footer>
 <script src="/plugins/jquery-3.4.1.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
 <script src="/plugins/slick-1.8.1/slick/slick.min.js"></script>
-<!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
 <script>
 $('.partner-carroussel').slick({
 	infinite: true,

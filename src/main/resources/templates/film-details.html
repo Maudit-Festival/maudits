@@ -4,13 +4,20 @@
 	<title th:text="${filmDisplayer.title}">Titre du film</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<script
+				src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+				integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+				crossorigin="anonymous"></script>
+	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
 </head>
 
 <body>
 	<header th:replace="fragments/common.html :: common-navbar"></header>
 	<div class="hero short-hero">
 	</div>
+
 	<div class="film-recap-section">
 		<div class="film-recap-container">
 			<div class="technical-info-sidebar">
@@ -31,11 +38,11 @@
 					<div th:if="${filmDisplayer.director != null}" th:text="${'Réalisé par ' + filmDisplayer.director}">Réalisé par Bugs Bunny</div>
 					<div th:if="${filmDisplayer.scenarist != null}" th:text="${'Scénario par ' + filmDisplayer.scenarist}">Scénario par Bugs Bunny</div>
 					<div th:if="${filmDisplayer.casting != null}" th:text="${'Avec ' + filmDisplayer.casting}">avec Bugs Bunny</div>
-	
-					<div class="partnership" th:if="${filmDisplayer.partner != null && filmDisplayer.partner != ''}" 
+
+					<div class="partnership" th:if="${filmDisplayer.partner != null && filmDisplayer.partner != ''}"
 					th:text="${'En partenariat avec ' + filmDisplayer.partner}">avec Bugs Bunny</div>
-					
-					<a class="purple-button" 
+
+					<a class="purple-button"
 					th:if="${filmDisplayer.buyUrl != null}" th:href="${filmDisplayer.buyUrl}" target="maudit-shop">
 						Acheter ma place
 					</a>
@@ -43,14 +50,14 @@
 			</div>
 			<div class="description-container">
 				<h1 th:text="${filmDisplayer.title}">Qui veut la peau de Bugs Bunny?</h1>
-				<img th:if="${filmDisplayer.sampleImageUrl != null}" th:src="${filmDisplayer.sampleImageUrl}" 
+				<img th:if="${filmDisplayer.sampleImageUrl != null}" th:src="${filmDisplayer.sampleImageUrl}"
 					th:alt="${'Extrait de «' + filmDisplayer.title + '»'}">
 				<p th:utext="${#strings.replace( #strings.escapeXml(filmDisplayer.description),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" >Ce film n'existe pas lol.</p>
 			</div>
 		</div>
-	
+
 	</div>
-	<footer th:replace="fragments/common.html :: common-footer">
+	<footer th:replace="fragments/common.html :: common-footer" class="footer_">
 	</footer>
 </body>
 </html>
