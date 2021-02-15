@@ -46,13 +46,13 @@
 			<label for="uploadPoster">Poster du film
 			<img id="filmPosterPreview" class="imageUploadPreview" th:src="*{posterUrl}">
 			</label>
-			<input type="file" th:field="*{posterFile}" accept="image/*" class="form-control-file" id="uploadPoster" required>
+			<input type="file" th:field="*{posterFile}" accept="image/*" class="form-control-file" id="uploadPoster" th:required="*{posterUrl == null}">
 		</div>
 		<div class="form-group">
 			<label for="uploadSample">Extrait du film
 			<img id="filmSamplePreview" class="imageUploadPreview" th:src="*{sampleUrl}">
 			</label>
-			<input type="file" th:field="*{sampleImageFile}" accept="image/*" class="form-control-file" id="uploadSample" required>
+			<input type="file" th:field="*{sampleImageFile}" accept="image/*" class="form-control-file" id="uploadSample" th:required="*{posterUrl == null}">
 		</div>
 		<div class="row">
 			<div class="col-md-6">
@@ -63,6 +63,10 @@
 				<div class="form-group">
 					<label for="scenarist">Scénariste</label>
 					<input type="text" th:field="*{scenarist}" class="form-control" id="scenarist">
+				</div>
+				<div class="form-group">
+					<label for="scenarist">Nationalité</label>
+					<input type="text" th:field="*{nationality}" class="form-control" id="scenarist">
 				</div>
 				<div class="form-group">
 					<label for="movieCasting">Casting</label>
@@ -108,7 +112,7 @@
 		</div>
 
 	<a href="/bo" class="btn btn-secondary">Annuler</a>
-	<button type="submit" class="btn btn-primary">Créer</button>
+	<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>
 	</form>
 </body>
 <script>

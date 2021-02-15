@@ -18,6 +18,7 @@ public class FilmDetailDisplayer {
 	private final String releaseDate;
 	private final String director;
 	private final String scenarist;
+	private final String nationality;
 	private final String casting;
 	private final String duration;
 	private final String partner;
@@ -45,6 +46,7 @@ public class FilmDetailDisplayer {
 		this.releaseDate = film.getReleaseDate();
 		this.director = film.getDirector();
 		this.scenarist = film.getScenarist();
+		this.nationality = film.getNationality();
 		this.casting = film.getCasting();
 		this.duration = film.getDuration();
 		this.partner = film.getPartner();

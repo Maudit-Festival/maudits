@@ -33,6 +33,7 @@ public class FilmForm {
 	private String releaseDate;
 	private String director;
 	private String scenarist;
+	private String nationality;
 	private String duration;
 	private String casting;
 	private String partner;
@@ -54,6 +55,7 @@ public class FilmForm {
 		this.releaseDate = film.getReleaseDate();
 		this.director = film.getDirector();
 		this.scenarist = film.getScenarist();
+		this.nationality = film.getNationality();
 		this.duration = film.getDuration();
 		this.casting = film.getCasting();
 		this.partner = film.getPartner();
