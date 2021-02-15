@@ -29,7 +29,8 @@
 					</div>
 					<div th:if="${filmDisplayer.ageRating != null}" th:text="${filmDisplayer.ageRating}">Interdit aux plus de 20 ans</div>
 					<div th:if="${filmDisplayer.director != null}" th:text="${'Réalisé par ' + filmDisplayer.director}">Réalisé par Bugs Bunny</div>
-					<div th:if="${filmDisplayer.scenarist != null}" th:text="${'Scénario par ' + filmDisplayer.scenarist}">Scénario par Bugs Bunny</div>
+<!--/*-->				<div th:if="${filmDisplayer.scenarist != null}" th:text="${'Scénario par ' + filmDisplayer.scenarist}">Scénario par Bugs Bunny</div><!--*/-->
+					<div th:if="${filmDisplayer.nationality != null}" th:text="${filmDisplayer.nationality}">Belgo-Hongrois</div>
 					<div th:if="${filmDisplayer.casting != null}" th:text="${'Avec ' + filmDisplayer.casting}">avec Bugs Bunny</div>
 	
 					<div class="partnership" th:if="${filmDisplayer.partner != null && filmDisplayer.partner != ''}" 

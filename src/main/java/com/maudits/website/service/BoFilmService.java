@@ -91,6 +91,7 @@ public class BoFilmService {
 		film.setReleaseDate(filterEmpty(form.getReleaseDate()));
 		film.setDirector(filterEmpty(form.getDirector()));
 		film.setScenarist(filterEmpty(form.getScenarist()));
+		film.setNationality(filterEmpty(form.getNationality()));
 		film.setDuration(filterEmpty(form.getDuration()));
 		film.setCasting(filterEmpty(form.getCasting()));
 		film.setPartner(filterEmpty(form.getPartner()));

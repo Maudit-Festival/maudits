@@ -28,6 +28,7 @@ public class Film extends EntityWithId {
 	private String releaseDate;
 	private String director;
 	private String scenarist;
+	private String nationality;
 	private String duration;
 	private String casting;
 	private String partner;
