@@ -30,7 +30,7 @@
 				<div class="programmation-day-recap">
 					<div th:each="film : ${day.films}" class="film-recap">
 <!-- 						<img th:src="${film.imageUrl}"></img> -->
-						<div class="film_poster" th:style="'background-image:url(\'' + ${film.imageUrl} + '\');'"></div>
+						<a th:href="@{'/bo/next/film/'+${film.textualId}}"><div class="film_poster" th:style="'background-image:url(\'' + ${film.imageUrl} + '\');'"></div></a>
 						<div th:text="${film.startTime}"></div>
 						<div th:text="${film.title}"></div>
 						<div th:text="${film.locationName}"></div>
