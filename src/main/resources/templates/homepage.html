@@ -36,7 +36,7 @@
 				<h4 th:text="${day.displayDate}">Jeudi 7</h4>
 				<div class="programmation-day-recap">
 					<div th:each="film : ${day.films}" class="film-recap">
-						<div class="film_poster" th:style="'background-image:url(' + ${film.imageUrl} + ');'"></div>
+						<a th:href="@{'/film/'+${film.textualId}}"><div class="film_poster" th:style="'background-image:url(' + ${film.imageUrl} + ');'"></div></a>
 						<div th:text="${film.startTime}"></div>
 						<div th:text="${film.title}"></div>
 						<div th:text="${film.locationName}"></div>

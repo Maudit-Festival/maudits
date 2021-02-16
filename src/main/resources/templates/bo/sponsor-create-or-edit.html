@@ -23,7 +23,7 @@
 		<input type="hidden" th:field="*{nextEdition}">
 		<div class="form-group">
 			<label for="movieName">Nom du partenaire</label>
-			<input type="text" th:field="*{name}" class="form-control" id="sponsorName" required>
+			<input type="text" th:field="*{name}" class="form-control" id="sponsorName" required pattern="[-a-z0-9]+">
 		</div>
 		<div class="form-group">
 			<label for="movieURL">URL du site du partenaire</label>
