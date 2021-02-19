@@ -5,7 +5,7 @@ function scrollFunction() {
 		$('.header-logo').css('width', '50px');
 		$('.navbar-nav').css('font-size', '1rem');
   } else {
-		$('.navbar').css('padding', '1.5rem 1.5rem');
+		$('.navbar').css('padding', '1.3rem 1.3rem');
 		$('.header-logo').css('width', '60px');
 		$('.navbar-nav').css('font-size', '20px');
   }

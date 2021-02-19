@@ -1,3 +1,4 @@
 User-Agent: *
-Allow: /*
-Sitemap: https://www.festivaldesmauditsfilms.com/sitemap.xml (lien vers le sitemap pour le référencement)
+Allow: /
+Disallow: /bo
+Sitemap: https://www.festivaldesmauditsfilms.com/sitemap.xml

@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:if="${form.name != null}"  th:text="${'Édition de ' + form.name}">Nom du sponsor</title>
+		<title th:if="${form.name == null}">Création d'un nouveau sponsor</title>
+		<link rel="icon" href="favicon.ico" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-	<title th:text="${'Édition de ' + form.name}">Titre du film</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/bo-style.css" />
-	<script
-			  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-			  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-			  crossorigin="anonymous"></script>
-	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
-</head>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/bo-style.css" />
 
+		<!-- js -->
+		<script src="/plugins/jquery-3.4.1.min.js"></script>
+		<script src="/plugins/bootstrap-4.1.3.min.js"></script>
+	</head>
 <body class="container-fluid">
-	<div class="row">
-		<a href="/"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
-	</div>
+	<header>
+		<a href="/bo" class="col-md-3 col-sm-5 col-6"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="Responsive image"></a>
+	</header>
 
 	<form th:action="@{/bo/sponsors/save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
 		<input type="hidden" th:field="*{id}">
 		<input type="hidden" th:field="*{nextEdition}">
 		<div class="form-group">
 			<label for="movieName">Nom du partenaire</label>
-			<input type="text" th:field="*{name}" class="form-control" id="sponsorName" required>
+			<input type="text" th:field="*{name}" class="form-control" id="sponsorName" required pattern="[-a-z0-9]+">
 		</div>
 		<div class="form-group">
 			<label for="movieURL">URL du site du partenaire</label>
@@ -35,7 +37,6 @@
 			</label>
 			<input type="file" th:field="*{logoFile}" accept="image/*" class="form-control-file" id="uploadLogo" required>
 		</div>
-
 		<a href="/bo" class="btn btn-secondary">Annuler</a>
 		<button type="submit" class="btn btn-primary">Créer</button>
 	</form>
@@ -45,11 +46,11 @@ function showPreviewImage(input, image) {
 	input.change(function(){
 		if (input[0].files && input[0].files[0]) {
 			var reader = new FileReader();
-			
+
 				reader.onload = function (e) {
 					image.attr('src', e.target.result);
 				}
-			
+
 			reader.readAsDataURL(input[0].files[0]);
 		}
 	});

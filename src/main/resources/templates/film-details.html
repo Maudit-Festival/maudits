@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
-	<link rel="icon" href="favicon.ico" />
-	<title th:text="${page.filmDisplayer.title + '- Le Maudit Festival'}">Le site du Maudit Festival</title>
+	<link rel="icon" href="/favicon.ico" />
+	<title th:text="${page.filmDisplayer.title + ' - Le Maudit Festival'}">Le site du Maudit Festival</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" th:content="${page.filmDisplayer.date + '- projection de ' +page.filmDisplayer.title + ' de ' +page.filmDisplayer.director +'. Film de '
-	+ page.filmDisplayer.nationality + '-'+ page.filmDisplayer.releaseDate + '. Avec ' + page.filmDisplayer.casting}"/>
+	<meta th:if="${page.filmDisplayer.director != null}"  name="description" th:content="${page.filmDisplayer.date + ' - projection de ' +page.filmDisplayer.title + ' de ' +page.filmDisplayer.director +'. Un film de '
+	+ page.filmDisplayer.releaseDate+ ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting} + '.'"/>
+	<meta th:if="${page.filmDisplayer.director == null}"  name="description" th:content="${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title}"/>
 
 	<!-- Open Graph meta pour Facebook -->
-	<meta property="og:title" th:content="${page.filmDisplayer.title + '- Le Maudit Festival'}" />
+	<meta property="og:title" th:content="${page.filmDisplayer.title + ' - Le Maudit Festival'}" />
 	<meta property="og:url" content="https://www.festivaldesmauditsfilms.com/" />
-	<meta property="og:image" th:content="${'https://www.festivaldesmauditsfilms.com/'+page.filmDisplayer.posterUrl}" />
-	<meta property="og:description" th:content="${page.filmDisplayer.date + '- projection de ' +page.filmDisplayer.title + ' de ' +page.filmDisplayer.director +'. Film de '
-	+ page.filmDisplayer.nationality + '-'+ page.filmDisplayer.releaseDate + '. Avec ' + page.filmDisplayer.casting}" />
+	<meta th:if="${page.filmDisplayer.posterUrl != null}" property="og:image" th:content="${'https://www.festivaldesmauditsfilms.com'+page.filmDisplayer.posterUrl}" />
+	<meta th:if="${page.filmDisplayer.director != null}"  property="og:description" th:content="${page.filmDisplayer.date + ' - projection de ' +page.filmDisplayer.title + ' de ' +page.filmDisplayer.director +'. Un film de '
+	+ page.filmDisplayer.releaseDate+ ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting} + '.'" />
+	<meta th:if="${page.filmDisplayer.director == null}"  property="og:description" th:content="${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title}" />
 	<meta property="og:site_name" content="Le Maudit Festival" />
 	<meta property="og:type" content="article" />
 	<!-- Card meta pour Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@MauditFestival">
-	<meta name="twitter:title" th:content="${page.filmDisplayer.title + '- Le Maudit Festival'}" />
-	<meta name="twitter:description" th:content="${page.filmDisplayer.date + '- projection de ' +page.filmDisplayer.title + ' de ' +page.filmDisplayer.director +'. Film de '
-	+ page.filmDisplayer.nationality + '-'+ page.filmDisplayer.releaseDate + '. Avec ' + page.filmDisplayer.casting}" />
+	<meta name="twitter:title" th:content="${page.filmDisplayer.title + ' - Le Maudit Festival'}" />
+	<meta th:if="${page.filmDisplayer.director != null}" name="twitter:description" th:content="${page.filmDisplayer.date + ' - projection de ' +page.filmDisplayer.title + ' de ' +page.filmDisplayer.director +'. Un film de '
+	+ page.filmDisplayer.releaseDate+ ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting} + '.'" />
+	<meta th:if="${page.filmDisplayer.director == null}" name="twitter:description" th:content="${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title}" />
 	<!-- Twitter summary card avec image large de 280x150px -->
-	<meta name="twitter:image:src" th:content="${'https://www.festivaldesmauditsfilms.com/'+page.filmDisplayer.posterUrl}"/>
-
+	<meta th:if="${page.filmDisplayer.posterUrl != null}" name="twitter:image:src" th:content="${'https://www.festivaldesmauditsfilms.com'+page.filmDisplayer.posterUrl}"/>
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
-
 	<!-- js -->
 	<script src="/plugins/jquery-3.4.1.min.js"></script>
 	<script src="/plugins/bootstrap-4.1.3.min.js"></script>

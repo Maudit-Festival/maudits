@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
-	<title>Administration - maudits films</title>
+	<title>Administration Sponsors- Maudit Festival</title>
+	<link rel="icon" href="favicon.ico" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/bo-style.css" />
-	<script
-			  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-			  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-			  crossorigin="anonymous"></script>
+
+	<!-- js -->
+	<script src="/plugins/jquery-3.4.1.min.js"></script>
 	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
 </head>
+
+
 <body class="container-fluid">
-	<nav class="row admin_main_nav">
-		<a href="/"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
-		<h1 class="admin_main_title">Sponsors</h1>
-	</nav>
+	<header>
+		<a href="/bo" class="col-md-3 col-sm-5 col-6"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="Responsive image"></a>
+		<h1 class="col-md-9 col-sm-7 col-6">Interface admin sponsor</h1>
+	</header>
 <section class="row">
 	<div class="col-md-3 admin_sidebar">
-		<p><a href="#nextEditionAnchor">Prochaine édition</a></p>
-		<p><a href="#currentEditionAnchor">Édition actuelle</a></p>
+		<ul>
+			<li class="line_1"><a href="/bo/sponsors">Gérer les sponsors</a></li>
+			<li class="line_1"><a href="#nextEditionAnchor">Prochaine édition</a></li>
+				<ul>
+					<li><a href="/bo/sponsors/create-next-edition">Ajouter un sponsor</a></li>
+				</ul>
+				<li class="line_1"><a href="#currentEditionAnchor">Édition actuelle</a></li>
+				<ul>
+					<li><a href="/bo/sponsors/create-current-edition">Ajouter un sponsor</a></li>
+				</ul>
 	</div>
 	<main class="admin_main col-md-8">
-		<h2 id="nextEditionAnchor" class="admin_title_next_edition" >Administration edition {année de l'édition suivante} </h2>
-		<a href="/bo/sponsors/create-next-edition" class="btn btn-primary">Ajouter un sponsor</a>
-		<ul>
-			<li th:each="sponsor : ${nextSponsors}">
-				<th:block th:text="${sponsor.name}"></th:block>
-				<a th:href="@{${'/bo/sponsors/edit/' + sponsor.id}}">Éditer</a>
-			</li>
-		</ul>
-		<h2 id="currentEditionAnchor" class="admin_title_current_edition">Administration edition {année de l'édition} en cours </h2>
-		<a href="/bo/sponsors/create-current-edition" class="btn btn-primary">Ajouter un sponsor</a>
-		<ul>
-			<li th:each="sponsor : ${currentSponsors}">
-				<th:block th:text="${sponsor.name}"></th:block>
-				<a th:href="@{${'/bo/sponsors/edit/' + sponsor.id}}">Éditer</a>
-			</li>
-		</ul>
-<!-- 		<article th:each="film : ${currentFilms}" > -->
-			<!--<header>
-				<a th:href="${'bo/film/edit/' + film.textualId}"><h4 th:text="${film.title}"></h4></a>
-				<div th:text="${film.startTime}"></div>
-				<div th:text="${film.title}"></div>
-				<div th:text="${film.locationName}"></div>
-			</header>
-			<div class="film_poster" th:style="'background-image:url(' + ${film.imageUrl} + ');'"></div> -->
-<!-- 	</article> -->
+		<h2 id="nextEditionAnchor" class="admin_title_next_edition" >Administration prochaine édition </h2>
+		<div class="row edition_content_film">
+				<article th:each="sponsor : ${nextSponsors}">
+					<header>
+						<img th:src="*{sponsor.logoUrl}" class="img-fluid rounded" th:alt="${sponsor.name}" loading="lazy">
+					</header>
+						<p th:text="${sponsor.name}"></p>
+						<a th:href="${'/bo/sponsors/edit/' + sponsor.id}">Éditer</a>
+				</article>
+		</div>
+
+		<h2 id="currentEditionAnchor" class="admin_title_current_edition">Administration édition en cours </h2>
+			<div class="row edition_content_film">
+					<article th:each="sponsor : ${currentSponsors}">
+						<header>
+							<img th:src="*{sponsor.logoUrl}" class="img-fluid rounded" th:alt="${sponsor.name}" loading="lazy">
+						</header>
+							<p th:text="${sponsor.name}"></p>
+							<a th:href="${'/bo/sponsors/edit/' + sponsor.id}">Éditer</a>
+					</article>
+			</div>
 	</main>
 </section>
 </body>

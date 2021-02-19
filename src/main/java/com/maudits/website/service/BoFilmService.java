@@ -65,6 +65,10 @@ public class BoFilmService {
 	public void saveFilm(@Valid FilmForm form) throws IOException {
 		Long id = form.getId();
 		Film film = (id != null) ? filmRepository.findById(id).orElseThrow() : new Film();
+
+		film.setEdition(form.isNextEdition() ? editionRepository.findOneByNextTrue()
+				: editionRepository.findOneByCurrentTrue());
+
 		film.setTextualId(form.getTextualId());
 		film.setTitle(form.getTitle());
 		film.setDescription(form.getDescription());
@@ -75,7 +79,8 @@ public class BoFilmService {
 		if (!posterFile.isEmpty()) {
 			var tmp = posterFile.getOriginalFilename().split("[.]");
 			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
-			var url = uploadService.uploadFile("2019", "poster_" + film.getTextualId() + fileExtension, posterFile);
+			var url = uploadService.uploadFile(film.getEdition().getName(),
+					"poster_" + film.getTextualId() + fileExtension, posterFile);
 			film.setPosterUrl(url);
 			film.setThumbnailPosterUrl(url);
 		}
@@ -99,9 +104,6 @@ public class BoFilmService {
 		film.setAgeRating(filterEmpty(form.getAgeRating()));
 		film.setLocationName(filterEmpty(form.getLocationName()));
 		film.setLocationAddress(filterEmpty(form.getLocationAddress()));
-
-		film.setEdition(form.isNextEdition() ? editionRepository.findOneByNextTrue()
-				: editionRepository.findOneByCurrentTrue());
 
 		filmRepository.save(film);
 	}
