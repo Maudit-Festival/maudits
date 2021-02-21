@@ -21,6 +21,7 @@ import com.maudits.website.domain.page.ArchivePageDisplayer;
 import com.maudits.website.domain.page.FilmDetailPageDisplayer;
 import com.maudits.website.domain.page.FrontPageDisplayer;
 import com.maudits.website.domain.page.HomepageDisplayer;
+import com.maudits.website.domain.page.PreviousEditionDisplayer;
 import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.FilmRepository;
 import com.maudits.website.repository.entities.Edition;
@@ -73,8 +74,7 @@ public class MauditService {
 		}
 	}
 
-	public HomepageDisplayer makeHomeFilmRecap(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+	private List<HomePageDayDisplayer> findDays(Edition edition) {
 		List<HomePageDayDisplayer> days = new ArrayList<>();
 		Map<LocalDate, List<Film>> films = new HashMap<>();
 		for (Film film : edition.getFilms()) {
@@ -87,7 +87,12 @@ public class MauditService {
 			days.add(new HomePageDayDisplayer(date, filmsForDate));
 		}
 		days.sort(Comparator.comparing(HomePageDayDisplayer::getDate));
+		return days;
+	}
 
+	public HomepageDisplayer makeHomeFilmRecap(DisplayEdition displayEdition) {
+		Edition edition = findEdition(displayEdition);
+		List<HomePageDayDisplayer> days = findDays(edition);
 		List<SponsorDisplayer> sponsors = new ArrayList<>();
 		for (Sponsor sponsor : edition.getSponsors()) {
 			sponsors.add(new SponsorDisplayer(sponsor));
@@ -103,6 +108,13 @@ public class MauditService {
 			pastEditions.add(0, editionRepository.findOneByCurrentTrue());
 		}
 		return new ArchivePageDisplayer(edition, pastEditions);
+	}
+
+	public PreviousEditionDisplayer makePreviousEditionPage(String editionCode, DisplayEdition displayEdition) {
+		Edition edition = findEdition(displayEdition);
+		Edition archivedEdition = editionRepository.findByName(editionCode).orElseThrow();
+		List<HomePageDayDisplayer> days = findDays(archivedEdition);
+		return new PreviousEditionDisplayer(edition, archivedEdition, days);
 	}
 
 }
