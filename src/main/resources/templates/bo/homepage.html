@@ -17,7 +17,7 @@
 
 
 <body class="container-fluid">
-	<header>
+	<header class="admin_header">
 		<a href="/" class="col-md-3 col-sm-5 col-6"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="Responsive image"></a>
 		<h1 class="col-md-9 col-sm-7 col-6">Interface admin</h1>
 	</header>
@@ -38,10 +38,11 @@
 	<main class="admin_main col-md-8">
 		<h2 id="nextEditionAnchor" class="admin_title_next_edition" >Administration prochaine édition </h2>
 		<div class="row edition_content_film">
-				<article th:each="film : ${nextFilms}">
+				<article th:each="film : ${nextFilms}" class="col-md-2">
 					<header>
-						<img th:src="*{film.posterUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy">
+						<img th:if="${film.posterUrl!= null}" th:src="*{film.posterUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy">
 					</header>
+						<p th:text="${film.title}"></p>
 						<a th:href="${'/bo/film/edit/' + film.id}">Éditer</a>
 				</article>
 		</div>
@@ -49,8 +50,9 @@
 			<div class="row edition_content_film">
 					<article th:each="film : ${currentFilms}">
 						<header>
-							<img th:src="*{film.posterUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy">
+							<img th:if="${film.posterUrl!= null}" th:src="*{film.posterUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy">
 						</header>
+							<p th:text="${film.title}"></p>
 							<a th:href="${'/bo/film/edit/' + film.id}">Éditer</a>
 					</article>
 			</div>
