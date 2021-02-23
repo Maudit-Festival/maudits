@@ -32,4 +32,8 @@ public class Edition extends EntityWithId {
 	private String places;
 	private String figures;
 	private String press;
+<<<<<<< HEAD
+=======
+
+>>>>>>> a840b30a14ff4b73116a74b55a5f7482c006825e
 }

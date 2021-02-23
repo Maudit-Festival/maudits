@@ -3,6 +3,7 @@
 <head>
 </head>
 <body>
+<<<<<<< HEAD
 	<nav th:fragment="common-navbar" class="navbar navbar-expand-lg">
 			<a class="navbar-brand logo-long-header"><img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +37,24 @@
 		    </ul>
 		  </div>
 	</nav>
+=======
+	<header th:fragment="common-navbar">
+		<label for="mobile_menu">
+			<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo">
+		</label>
+		<input style="display: none;" type="checkbox" id="mobile_menu">
+		<div>
+<!-- 			<a href="/bo/next/#programmation">La programmation <th:block th:text="${page.editionName}"/></a> -->
+<!-- 			<a href="/bo/next/#pratique">Infos pratiques</a> -->
+
+			<a href="/bo/next/a-propos-du-maudit-festival">Le maudit festival</a>
+			<a href="/bo/next/editions-precedentes/avant-le-maudit-festival">Avant</a>
+			<a href="/bo/next/editions-precedentes/2020">2020</a>
+			<a href="/bo/next/editions-precedentes/2021">2021</a>
+			<a href="/bo/next/contact">Contact</a>
+		</div>
+	</header>
+>>>>>>> a840b30a14ff4b73116a74b55a5f7482c006825e
 
 
 	<footer th:fragment="common-footer">

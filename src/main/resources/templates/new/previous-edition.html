@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
+<<<<<<< HEAD
 	<link rel="icon" href="favicon.ico" />
 	<title th:text="${'Archive '+ page.name + ' - Le Maudit Festival'}">Le site du Maudit Festival</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,10 +14,18 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 	<!-- js -->
 	<script src="/plugins/jquery-3.4.1.min.js"></script>
 	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
+=======
+	<title>Bienvenue sur le site des maudits films</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="/css/new_style.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+>>>>>>> a840b30a14ff4b73116a74b55a5f7482c006825e
 </head>
 
 <body>
 	<header th:replace="new/fragments/common.html :: common-navbar"></header>
+<<<<<<< HEAD
 	<section class="hero short-hero">
 	</section>
 	<section class="previous_edition">
@@ -93,3 +102,61 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 	<script src="/js/script.js"></script>
 </body>
 </html>
+=======
+	<div class="hero short-hero">
+	</div>
+	<div th:if="${page.editorial != null}">
+		<h2>Éditorial</h2>
+		<span th:text="${page.editorial}"></span>
+	</div>
+	<div th:if="${page.teaserVideoUrl != null}">
+		<iframe width="560" height="315" th:src="${page.teaserVideoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+	<div id="programmation" class="programmation-section">
+		<div>
+			<th:block th:each="day : ${page.days}">
+				<a class="link-to-day-recap" th:text="${day.displayDate}" th:href="'#'+${day.date}">Lundi 17 Mars</a>
+				<span class="link-to-day-recap">/</span>
+			</th:block>
+		</div>
+		<div class="programmation-day-recap-container">
+			<div th:each="day : ${page.days}" th:id="${day.date}" class="programmation-day-recap-div">
+				<h4 th:text="${day.displayDate}">Jeudi 7</h4>
+				<div class="programmation-day-recap">
+					<div th:each="film : ${day.films}" class="film-recap">
+						<a th:href="@{'/film/'+${film.textualId}}"><div class="film_poster" th:style="'background-image:url(' + ${film.imageUrl} + ');'"></div></a>
+						<div th:text="${film.startTime}"></div>
+						<div th:text="${film.title}"></div>
+						<div th:text="${film.locationName}"></div>
+						<a th:href="@{'/film/'+${film.textualId}}" class="purple-button">En savoir plus</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:if="${page.guests != null}">
+		<h2>Invités</h2>
+		<span th:text="${page.guests}"></span>
+	</div>
+	<div th:if="${page.partners != null}">
+		<h2>Partenaires</h2>
+		<span th:text="${page.partners}"></span>
+	</div>
+	<div th:if="${page.places != null}">
+		<h2>Lieux</h2>
+		<span th:text="${page.places}"></span>
+	</div>
+	<div th:if="${page.figures != null}">
+		<h2>Chiffres</h2>
+		<span th:text="${page.figures}"></span>
+	</div>
+	<div th:if="${page.press != null}">
+		<h2>Presse</h2>
+		<span th:text="${page.press}"></span>
+	</div>
+	
+	<footer th:replace="new/fragments/common.html :: common-footer">
+	</footer>
+</body>
+</html>
+>>>>>>> a840b30a14ff4b73116a74b55a5f7482c006825e
