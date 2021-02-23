@@ -24,4 +24,12 @@ public class Edition extends EntityWithId {
 	private boolean next;
 	private String name;
 	private String timePeriod;
+
+	private String editorial;
+	private String teaserUrl;
+	private String guests;
+	private String partners;
+	private String places;
+	private String figures;
+	private String press;
 }

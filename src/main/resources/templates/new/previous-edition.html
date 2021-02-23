@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<link rel="icon" href="favicon.ico" />
+	<title th:text="${'Archive '+ page.name + ' - Le Maudit Festival'}">Le site du Maudit Festival</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Toutes les informations sur ce festival dédié à un
+cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, événements."/>
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/new_style.css" />
+	<!-- js -->
+	<script src="/plugins/jquery-3.4.1.min.js"></script>
+	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
+</head>
+
+<body>
+	<header th:replace="new/fragments/common.html :: common-navbar"></header>
+	<section class="hero short-hero">
+	</section>
+	<section class="previous_edition">
+		<div class='previous_sidemenu'>
+			<h3 th:text="${page.name}"></h3>
+			<ul>
+			<li th:if="${page.editorial != null}" ><a href="#PreviousEdito">Editorial</a></li>
+			<li th:if="${page.teaserVideoUrl != null}"><a href="#PreviousTeaser">Teaser</a></li>
+			<li ><a href="#PreviousMovies">Les films et évènements</a></li>
+			<li th:if="${page.guests != null}"><a href="#PreviousGuests">Les invités</a></li>
+			<li th:if="${page.partners != null}" ><a href="#PreviousPartners">Les partenaires</a></li>
+			<li th:if="${page.places != null}"><a href="#PreviousPlaces">Les lieux</a></li>
+			<li th:if="${page.figures != null}"><a href="#PreviousFigures">Les chiffres</a></li>
+			<li th:if="${page.press != null}"><a href="#PreviousPress">Presse</a></li>
+		</ul>
+		</div>
+		<div class="container-fluid row">
+			<div class="col-md-10 offset-md-2 col-sm-12">
+				<div th:if="${page.editorial != null}" class='row previous_edito' id="PreviousEdito">
+					<h2>Éditorial</h2>
+					<p th:text="${page.editorial}"></p>
+				</div>
+				<div th:if="${page.teaserVideoUrl != null}" class='row previous_teaser' id="PreviousTeaser">
+					<h2>Teaser</h2>
+					<iframe title="Teaser" loading="lazy" width="560" height="315" th:src="${page.teaserVideoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="container previous_programmation_list_days" id="PreviousMovies">
+					<th:block th:each="day : ${page.days}">
+						<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
+						<span>/</span>
+					</th:block>
+				</div>
+				<div class="container">
+					<div th:each="day : ${page.days}" th:id="${day.date}" class="row day_previous_programmation">
+						<h4 th:text="${day.displayDate}"></h4>
+						<div class="previous-programmation-day-recap">
+							<article th:each="film : ${day.films}">
+								<header>
+									<a th:href="@{'/bo/next/film/'+${film.textualId}}"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+								</header>
+								<div th:text="${film.startTime}"></div>
+								<div th:text="${film.title}"></div>
+								<div th:text="${film.locationName}"></div>
+								<a th:href="@{'/bo/next/film/'+${film.textualId}}" class="know_more_previous_programmation">En savoir plus</a>
+							</article>
+						</div>
+					</div>
+				</div>
+				<div th:if="${page.guests != null}" class='row previous_guests' id="PreviousGuests">
+					<h2>Invités</h2>
+					<p th:text="${page.guests}"></p>
+				</div>
+				<div th:if="${page.partners != null}" class='row previous_partners' id="PreviousPartners">
+					<h2>Partenaires</h2>
+					<p th:text="${page.partners}"></p>
+				</div>
+				<div th:if="${page.places != null}" class='row previous_places' id="PreviousPlaces">
+					<h2>Lieux</h2>
+					<p th:text="${page.places}"></p>
+				</div>
+				<div th:if="${page.figures != null}" class='row previous_figures' id="PreviousFigures">
+					<h2>Chiffres</h2>
+					<p th:text="${page.figures}"></p>
+				</div>
+				<div th:if="${page.press != null}" class='row previous_press' id="PreviousPress">
+					<h2 th:text="${'Revues de presse édition '+ page.name}">Presse</h2>
+					<p th:text="${page.press}"></p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="new/fragments/common.html :: common-footer">
+	</footer>
+	<script src="/js/script.js"></script>
+</body>
+</html>
