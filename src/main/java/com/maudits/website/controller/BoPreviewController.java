@@ -48,11 +48,6 @@ public class BoPreviewController {
 		model.addAttribute("page", mauditService.makeArchivePage(DisplayEdition.NEXT));
 		return "new/archive";
 	}
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> a840b30a14ff4b73116a74b55a5f7482c006825e
 	@GetMapping("a-propos-du-maudit-festival")
 	public String showAbout(Model model) {
 		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.NEXT));
@@ -70,8 +65,4 @@ public class BoPreviewController {
 		model.addAttribute("page", mauditService.makePreviousEditionPage(editionCode, DisplayEdition.NEXT));
 		return "new/previous-edition";
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> a840b30a14ff4b73116a74b55a5f7482c006825e
 }
