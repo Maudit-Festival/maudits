@@ -41,7 +41,7 @@ public class MauditService {
 		case CURRENT:
 			return editionRepository.findOneByCurrentTrue();
 		case NEXT:
-			return editionRepository.findOneByCurrentTrue();
+			return editionRepository.findOneByNextTrue();
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
 		}
