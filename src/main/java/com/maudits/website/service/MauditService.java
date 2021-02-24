@@ -57,7 +57,10 @@ public class MauditService {
 		Edition edition = findEdition(displayEdition);
 		Film film = filmRepository.findOneByTextualId(textualId)
 				.or(() -> filmRepository.findById(Long.valueOf(textualId))).orElseThrow();
-		if (!film.getEdition().equals(edition)) {
+//		if (!film.getEdition().equals(edition)) {
+//			throw new WrongEditionException();
+//		}
+		if (displayEdition != DisplayEdition.NEXT && film.getEdition().isNext()) {
 			throw new WrongEditionException();
 		}
 		return new FilmDetailPageDisplayer(edition, film);

@@ -32,7 +32,7 @@ public class BoPreviewController {
 					mauditService.findFilmDetailPageDisplayerFromTextualId(DisplayEdition.NEXT, textualId));
 			return "new/film-details";
 		} catch (WrongEditionException e) {
-			return "redirect:/bo/next/archive";
+			return "redirect:/bo/next";
 		}
 	}
 
