@@ -20,7 +20,10 @@ body {
 button, input, textarea {
 	font: inherit;
 }
-
+p{
+	font-size: 1.1rem;
+	font-weight: lighter;
+}
 .error-message {
 	color: red;
 }
@@ -29,11 +32,8 @@ button, input, textarea {
 * HEADER
 */
 .navbar{
-	padding : 1.3rem 1.3rem;
-	transition-property: padding;
-	transition-duration: 2s;
-
-	background: var(--maudit-red);
+	padding : 1rem 1rem;
+	background-color: var(--maudit-blue);
 	position: fixed !important;
 	-webkit-box-align: center;
 	-ms-flex-align: center;
@@ -43,18 +43,14 @@ button, input, textarea {
 }
 
 .header-logo {
-	width: 60px;
-	transition-property: width;
-	transition-duration: 2s;
+	width: 50px;
 }
 .navbar-nav{
-	font-size: 20px;
+	font-size: 1rem;
 	align-items: center;
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	-ms-grid-row-align: center;
-	transition-property: font-size;
-	transition-duration: 2s;
 }
 
 .nav_style a{
@@ -72,19 +68,17 @@ button, input, textarea {
 }
 
 .dropdown_nav_style{
-	background-color: var(--maudit-red);
+	background-color: var(--maudit-blue);
 	padding:2%;
 	margin-left: 7%;
 }
 .dropdown_nav_style a{
 	margin-left: 0px;
-	font-size: 20px;
-	transition-property: font-size;
-	transition-duration: 2s;
+	font-size: 1rem;
 	border: 0px;
 }
 .dropdown_nav_style a:hover{
-	background-color: var(--maudit-red);
+	background-color: var(--maudit-blue);
 	border: 0px;
 }
 
@@ -94,7 +88,7 @@ button, input, textarea {
 	display: flex;
 	height: 50em;
 	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/logo-header-2021.png);
-	background-size: cover;
+	/* background-size: cover; */
 	background-position: center;
 	color: white;
 	overflow: auto;
@@ -623,8 +617,10 @@ footer a.external_link:hover {
 * PREVIOUS EDITION
 */
 .previous_edition{
-	background: rgb(17,22,29);
-	background: linear-gradient(90deg, rgba(17,22,29,1) 0%, rgba(16,23,35,1) 38%, rgba(11,27,62,1) 100%);
+	background-image: url(/img/background-juliet_berto.jpeg);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-color: var(--background-gray-color);
 	padding-top: 2%;
 	color: white;
 	padding-bottom: 2%;
@@ -649,6 +645,9 @@ footer a.external_link:hover {
 }
 .previous_sidemenu ul{
 	margin-left: 5%;
+}
+.previous_main_edition{
+	padding-left: 4%;
 }
 .previous_programmation_list_days{
 	text-align: center;
@@ -686,15 +685,18 @@ footer a.external_link:hover {
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-pack: distribute;
-  justify-content: space-around;
+  justify-content: start;
 }
 .previous-programmation-day-recap article{
 	text-align: center;
 	margin-bottom: 15px;
+	margin-left: 5%;
 }
 .previous-programmation-day-recap img{
 	max-width: 200px;
 	max-height: 275px;
+	min-width: 168px;
+	min-height: 270px;
 }
 .know_more_previous_programmation{
 	display: inline-block;
@@ -723,7 +725,9 @@ footer a.external_link:hover {
 }
 
 .previous_edito p{
-	text-align: justify;
+	line-height: 30px;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 .previous_teaser{
@@ -774,19 +778,26 @@ hr {
   border: 0;
   border-top: 1px solid var(--maudit-red);
 }
+.about_sidebar{
+	padding-right: 2%;
+}
 .about_sidebar h3{
 	text-decoration: underline solid var(--maudit-red);
+	text-underline-offset: 6px;
 }
-
 .about_sidebar ul{
 	list-style: none;
-	margin-top: 5%;
+	margin-top: 8%;
 }
 .about_sidebar li{
 	margin-bottom: 4%;
+	line-height: 25px;
 }
 .span_about_sidebar{
 	font-weight: bold;
+}
+.about_main{
+	padding-left: 5%;
 }
 .about_main h2{
 	margin-bottom: 3%;
@@ -795,7 +806,11 @@ hr {
 	margin-bottom: 1%;
 	margin-left: 2%;
 }
-
+.about_main p{
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	line-height: 25px;
+}
 /*
 * HISTORY
 */
