@@ -4,10 +4,11 @@
 </head>
 <body>
 	<nav th:fragment="common-navbar" class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo-long-header"><img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
+			<a class="navbar-brand logo-long-header" href='/bo/next/'><img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-				<a class="navbar-brand"><img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo "></a>
+				<a class="navbar-brand"><span class="navbar-toggler-icon"></span></a>
 		  </button>
+			<a class="navbar-brand collapse logo-mobile-header" id="navbarToggler" href='/bo/next/'><img src="/img/logo-cercle.png"  alt="Logo Terreur Nocturne" class="header-logo"></a>
 		  <div class="collapse navbar-collapse nav_style" id="navbarToggler">
 		    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item">
@@ -39,7 +40,7 @@
 				<div>
 					<h4>Le Maudit Festival</h4><br>
 					Édition <th:block th:text="${page.editionName}"/> : <th:block th:text="${page.editionTimePeriod}"/>
-					<img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo">
+					<a href="/bo/next"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
 					Terreur Nocturne - <th:block th:text="${page.editionName}"/>
 				</div>
 			</div>
@@ -47,8 +48,9 @@
 				<h4>Menu</h4>
 				<ul>
 					<!--<li><a href="/#programmation">La programmation</a></li>-->
+					<li><a href="/bo/next">Accueil</a></li>
 					<li><a href="/bo/next#pratique">Informations pratiques</a></li>
-					<li><a href="/bo/next/#">Qui sommes nous</a></li>
+					<li><a href="/bo/next/a-propos-du-maudit-festival">Le maudit festival</a></li>
 					<li><a href="/bo/next/contact">Contactez nous</a></li>
 				</ul>
 			</div>

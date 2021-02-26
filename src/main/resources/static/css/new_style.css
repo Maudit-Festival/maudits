@@ -11,6 +11,7 @@
 	--maudit-blue : #0b245c;
 	--maudit-yellow: #ffda00;
 	--maudit-orange : #a53b1c;
+	--light-blue : #3B5EAE;
 }
 
 body {
@@ -26,6 +27,11 @@ p{
 }
 .error-message {
 	color: red;
+}
+.navbar-toggler-icon{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+	height: 35px;
+	width: 35px;
 }
 
 /*
@@ -44,6 +50,9 @@ p{
 
 .header-logo {
 	width: 50px;
+}
+.logo-mobile-header{
+	display: none;
 }
 .navbar-nav{
 	font-size: 1rem;
@@ -148,6 +157,9 @@ p{
 	.logo-long-header{
 		display: none;
 	}
+	.logo-mobile-header{
+		display: block;
+	}
 	.hero{
 		height: 40em;
 		margin-top:-30px;
@@ -157,6 +169,9 @@ p{
 @media (max-width: 700px) {
 	.logo-long-header{
 		display: none;
+	}
+	.logo-mobile-header{
+		display: block;
 	}
 	.hero{
 		height: 30em;
@@ -629,7 +644,7 @@ footer a.external_link:hover {
 	padding:1%;
 	border-bottom-right-radius: 22% 66%;
 	color: white;
-	background-color: var(--light-gray);
+	background-color: var(--light-blue);
 	text-decoration: none;
 	height: max-content;
 	position: fixed;
