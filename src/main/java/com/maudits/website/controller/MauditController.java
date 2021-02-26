@@ -36,7 +36,7 @@ public class MauditController {
 					mauditService.findFilmDetailPageDisplayerFromTextualId(DisplayEdition.CURRENT, textualId));
 			return "film-details";
 		} catch (WrongEditionException e) {
-			return "redirect:/archive";
+			return "redirect:/";
 		}
 	}
 
