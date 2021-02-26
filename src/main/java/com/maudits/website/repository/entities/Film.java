@@ -2,6 +2,7 @@ package com.maudits.website.repository.entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -36,6 +37,8 @@ public class Film extends EntityWithId {
 	private String ageRating;
 	private String locationName;
 	private String locationAddress;
+
+	private ZonedDateTime lastUpdateTime;
 
 	@ManyToOne
 	private Edition edition;

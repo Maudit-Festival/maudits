@@ -1,5 +1,6 @@
 package com.maudits.website.repository.entities;
 
+import java.time.ZonedDateTime;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -32,4 +33,6 @@ public class Edition extends EntityWithId {
 	private String places;
 	private String figures;
 	private String press;
+
+	private ZonedDateTime lastUpdateTime;
 }
