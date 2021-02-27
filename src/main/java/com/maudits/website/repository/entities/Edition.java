@@ -2,6 +2,7 @@ package com.maudits.website.repository.entities;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -26,13 +27,11 @@ public class Edition extends EntityWithId {
 	private String name;
 	private String timePeriod;
 
+	private String editorialTitle;
 	private String editorial;
 	private String teaserUrl;
-	private String guests;
-	private String partners;
-	private String places;
-	private String figures;
-	private String press;
+	@OneToMany(mappedBy = "edition")
+	private List<Guest> guests;
 
 	private ZonedDateTime lastUpdateTime;
 }

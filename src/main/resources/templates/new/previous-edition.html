@@ -27,17 +27,13 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 			<li th:if="${page.teaserVideoUrl != null}"><a href="#PreviousTeaser">Teaser</a></li>
 			<li ><a href="#PreviousMovies">Les films et évènements</a></li>
 			<li th:if="${page.guests != null}"><a href="#PreviousGuests">Les invités</a></li>
-			<li th:if="${page.partners != null}" ><a href="#PreviousPartners">Les partenaires</a></li>
-			<li th:if="${page.places != null}"><a href="#PreviousPlaces">Les lieux</a></li>
-			<li th:if="${page.figures != null}"><a href="#PreviousFigures">Les chiffres</a></li>
-			<li th:if="${page.press != null}"><a href="#PreviousPress">Presse</a></li>
 		</ul>
 		</div>
 		<div class="container-fluid row">
 			<div class="col-md-10 offset-md-2 col-sm-12 previous_main_edition">
 				<div th:if="${page.editorial != null}" class='row previous_edito' id="PreviousEdito">
 					<h2>Éditorial</h2>
-					<p th:text="${page.editorial}"></p>
+					<p th:utext="${#strings.replace(#strings.escapeXml(page.editorial),'&#10;','&lt;br&gt;')}"></p>
 				</div>
 				<div th:if="${page.teaserVideoUrl != null}" class='row previous_teaser' id="PreviousTeaser">
 					<h2>Teaser</h2>
@@ -63,25 +59,13 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 							</article>
 						</div>
 					</div>
-				<div th:if="${page.guests != null}" class='row previous_guests' id="PreviousGuests">
+				<div th:if="${page.guests.size() > 0}" class='row previous_guests' id="PreviousGuests">
 					<h2>Invités</h2>
-					<p th:text="${page.guests}"></p>
-				</div>
-				<div th:if="${page.partners != null}" class='row previous_partners' id="PreviousPartners">
-					<h2>Partenaires</h2>
-					<p th:text="${page.partners}"></p>
-				</div>
-				<div th:if="${page.places != null}" class='row previous_places' id="PreviousPlaces">
-					<h2>Lieux</h2>
-					<p th:text="${page.places}"></p>
-				</div>
-				<div th:if="${page.figures != null}" class='row previous_figures' id="PreviousFigures">
-					<h2>Chiffres</h2>
-					<p th:text="${page.figures}"></p>
-				</div>
-				<div th:if="${page.press != null}" class='row previous_press' id="PreviousPress">
-					<h2 th:text="${'Revues de presse édition '+ page.name}">Presse</h2>
-					<p th:text="${page.press}"></p>
+					<th:block th:each="guest : ${page.guests}">
+					<h3 th:text="${guest.name}">Wafa Germani</h3>
+					<p th:text="${guest.description}"></p>
+					<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}">
+					</th:block>
 				</div>
 			</div>
 		</div>

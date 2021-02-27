@@ -1,7 +1,9 @@
 package com.maudits.website.domain.page;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.maudits.website.domain.displayer.GuestDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.repository.entities.Edition;
 
@@ -14,11 +16,7 @@ public class PreviousEditionDisplayer extends FrontPageDisplayer {
 	private final String editorial;
 	private final String teaserVideoUrl;
 	private final List<HomePageDayDisplayer> days;
-	private final String guests;
-	private final String partners;
-	private final String places;
-	private final String figures;
-	private final String press;
+	private final List<GuestDisplayer> guests;
 
 	public PreviousEditionDisplayer(Edition edition, Edition shownEdition, List<HomePageDayDisplayer> days) {
 		super(edition);
@@ -27,10 +25,6 @@ public class PreviousEditionDisplayer extends FrontPageDisplayer {
 		this.editorial = shownEdition.getEditorial();
 		this.teaserVideoUrl = shownEdition.getTeaserUrl();
 		this.days = days;
-		this.guests = shownEdition.getGuests();
-		this.partners = shownEdition.getPartners();
-		this.places = shownEdition.getPlaces();
-		this.figures = shownEdition.getFigures();
-		this.press = shownEdition.getPress();
+		this.guests = shownEdition.getGuests().stream().map(GuestDisplayer::new).collect(Collectors.toList());
 	}
 }
