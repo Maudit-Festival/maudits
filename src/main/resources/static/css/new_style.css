@@ -768,7 +768,10 @@ footer a.external_link:hover {
 		background-color: var(--light-blue);
 		position:initial;
 		border-bottom-right-radius: 0% 0%;
-		background: none;
+		text-align: center;
+	}
+	.previous_sidemenu ul{
+		margin-left:0px;
 	}
 }
 /*
