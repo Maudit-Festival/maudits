@@ -43,11 +43,19 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 				</div>
 				<div th:if="${page.guests.size() > 0}" class='row previous_guests' id="PreviousGuests">
 					<h2>Invités</h2>
-					<th:block th:each="guest : ${page.guests}">
-					<h3 th:text="${guest.name}">Wafa Germani</h3>
-					<p th:text="${guest.description}"></p>
-					<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}">
-					</th:block>
+					<div class="container">
+						<div th:each="guest : ${page.guests}" class="row">
+							<h3 th:text="${guest.name}"></h3>
+							<div class="row">
+								<div class="col-md">
+									<p th:text="${guest.description}"></p>
+							</div>
+							<div class="col-md">
+								<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}">
+							</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="container previous_programmation_list_days" id="PreviousMovies">
 					<h2>Les Films et évènements</h2>

@@ -118,7 +118,7 @@ p{
 
 .short-hero {
 	height: 36em;
-	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/logo-header-2021-short.jpg);
+	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/logo-header-2021.png);
 	position: relative;
 	overflow: hidden;
 	margin-top: 0px!important;
@@ -771,7 +771,11 @@ footer a.external_link:hover {
 	margin-top: 2%;
 	margin-bottom: 1%;
 }
-
+.previous_guests h3{
+	margin-left: 2rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
 .previous_edito p{
 	line-height: 30px;
 	margin-top: 1rem;
