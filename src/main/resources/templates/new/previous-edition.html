@@ -64,10 +64,10 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 						<span>/</span>
 					</th:block>
 				</div>
-				<div class="day_previous_programmation row">
-				<div th:each="day : ${page.days}" th:id="${day.date}" class="col-md content_previous_list">
+				<div class="day_previous_programmation d-flex flex-wrap">
+				<div th:each="day : ${page.days}" th:id="${day.date}" class="content_previous_list">
 						<h4 th:text="${day.displayDate}"></h4>
-						<div class="previous-programmation-day-recap">
+						<div class="previous-programmation-day-recap row">
 							<article th:each="film : ${day.films}" class="col-md">
 								<header>
 									<a th:href="@{'/bo/next/film/'+${film.textualId}}"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
