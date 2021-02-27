@@ -43,7 +43,7 @@
 	<section class="film-recap-section">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-2 sidebar_film">
+				<div class="col-lg-2 sidebar_film">
 					<div class="film-screening-date">
 						<span class="calendar-date" th:text="${page.filmDisplayer.date}"></span>
 						à
@@ -51,7 +51,9 @@
 					</div>
 					<div class="technical-info-sidebar-inner">
 						<div class="location-infos" th:text="${page.filmDisplayer.locationName + ', ' +page.filmDisplayer.locationAddress}"></div>
-						<img class="poster" th:src="${page.filmDisplayer.posterUrl}" th:alt="${'Poster de «' + page.filmDisplayer.title + '»'}">
+						<div class="content_poster">
+							<img class="poster" th:src="${page.filmDisplayer.posterUrl}" th:alt="${'Poster de «' + page.filmDisplayer.title + '»'}">
+						</div>
 						<div class="film-date-and-time-center">
 							<th:block th:if="${page.filmDisplayer.releaseDate != null}" th:text="${page.filmDisplayer.releaseDate}"></th:block>
 							<th:block th:if="${page.filmDisplayer.releaseDate != null && page.filmDisplayer.duration != null}">-</th:block>
@@ -70,7 +72,7 @@
 						<button type="button" class="btn btn-danger">Acheter ma place</button></a>
 					</div>
 				</div>
-				<div class="col-md-10 description-container">
+				<div class="col-lg-10 description-container">
 						<h1 th:text="${page.filmDisplayer.title}">Qui veut la peau de Bugs Bunny?</h1>
 						<p th:utext="${#strings.replace( #strings.escapeXml(page.filmDisplayer.description),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" ></p>
 						<div class="container-img">

@@ -29,8 +29,8 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 			<li th:if="${page.guests != null}"><a href="#PreviousGuests">Les invités</a></li>
 		</ul>
 		</div>
-		<div class="container-fluid row">
-			<div class="col-md-10 offset-md-2 col-sm-12 previous_main_edition">
+		<div class="container-fluid">
+			<div class="col-lg-10 offset-lg-2 col-md-12 previous_main_edition">
 				<div th:if="${page.editorial != null}" class='row previous_edito' id="PreviousEdito">
 					<h2>Éditorial</h2>
 					<p th:utext="${#strings.replace(#strings.escapeXml(page.editorial),'&#10;','&lt;br&gt;')}"></p>
@@ -45,10 +45,11 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 						<span>/</span>
 					</th:block>
 				</div>
-				<div th:each="day : ${page.days}" th:id="${day.date}" class="row day_previous_programmation">
+				<div class="day_previous_programmation row">
+				<div th:each="day : ${page.days}" th:id="${day.date}" class="col-md content_previous_list">
 						<h4 th:text="${day.displayDate}"></h4>
 						<div class="previous-programmation-day-recap">
-							<article th:each="film : ${day.films}">
+							<article th:each="film : ${day.films}" class="col-md">
 								<header>
 									<a th:href="@{'/bo/next/film/'+${film.textualId}}"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
 								</header>
@@ -59,6 +60,7 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 							</article>
 						</div>
 					</div>
+				</div>
 				<div th:if="${page.guests.size() > 0}" class='row previous_guests' id="PreviousGuests">
 					<h2>Invités</h2>
 					<th:block th:each="guest : ${page.guests}">
