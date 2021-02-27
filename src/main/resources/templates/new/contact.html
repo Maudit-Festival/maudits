@@ -10,7 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/new_style.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<!-- js -->
 	<script src="/plugins/jquery-3.4.1.min.js"></script>
 	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
@@ -22,16 +21,15 @@
 	<div class="hero short-hero">
 	</div>
 	<section class="contact-section">
-		<div class="container">
-			<p th:if="${success}" class="contact-message-confirm-success">
+		<div class="container contact_container">
+			<p th:if="${success}" class="contact-message-confirm-success first_p_contact">
 				Votre message a bien été envoyé !
 			</p>
+			<p th:if="${error}" class="error-message contact-error-message">Une erreur n'a pas permis d'envoyer votre message.</p>
+			<p th:unless="${error}" class="first_p_contact">Pour toute demande de renseignements, remarques ou envies de partager des informations,
+			n'hésitez pas à remplir le formulaire de contact ci-dessous.</p>
+			<p th:unless="${error}">Nous vous répondrons avec grand plaisir !</p>
 			<form th:action="@{/contact}" th:method="post" th:object="${form}" th:unless="${success}">
-				<p th:if="${error}" class="error-message contact-error-message">Une erreur n'a pas permis d'envoyer votre message.</p>
-				<p th:unless="${error}">Pour toute demande de renseignements, remarques ou envies de partager des informations,
-				n'hésitez pas à remplir le formulaire de contact ci-dessous.</p>
-				<p th:unless="${error}">Nous vous répondrons avec grand plaisir !</p>
-
 				<div class="form-group">
 					<input type="text" th:field="*{lastName}" class="form-control" placeholder="Nom" required>
 				</div>

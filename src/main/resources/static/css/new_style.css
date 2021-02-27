@@ -2,7 +2,9 @@
 	font-family: "gill";
 	src: url("/fonts/gill-sans-mt.ttf");
 }
-
+/*
+* SAUT DE LIGNE POUR DAMIEN : 2rem
+*/
 :root {
 	--maudit-purple: #682b95;
 	--background-gray-color: #171c23;
@@ -24,6 +26,8 @@ button, input, textarea {
 p{
 	font-size: 1.1rem;
 	font-weight: lighter;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 .error-message {
 	color: red;
@@ -198,7 +202,9 @@ p{
 	padding-top: 2%;
 	padding-bottom: 2%;
 }
-
+.communique_covid h2{
+	margin-bottom: 3rem;
+}
 .programmation-section {
 	color: white;
 	background: rgb(17,22,29);
@@ -528,9 +534,11 @@ footer a.external_link:hover {
 */
 
 .contact-section{
-	padding-bottom: 1rem; /* fix bug margin */
+	margin-top: -16px;
 }
-
+.first_p_contact{
+	padding-top: 2rem;
+}
 .contact-section input, .contact-section textarea {
 	display: block;
 	color: white;
@@ -672,6 +680,9 @@ footer a.external_link:hover {
 	z-index: 10000;
 	font-family: "gill";
 }
+.previous_edition h2{
+	margin-bottom: 2rem;
+}
 .previous_sidemenu h3{
 	text-decoration: underline 3px solid var(--maudit-red);
 }
@@ -684,11 +695,15 @@ footer a.external_link:hover {
 .previous_main_edition{
 	padding-left: 4%;
 }
+.history_introduction{
+	margin-bottom: 4rem;
+}
 .previous_programmation_list_days{
 	text-align: center;
-	padding-top: 3%;
+	margin-top: 2rem;
 	color: white;
 	font-size: 1.3em;
+	margin-bottom: 2rem;
 }
 .previous_programmation_list_days a{
 	color: white;
@@ -830,18 +845,22 @@ hr {
 	margin-bottom: 4%;
 	line-height: 25px;
 }
+
 .span_about_sidebar{
 	font-weight: bold;
 }
+.about_sidebar p{
+	margin-top: 0px;
+}
 .about_main{
-	padding-left: 5%;
+	padding-left: 7%;
 }
 .about_main h2{
 	margin-bottom: 3%;
 }
 .about_main h3{
 	margin-bottom: 1%;
-	margin-left: 2%;
+	margin-left: 4%;
 }
 .about_main p{
 	margin-top: 2rem;

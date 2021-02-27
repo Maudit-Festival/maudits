@@ -25,21 +25,32 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 			<ul>
 			<li th:if="${page.editorial != null}" ><a href="#PreviousEdito">Editorial</a></li>
 			<li th:if="${page.teaserVideoUrl != null}"><a href="#PreviousTeaser">Teaser</a></li>
+						<li th:if="${page.guests.size() > 0}"><a href="#PreviousGuests">Les invités</a></li>
 			<li ><a href="#PreviousMovies">Les films et évènements</a></li>
-			<li th:if="${page.guests != null}"><a href="#PreviousGuests">Les invités</a></li>
 		</ul>
 		</div>
 		<div class="container-fluid">
-			<div class="col-lg-10 offset-lg-2 col-md-12 previous_main_edition">
+			<div class="col-lg-9 offset-lg-3 col-md-12 previous_main_edition">
 				<div th:if="${page.editorial != null}" class='row previous_edito' id="PreviousEdito">
 					<h2>Éditorial</h2>
 					<p th:utext="${#strings.replace(#strings.escapeXml(page.editorial),'&#10;','&lt;br&gt;')}"></p>
 				</div>
 				<div th:if="${page.teaserVideoUrl != null}" class='row previous_teaser' id="PreviousTeaser">
 					<h2>Teaser</h2>
-					<iframe title="Teaser" loading="lazy" width="560" height="315" th:src="${page.teaserVideoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<div class="embed-responsive embed-responsive-16by9">
+					  <iframe class="embed-responsive-item" title="Teaser" loading="lazy" th:src="${page.teaserVideoUrl}" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div th:if="${page.guests.size() > 0}" class='row previous_guests' id="PreviousGuests">
+					<h2>Invités</h2>
+					<th:block th:each="guest : ${page.guests}">
+					<h3 th:text="${guest.name}">Wafa Germani</h3>
+					<p th:text="${guest.description}"></p>
+					<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}">
+					</th:block>
 				</div>
 				<div class="container previous_programmation_list_days" id="PreviousMovies">
+					<h2>Les Films et évènements</h2>
 					<th:block th:each="day : ${page.days}">
 						<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
 						<span>/</span>
@@ -60,14 +71,6 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 							</article>
 						</div>
 					</div>
-				</div>
-				<div th:if="${page.guests.size() > 0}" class='row previous_guests' id="PreviousGuests">
-					<h2>Invités</h2>
-					<th:block th:each="guest : ${page.guests}">
-					<h3 th:text="${guest.name}">Wafa Germani</h3>
-					<p th:text="${guest.description}"></p>
-					<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}">
-					</th:block>
 				</div>
 			</div>
 		</div>
