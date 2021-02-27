@@ -50,7 +50,7 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 					</th:block>
 				</div>
 				<div class="day_previous_programmation row">
-				<div th:each="day : ${page.days}" th:id="${day.date}" class="col-md">
+				<div th:each="day : ${page.days}" th:id="${day.date}" class="col-md content_previous_list">
 						<h4 th:text="${day.displayDate}"></h4>
 						<div class="previous-programmation-day-recap">
 							<article th:each="film : ${day.films}" class="col-md">

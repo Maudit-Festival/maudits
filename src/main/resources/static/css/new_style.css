@@ -28,11 +28,20 @@ p{
 .error-message {
 	color: red;
 }
+
+/* fix bug bootstrap burger*/
 .navbar-toggler-icon{
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 	height: 35px;
 	width: 35px;
 }
+
+/* fix safari responsive bug */
+.img-fluid{
+  width: 100%;
+  align-items: center;
+}
+
 
 /*
 * HEADER
@@ -693,12 +702,14 @@ footer a.external_link:hover {
 .day_previous_programmation{
 	color: white;
 }
-
+.content_previous_list{
+	margin-top: 10px;
+}
 .day_previous_programmation h4{
 	text-align: center;
 	text-transform: capitalize;
-	margin-bottom: 10px;
-	margin-top: 10px;
+	margin-bottom: 9px;
+	margin-top: 9px;
 }
 .previous-programmation-day-recap{
 	display: -webkit-box;
