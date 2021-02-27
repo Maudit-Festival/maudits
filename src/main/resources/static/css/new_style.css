@@ -188,6 +188,8 @@ p{
 	.hero{
 		height: 30em;
 		margin-top:0px;
+		background-size: 250%;
+		background-position: 53% 53%;
 	}
 }
 
