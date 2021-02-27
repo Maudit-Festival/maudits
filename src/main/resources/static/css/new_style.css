@@ -110,11 +110,10 @@ p{
 	display: flex;
 	height: 50em;
 	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/logo-header-2021.png);
-	/* background-size: cover; */
-	background-position: center;
+	background-size: cover;
+	background-position: 0% 53%;
 	color: white;
 	overflow: auto;
-	margin-top: -135px;
 }
 
 .short-hero {
