@@ -176,6 +176,12 @@ p{
 		height: 40em;
 		margin-top:-30px;
 	}
+	.dropdown-menu{
+		border:0px;
+	}
+	.navbar-nav li{
+		margin-bottom: 1rem;
+	}
 }
 
 @media (max-width: 700px) {
@@ -770,6 +776,10 @@ footer a.external_link:hover {
 .previous_edito h2, .previous_teaser h2, .previous_guests h2, .previous_partners h2, .previous_places h2, .previous_figures h2,.previous_press h2{
 	margin-top: 2%;
 	margin-bottom: 1%;
+}
+.previous_guests{
+	display: flex;
+	flex-direction: column;
 }
 .previous_guests h3{
 	margin-left: 2rem;
