@@ -435,7 +435,9 @@ header a:hover {
 	margin-top: 40px;
 	width: 100%;
 }
-
+.poster{
+	align-items: center;
+}
 .film-date-and-time-center {
 	text-align: center;
 	margin: 10px 0;
