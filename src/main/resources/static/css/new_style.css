@@ -17,6 +17,8 @@
 }
 
 body {
+	margin-left: 0px;
+	margin-top: 0px;
 	font-family: "gill", sans-serif ;
 }
 
@@ -699,9 +701,6 @@ footer a.external_link:hover {
 .previous_sidemenu ul{
 	margin-left: 5%;
 }
-.previous_main_edition{
-	padding-left: 4%;
-}
 .history_introduction{
 	margin-bottom: 4rem;
 }
@@ -747,9 +746,10 @@ footer a.external_link:hover {
 }
 .previous-programmation-day-recap img{
 	max-width: 200px;
-	max-height: 275px;
+	max-height: 267px;
 	min-width: 200px;
-	min-height: 270px;
+	min-height: 267px;
+	object-fit: scale-down;
 }
 .know_more_previous_programmation{
 	display: inline-block;
@@ -785,6 +785,16 @@ footer a.external_link:hover {
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 }
+.guest_img{
+	display: flex;
+	justify-content: center;
+}
+.guest_img img{
+	max-width: 15em;
+	height: auto;
+	overflow: hidden;
+	object-fit: contain;
+}
 .previous_edito p{
 	line-height: 30px;
 	margin-top: 1rem;
@@ -806,12 +816,17 @@ footer a.external_link:hover {
 /*
 * MEDIA PREVIOUS EDITION
 */
-@media (max-width: 539px) {
+@media (max-width: 767px) {
 	.previous-programmation-day-recap {
 		-webkit-box-direction: normal;
 		-ms-flex-direction: column;
 		flex-direction: column;
 		margin-top: 20px;
+	}
+	.day_previous_programmation {
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
 	}
 }
 @media (max-width: 992px) {
@@ -832,32 +847,32 @@ footer a.external_link:hover {
 @media (max-width: 1460px) {
 	.previous-programmation-day-recap img{
 		min-width: 180px;
-		min-height: 255px;
+		min-height: 240px;
 	}
 }
 @media (max-width: 1300px) {
 	.previous-programmation-day-recap img{
 		min-width: 170px;
-		min-height: 245px;
+		min-height: 227px;
 	}
 }
 @media (max-width: 1260px) {
 	.previous-programmation-day-recap img{
 		min-width: 150px;
-		min-height: 225px;
+		min-height: 200px;
 	}
 }
 
 @media (max-width: 1120px) {
 	.previous-programmation-day-recap img{
 		min-width: 140px;
-		min-height: 215px;
+		min-height: 187px;
 	}
 }
 @media (max-width: 1040px) {
 	.previous-programmation-day-recap img{
 		min-width: 130px;
-		min-height: 205px;
+		min-height: 174px;
 	}
 }
 /*

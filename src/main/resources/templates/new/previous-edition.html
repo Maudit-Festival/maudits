@@ -50,7 +50,7 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 								<div class="col-md">
 									<p th:text="${guest.description}"></p>
 							</div>
-							<div class="col-md">
+							<div class="col-md guest_img">
 								<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}">
 							</div>
 							</div>
@@ -70,7 +70,7 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 						<div class="previous-programmation-day-recap row">
 							<article th:each="film : ${day.films}" class="col-md">
 								<header>
-									<a th:href="@{'/bo/next/film/'+${film.textualId}}"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+									<a th:href="@{'/bo/next/film/'+${film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
 								</header>
 								<div th:text="${film.startTime}"></div>
 								<div th:text="${film.title}"></div>
