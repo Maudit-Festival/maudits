@@ -30,7 +30,7 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 		</ul>
 		</div>
 		<div class="container-fluid">
-			<div class="col-lg-9 offset-lg-3 col-md-12 previous_main_edition">
+			<div class="col-lg-9 offset-lg-2 col-md-12 previous_main_edition">
 				<div th:if="${page.editorial != null}" class='row previous_edito' id="PreviousEdito">
 					<h2>Éditorial</h2>
 					<p th:utext="${#strings.replace(#strings.escapeXml(page.editorial),'&#10;','&lt;br&gt;')}"></p>

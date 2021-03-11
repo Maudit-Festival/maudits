@@ -816,6 +816,12 @@ footer a.external_link:hover {
 /*
 * MEDIA PREVIOUS EDITION
 */
+
+@media (min-width: 1625px) {
+	.previous-programmation-day-recap article{
+		margin-right: 70px;
+	}
+}
 @media (max-width: 767px) {
 	.previous-programmation-day-recap {
 		-webkit-box-direction: normal;
@@ -828,6 +834,7 @@ footer a.external_link:hover {
 		-ms-flex-direction: column;
 		flex-direction: column;
 	}
+
 }
 @media (max-width: 992px) {
 	.previous_sidemenu{
@@ -843,11 +850,17 @@ footer a.external_link:hover {
 	.day_previous_programmation {
 		justify-content: center;
 	}
+	.guest_img{
+		max-width: 11em;
+	}
 }
 @media (max-width: 1460px) {
 	.previous-programmation-day-recap img{
 		min-width: 180px;
 		min-height: 240px;
+	}
+	.guest_img{
+		max-width: 12em;
 	}
 }
 @media (max-width: 1300px) {
@@ -868,6 +881,7 @@ footer a.external_link:hover {
 		min-width: 140px;
 		min-height: 187px;
 	}
+
 }
 @media (max-width: 1040px) {
 	.previous-programmation-day-recap img{
