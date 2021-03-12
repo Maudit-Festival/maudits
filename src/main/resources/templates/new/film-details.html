@@ -52,7 +52,7 @@
 					<div class="technical-info-sidebar-inner">
 						<div class="location-infos" th:text="${page.filmDisplayer.locationName + ', ' +page.filmDisplayer.locationAddress}"></div>
 						<div class="content_poster">
-							<img class="poster" th:src="${page.filmDisplayer.posterUrl}" th:alt="${'Poster de «' + page.filmDisplayer.title + '»'}">
+							<img class="poster img-fluid rounded" th:src="${page.filmDisplayer.posterUrl}" th:alt="${'Poster de «' + page.filmDisplayer.title + '»'}">
 						</div>
 						<div class="film-date-and-time-center">
 							<th:block th:if="${page.filmDisplayer.releaseDate != null}" th:text="${page.filmDisplayer.releaseDate}"></th:block>

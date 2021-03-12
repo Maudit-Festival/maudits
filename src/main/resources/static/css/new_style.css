@@ -459,7 +459,7 @@ footer {
 	display: block;
 }
 
-footer h4 {
+footer h2 {
 	color: var(--maudit-red);
 	font-size: 20px;
 	margin: 0px;
@@ -469,6 +469,9 @@ footer ul {
 	list-style-type: none;
 	padding-left: 0;
 	margin: 0px;
+}
+footer ul li{
+	margin-bottom: 2%;
 }
 
 footer ul li:before{
@@ -480,7 +483,10 @@ footer a {
 	color: white;
 	text-decoration: none;
 }
-
+/* simplify the click in mobile */
+.footer_navigation{
+	font-size: 1.1rem;
+}
 footer a.external_link {
 	color: var(--maudit-red);
 	text-decoration-color: white;
@@ -534,10 +540,23 @@ footer a.external_link:hover {
 		margin-bottom: 40px;
 		margin-left: 60px;
 	}
+}
+/*
+* @rework
+* media permettant d'avoir une navigation plus facilement utilisable en mobile
+*/
+@media (max-width: 1100px) {
+	.footer ul{
+		width: 250px;
+	}
+	.footer_navigation{
+		font-size: 1.2rem;
+		padding-top: 5%;
+		padding-bottom: 5%;
+		padding-right: 15%;
+	}
 
 }
-
-
 /*
 * CONTACT PAGE
 */
@@ -737,12 +756,15 @@ footer a.external_link:hover {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-
+	border-left: 2px solid var(--maudit-red);
+	padding-left: 2%;
+	padding-top: 5%;
 }
 .previous-programmation-day-recap article{
 	text-align: center;
 	margin-bottom: 15px;
 	min-width: 15px;
+	margin-right: 2em;
 }
 .previous-programmation-day-recap img{
 	max-width: 200px;
