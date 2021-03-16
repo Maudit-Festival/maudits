@@ -51,7 +51,7 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 									<p th:text="${guest.description}"></p>
 							</div>
 							<div class="col-md guest_img">
-								<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}">
+								<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}"loading="lazy"  class="img-fluid">
 							</div>
 							</div>
 						</div>

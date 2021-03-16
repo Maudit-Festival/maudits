@@ -119,11 +119,10 @@ p{
 }
 
 .short-hero {
-	height: 36em;
+	height: 40em;
 	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/logo-header-2021.webp);
-	position: relative;
-	overflow: hidden;
-	margin-top: 0px!important;
+	background-size: cover;
+	background-position: 0% 57%;
 }
 
 .hero_content{
@@ -563,6 +562,7 @@ footer a.external_link:hover {
 
 .contact-section{
 	margin-top: -16px;
+	margin-bottom: -16px;
 }
 .first_p_contact{
 	padding-top: 2rem;
@@ -758,7 +758,7 @@ footer a.external_link:hover {
 	display: flex;
 	border-left: 2px solid var(--maudit-red);
 	padding-left: 2%;
-	padding-top: 5%;
+	padding-top: 10px;
 }
 .previous-programmation-day-recap article{
 	text-align: center;
