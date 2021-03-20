@@ -727,8 +727,6 @@ footer a.external_link:hover {
 }
 .guest_img img{
 	max-width: 15em;
-	width: 90%!important;
-	height: calc(100% - 3em);
 }
 .previous_edito p{
 	line-height: 30px;
