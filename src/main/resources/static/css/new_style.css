@@ -20,7 +20,6 @@ body {
 	margin-top: 0px;
 	font-family: "gill", sans-serif ;
 }
-
 button, input, textarea {
 	font: inherit;
 }
@@ -723,9 +722,6 @@ footer a.external_link:hover {
 }
 .guest_img img{
 	max-width: 15em;
-	height: auto;
-	overflow: hidden;
-	object-fit: contain;
 }
 .previous_edito p{
 	line-height: 30px;
