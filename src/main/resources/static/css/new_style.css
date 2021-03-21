@@ -725,10 +725,10 @@ footer a.external_link:hover {
 .guest_img{
 	display: flex;
 	justify-content: center;
+	max-height: 15em;
 }
 .guest_img img{
-	max-width: 15em;
-	object-fit: contain;
+	max-height: 15em;
 }
 .previous_edito p{
 	line-height: 30px;
