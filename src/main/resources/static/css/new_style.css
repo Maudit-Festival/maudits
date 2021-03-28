@@ -85,6 +85,11 @@ p{
 	color: white;
 	text-decoration: none;
 }
+
+#navbarDropdownLastEdition{
+	padding: 0;
+}
+
 .dropdown_nav_style{
 	background-color: var(--maudit-blue);
 	padding:2%;
@@ -278,9 +283,6 @@ p{
 	color:var(--maudit-red);
 	background: white;
 	text-decoration: none;
-	transition-timing-function: ease-in;
-	transition-property: background-color;
-	transition-duration: 1s;
 }
 /*
 * MEDIA PROGRAMMATION
@@ -712,16 +714,13 @@ footer a.external_link:hover {
 	border: 0;
 	transition-timing-function: ease-in;
 	transition-property: background-color;
-	transition-duration: 1s;
+	transition-duration: 0.5s;
 	margin-top: 20px;
 }
 .know_more_previous_programmation:hover{
 	color:var(--maudit-red);
 	background: white;
 	text-decoration: none;
-	transition-timing-function: ease-in;
-	transition-property: background-color;
-	transition-duration: 1s;
 }
 .previous_edito h2, .previous_teaser h2, .previous_guests h2, .previous_partners h2, .previous_places h2, .previous_figures h2,.previous_press h2{
 	margin-top: 2%;
