@@ -150,6 +150,20 @@ p{
 	text-decoration: none;
 	color: var(--maudit-red);
 }
+.container-home{
+	background-color: rgba(11, 36, 92, 0.2);
+	padding: 2%;
+}
+.container-home h1{
+	opacity: 1;
+}
+.container-home h2{
+	opacity: 1;
+}
+.container-home a{
+	opacity: 1;
+}
+
 /*
 * MEDIA HEADER
 */
@@ -199,7 +213,7 @@ p{
 .programmation-section {
 	color: white;
 	background: rgb(17,22,29);
-	background: linear-gradient(90deg, rgba(17,22,29,1) 0%, rgba(16,23,35,1) 38%, rgba(11,27,62,1) 100%);
+	background: linear-gradient(90deg, rgba(17,22,29,1) 0%, rgb(25, 36, 56) 38%, rgba(11, 36, 92, 1) 100%);
 }
 .programmation_list_days{
 	text-align: center;
@@ -257,7 +271,7 @@ p{
 	border: 0;
 	transition-timing-function: ease-in;
 	transition-property: background-color;
-	transition-duration: 1s;
+	transition-duration: 0.5s;
 	margin-top: 7%;
 }
 .know_more_programmation:hover{
@@ -572,6 +586,7 @@ footer a.external_link:hover {
 	font-size: 4em;
 	margin-top: 1%;
 	margin-bottom: 2%;
+	opacity: 1;
 }
 .container-img{
 	display: -webkit-box;
@@ -625,6 +640,7 @@ footer a.external_link:hover {
 }
 .previous_edition h2{
 	margin-bottom: 2rem;
+	opacity: 1;
 }
 .previous_sidemenu h3{
 	text-decoration: underline 3px solid var(--maudit-red);
@@ -716,6 +732,7 @@ footer a.external_link:hover {
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-ms-flex-direction: column;
+	flex-direction: column;
 }
 .previous_guests h3{
 	margin-left: 2rem;
@@ -725,10 +742,9 @@ footer a.external_link:hover {
 .guest_img{
 	display: flex;
 	justify-content: center;
-	max-height: 15em;
 }
 .guest_img img{
-	max-height: 15em;
+	width: 50%;
 }
 .previous_edito p{
 	line-height: 30px;
