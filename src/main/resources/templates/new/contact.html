@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
 <head>
 	<link rel="icon" href="favicon.ico" />
 	<title>Contact - Le Maudit Festival</title>
@@ -17,43 +18,45 @@
 </head>
 
 <body>
-	<header th:replace="new/fragments/common.html :: common-navbar"></header>
-	<div class="hero short-hero">
-	</div>
-	<section class="contact-section">
-		<div class="container contact_container">
-			<p th:if="${success}" class="contact-message-confirm-success first_p_contact">
-				Votre message a bien été envoyé !
-			</p>
-			<p th:if="${error}" class="error-message contact-error-message">Une erreur n'a pas permis d'envoyer votre message.</p>
-			<p th:unless="${error}" class="first_p_contact">Pour toute demande de renseignements, remarques ou envies de partager des informations,
-			n'hésitez pas à remplir le formulaire de contact ci-dessous.</p>
-			<p th:unless="${error}">Nous vous répondrons avec grand plaisir !</p>
-			<form th:action="@{/contact}" th:method="post" th:object="${form}" th:unless="${success}">
-				<div class="form-group">
-					<input type="text" th:field="*{lastName}" class="form-control" placeholder="Nom" required>
-				</div>
-				<div class="form-group">
-					<input type="text" th:field="*{firstName}" class="form-control" placeholder="Prénom" required>
-				</div>
-				<div class="form-group">
-					<input type="email" th:field="*{emailAddress}" class="form-control" placeholder="Adresse email" required>
-				</div>
-				<div class="form-group">
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="8"  placeholder="Message" required></textarea>
-				</div>
-				<div class="form-group row">
-					<div class='col-md-6'>
-						<div class="g-recaptcha" data-sitekey="6Lc1f8sUAAAAAEny4IOhtnV77Jsb74GWhS2v6cGZ" data-callback="unlock" data-expired-callback="lock"></div> <p id="captcha-error-message" style="color: red; display: none;">**ERROR</p>
-					</div>
-					<div class='col-md-6'>
-						<button type="submit" id="submit-button"  class="btn btn-primary" >Envoyer</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</section>
-	<footer th:replace="new/fragments/common.html :: common-footer">
-	</footer>
+  <header th:replace="new/fragments/common.html :: common-navbar"></header>
+  <div class="hero short-hero">
+  </div>
+  <section class="contact-section">
+    <div class="container contact_container">
+      <p th:if="${success}" class="contact-message-confirm-success first_p_contact">
+        Votre message a bien été envoyé !
+      </p>
+      <p th:if="${error}" class="error-message contact-error-message">Une erreur n'a pas permis d'envoyer votre message.</p>
+      <p th:unless="${error}" class="first_p_contact">Pour toute demande de renseignements, remarques ou envies de partager des informations,
+        n'hésitez pas à remplir le formulaire de contact ci-dessous.</p>
+      <p th:unless="${error}">Nous vous répondrons avec grand plaisir !</p>
+      <form th:action="@{/contact}" th:method="post" th:object="${form}" th:unless="${success}">
+        <div class="form-group">
+          <input type="text" th:field="*{lastName}" class="form-control" placeholder="Nom" required>
+        </div>
+        <div class="form-group">
+          <input type="text" th:field="*{firstName}" class="form-control" placeholder="Prénom" required>
+        </div>
+        <div class="form-group">
+          <input type="email" th:field="*{emailAddress}" class="form-control" placeholder="Adresse email" required>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="Message" required></textarea>
+        </div>
+        <div class="form-group row">
+          <div class='col-md-6'>
+            <div class="g-recaptcha" data-sitekey="6Lc1f8sUAAAAAEny4IOhtnV77Jsb74GWhS2v6cGZ" data-callback="unlock" data-expired-callback="lock"></div>
+            <p id="captcha-error-message" style="color: red; display: none;">**ERROR</p>
+          </div>
+          <div class='col-md-6'>
+            <button type="submit" id="submit-button" class="btn btn-primary">Envoyer</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <footer th:replace="new/fragments/common.html :: common-footer">
+  </footer>
 </body>
+
 </html>

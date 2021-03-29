@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
 <head>
 	<link rel="icon" href="favicon.ico" />
 	<title th:text="${'Archive '+ page.name + ' - Le Maudit Festival'}">Le site du Maudit Festival</title>
@@ -16,24 +17,24 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 </head>
 
 <body>
-	<header th:replace="new/fragments/common.html :: common-navbar"></header>
-	<section class="hero short-hero">
-	</section>
-	<section class="previous_edition">
-		<div class='previous_sidemenu'>
-			<h3 th:text="${page.name}"></h3>
-			<ul>
-			<li th:if="${page.editorial != null}" ><a href="#PreviousEdito">Editorial</a></li>
-			<li th:if="${page.teaserVideoUrl != null}"><a href="#PreviousTeaser">Teaser</a></li>
-						<li th:if="${page.guests.size() > 0}"><a href="#PreviousGuests">Les invités</a></li>
-			<li ><a href="#PreviousMovies">Les films et évènements</a></li>
-		</ul>
-		</div>
-		<div class="container-fluid">
-			<div class="col-lg-9 offset-lg-2 col-md-12 previous_main_edition">
-				<div th:if="${page.editorial != null}" class='row previous_edito' id="PreviousEdito">
-					<h2>Éditorial</h2>
-					<p th:utext="${#strings.replace(#strings.escapeXml(page.editorial),'&#10;','&lt;br&gt;')}"></p>
+  <header th:replace="new/fragments/common.html :: common-navbar"></header>
+  <section class="hero short-hero">
+  </section>
+  <section class="previous_edition">
+    <div class='previous_sidemenu'>
+      <h3 th:text="${page.name}"></h3>
+      <ul>
+        <li th:if="${page.editorial != null}"><a href="#PreviousEdito">Editorial</a></li>
+        <li th:if="${page.teaserVideoUrl != null}"><a href="#PreviousTeaser">Teaser</a></li>
+        <li th:if="${page.guests.size() > 0}"><a href="#PreviousGuests">Les invités</a></li>
+        <li><a href="#PreviousMovies">Les films et évènements</a></li>
+      </ul>
+    </div>
+    <div class="container-fluid">
+      <div class="col-lg-9 offset-lg-2 col-md-12 previous_main_edition">
+        <div th:if="${page.editorial != null}" class='row previous_edito' id="PreviousEdito">
+          <h2>Éditorial</h2>
+          <p th:utext="${#strings.replace(#strings.escapeXml(page.editorial),'&#10;','&lt;br&gt;')}"></p>
 				</div>
 				<div th:if="${page.teaserVideoUrl != null}" class='row previous_teaser' id="PreviousTeaser">
 					<h2>Teaser</h2>
@@ -47,12 +48,12 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 						<div th:each="guest : ${page.guests}" class="row">
 							<h3 th:text="${guest.name}"></h3>
 							<div class="row">
-								<div class="col-md">
+								<div class="col-col-lg">
 									<p th:text="${guest.description}"></p>
-							</div>
-							<div class="col-md guest_img">
-								<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}"loading="lazy"  class="img-fluid">
-							</div>
+								</div>
+								<div class="col-lg guest_img">
+									<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}" loading="lazy"  class="img-fluid">
+								</div>
 							</div>
 						</div>
 					</div>

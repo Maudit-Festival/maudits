@@ -85,7 +85,7 @@ p{
 	text-decoration: none;
 }
 
-#navbarDropdownLastEdition{
+.navbarDropdownLastEdition{
 	padding: 0;
 }
 
@@ -720,6 +720,9 @@ footer a.external_link:hover {
 	color:var(--maudit-red);
 	background: white;
 	text-decoration: none;
+	transition-timing-function: ease-in;
+	transition-property: background-color;
+	transition-duration: 0.5s;
 }
 .previous_edito h2, .previous_teaser h2, .previous_guests h2, .previous_partners h2, .previous_places h2, .previous_figures h2,.previous_press h2{
 	margin-top: 2%;
@@ -796,17 +799,11 @@ footer a.external_link:hover {
 		-ms-flex-pack: center;
 		justify-content: center;
 	}
-	.guest_img{
-		max-width: 11em;
-	}
 }
 @media (max-width: 1460px) {
 	.previous-programmation-day-recap img{
 		min-width: 180px;
 		min-height: 240px;
-	}
-	.guest_img{
-		max-width: 12em;
 	}
 }
 @media (max-width: 1300px) {
