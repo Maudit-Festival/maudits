@@ -37,6 +37,7 @@ p{
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 	height: 35px;
 	width: 35px;
+	/*url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")*/
 }
 /* fix safari responsive bug */
 .img-fluid{
@@ -721,7 +722,7 @@ footer a.external_link:hover {
 	text-decoration: none;
 	transition-timing-function: ease-in;
 	transition-property: background-color;
-	transition-duration: 1s;
+	transition-duration: 0.5s;
 }
 .previous_edito h2, .previous_teaser h2, .previous_guests h2, .previous_partners h2, .previous_places h2, .previous_figures h2,.previous_press h2{
 	margin-top: 2%;
@@ -798,17 +799,11 @@ footer a.external_link:hover {
 		-ms-flex-pack: center;
 		justify-content: center;
 	}
-	.guest_img{
-		max-width: 11em;
-	}
 }
 @media (max-width: 1460px) {
 	.previous-programmation-day-recap img{
 		min-width: 180px;
 		min-height: 240px;
-	}
-	.guest_img{
-		max-width: 12em;
 	}
 }
 @media (max-width: 1300px) {

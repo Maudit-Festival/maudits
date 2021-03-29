@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
-<head>
-	<link rel="icon" href="favicon.ico" />
-	<title>Contact - Le Maudit Festival</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Contactez Terreur Nocturne, association organisatrice du Maudit Festival : terreur.nocturne.asso@gmail.com"/>
-	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/new_style.css" />
 
-	<!-- js -->
-	<script src="/plugins/jquery-3.4.1.min.js"></script>
-	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
+<head>
+  <link rel="icon" href="favicon.ico" />
+  <title>Contact - Le Maudit Festival</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contactez Terreur Nocturne, association organisatrice du Maudit Festival : terreur.nocturne.asso@gmail.com" />
+  <!-- css -->
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-4.1.3.min.css" />
+  <link rel="stylesheet" type="text/css" href="/css/new_style.css" />
+
+  <!-- js -->
+  <script src="/plugins/jquery-3.4.1.min.js"></script>
+  <script src="/plugins/bootstrap-4.1.3.min.js"></script>
 </head>
 
 <body>
-	<header th:replace="new/fragments/common.html :: common-navbar"></header>
-	<section class="hero short-hero">
-	</section>
-	<section class="previous_edition">
-		<div class="container">
-			<h2><span class="span_history">Avant Le Maudit Festival</span> : Le Festival des Maudits Films</h2>
-			<p class="history_introduction">Dédié au cinéma bis de « B à Z », le Festival des Maudits Films est créé en 2008 à l’initiative de Karel Quistrebert afin de mettre en lumière à Grenoble cet univers cinématographique mal aimé et méconnu aux innombrables facettes. La première édition se déroule en janvier 2009, et marquera le début d’une aventure au long cours qui prendra fin onze ans plus tard… avant de renaître de ses cendres au bout de quelques mois. À l’origine de cette renaissance, une nouvelle association, Terreur Nocturne, bien décidée à perpétuer l’âme du festival tout en la modernisant : c’est la naissance du Maudit Festival.</p>
-			<h3>Edition 2009</h3>
-			<p>Le Cauchemar de Dracula / Le Bossu de la morgue / La Chose d'un autre monde / Robots 2000, odyssée sous-marine / Super Inframan</p>
-			<h3>Edition 2010</h3>
-			<p>Amer / L’Invasion des profanateurs de sépultures / Le Temps du massacre / Hercule contre les vampires / La Chambre des tortures / Reefer Madness, the Musical / Plan 9 from Outer Space / Chair pour Frankenstein / Ilsa, la louve des SS</p>
-			<h3>Edition 2011</h3>
-			<p>Théorie de la religion / Les Yeux sans visage / Les Monstres de l'espace / Le Cirque des vampires / Planète interdite / Le Sadique Baron von Klaus / L’Attaque de la moussaka géante / Lust in the Dust / La Course à la mort de l'an 2000</p>
-			<h3>Edition 2012</h3>
-			<p>Jean Rollin, le rêveur égaré / Les Démoniaques / La Brune et moi / L’Homme-léopard / Last Caress / La Mouche noire / Le Rayon invisible / Forbidden Zone / Le Moulin des supplices / La Bête aveugle / Le Retour de Flesh Gordon / Les Charlots contre Dracula / Bloody Mama / Coffy, la panthère noire de Harlem </p>
-			<h3>Edition 2013</h3>
-			<p>New York 1997 / Los Angeles 2013 / Le Mystère du poisson volant / Les Poupées du diable / Hercule à la conquête de l'Atlantide, Les Légions de Cléopâtre / Elle s'appelait Scorpion / Electra Glide in Blue / Elmer, le remue-méninges / Django le proscrit / Sukiyaki Western Django </p>
-			<h3>Edition 2014</h3>
-			<p>Panic sur Florida Beach / Chop / Perdita Durango / Frankenweenie / The Act of Killing / Outrage / The FP / La Submersion du Japon / King Kong contre Godzilla / Across the River / L’Effroyable secret du Dr Hichcock / La Route de Salina / Les Clowns tueurs venus de l'espace / L’Étrange couleur des larmes de ton corps / L'Incroyable alligator / Toxic Avenger</p>
-			<h3>Edition 2015</h3>
-			<p>L’Opération diabolique / The Advocate for Fagdom / Hustler White / Fièvre / Change pas de main / Dealer / Quand la jungle s'éveille / Le Retour de la créature du lagon / Der Samurai / La Colline a des yeux / Le Salaire du diable / Gorge profonde / Electric Boogaloo / Catégorie X / Sankukai, les évadés de l'espace / Yor, le chasseur du futur</p>
-			<h3>Edition 2016</h3>
-			<p>Le Convoi de la peur / C'était demain / Sorgoï Prakov my european dream / Fantasmagorie / La Main du diable / Hormona / Le Massacre des vampires / Vampire, vous avez dit vampire ? / Welcome to Leith / Dark Star / Scotland Yard contre X / Le Retour des tomates tueuses / L’Autre monde / Made in France / Les Traqués de l'an 2000 / Megaforce </p>
-			<h3>Edition 2017</h3>
-			<p>The Thing / Le Retour des morts-vivants / Le Sixième continent / Troublez-moi ce soir / La Griffe de Frankenstein / Hitcher / Larry le dingue, Mary la garce / Big Racket / Épouvante sur New York / Le Dernier face-à-face / Les Griffes de la nuit / Tobor, the Great / A Gun for Jennifer / DOA : Dead or Alive </p>
-			<h3>Edition 2018</h3>
-			<p>Dr Jekyll et Mr Hyde / Beat Street / Péché Mortel / Les Rues de feu / L’Halluciné / Frankenhooker / Performance / Angoisse / Meurtre par procuration / Kiss contre les fantômes / Get Crazy / Punisher / Flic ou zombie </p>
-			<h3>Edition 2019</h3>
-			<p>El Topo / Soleil de Feu / Les Chasses du comte Zaroff / Salomé / Circus of Fear / Them! Des monstres attaquent la ville / La Revanche de King Kong / Barracuda les mâchoires de la mort / Massacre à la tronçonneuse 2 / Ne coupez pas ! / Pink Flamingos / Capitaine Orgazmo </p>
+  <header th:replace="new/fragments/common.html :: common-navbar"></header>
+  <section class="hero short-hero">
+  </section>
+  <section class="previous_edition">
+    <div class="container">
+      <h2><span class="span_history">Avant Le Maudit Festival</span> : Le Festival des Maudits Films</h2>
+      <p class="history_introduction">Dédié au cinéma bis de « B à Z », le Festival des Maudits Films est créé en 2008 à l’initiative de Karel Quistrebert afin de mettre en lumière à Grenoble cet univers cinématographique mal aimé et méconnu aux
+        innombrables facettes. La première édition se déroule en janvier 2009, et marquera le début d’une aventure au long cours qui prendra fin onze ans plus tard… avant de renaître de ses cendres au bout de quelques mois. À l’origine de cette
+        renaissance, une nouvelle association, Terreur Nocturne, bien décidée à perpétuer l’âme du festival tout en la modernisant : c’est la naissance du Maudit Festival.</p>
+      <h3>Edition 2009</h3>
+      <p>Le Cauchemar de Dracula / Le Bossu de la morgue / La Chose d'un autre monde / Robots 2000, odyssée sous-marine / Super Inframan</p>
+      <h3>Edition 2010</h3>
+      <p>Amer / L’Invasion des profanateurs de sépultures / Le Temps du massacre / Hercule contre les vampires / La Chambre des tortures / Reefer Madness, the Musical / Plan 9 from Outer Space / Chair pour Frankenstein / Ilsa, la louve des SS</p>
+      <h3>Edition 2011</h3>
+      <p>Théorie de la religion / Les Yeux sans visage / Les Monstres de l'espace / Le Cirque des vampires / Planète interdite / Le Sadique Baron von Klaus / L’Attaque de la moussaka géante / Lust in the Dust / La Course à la mort de l'an 2000</p>
+      <h3>Edition 2012</h3>
+      <p>Jean Rollin, le rêveur égaré / Les Démoniaques / La Brune et moi / L’Homme-léopard / Last Caress / La Mouche noire / Le Rayon invisible / Forbidden Zone / Le Moulin des supplices / La Bête aveugle / Le Retour de Flesh Gordon / Les Charlots
+        contre Dracula / Bloody Mama / Coffy, la panthère noire de Harlem </p>
+      <h3>Edition 2013</h3>
+      <p>New York 1997 / Los Angeles 2013 / Le Mystère du poisson volant / Les Poupées du diable / Hercule à la conquête de l'Atlantide, Les Légions de Cléopâtre / Elle s'appelait Scorpion / Electra Glide in Blue / Elmer, le remue-méninges / Django
+        le proscrit / Sukiyaki Western Django </p>
+      <h3>Edition 2014</h3>
+      <p>Panic sur Florida Beach / Chop / Perdita Durango / Frankenweenie / The Act of Killing / Outrage / The FP / La Submersion du Japon / King Kong contre Godzilla / Across the River / L’Effroyable secret du Dr Hichcock / La Route de Salina / Les
+        Clowns tueurs venus de l'espace / L’Étrange couleur des larmes de ton corps / L'Incroyable alligator / Toxic Avenger</p>
+      <h3>Edition 2015</h3>
+      <p>L’Opération diabolique / The Advocate for Fagdom / Hustler White / Fièvre / Change pas de main / Dealer / Quand la jungle s'éveille / Le Retour de la créature du lagon / Der Samurai / La Colline a des yeux / Le Salaire du diable / Gorge
+        profonde / Electric Boogaloo / Catégorie X / Sankukai, les évadés de l'espace / Yor, le chasseur du futur</p>
+      <h3>Edition 2016</h3>
+      <p>Le Convoi de la peur / C'était demain / Sorgoï Prakov my european dream / Fantasmagorie / La Main du diable / Hormona / Le Massacre des vampires / Vampire, vous avez dit vampire ? / Welcome to Leith / Dark Star / Scotland Yard contre X / Le
+        Retour des tomates tueuses / L’Autre monde / Made in France / Les Traqués de l'an 2000 / Megaforce </p>
+      <h3>Edition 2017</h3>
+      <p>The Thing / Le Retour des morts-vivants / Le Sixième continent / Troublez-moi ce soir / La Griffe de Frankenstein / Hitcher / Larry le dingue, Mary la garce / Big Racket / Épouvante sur New York / Le Dernier face-à-face / Les Griffes de la
+        nuit / Tobor, the Great / A Gun for Jennifer / DOA : Dead or Alive </p>
+      <h3>Edition 2018</h3>
+      <p>Dr Jekyll et Mr Hyde / Beat Street / Péché Mortel / Les Rues de feu / L’Halluciné / Frankenhooker / Performance / Angoisse / Meurtre par procuration / Kiss contre les fantômes / Get Crazy / Punisher / Flic ou zombie </p>
+      <h3>Edition 2019</h3>
+      <p>El Topo / Soleil de Feu / Les Chasses du comte Zaroff / Salomé / Circus of Fear / Them! Des monstres attaquent la ville / La Revanche de King Kong / Barracuda les mâchoires de la mort / Massacre à la tronçonneuse 2 / Ne coupez pas ! / Pink
+        Flamingos / Capitaine Orgazmo </p>
 
-		</div>
-	</section>
-	<footer th:replace="new/fragments/common.html :: common-footer">
-	</footer>
+    </div>
+  </section>
+  <footer th:replace="new/fragments/common.html :: common-footer">
+  </footer>
 </body>
+
 </html>
