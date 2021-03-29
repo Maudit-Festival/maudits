@@ -4,15 +4,15 @@
 </head>
 <body>
 	<nav th:fragment="common-navbar" class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo-long-header" href='/bo/next/'><img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-brand"><span class="navbar-toggler-icon"></span></span>
-		  </button>
-			<a id="navbarToggler" class="navbar-brand collapse logo-mobile-header" href='/bo/next/'>
-				<img src="/img/logo-cercle.png"  alt="Logo Terreur Nocturne" class="header-logo">
-			</a>
-		  <div class="collapse navbar-collapse nav_style" id="navbarToggler">
-		    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		<a class="navbar-brand logo-long-header" href='/bo/next/'><img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-brand"><span class="navbar-toggler-icon"> <svg th:replace="new/fragments/svg :: burger-menu"></svg></span></span>
+		</button>
+		<a class="navbarToggler collapse logo-mobile-header" href='/bo/next/'>
+			<img src="/img/logo-cercle.png"  alt="Logo Terreur Nocturne" class="header-logo">
+		</a>
+		<div class="navbarToggler collapse navbar-collapse nav_style">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item">
 						<a href="/bo/next/a-propos-du-maudit-festival">Le Maudit Festival</a>
 					</li>
@@ -27,11 +27,11 @@
 						</div>
 					</li>
 				<!--	<li class="nav-item dropdown">
-		        <a href="/bo/next/#pratique">Infos pratiques</a>
-		      </li>-->
-		      <li class="nav-item">
-		       	<a href="/bo/next/contact">Contact</a>
-		      </li>
+				<a href="/bo/next/#pratique">Infos pratiques</a>
+				</li>-->
+				<li class="nav-item">
+					<a href="/bo/next/contact">Contact</a>
+				</li>
 
 			</ul>
 		</div>
