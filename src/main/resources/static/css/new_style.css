@@ -622,7 +622,7 @@ footer a.external_link:hover {
 	background-image: url(/img/background-juliet_berto.jpeg);
 	background-repeat: no-repeat;
 	background-position: bottom;
-	background-color: var(--background-gray-color);
+	background: linear-gradient(90deg, rgba(17,22,29,1) 0%, rgba(16,23,35,1) 38%, rgba(11,27,62,1) 100%);
 	padding-top: 2%;
 	color: white;
 	padding-bottom: 2%;
@@ -631,7 +631,7 @@ footer a.external_link:hover {
 	padding:1%;
 	border-bottom-right-radius: 22% 66%;
 	color: white;
-	background-color: var(--light-blue);
+	background-color: var(--maudit-blue);
 	text-decoration: none;
 	height: max-content;
 	position: fixed;
@@ -675,8 +675,11 @@ footer a.external_link:hover {
 }
 .content_previous_list{
 	margin-top: 10px;
-	margin-left: 1%;
 }
+.day_previous_programmation .content_previous_list:not(:last-child){
+	margin-right: 3.8em;
+}
+
 .day_previous_programmation h4{
 	text-align: center;
 	text-transform: capitalize;
@@ -687,15 +690,20 @@ footer a.external_link:hover {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	border-left: 2px solid var(--maudit-red);
-	padding-left: 2%;
+	border-left: 2px solid var(--maudit-blue);
 	padding-top: 10px;
+}
+.previous-programmation-day-recap article:first-child{
+	padding-left: 6px;
 }
 .previous-programmation-day-recap article{
 	text-align: center;
 	margin-bottom: 15px;
 	min-width: 15px;
-	margin-right: 2em;
+}
+.previous-programmation-day-recap article header{
+	display: flex;
+	justify-content: center;
 }
 .previous-programmation-day-recap img{
 	max-width: 200px;
@@ -706,7 +714,7 @@ footer a.external_link:hover {
 }
 .know_more_previous_programmation{
 	display: inline-block;
-	background: var(--maudit-red);
+	background: var(--maudit-blue);
 	padding: 10px 20px !important;
 	color: white;
 	text-decoration: none;
@@ -717,7 +725,7 @@ footer a.external_link:hover {
 	margin-top: 20px;
 }
 .know_more_previous_programmation:hover{
-	color:var(--maudit-red);
+	color:var(--maudit-blue);
 	background: white;
 	text-decoration: none;
 	transition-timing-function: ease-in;
@@ -744,9 +752,6 @@ footer a.external_link:hover {
 	display: flex;
 	justify-content: center;
 }
-.guest_img img{
-	width: 50%;
-}
 .previous_edito p{
 	line-height: 30px;
 	margin-top: 1rem;
@@ -765,11 +770,6 @@ footer a.external_link:hover {
 /*
 * MEDIA PREVIOUS EDITION
 */
-@media (min-width: 1625px) {
-	.previous-programmation-day-recap article{
-		margin-right: 70px;
-	}
-}
 @media (max-width: 767px) {
 	.previous-programmation-day-recap {
 		-webkit-box-direction: normal;
@@ -785,7 +785,7 @@ footer a.external_link:hover {
 }
 @media (max-width: 992px) {
 	.previous_sidemenu{
-		background-color: var(--light-blue);
+		background-color: var(--maudit-blue);
 		position:initial;
 		border-bottom-right-radius: 0% 0%;
 		text-align: center;
@@ -829,6 +829,12 @@ footer a.external_link:hover {
 	.previous-programmation-day-recap img{
 		min-width: 130px;
 		min-height: 174px;
+	}
+}
+
+@media (max-width: 576px) {
+	.guest_img img{
+		width: 50%;
 	}
 }
 /*

@@ -48,10 +48,10 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 						<div th:each="guest : ${page.guests}" class="row">
 							<h3 th:text="${guest.name}"></h3>
 							<div class="row">
-								<div class="col-lg">
+								<div class="col-lg-8 col-md-7 col-sm-5">
 									<p th:text="${guest.description}"></p>
 								</div>
-								<div class="col-lg guest_img">
+								<div class="col-lg-4 col-md-5 col-sm-7 guest_img">
 									<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}" loading="lazy"  class="img-fluid">
 								</div>
 							</div>
