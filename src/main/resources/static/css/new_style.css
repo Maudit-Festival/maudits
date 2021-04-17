@@ -772,7 +772,7 @@ footer a.external_link:hover {
 .guest_img img{
 	width: 70% !important;
 	align-items: center;
-	height: calc(100% - 0.1sem);
+	height: calc(100% - 0.1rem);
 }
 .previous-programmation-day-recap article:not(:first-child){
 	padding-left: 2em;
