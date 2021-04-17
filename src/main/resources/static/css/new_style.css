@@ -152,7 +152,7 @@ p{
 .white-button:hover {
 	background: white;
 	text-decoration: none;
-	color: var(--maudit-red);
+	color: var(--maudit-blue);
 }
 .container-home{
 	background-color: rgba(11, 36, 92, 0.2);
@@ -216,8 +216,7 @@ p{
 }
 .programmation-section {
 	color: white;
-	background: rgb(17,22,29);
-	background: linear-gradient(90deg, rgba(17,22,29,1) 0%, rgb(25, 36, 56) 38%, rgba(11, 36, 92, 1) 100%);
+	background-color: var(--background-gray-color);
 }
 .programmation_list_days{
 	text-align: center;
@@ -232,7 +231,7 @@ p{
 }
 .programmation_list_days a:hover{
 	color: #682b95;
-	color: var(--maudit-red);
+	color: var(--maudit-blue);
 }
 .day_programmation{
 	display: -webkit-box;
@@ -268,7 +267,7 @@ p{
 }
 .know_more_programmation{
 	display: inline-block;
-	background: var(--maudit-red);
+	background: var(--maudit-blue);
 	padding: 10px 20px !important;
 	color: white;
 	text-decoration: none;
@@ -279,7 +278,7 @@ p{
 	margin-top: 7%;
 }
 .know_more_programmation:hover{
-	color:var(--maudit-red);
+	color:var(--maudit-blue);
 	background: white;
 	text-decoration: none;
 }
@@ -331,17 +330,17 @@ p{
 	padding-bottom: 5%;
 }
 .practical-info-section h4 {
-	color: var(--maudit-red);
+	color: var(--maudit-blue);
 	font-size: 35px;
 }
 .practical-info-section ul {
 	list-style: none;
 }
 .tarif-comment{
-	color: var(--maudit-red);
+	color: var(--maudit-blue);
 }
 .tarif-comment:hover{
-	color: var(--maudit-red);
+	color: var(--maudit-blue);
 }
 .map_home{
 	margin-left: 5%;
@@ -359,7 +358,7 @@ p{
 .partner-section h3 {
 	text-align: center;
 	color: #682b95;
-	color: var(--maudit-red);
+	color: var(--maudit-blue);
 	text-transform: uppercase;
 }
 .partner-carroussel {
@@ -515,7 +514,7 @@ footer a.external_link:hover {
 	text-align: center;
 }
 .contact-section input:focus, .contact-section textarea:focus {
-	border-bottom: 1px solid var(--maudit-red);
+	border-bottom: 1px solid var(--maudit-blue);
 	background: var(--background-gray-color);
 	color: white;
 }
@@ -542,7 +541,7 @@ footer a.external_link:hover {
 	color: white;
 }
 .film-screening-date {
-	background-color: var(--maudit-red);
+	background-color: var(--maudit-blue);
 	text-align: center;
 	font-size: 1.2em;
 	margin: 30px -15px;
@@ -622,7 +621,7 @@ footer a.external_link:hover {
 	background-image: url(/img/background-juliet_berto.jpeg);
 	background-repeat: no-repeat;
 	background-position: bottom;
-	background: linear-gradient(90deg, rgba(17,22,29,1) 0%, rgba(16,23,35,1) 38%, rgba(11,27,62,1) 100%);
+	background-color: var(--background-gray-color);
 	padding-top: 2%;
 	color: white;
 	padding-bottom: 2%;
@@ -644,7 +643,7 @@ footer a.external_link:hover {
 	opacity: 1;
 }
 .previous_sidemenu h3{
-	text-decoration: underline 3px solid var(--maudit-red);
+	text-decoration: underline 3px solid var(--maudit-blue);
 }
 .previous_sidemenu a{
 	color: white;
@@ -668,16 +667,13 @@ footer a.external_link:hover {
 	text-transform: uppercase;
 }
 .previous_programmation_list_days a:hover{
-	color: var(--maudit-red);
+	color: var(--maudit-blue);
 }
 .day_previous_programmation{
 	color: white;
 }
 .content_previous_list{
 	margin-top: 10px;
-}
-.day_previous_programmation .content_previous_list:not(:last-child){
-	margin-right: 3.8em;
 }
 
 .day_previous_programmation h4{
@@ -686,6 +682,11 @@ footer a.external_link:hover {
 	margin-bottom: 9px;
 	margin-top: 9px;
 }
+
+.day_previous_programmation .content_previous_list:not(:last-child){
+	margin-right: 5em;
+}
+
 .previous-programmation-day-recap{
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -694,8 +695,9 @@ footer a.external_link:hover {
 	padding-top: 10px;
 }
 .previous-programmation-day-recap article:first-child{
-	padding-left: 6px;
+	padding-left: 10px;
 }
+
 .previous-programmation-day-recap article{
 	text-align: center;
 	margin-bottom: 15px;
@@ -767,6 +769,14 @@ footer a.external_link:hover {
 .previous_teaser iframe{
 	align-self: center;
 }
+.guest_img img{
+	width: 70% !important;
+	align-items: center;
+	height: calc(100% - 0.1sem);
+}
+.previous-programmation-day-recap article:not(:first-child){
+	padding-left: 2em;
+}
 /*
 * MEDIA PREVIOUS EDITION
 */
@@ -782,6 +792,7 @@ footer a.external_link:hover {
 		-ms-flex-direction: column;
 		flex-direction: column;
 	}
+
 }
 @media (max-width: 992px) {
 	.previous_sidemenu{
@@ -799,23 +810,32 @@ footer a.external_link:hover {
 		-ms-flex-pack: center;
 		justify-content: center;
 	}
-}
-@media (max-width: 1460px) {
-	.previous-programmation-day-recap img{
-		min-width: 180px;
-		min-height: 240px;
+	.previous-programmation-day-recap{
+		border-left : 0px;
 	}
 }
-@media (max-width: 1300px) {
-	.previous-programmation-day-recap img{
-		min-width: 170px;
-		min-height: 227px;
+@media (min-width: 1853px) {
+	.day_previous_programmation .content_previous_list:not(:last-child){
+		margin-right: 7em;
+	}
+}
+@media (max-width: 1733px) {
+	.day_previous_programmation .content_previous_list:not(:last-child){
+		margin-right: 5em;
+	}
+}
+@media (max-width: 1696px) {
+	.day_previous_programmation .content_previous_list:not(:last-child){
+		margin-right: 4em;
 	}
 }
 @media (max-width: 1260px) {
 	.previous-programmation-day-recap img{
 		min-width: 150px;
 		min-height: 200px;
+	}
+	.previous-programmation-day-recap article:not(:first-child){
+		padding-left: 1em;
 	}
 }
 @media (max-width: 1120px) {
@@ -825,6 +845,7 @@ footer a.external_link:hover {
 	}
 
 }
+
 @media (max-width: 1040px) {
 	.previous-programmation-day-recap img{
 		min-width: 130px;
@@ -832,17 +853,17 @@ footer a.external_link:hover {
 	}
 }
 
-@media (max-width: 576px) {
-	.guest_img img{
-		width: 50%;
-	}
-}
+
+
+
+
+
+
 /*
 * ABOUT
 */
 .background_about{
-	background: rgb(17,22,29);
-	background: linear-gradient(90deg, rgba(17,22,29,1) 0%, rgba(16,23,35,1) 38%, rgba(11,27,62,1) 100%);
+	background-color: var(--background-gray-color);
 	padding-top: 2%;
 	color: white;
 	padding-bottom: 5%;
@@ -851,13 +872,13 @@ hr {
   margin-top: 2rem;
   margin-bottom: 2rem;
   border: 0;
-  border-top: 1px solid var(--maudit-red);
+  border-top: 1px solid var(--maudit-blue);
 }
 .about_sidebar{
 	padding-right: 2%;
 }
 .about_sidebar h3{
-	text-decoration: underline solid var(--maudit-red);
+	text-decoration: underline solid var(--maudit-blue);
 	text-underline-offset: 6px;
 }
 .about_sidebar ul{

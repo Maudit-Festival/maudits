@@ -69,7 +69,7 @@ cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, év
 				<div th:each="day : ${page.days}" th:id="${day.date}" class="content_previous_list">
 						<h4 th:text="${day.displayDate}"></h4>
 						<div class="previous-programmation-day-recap row">
-							<article th:each="film : ${day.films}" class="col-md">
+							<article th:each="film : ${day.films}">
 								<header>
 									<a th:href="@{'/bo/next/film/'+${film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
 								</header>
