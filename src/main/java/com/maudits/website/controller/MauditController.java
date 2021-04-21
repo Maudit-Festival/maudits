@@ -55,19 +55,40 @@ public class MauditController {
 			success &= contactService.sendEmail(form);
 		}
 		if (success) {
+			model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
 			model.addAttribute("success", true);
 			model.addAttribute("form", form);
 			return "contact";
 		} else {
+			model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
 			model.addAttribute("error", true);
 			model.addAttribute("form", form);
 			return "contact";
 		}
 	}
 
-//	@GetMapping("archive")
-//	public String showArchive(Model model) {
-//		model.addAttribute("page", mauditService.makeArchivePage(DisplayEdition.CURRENT));
-//		return "archive";
-//	}
+	@GetMapping("archive")
+	public String showArchive(Model model) {
+		model.addAttribute("page", mauditService.makeArchivePage(DisplayEdition.CURRENT));
+		return "archive";
+	}
+
+	@GetMapping("a-propos-du-maudit-festival")
+	public String showAbout(Model model) {
+		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		return "about";
+	}
+
+	@GetMapping("editions-precedentes/avant-le-maudit-festival")
+	public String showHistory(Model model) {
+		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		return "history";
+	}
+
+	@GetMapping("editions-precedentes/{editionCode}")
+	public String showEdition(@PathVariable String editionCode, Model model) {
+		model.addAttribute("page", mauditService.makePreviousEditionPage(editionCode, DisplayEdition.CURRENT));
+		return "previous-edition";
+	}
+
 }
