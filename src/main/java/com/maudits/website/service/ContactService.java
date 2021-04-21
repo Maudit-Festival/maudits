@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import com.maudits.website.domain.form.ContactMessageForm;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ContactService {
 	private final JavaMailSender mailSender;
 
@@ -25,7 +27,7 @@ public class ContactService {
 			mailSender.send(message);
 			return true;
 		} catch (Exception e) {
-			System.out.println(e);
+			log.warn("Error while trying to send contact email", e);
 			return false;
 		}
 	}
