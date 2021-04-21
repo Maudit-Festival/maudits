@@ -3,6 +3,7 @@ package com.maudits.website.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
@@ -17,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class CaptchaService {
+	@Value("${recaptcha.secret}")
+	private String captchaSecret;
 
 	public boolean checkResponse(String reCaptchaResponse) {
 		// TODO Use same json serializer as rest of website
@@ -25,7 +28,7 @@ public class CaptchaService {
 
 		try {
 			HttpResponse<String> response = Unirest.post("https://www.google.com/recaptcha/api/siteverify")
-					.header("content-type", "application/json").queryString("secret", "SECRET")
+					.header("content-type", "application/json").queryString("secret", captchaSecret)
 					.queryString("response", reCaptchaResponse).asString();
 
 //			JsonFactory jsonF = new JsonFactory();
