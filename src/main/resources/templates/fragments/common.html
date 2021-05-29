@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<th:block th:fragment="owa-script">
+		
+	<!-- Start Open Web Analytics Tracker -->
+	<script type="text/javascript">
+	//<![CDATA[
+	var owa_baseUrl = 'https://owa.lemauditfestival.com/';
+	var owa_cmds = owa_cmds || [];
+	owa_cmds.push(['setSiteId', '22cb78cb413ca246d529023cb9a7193f']);
+	owa_cmds.push(['trackPageView']);
+	owa_cmds.push(['trackClicks']);
+	
+	(function() {
+		var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
+		owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
+		_owa.src = owa_baseUrl + 'modules/base/js/owa.tracker-combined-min.js';
+		var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
+	}());
+	//]]>
+	</script>
+	<!-- End Open Web Analytics Code -->
+
+	</th:block>
 </head>
 <body>
 	<nav th:fragment="common-navbar" class="navbar navbar-expand-lg">

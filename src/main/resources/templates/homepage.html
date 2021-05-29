@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 
 <head>
+	<link rel=”canonical” href=”https://lemauditfestival.com” />
+
 	<link rel="icon" href="/favicon.ico" />
 	<title>Le site du Maudit Festival</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,6 +18,8 @@
 	<!-- js -->
 	<script src="/plugins/jquery-3.4.1.min.js"></script>
 	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
+	
+	<th:block th:replace="fragments/common :: owa-script" />
 </head>
 
 <body>
