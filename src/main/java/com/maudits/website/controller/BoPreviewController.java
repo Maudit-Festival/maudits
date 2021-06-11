@@ -22,7 +22,7 @@ public class BoPreviewController {
 	@GetMapping("")
 	public String previewNextEdition(Model model) {
 		model.addAttribute("page", mauditService.makeHomeFilmRecap(DisplayEdition.NEXT));
-		return "new/homepage";
+		return "homepage";
 	}
 
 	@GetMapping("film/{textualId}")
@@ -40,29 +40,30 @@ public class BoPreviewController {
 	public String showContactPage(Model model) {
 		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.NEXT));
 		model.addAttribute("form", new ContactMessageForm());
-		return "new/contact";
+		return "contact";
 	}
 
 	@GetMapping("archive")
 	public String showArchive(Model model) {
 		model.addAttribute("page", mauditService.makeArchivePage(DisplayEdition.NEXT));
-		return "new/archive";
+		return "archive";
 	}
+
 	@GetMapping("a-propos-du-maudit-festival")
 	public String showAbout(Model model) {
 		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.NEXT));
-		return "new/about";
+		return "about";
 	}
 
 	@GetMapping("editions-precedentes/avant-le-maudit-festival")
 	public String showHistory(Model model) {
 		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.NEXT));
-		return "new/history";
+		return "history";
 	}
 
 	@GetMapping("editions-precedentes/{editionCode}")
 	public String showEdition(@PathVariable String editionCode, Model model) {
 		model.addAttribute("page", mauditService.makePreviousEditionPage(editionCode, DisplayEdition.NEXT));
-		return "new/previous-edition";
+		return "previous-edition";
 	}
 }
