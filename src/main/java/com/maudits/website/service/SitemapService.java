@@ -36,7 +36,7 @@ public class SitemapService {
 	private Collection<SitemapUrl> listFilmPages() {
 		Collection<SitemapUrl> filmPagesUrls = new ArrayList<>();
 		for (Film film : filmRepository.findAllByEditionNextFalse()) {
-			SitemapUrl.Priority priority = film.getEdition().isCurrent() ? SitemapUrl.Priority.HIGH
+			SitemapUrl.Priority priority = film.isCurrentEdition() ? SitemapUrl.Priority.HIGH
 					: SitemapUrl.Priority.MEDIUM;
 			filmPagesUrls.add(new SitemapUrl("https://lemauditfestival.com/film/" + film.getTextualId(), priority,
 					film.getLastUpdateTime()));

@@ -42,4 +42,12 @@ public class Film extends EntityWithId {
 
 	@ManyToOne
 	private Edition edition;
+
+	public boolean isCurrentEdition() {
+		return edition != null && edition.isCurrent();
+	}
+
+	public boolean isNextEdition() {
+		return edition != null && edition.isNext();
+	}
 }

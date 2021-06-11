@@ -67,7 +67,7 @@ public class FilmForm {
 		this.posterUrl = film.getPosterUrl();
 		this.sampleUrl = film.getSampleImageUrl();
 
-		this.nextEdition = film.getEdition().isNext();
+		this.nextEdition = film.isNextEdition();
 	}
 
 	public FilmForm(boolean nextEdition) {

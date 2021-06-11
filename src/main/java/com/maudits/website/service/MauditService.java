@@ -60,7 +60,7 @@ public class MauditService {
 //		if (!film.getEdition().equals(edition)) {
 //			throw new WrongEditionException();
 //		}
-		if (displayEdition != DisplayEdition.NEXT && film.getEdition().isNext()) {
+		if (displayEdition != DisplayEdition.NEXT && film.isNextEdition()) {
 			throw new WrongEditionException();
 		}
 		return new FilmDetailPageDisplayer(edition, film);
