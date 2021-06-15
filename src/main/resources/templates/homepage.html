@@ -25,22 +25,20 @@
 <body>
 	<nav th:replace="fragments/common.html :: common-navbar"></nav>
 	<div class="hero">
-		<div class="container hero_content">
-			<div class="container-home">
-				<h1>Le Maudit Festival</h1>
-				<h2>
+    <div class="container hero_content">
+      <div class="container-home">
+        <h1>En partenariat avec Mon Ciné</h1>
+        <h2>
 					Séance spéciale The Wicker Man
-					<!--/*-->
 					<th:block th:text="${page.editionTimePeriod}" />
 					<th:block th:text="${page.editionName}" />
-					<!--*/-->
 				</h2>
 				<h3>Mercredi 16 juin</h3>
 				<a href="/film/the-wicker-man-mon-cine" class="white-button">En savoir plus</a>
 			</div>
 		</div>
 	</div>
-	<!--/*-->
+	
 	<section id="programmation" class="programmation-section">
 		<div class="container communique_covid">
 			<h2>[ COMMUNIQUÉ OFFICIEL - ANNULATION EDITION 2021 ]</h2>
