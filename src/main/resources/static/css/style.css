@@ -116,7 +116,7 @@ p{
 	overflow: auto;
 }
 .short-hero {
-	height: 40em;
+	height: 20em;
 	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/img/logo-header-2021.jpg);
 	background-size: cover;
 	background-position: 0% 57%;
@@ -189,6 +189,9 @@ p{
 	.navbar-nav li{
 		margin-bottom: 1rem;
 	}
+	.short-hero {
+		height: 15em;
+	}
 }
 @media (max-width: 700px) {
 	.logo-long-header{
@@ -200,8 +203,11 @@ p{
 	.hero{
 		height: 30em;
 		margin-top:0px;
-		background-size: 250%;
+/*		background-size: 250%;*/
 		background-position: 53% 53%;
+	}
+	.short-hero {
+		height: 10em;
 	}
 }
 /*
@@ -322,7 +328,7 @@ p{
 .practical-info-section-background{
 	background-color: var(--background-gray-color);
 }
-.practical-info-section, .contact-section {
+.practical-info-section, .contact-section, .p404-section {
 	background: var(--background-gray-color);
 	color: white;
 }
@@ -493,10 +499,12 @@ footer a.external_link:hover {
 /*
 * CONTACT PAGE
 */
-.contact-section{
-	margin-top: -16px;
-	margin-bottom: -16px;
+.contact-section::after{
+	content: "";
+	display: block;
+	height: 1px;
 }
+
 .first_p_contact{
 	padding-top: 2rem;
 }
@@ -538,8 +546,12 @@ footer a.external_link:hover {
 */
 .film-recap-section{
 	background-color: var(--background-gray-color);
-	margin-top: -20px;
 	color: white;
+}
+.film-recap-section::after{
+	content: "";
+	display: block;
+	height: 1px;
 }
 .film-screening-date {
 	background-color: var(--maudit-blue);
@@ -796,12 +808,14 @@ footer a.external_link:hover {
 
 }
 @media (max-width: 992px) {
+	.previous_edition {
+		padding-top: 0;
+	}
 	.previous_sidemenu{
 		background-color: var(--maudit-blue);
 		position:initial;
 		border-bottom-right-radius: 0% 0%;
 		text-align: center;
-		margin-top: -20px;
 	}
 	.previous_sidemenu ul{
 		margin-left:0px;
@@ -922,28 +936,25 @@ hr {
 /*
 * 404
 */
-.error_404{
-	background-image: url(/img/background-juliet_berto.jpeg);
-	background-repeat: no-repeat;
-	background-position: bottom;
-	background-color: var(--background-gray-color);
-	height: 800px;
-	padding-top: 5%;
-	color: white;
+.p404-section {
 	text-align: center;
 }
-.error_404 h1{
-	font-size: 5em;
-	margin-bottom: 5%;
+
+.http-error-code{
+	font-size: 15em;
+	margin-bottom: 0;
 }
-.error_404 h2{
+.http-error-message{
 	font-size: 3em;
+	margin-top: -40px;
 	margin-bottom: 5%;
-	color:var(--maudit-purple);
 	text-shadow: 1px 1px 2px black;
 }
+
+/*
 .error_404 a{
 	color : white;
 	font-size: 2em;
 	text-decoration: none;
 }
+*/

@@ -78,9 +78,16 @@
 			<div class="footer-logo-container">
 				<div>
 					<h2>Le Maudit Festival</h2><br>
+					<th:block th:if="${page}">
 					Édition <th:block th:text="${page.editionName}"/> : <th:block th:text="${page.editionTimePeriod}"/>
 					<a href="/"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
 					Terreur Nocturne - <th:block th:text="${page.editionName}"/>
+					</th:block>
+					<th:block th:unless="${page}">
+					Le maudit Festival, par Terreur Nocturne
+					<a href="/"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
+					Terreur Nocturne
+					</th:block>
 				</div>
 			</div>
 			<div>
