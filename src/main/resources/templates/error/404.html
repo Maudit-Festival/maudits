@@ -1,1 +1,18 @@
-ERREUR 404
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<th:block th:replace="fragments/common :: common-header-values (
+		canonicalurl='https://lemauditfestival.com',
+		title='404 - Le Maudit Festival',
+		description='la page recherché est indisponible'
+		)" />
+	<th:block th:replace="fragments/common :: owa-script" />
+</head>
+<body class="error_404">
+	<section class="container">
+    <h1>404</h1>
+    <h2>La page recherché n'existe pas</h2>
+    <a href="/"><button type="button" class="btn btn-danger">Retourner sur la page d'accueil</button></a>
+	</section>
+</body>
+</html>

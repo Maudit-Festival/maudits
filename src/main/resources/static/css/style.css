@@ -917,3 +917,33 @@ hr {
 .span_history{
 	font-weight: bold;
 }
+
+
+/*
+* 404
+*/
+.error_404{
+	background-image: url(/img/background-juliet_berto.jpeg);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-color: var(--background-gray-color);
+	height: 800px;
+	padding-top: 5%;
+	color: white;
+	text-align: center;
+}
+.error_404 h1{
+	font-size: 5em;
+	margin-bottom: 5%;
+}
+.error_404 h2{
+	font-size: 3em;
+	margin-bottom: 5%;
+	color:var(--maudit-purple);
+	text-shadow: 1px 1px 2px black;
+}
+.error_404 a{
+	color : white;
+	font-size: 2em;
+	text-decoration: none;
+}
