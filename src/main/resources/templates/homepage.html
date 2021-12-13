@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
 	<th:block th:replace="fragments/common :: common-header-values (
-		canonicalurl='https://lemauditfestival.com', 
+		canonicalurl='https://lemauditfestival.com',
 		title='Le site du Maudit Festival',
 		description='Toutes les informations sur ce festival dédié à un cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, événements.'
 		)" />
@@ -21,17 +21,15 @@
 				<h1>En partenariat avec le cinéma Le Club</h1>
 				<h2>
 					Séance spéciale Possession
-<!--/*-->
 					<th:block th:text="${page.editionTimePeriod}" />
 					<th:block th:text="${page.editionName}" />
-<!--*/-->
 				</h2>
 				<h3>Jeudi 15 Juillet</h3>
 				<a href="/film/possession-le-club" class="white-button">En savoir plus</a>
 			</div>
 		</div>
 	</div>
-	
+
 	<!--/*-->
 	<section id="programmation" class="programmation-section">
 		<div class="container communique_covid">
