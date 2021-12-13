@@ -175,6 +175,9 @@ p{
 .container-home h2{
 	font-family: "home", sans-serif;
 	opacity: 1;
+	font-size: 1.7rem;
+	margin-top: 6%;
+	margin-bottom: 4%;
 }
 .container-home a{
 	font-family: "home", sans-serif;
@@ -880,12 +883,6 @@ footer a.external_link:hover {
 	}
 }
 
-
-
-
-
-
-
 /*
 * ABOUT
 */
@@ -942,4 +939,22 @@ hr {
 */
 .span_history{
 	font-weight: bold;
+}
+
+/*
+* 404
+*/
+.p404-section {
+	text-align: center;
+}
+.http-error-code{
+	font-size: 15em;
+	margin-bottom: 0;
+}
+
+.http-error-message{
+	font-size: 3em;
+	margin-top: -40px;
+	margin-bottom: 5%;
+	text-shadow: 1px 1px 2px black;
 }
