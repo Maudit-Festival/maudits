@@ -72,7 +72,7 @@
 				</div>
 				<div class="col-lg-10 description-container">
 					<h1 th:text="${page.filmDisplayer.title}">Qui veut la peau de Bugs Bunny?</h1>
-					<p th:utext="${#strings.replace( #strings.escapeXml(page.filmDisplayer.description),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" ></p>
+					<p th:utext="${#strings.replace( #strings.escapeXml(page.filmDisplayer.description),'&#10;','&lt;br /&gt;')}" ></p>
 						<div class="container container-img">
 								<img loading='lazy' th:if="${page.filmDisplayer.sampleImageUrl != null}" th:src="${page.filmDisplayer.sampleImageUrl}" th:alt="${'Extrait de «' + page.filmDisplayer.title + '»'}" class="img-fluid">
 							</div>
