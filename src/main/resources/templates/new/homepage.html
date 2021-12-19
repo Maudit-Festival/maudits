@@ -44,7 +44,7 @@
 						<div class="programmation-day-recap">
 							<article th:each="film : ${day.films}">
 								<header>
-									<a th:href="@{'/bo/next/new/film/'+${film.textualId}}"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+									<a th:href="@{'/bo/next/film/'+${film.textualId}}"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
 								</header>
 								<div th:text="${film.startTime}"></div>
 								<div th:text="${film.title}"></div>
