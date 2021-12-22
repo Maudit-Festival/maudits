@@ -365,7 +365,8 @@ p{
 	color: var(--maudit-purple);
 }
 .map_home{
-	margin-left: 5%;
+	display: flex;
+	justify-content: flex-end;
 }
 #gmaps-iframe {
 /* 	width:100%;  */
@@ -646,13 +647,11 @@ footer a.external_link:hover {
 * PREVIOUS EDITION
 */
 .previous_edition{
-	background-image: url("/img/background-juliet_berto.jpeg");
-	background-repeat: no-repeat;
-	background-position: bottom;
 	background-color: var(--background-gray-color);
 	padding-top: 2%;
 	color: white;
 	padding-bottom: 2%;
+	border-bottom: 3px solid var(--maudit-purple);
 }
 .previous_sidemenu{
 	padding:1%;
