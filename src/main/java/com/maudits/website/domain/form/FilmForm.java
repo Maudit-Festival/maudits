@@ -1,9 +1,11 @@
 package com.maudits.website.domain.form;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.maudits.website.repository.entities.Film;
@@ -20,10 +22,12 @@ public class FilmForm {
 	private String textualId;
 	private String title;
 	private String description;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate date;
-	@DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(iso = ISO.TIME)
 	private LocalTime startTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private LocalDateTime revealTime;
 
 	private String posterUrl;
 	private MultipartFile posterFile;
@@ -51,6 +55,7 @@ public class FilmForm {
 		this.description = film.getDescription();
 		this.date = film.getDate();
 		this.startTime = film.getStartTime();
+		this.revealTime = film.getRevealTime();
 
 		this.releaseDate = film.getReleaseDate();
 		this.director = film.getDirector();

@@ -115,6 +115,10 @@
 				</div>
 			</div>
 		</div>
+		<div class="">
+			<label for="revealTime">Date d'annonce du film</label>
+			<input type="datetime-local" th:field="*{revealTime}" class="form-control" id="revealTime">
+		</div>
 
 	<a href="/bo" class="btn btn-secondary">Annuler</a>
 	<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>

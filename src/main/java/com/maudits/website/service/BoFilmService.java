@@ -74,6 +74,7 @@ public class BoFilmService {
 		film.setDescription(form.getDescription());
 		film.setDate(form.getDate());
 		film.setStartTime(form.getStartTime());
+		film.setRevealTime(form.getRevealTime());
 
 		var posterFile = form.getPosterFile();
 		if (!posterFile.isEmpty()) {

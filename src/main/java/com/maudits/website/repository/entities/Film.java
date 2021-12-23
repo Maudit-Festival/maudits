@@ -1,6 +1,7 @@
 package com.maudits.website.repository.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 
@@ -37,6 +38,8 @@ public class Film extends EntityWithId {
 	private String ageRating;
 	private String locationName;
 	private String locationAddress;
+
+	private LocalDateTime revealTime;
 
 	private ZonedDateTime lastUpdateTime;
 
