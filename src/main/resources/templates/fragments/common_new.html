@@ -53,19 +53,31 @@
 		</a>
 		<div class="navbarToggler collapse navbar-collapse nav_style">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item">
-						<a href="/bo/next/a-propos-du-maudit-festival">Le Maudit Festival</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="dropdown-toggle navbarDropdownLastEdition" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Editions précédentes
-						</a>
-						<div class="dropdown-menu dropdown_nav_style" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="/bo/next/editions-precedentes/avant-le-maudit-festival">Historique</a>
-							<a class="dropdown-item" href="/bo/next/editions-precedentes/2020">2020</a>
-							<a class="dropdown-item" href="/bo/next/editions-precedentes/2021">2021</a>
-						</div>
-					</li>
+				<li class="nav-item">
+					<a href="/bo/next/a-propos-du-maudit-festival">Le Maudit Festival</a>
+				</li>
+				<li class="nav-item" th:if="${page.editorial != null}">
+					<a href="/bo/next#editorial">Éditorial</a>
+				</li>
+<!--				<li class="nav-item" th:if="${page.teaserVideoUrl != null}">
+					<a href="/bo/next#teaser">Teaser</a>
+				</li>-->
+				<li class="nav-item">
+					<a href="/bo/next#programmation">Programmation</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="dropdown-toggle navbarDropdownLastEdition" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Editions précédentes
+					</a>
+					<div class="dropdown-menu dropdown_nav_style" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/bo/next/editions-precedentes/avant-le-maudit-festival">Historique</a>
+						<a class="dropdown-item" href="/bo/next/editions-precedentes/2020">2020</a>
+						<a class="dropdown-item" href="/bo/next/editions-precedentes/2021">2021</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a href="/bo/next#pratique">Infos pratiques</a>
+				</li>
 				<li class="nav-item">
 					<a href="/bo/next/contact">Contact</a>
 				</li>

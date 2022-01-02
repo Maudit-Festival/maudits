@@ -12,8 +12,6 @@ import org.thymeleaf.standard.expression.StandardExpressions;
 import org.thymeleaf.templatemode.TemplateMode;
 
 public abstract class AbstractTextAttributeTagProcessor extends AbstractAttributeTagProcessor {
-
-//	private static final String ATTR_NAME = "basic";
 	private static final int PRECEDENCE = 10000;
 
 	public AbstractTextAttributeTagProcessor(final String dialectPrefix, String attributeName) {

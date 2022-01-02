@@ -89,8 +89,8 @@ public class BoFilmService {
 		if (!sampleImageFile.isEmpty()) {
 			var tmp = sampleImageFile.getOriginalFilename().split(".");
 			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
-			var url = uploadService.uploadFile("2019", "sample_image" + film.getTextualId() + fileExtension,
-					sampleImageFile);
+			var url = uploadService.uploadFile(film.getEdition().getName(),
+					"sample_image" + film.getTextualId() + fileExtension, sampleImageFile);
 			film.setSampleImageUrl(url);
 		}
 
