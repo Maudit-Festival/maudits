@@ -71,10 +71,10 @@
 				</div>
 				<div class="col-lg-10 description-container">
 					<h1 th:text="${page.filmDisplayer.title}">Qui veut la peau de Bugs Bunny?</h1>
-					<p text:bbcode="${page.filmDisplayer.description}" ></p>
-						<div class="container container-img">
-								<img loading='lazy' th:if="${page.filmDisplayer.sampleImageUrl != null}" th:src="${page.filmDisplayer.sampleImageUrl}" th:alt="${'Extrait de «' + page.filmDisplayer.title + '»'}" class="img-fluid">
-							</div>
+					<p text:bbcode="${page.filmDisplayer.description}" text:balises="biu"></p>
+					<div class="container container-img">
+						<img loading='lazy' th:if="${page.filmDisplayer.sampleImageUrl != null}" th:src="${page.filmDisplayer.sampleImageUrl}" th:alt="${'Extrait de «' + page.filmDisplayer.title + '»'}" class="img-fluid">
+					</div>
 				</div>
 			</div>
 		</div>

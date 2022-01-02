@@ -30,7 +30,6 @@ public class BoPreviewController {
 		try {
 			model.addAttribute("page",
 					mauditService.findFilmDetailPageDisplayerFromTextualId(DisplayEdition.NEXT, textualId));
-
 			return "new/film-details";
 		} catch (WrongEditionException e) {
 			return "redirect:/bo/next";

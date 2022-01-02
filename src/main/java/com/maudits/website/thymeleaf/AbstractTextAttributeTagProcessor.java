@@ -48,7 +48,7 @@ public abstract class AbstractTextAttributeTagProcessor extends AbstractAttribut
 		 * Execute the expression just parsed
 		 */
 		final String content = (String) expression.execute(context);
-
+//		System.out.println(tag.getAttributeValue(getDialectPrefix(), "balises"));
 		structureHandler.setBody(processString(content), false);
 	}
 

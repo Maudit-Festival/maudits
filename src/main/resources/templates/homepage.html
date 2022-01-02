@@ -9,47 +9,120 @@
 
 	<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.1/slick/slick.css" async/>
 	<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.1/slick/slick-theme.css" async/>
-
+	<!--
+	<span th:switch="${random}">
+		<link th:case="0" rel="stylesheet" type="text/css" href="/css/conditionnal_0.css" async/>
+	  <link th:case="1" rel="stylesheet" type="text/css" href="/css/conditionnal_1.css" async/>
+	</span>-->
 	<th:block th:replace="fragments/common :: owa-script" />
 </head>
 
-<body>
+<body class="homepage">
 	<nav th:replace="fragments/common.html :: common-navbar"></nav>
 	<div class="hero">
 		<div class="container hero_content">
 			<div class="container-home">
-				<h1>En partenariat avec le cinéma Le Club</h1>
+				<h1>Le Maudit Festival</h1>
 				<h2>
-					Séance spéciale Possession
 					<th:block th:text="${page.editionTimePeriod}" />
 					<th:block th:text="${page.editionName}" />
 				</h2>
-				<h3>Jeudi 15 Juillet</h3>
-				<a href="/film/possession-le-club" class="white-button">En savoir plus</a>
+				<a href="/#programmation" class="white-button">En savoir plus</a>
 			</div>
 		</div>
 	</div>
-
-	<!--/*-->
-	<section id="programmation" class="programmation-section">
-		<div class="container communique_covid">
-			<h2>[ COMMUNIQUÉ OFFICIEL - ANNULATION EDITION 2021 ]</h2>
-			<p>Chèr·e·s cinéphiles,</p>
-			<p>Cette année, nous aurions dû vous offrir une expérience cinématographique des plus maudites. Malheureusement, compte tenu des circonstances et des annonces gouvernementales, nous ne sommes ni en mesure d’annoncer des dates et des horaires
-				précis de séances, ni dans la possibilité d’assurer que Le Maudit Festival 2021 - 2e Édition se tiendra dans les meilleures dispositions.</p>
-			<p>En conséquence, nous avons pris la décision d’<b>annuler cette édition</b> dans sa configuration actuelle.</p>
-			<p>Il nous est impensable de réaliser cet événement en ligne tout en conservant la cohérence de notre ligne éditoriale et la beauté de la communion nocturne que nous affectionnons.
-				En effet, par souci de vous proposer un événement sensoriel unique, nous tenons à vous faire vivre un voyage artistique de qualité, et à vous faire vibrer selon la passion qui nous anime dans les temples culturels par excellence que sont les
-				lieux de projection et de spectacles, aujourd’hui clos pour raisons sanitaires. Nous attachons une énorme importance au grand écran, au support de projection, et nous valorisons la relation et les échanges humains que nous procurent ces
-				rêveries collectives.</p>
-			<p>Toutefois, nous nous tenus aux aguets de la moindre évolution sanitaire et gouvernementale qui nous permettrait de vous retrouver et de projeter ces films sélectionnés pour vous avec tant d’énergie et de plaisir. Dès que nous disposerons
-				d’informations supplémentaires nous permettant de mettre en place des événements culturels en accord avec nos valeurs, nous vous les communiquerons.</p>
-			<p>Dans l’objectif de nous retrouver le plus rapidement possible, prenons soin de nous et restons à l’écoute. </p>
-			<p>Soyez Maudits !</p>
-			<p>L’Equipe du Festival.</p>
+	<section id="editorial" th:if="${page.editorial != null}" class='editorial-section'>
+		<div>
+			<h3 class="section-headline">Éditorial</h3>
+			<p text:basic="${page.editorial}"></p>
 		</div>
 	</section>
-	<!--*/-->
+	<section id="teaser" th:if="${page.teaserVideoUrl != null}" class='programmation-section'>
+		<div>
+			<h3 class="section-headline">Teaser</h3>
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" title="Teaser" loading="lazy" th:src="${page.teaserVideoUrl}" allowfullscreen></iframe>
+			</div>
+		</div>
+	</section>
+
+	<section id="programmation" class="programmation-section">
+		<h3 class="section-headline">Programmation</h3>
+		<div class="container">
+		<div class="programmation_list_days">
+			<th:block th:each="day : ${page.days}">
+				<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
+				<span>/</span>
+			</th:block>
+		</div>
+		<div class="day_previous_programmation d-flex flex-wrap">
+		<div th:each="day : ${page.days}" th:id="${day.date}" class="content_previous_list">
+				<h4 th:text="${day.displayDate}"></h4>
+				<div class="previous-programmation-day-recap row">
+					<article th:each="film : ${day.films}">
+						<header>
+							<a th:if="${film.textualId != null}" th:href="@{${'/film/'+film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+							<a th:unless="${film.textualId != null}" class="link_img_previous"><img src="/img/unannounced_movie_poster.jpg" class="img-fluid rounded" alt="Poster non dévoilé" loading="lazy"></a>
+						</header>
+						<div th:text="${film.startTime}"></div>
+						<div th:text="${film.title != null ? film.title : 'Film pas encore annoncé'}"></div>
+						<div th:text="${film.locationName}"></div>
+						<a th:if="${film.textualId != null}" th:href="@{'/film/'+${film.textualId}}" class="know_more_previous_programmation">En savoir plus</a>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	<div class="download-section">
+		<a href="https://lemauditfestival.com/uploads/2022/maudits_festival_2022.pdf" target="plaquette">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+			<path d="M448.608,351.791c-18.444,0-33.4,14.952-33.4,33.396v52.055H96.788v-52.055c0-18.443-14.952-33.396-33.396-33.396 s-33.396,14.952-33.396,33.396v85.451c0,18.443,14.952,33.4,33.396,33.4h385.217c18.443,0,33.396-14.957,33.396-33.4v-85.451 C482.005,366.743,467.052,351.791,448.608,351.791z"/>
+			<path d="M245.918,387.325c5.563,5.559,14.6,5.559,20.157,0l117.039-117.038c3.41-3.41,4.423-8.532,2.579-13 c-1.844-4.45-6.18-7.351-11.012-7.351h-54.954V34.024c0-14.402-11.661-26.063-26.06-26.063h-75.323 c-14.398,0-26.06,11.66-26.06,26.063v215.912h-54.973c-4.827,0-9.163,2.9-11.007,7.351c-1.844,4.468-0.83,9.59,2.575,13 L245.918,387.325z"/>
+		</svg>
+		Télécharger la programmation</a>
+	</div>
+	<section id="pratique" class="practical-info-section">
+		<h3 class="section-headline">Infos pratiques</h3>
+		<div class="container-fluid">
+			<h4>Tarifs</h4>
+				<ul>
+					<li>Cinéma Juliet Berto : <span class="tarif">6,50€/5,50€</span></li>
+					<li>Séance Jeune Public à Mon Ciné : <span class="tarif">3,50€</span></li>
+					<li>Séance‭ ‬de clôture au Ciel : <span class="tarif">5€</span></li>
+
+					<li>Pass 5 films : <span class="tarif">27,50€</span>. Ce passe donne uniquement accès aux séances se déroulant au cinéma Juliet Berto<br/>
+					<li>Séance GrindHouse - double programme : <span class="tarif">12€</span>. Cette séance‭ ‬du samedi‭ ‬22‭ ‬janvier‭ ‬se compose d’un‭ ‬<em>double programme</em>. Le tarif est donc identique que vous assistiez à un ou deux films.</li>
+					<li>Billetterie en ligne : La plupart des séances sont accessibles en prévente :‭ ‬ouvrez l’œil sur nos réseaux sociaux ‭!
+				</ul>
+		</div>
+		<div class="container-fluid">
+			<h4>Les lieux</h4>
+			<p>
+				Sauf indication‭ ‬contraire,‭ ‬les projections se déroulent au Cinéma Juliet Berto,‭ ‬à Grenoble.‭ ‬La salle est accessible aux PMR‭ (‬personnes à mobilité réduite‭)
+				<ul>
+					<li>Cinéma Juliet Berto‭ ‬/‭ ‬Passage du Palais de Justice,‭ ‬Grenoble‭</li>
+					<li>Mon Ciné‭ ‬/‭ ‬10,‭ ‬avenue Ambroise Croizat,‭ ‬Saint-Martin-d’Hères</li>
+					<li>Le Ciel‭ ‬/‭ ‬2,‭ ‬rue Général Marchand,‭ ‬Grenoble</li>
+				</ul>
+			</p>
+			<div class="map_home container-fluid">
+<!-- 			<div> -->
+<!-- 				Sauf indications spécifiques, les projections se déroulent dans le mythique Cinéma Juliet Berto.<br/> La salle est accessible aux PMR (personnes à mobilité réduite).  -->
+<!-- 				<p>Cinéma Juliet Berto, Passage du Palais de Justice, 38000 Grenoble</p> -->
+<!-- 				<p>Pour venir en voiture : …</p> -->
+<!-- 				<p>Pour venir en transport en commun: …</p> -->
+<!-- 			</div> -->
+				<iframe id="gmaps-iframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQr2ekQY5Ri4ERwZyQWVSwYBqVXczaIe0&q=Salle+Juliet+Bertho,+Grenoble" allowfullscreen=""></iframe>
+			</div>
+		</div>
+		<!-- <div>
+			<h4>‬Programmation off</h4>
+			<p>
+				On vous prépare encore de belles choses la semaine précédant le festival ‭!‬ Pour vous tenir informé⋅e⋅s,‭ ‬suivez-nous sur nos réseaux sociaux et‭ ‬sur‭ ‬notre site‭ ‬lemauditfestival.com
+			</p>
+		</div>-->
+	</section>
 
 	<div class="partner-section">
 		<h3>Merci à nos partenaires</h3>
