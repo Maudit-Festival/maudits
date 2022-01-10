@@ -64,7 +64,7 @@
 				<li class="nav-item">
 					<a href="/a-propos-du-maudit-festival">Le Maudit Festival</a>
 				</li>
-				<li class="nav-item" th:if="${page.editorial != null}">
+				<li class="nav-item" th:if="${page != null && page.editorial != null}">
 					<a href="/#editorial">Éditorial</a>
 				</li>
 <!--				<li class="nav-item" th:if="${page.teaserVideoUrl != null}">
