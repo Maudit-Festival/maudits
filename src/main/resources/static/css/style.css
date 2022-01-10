@@ -988,3 +988,17 @@ hr {
 .navbar-toggler:focus {
 	outline : none;
 }
+
+.link {
+	color: white;
+	text-decoration: underline;
+}
+
+.link {
+	color: white;
+	text-decoration: underline;
+}
+
+.link:hover {
+	color: var(--maudit-purple);
+}
