@@ -24,6 +24,10 @@ public class SitemapService {
 		Collection<SitemapUrl> staticPagesUrls = new ArrayList<>();
 		staticPagesUrls.add(new SitemapUrl("https://lemauditfestival.com", SitemapUrl.Priority.HIGH));
 		staticPagesUrls.add(new SitemapUrl("https://lemauditfestival.com/contact", SitemapUrl.Priority.MEDIUM));
+		staticPagesUrls.add(
+				new SitemapUrl("https://lemauditfestival.com/a-propos-du-maudit-festival", SitemapUrl.Priority.MEDIUM));
+		staticPagesUrls.add(new SitemapUrl("https://lemauditfestival.com/editions-precedentes/avant-le-maudit-festival",
+				SitemapUrl.Priority.MEDIUM));
 
 //		staticPagesUrls.add(
 //				new SitemapUrl("https://lemauditfestival.com/a-propos-du-maudit-festival", SitemapUrl.Priority.HIGH));
