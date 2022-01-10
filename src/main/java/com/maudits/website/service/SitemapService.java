@@ -60,8 +60,8 @@ public class SitemapService {
 	public Sitemap buildSitemap() {
 		Collection<SitemapUrl> xmlUrlset = new ArrayList<>();
 		xmlUrlset.addAll(listStaticPages());
-		xmlUrlset.addAll(listFilmPages());
 		xmlUrlset.addAll(listPastEditionPages());
+		xmlUrlset.addAll(listFilmPages());
 
 		return new Sitemap(xmlUrlset);
 
