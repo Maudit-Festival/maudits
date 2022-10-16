@@ -126,7 +126,7 @@ p{
 	display: -ms-flexbox;
 	display: flex;
 	height: 50em;
-	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/2021/1800.jpg");
+	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/2021/1800.jpg"),linear-gradient(#110e0a,#171c23);
 	background-size: cover;
 	background-position: 0% 53%;
 	color: white;
@@ -134,7 +134,7 @@ p{
 }
 .short-hero {
 	height: 20em;
-	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/2021/1800_bis.jpg");
+	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/2021/1800_bis.jpg"),linear-gradient(#110e0a,#171c23);
 	background-size: cover;
 	background-position: 0% 57%;
 }
