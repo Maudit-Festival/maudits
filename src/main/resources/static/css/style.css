@@ -125,7 +125,7 @@ p{
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	height: 50em;
+	min-height: 50em;
 	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/2021/1800.jpg"),linear-gradient(#110e0a,#171c23);
 	background-size: cover;
 	background-position: 0% 53%;
@@ -203,7 +203,7 @@ p{
 		display: block;
 	}
 	.hero{
-		height: 40em;
+		min-height: 40em;
 		margin-top:-30px;
 	}
 	.dropdown-menu{
@@ -224,7 +224,7 @@ p{
 		display: block;
 	}
 	.hero{
-		height: 30em;
+		min-height: 30em;
 		margin-top:0px;
 		/*background-size: 250%;*/
 		background-position: 53% 53%;
@@ -1001,4 +1001,20 @@ hr {
 
 .link:hover {
 	color: var(--maudit-purple);
+}
+
+.current-event-img {
+	margin: 15px;
+}
+
+.container-home-current-event {
+	display: flex;
+}
+
+@media (max-width: 700px) {
+	.container-home-current-event {
+		flex-direction: column;
+		text-align: center;
+		margin-bottom: 15px;
+	}
 }

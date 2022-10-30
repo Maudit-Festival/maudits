@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.displayer.HomePageCurrentEventDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.domain.displayer.HomePageFilmDisplayer;
 import com.maudits.website.domain.displayer.SponsorDisplayer;
@@ -23,6 +24,7 @@ import com.maudits.website.domain.page.FrontPageDisplayer;
 import com.maudits.website.domain.page.HomepageDisplayer;
 import com.maudits.website.domain.page.PreviousEditionDisplayer;
 import com.maudits.website.repository.EditionRepository;
+import com.maudits.website.repository.ExtraEventRepository;
 import com.maudits.website.repository.FilmRepository;
 import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Film;
@@ -35,6 +37,7 @@ import lombok.RequiredArgsConstructor;
 public class MauditService {
 	private final FilmRepository filmRepository;
 	private final EditionRepository editionRepository;
+	private final ExtraEventRepository extraEventRepository;
 
 	public Edition findEdition(DisplayEdition displayEdition) {
 		switch (displayEdition) {
@@ -101,7 +104,10 @@ public class MauditService {
 			sponsors.add(new SponsorDisplayer(sponsor));
 		}
 		Collections.shuffle(sponsors);
-		return new HomepageDisplayer(edition, days, sponsors);
+//		return new HomepageDisplayer(edition, days, sponsors);
+		return extraEventRepository.findOneByActive()
+				.map(ea -> new HomepageDisplayer(edition, new HomePageCurrentEventDisplayer(ea.getFilm()), sponsors))
+				.orElse(new HomepageDisplayer(edition, days, sponsors));
 	}
 
 	public ArchivePageDisplayer makeArchivePage(DisplayEdition displayEdition) {

@@ -21,7 +21,8 @@
 		<a href="/bo" class="col-md-3 col-sm-5 col-6"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="img-fluid"></a>
 	</header>
 
-	<form th:action="@{/bo/film/save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
+	<form th:action="@{${extraEvent != null ? '/bo/extraevent/save-edit' : '/bo/film/save-edit'}}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
+		<input type="hidden" th:if="${extraEvent != null}" th:field="*{eventId}">
 		<input type="hidden" th:field="*{id}">
 		<input type="hidden" th:field="*{nextEdition}">
 		<div class="form-group">
@@ -124,6 +125,11 @@
 	<a href="/bo" class="btn btn-secondary">Annuler</a>
 	<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>
 	</form>
+	<form th:action="@{${extraEvent != null ? '/bo/extraevent/delete' : '/bo/film/delete'}}" th:method="post" onsubmit="return confirm('Are you sure you want to delete ?');">
+		<input type="hidden" name="id" th:value="${extraEvent != null ? form.eventId : form.id}">
+		<button type="submit" class="btn btn-danger" th:if="${form.id != null}">Supprimer</button>
+	</form>
+
 </body>
 <script>
 function showPreviewImage(input, image) {
