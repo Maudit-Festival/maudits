@@ -132,9 +132,13 @@
 
 </body>
 <script>
-function showPreviewImage(input, image) {
+function showPreviewImage(input, image, maxsize) {
 	input.change(function(){
 		if (input[0].files && input[0].files[0]) {
+			if(maxsize && input[0].files[0].size > maxsize){
+				alert("Le fichier est plus gros que la taille maximale de " + maxsize + " octets !");
+				input[0].value = "";
+			};
 			var reader = new FileReader();
 
 				reader.onload = function (e) {
@@ -145,8 +149,8 @@ function showPreviewImage(input, image) {
 		}
 	});
 }
-showPreviewImage($("#uploadSample"), $("#filmSamplePreview"));
-showPreviewImage($("#uploadPoster"), $("#filmPosterPreview"));
+showPreviewImage($("#uploadSample"), $("#filmSamplePreview"), 500000);
+showPreviewImage($("#uploadPoster"), $("#filmPosterPreview"), 500000);
 // showPreviewImage(input, image);
 </script>
 </html>
