@@ -144,7 +144,7 @@ public class BoFilmService {
 	public void saveExtraEvent(@Valid ExtraEventForm form) throws IOException {
 		Long eventId = form.getEventId();
 		ExtraEvent event = (eventId != null) ? extraEventRepository.findById(eventId).orElseThrow() : new ExtraEvent();
-		Film film = saveFilm(form, new Film());
+		Film film = saveFilm(form, event.getFilm() != null ? event.getFilm() : new Film());
 		event.setFilm(film);
 		event.setRevealTime(form.getRevealTime());
 		event.setHideTime(form.getDate().plusDays(2).atStartOfDay());
