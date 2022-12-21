@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<th:block th:fragment="common-header-values(canonicalurl, title, description)">
+	<th:block th:fragment="common-header-values(canonicalurl, title, description, page)">
 	<link rel="icon" href="/favicon.ico" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +48,16 @@
 	</script>
 	<!-- End Open Web Analytics Code -->
 
+	<style>
+	:root {
+	--accent-color: [[${page.accentColor}]];
+	}
+	
+	.hero {
+		background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("[[${page.heroUrl}]]"), linear-gradient(#110e0a,#171c23);
+	}
+
+	</style>
 	</th:block>
 </head>
 <body>

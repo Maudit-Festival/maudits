@@ -4,14 +4,16 @@
 	<th:block th:if="${page.filmDisplayer.director == null}" th:include="fragments/common :: common-header-values (
 		canonicalurl=${'https://lemauditfestival.com/film/'+page.filmDisplayer.textualId},
 		title=${page.filmDisplayer.title + ' - Le Maudit Festival'},
-		description=${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title}
+		description=${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title},
+		page=page
 		)" />
 
 	<th:block th:unless="${page.filmDisplayer.director == null}" th:include="fragments/common :: common-header-values (
 		canonicalurl=${'https://lemauditfestival.com/film/'+page.filmDisplayer.textualId},
 		title=${page.filmDisplayer.title + ' - Le Maudit Festival'},
 		description=${page.filmDisplayer.date + ' - projection de ' + page.filmDisplayer.title + ' de ' + page.filmDisplayer.director +'. ' +
-		'Un film de ' + page.filmDisplayer.releaseDate + ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting + '.'}
+		'Un film de ' + page.filmDisplayer.releaseDate + ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting + '.'},
+		page=page
 		)" />
 
 	<!-- Open Graph meta pour Facebook -->
