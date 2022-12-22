@@ -1,8 +1,11 @@
 package com.maudits.website.service;
 
+import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
@@ -23,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BoEditionService {
 	private final CurrentEditionService currentEditionService;
+	private final UploadService uploadService;
 	private final EditionRepository editionRepository;
 
 	private List<FilmBoDisplayer> findFilms(Edition edition) {
@@ -51,9 +55,43 @@ public class BoEditionService {
 		return new EditionForm(edition);
 	}
 
-	public void saveEdition(DisplayEdition displayEdition, @Valid EditionForm form) {
+	public void saveEdition(DisplayEdition displayEdition, @Valid EditionForm form) throws IOException {
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		edition.setAccentColor(form.getColor());
+		edition.setEditorial(form.getEditorial());
+		edition.setName(form.getName());
+		edition.setTimePeriod(form.getTimePeriod());
+		edition.setTeaserUrl(form.getTeaserUrl());
+
+		var heroFile = form.getHeroFile();
+		String folder = edition.getName();
+		if (!heroFile.isEmpty()) {
+			var tmp = heroFile.getOriginalFilename().split("[.]");
+			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
+			var url = uploadService.uploadFile(folder, "hero" + fileExtension, heroFile);
+			edition.setHeroUrl(url);
+		}
+
 		editionRepository.save(edition);
+	}
+
+	@Transactional
+	public void makeEditionCurrent() {
+		Edition previousCurrentEdition = currentEditionService.findEdition(DisplayEdition.CURRENT);
+		Edition previousNextEdition = currentEditionService.findEdition(DisplayEdition.NEXT);
+		Edition newNextEdition = new Edition();
+
+		previousCurrentEdition.setCurrent(false);
+		editionRepository.save(previousCurrentEdition);
+
+		previousNextEdition.setNext(false);
+		previousNextEdition.setCurrent(true);
+		editionRepository.save(previousNextEdition);
+
+		newNextEdition.setName("");
+		newNextEdition.setTimePeriod("");
+		newNextEdition.setLastUpdateTime(ZonedDateTime.now());
+		newNextEdition.setNext(true);
+		editionRepository.save(newNextEdition);
 	}
 }

@@ -1,5 +1,7 @@
 package com.maudits.website.controller;
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -23,15 +25,24 @@ public class BoEditionController {
 
 	@GetMapping("dashboard")
 	public String editionDisplay(@PathVariable DisplayEdition edition, Model model) {
+		model.addAttribute("edition", edition);
 		model.addAttribute("page", boEditionService.buildDisplayer(edition));
 		model.addAttribute("form", boEditionService.buildForm(edition));
 		return "bo/edition-dashboard";
 	}
 
 	@PostMapping("save")
-	public String editionSave(@PathVariable DisplayEdition edition, @Valid EditionForm form) {
-		System.out.println(form.getColor());
+	public String editionSave(@PathVariable DisplayEdition edition, @Valid EditionForm form) throws IOException {
 		boEditionService.saveEdition(edition, form);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard";
+	}
+
+	@PostMapping("current")
+	public String makeEditionCurrent(@PathVariable DisplayEdition edition) throws IOException {
+		if (edition != DisplayEdition.NEXT) {
+			throw new RuntimeException();
+		}
+		boEditionService.makeEditionCurrent();
+		return "redirect:/bo/" + DisplayEdition.CURRENT.name().toLowerCase() + "/dashboard";
 	}
 }

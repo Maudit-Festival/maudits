@@ -27,10 +27,17 @@
 			<li class="line_1"><a href="/bo">&lt;&lt; Back</a></li>
 			<li class="line_1"><a href="#filmAnchor">Films</a></li>
 			<li><a href="film/create/new">Ajouter un film</a></li>
-			<li><a href="/bo/next">Preview</a></li>
+			<li th:if="${edition.name() == 'CURRENT'}"><a href="/">Preview</a></li>
+			<li th:if="${edition.name() == 'NEXT'}"><a href="/bo/next">Preview</a></li>
 			<li class="line_1"><a href="#sponsorAnchor">Sponsors</a></li>
 			<li><a href="sponsor/create/new">Ajouter un sponsor</a></li>
-			<li class="line_1"><a href="#lookAnchor">Look</a></li>
+			<li class="line_1"><a href="#lookAnchor">Configure</a></li>
+			<li th:if="${edition.name() == 'NEXT'}">
+				<form th:action="@{current}" th:method="post"
+					onsubmit="return confirm('Êtes vous sûr de vouloir rendre public la nouvelle édition ?');">
+					<button type="submit" class="btn btn-danger">Publier</button>
+				</form>
+			</li>
 		</ul>
 	</div>
 	<main class="admin_main col-md-8">
@@ -54,14 +61,65 @@
 						<a th:href="${'sponsor/edit/' + sponsor.id}">Éditer</a>
 				</article>
 		</div>
-		<h2 id="lookAnchor" class="admin_title_next_edition" >Look</h2>
+		<h2 id="lookAnchor" class="admin_title_next_edition">Configure</h2>
 		<div class="row edition_content_film">
-			<form th:method="post" th:action="@{save}" th:object="${form}">
-				<input type="color" th:field="*{color}">
-				<input type="submit">
+			<form th:method="post" th:action="@{save}" th:object="${form}" enctype="multipart/form-data" class="container">
+				<div class="row form-group">
+					<div class="col-md-6">
+						<label for="edition-name">Nom :</label>
+						<input id="edition-name" class="form-control" th:field="*{name}" placeholder="1999">
+					</div>
+					<div class="col-md-6">
+						<label for="edition-duration">Durée :</label>
+						<input id="edition-duration" class="form-control" th:field="*{timePeriod}" placeholder="Du 20 au 27 Janvier">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="edition-teaser">Teaser :</label>
+					<input id="edition-teaser" class="form-control" th:field="*{teaserUrl}" placeholder="https://www.youtube-nocookie.com/embed/???">
+					
+				</div>
+				<div class="form-group">
+					<label for="edition-edito">Editorial :</label>
+					<textarea id="edition-edito" class="form-control" th:field="*{editorial}" 
+					placeholder="Editorial" rows="25"></textarea>
+				</div>
+				<p class="form-group">
+					<label for="edition-color">Accent color :</label>
+					<input id="edition-color" type="color" th:field="*{color}">
+				</p>
+				<p class="form-group">
+					<label for="uploadHeader">Image header :
+						<img id="headerPreview" class="imageUploadPreview d-block" th:src="*{heroUrl}">
+						<input type="file" id="uploadHeader" accept="image/*" class="d-none2"
+						th:field="*{heroFile}" th:required="*{heroUrl == null}" >
+					</label>
+				</p>
+
+				<input class="btn btn-primary" type="submit">
 			</form>
 		</div>
 	</main>
 </section>
 </body>
+<script>
+function showPreviewImage(input, image, maxsize) {
+	input.change(function(){
+		if (input[0].files && input[0].files[0]) {
+			if(maxsize && input[0].files[0].size > maxsize){
+				alert("Le fichier est plus gros que la taille maximale de " + maxsize + " octets !");
+				input[0].value = "";
+			};
+			var reader = new FileReader();
+
+				reader.onload = function (e) {
+					image.attr('src', e.target.result);
+				}
+
+			reader.readAsDataURL(input[0].files[0]);
+		}
+	});
+}
+showPreviewImage($("#uploadHero"), $("#headerPreview"), 500000);
+</script>
 </html>

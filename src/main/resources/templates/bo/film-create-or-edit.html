@@ -125,7 +125,7 @@
 	<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>
 	</form>
 	<form th:action="@{../delete}" th:method="post" th:if="${form.id != null}"
-	onsubmit="return confirm('Are you sure you want to delete ?');">
+	onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce film ?');">
 		<input type="hidden" name="id" th:value="${extraEvent != null ? form.eventId : form.id}">
 		<button type="submit" class="btn btn-danger">Supprimer</button>
 	</form>
