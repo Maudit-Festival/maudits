@@ -20,9 +20,8 @@
 		<a href="/bo" class="col-md-3 col-sm-5 col-6"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="img-fluid"></a>
 	</header>
 
-	<form th:action="@{/bo/sponsors/save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
+	<form th:action="@{../save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
 		<input type="hidden" th:field="*{id}">
-		<input type="hidden" th:field="*{nextEdition}">
 		<div class="form-group">
 			<label for="movieName">Nom du partenaire</label>
 			<input type="text" th:field="*{name}" class="form-control" id="sponsorName" required pattern="[-a-z0-9]+">
@@ -37,14 +36,23 @@
 			</label>
 			<input type="file" th:field="*{logoFile}" accept="image/*" class="form-control-file" id="uploadLogo" required>
 		</div>
-		<a href="/bo" class="btn btn-secondary">Annuler</a>
-		<button type="submit" class="btn btn-primary">Créer</button>
+		<a href="../../dashboard" class="btn btn-secondary">Annuler</a>
+		<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>
+	</form>
+	<form th:action="@{../delete}" th:method="post" th:if="${form.id != null}" 
+	onsubmit="return confirm('Are you sure you want to delete ?');">
+		<input type="hidden" name="id" th:value="${form.id}">
+		<button type="submit" class="btn btn-danger">Supprimer</button>
 	</form>
 </body>
 <script>
-function showPreviewImage(input, image) {
+function showPreviewImage(input, image, maxsize) {
 	input.change(function(){
 		if (input[0].files && input[0].files[0]) {
+			if(maxsize && input[0].files[0].size > maxsize){
+				alert("Le fichier est plus gros que la taille maximale de " + maxsize + " octets !");
+				input[0].value = "";
+			};
 			var reader = new FileReader();
 
 				reader.onload = function (e) {
@@ -55,6 +63,6 @@ function showPreviewImage(input, image) {
 		}
 	});
 }
-showPreviewImage($("#uploadLogo"), $("#filmLogoPreview"));
+showPreviewImage($("#uploadLogo"), $("#filmLogoPreview"), 500000);
 </script>
 </html>

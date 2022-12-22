@@ -1,14 +1,13 @@
 package com.maudits.website.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import com.maudits.website.domain.bo.displayer.SponsorBoDisplayer;
+import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.form.SponsorForm;
 import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.SponsorRepository;
@@ -24,28 +23,19 @@ public class BoSponsorService {
 	private final EditionRepository editionRepository;
 	private final UploadService uploadService;
 
-	public List<SponsorBoDisplayer> findCurrentSponsors() {
-		return findSponsors(editionRepository.findOneByCurrentTrue());
-	}
-
-	public List<SponsorBoDisplayer> findNextSponsors() {
-		return findSponsors(editionRepository.findOneByNextTrue());
-	}
-
-	private List<SponsorBoDisplayer> findSponsors(Edition edition) {
-		List<SponsorBoDisplayer> result = new ArrayList<>();
-		for (Sponsor sponsor : edition.getSponsors()) {
-			result.add(new SponsorBoDisplayer(sponsor));
+	public Edition findEdition(DisplayEdition displayEdition) {
+		switch (displayEdition) {
+		case CURRENT:
+			return editionRepository.findOneByCurrentTrue();
+		case NEXT:
+			return editionRepository.findOneByNextTrue();
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
 		}
-		return result;
 	}
 
-	public SponsorForm createSponsorFormNextEdition() {
-		return new SponsorForm(true);
-	}
-
-	public SponsorForm createSponsorFormCurrentEdition() {
-		return new SponsorForm(false);
+	public SponsorForm createSponsorForm() {
+		return new SponsorForm();
 	}
 
 	public SponsorForm findSponsorFormFromId(Long id) {
@@ -62,14 +52,13 @@ public class BoSponsorService {
 		}
 	}
 
-	public void saveSponsor(@Valid SponsorForm form) throws IOException {
+	public void saveSponsor(@PathVariable DisplayEdition edition, @Valid SponsorForm form) throws IOException {
 		Long id = form.getId();
 		Sponsor sponsor = (id != null) ? sponsorRepository.findById(id).orElseThrow() : new Sponsor();
 		sponsor.setName(filterEmpty(form.getName()));
 		sponsor.setTargetUrl(filterEmpty(form.getTargetUrl()));
 
-		sponsor.setEdition(form.isNextEdition() ? editionRepository.findOneByNextTrue()
-				: editionRepository.findOneByCurrentTrue());
+		sponsor.setEdition(findEdition(edition));
 
 		var logoFile = form.getLogoFile();
 		if (!logoFile.isEmpty()) {
@@ -80,5 +69,9 @@ public class BoSponsorService {
 			sponsor.setLogoUrl(url);
 		}
 		sponsorRepository.save(sponsor);
+	}
+
+	public void deleteSponsor(Long id) {
+		sponsorRepository.deleteById(id);
 	}
 }

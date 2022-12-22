@@ -46,8 +46,6 @@ public class FilmForm {
 	private String locationName;
 	private String locationAddress;
 
-	private boolean nextEdition;
-
 	public FilmForm(Film film) {
 		this.id = film.getId();
 		this.textualId = film.getTextualId();
@@ -71,12 +69,5 @@ public class FilmForm {
 
 		this.posterUrl = film.getPosterUrl();
 		this.sampleUrl = film.getSampleImageUrl();
-
-		this.nextEdition = film.isNextEdition();
-	}
-
-	public FilmForm(boolean nextEdition) {
-		super();
-		this.nextEdition = nextEdition;
 	}
 }

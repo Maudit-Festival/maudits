@@ -19,18 +19,10 @@ public class SponsorForm {
 	private String logoUrl;
 	private MultipartFile logoFile;
 
-	private boolean nextEdition;
-
 	public SponsorForm(Sponsor sponsor) {
 		this.id = sponsor.getId();
 		this.name = sponsor.getName();
 		this.logoUrl = sponsor.getLogoUrl();
 		this.targetUrl = sponsor.getTargetUrl();
-		this.nextEdition = sponsor.getEdition().isNext();
-	}
-
-	public SponsorForm(boolean nextEdition) {
-		super();
-		this.nextEdition = nextEdition;
 	}
 }

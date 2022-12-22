@@ -2,15 +2,14 @@ package com.maudits.website.service;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
+import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.bo.displayer.ExtraEventBoDisplayer;
-import com.maudits.website.domain.bo.displayer.FilmBoDisplayer;
 import com.maudits.website.domain.form.ExtraEventForm;
 import com.maudits.website.domain.form.FilmForm;
 import com.maudits.website.repository.EditionRepository;
@@ -30,28 +29,19 @@ public class BoFilmService {
 	private final UploadService uploadService;
 	private final ExtraEventRepository extraEventRepository;
 
-	public List<FilmBoDisplayer> findCurrentFilms() {
-		return findFilms(editionRepository.findOneByCurrentTrue());
-	}
-
-	public List<FilmBoDisplayer> findNextFilms() {
-		return findFilms(editionRepository.findOneByNextTrue());
-	}
-
-	private List<FilmBoDisplayer> findFilms(Edition edition) {
-		List<FilmBoDisplayer> result = new ArrayList<>();
-		for (Film film : edition.getFilms()) {
-			result.add(new FilmBoDisplayer(film));
+	public Edition findEdition(DisplayEdition displayEdition) {
+		switch (displayEdition) {
+		case CURRENT:
+			return editionRepository.findOneByCurrentTrue();
+		case NEXT:
+			return editionRepository.findOneByNextTrue();
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
 		}
-		return result;
 	}
 
-	public FilmForm createFilmFormNextEdition() {
-		return new FilmForm(true);
-	}
-
-	public FilmForm createFilmFormCurrentEdition() {
-		return new FilmForm(false);
+	public FilmForm createFilmForm() {
+		return new FilmForm();
 	}
 
 	public FilmForm findFilmFormFromId(Long id) {
@@ -68,12 +58,10 @@ public class BoFilmService {
 		}
 	}
 
-	public Film saveFilm(@Valid FilmForm form) throws IOException {
+	public Film saveFilm(DisplayEdition displayEdition, @Valid FilmForm form) throws IOException {
 		Long id = form.getId();
 		Film film = (id != null) ? filmRepository.findById(id).orElseThrow() : new Film();
-		film.setEdition(form.isNextEdition() ? editionRepository.findOneByNextTrue()
-				: editionRepository.findOneByCurrentTrue());
-
+		film.setEdition(findEdition(displayEdition));
 		return saveFilm(form, film);
 	}
 
@@ -122,6 +110,7 @@ public class BoFilmService {
 	}
 
 	public void deleteFilm(Long id) {
+		// TODO remove image
 		filmRepository.deleteById(id);
 	}
 
