@@ -12,10 +12,8 @@ import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.bo.displayer.ExtraEventBoDisplayer;
 import com.maudits.website.domain.form.ExtraEventForm;
 import com.maudits.website.domain.form.FilmForm;
-import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.ExtraEventRepository;
 import com.maudits.website.repository.FilmRepository;
-import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.ExtraEvent;
 import com.maudits.website.repository.entities.Film;
 
@@ -24,21 +22,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BoFilmService {
+	private final CurrentEditionService currentEditionService;
 	private final FilmRepository filmRepository;
-	private final EditionRepository editionRepository;
 	private final UploadService uploadService;
 	private final ExtraEventRepository extraEventRepository;
-
-	public Edition findEdition(DisplayEdition displayEdition) {
-		switch (displayEdition) {
-		case CURRENT:
-			return editionRepository.findOneByCurrentTrue();
-		case NEXT:
-			return editionRepository.findOneByNextTrue();
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
-		}
-	}
 
 	public FilmForm createFilmForm() {
 		return new FilmForm();
@@ -61,7 +48,7 @@ public class BoFilmService {
 	public Film saveFilm(DisplayEdition displayEdition, @Valid FilmForm form) throws IOException {
 		Long id = form.getId();
 		Film film = (id != null) ? filmRepository.findById(id).orElseThrow() : new Film();
-		film.setEdition(findEdition(displayEdition));
+		film.setEdition(currentEditionService.findEdition(displayEdition));
 		return saveFilm(form, film);
 	}
 
@@ -141,6 +128,7 @@ public class BoFilmService {
 	}
 
 	public void deleteExtraEvent(Long id) {
+		// TODO Delete image and movie
 		extraEventRepository.deleteById(id);
 	}
 

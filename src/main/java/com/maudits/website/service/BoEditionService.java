@@ -22,18 +22,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BoEditionService {
+	private final CurrentEditionService currentEditionService;
 	private final EditionRepository editionRepository;
-
-	public Edition findEdition(DisplayEdition displayEdition) {
-		switch (displayEdition) {
-		case CURRENT:
-			return editionRepository.findOneByCurrentTrue();
-		case NEXT:
-			return editionRepository.findOneByNextTrue();
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
-		}
-	}
 
 	private List<FilmBoDisplayer> findFilms(Edition edition) {
 		List<FilmBoDisplayer> result = new ArrayList<>();
@@ -52,17 +42,17 @@ public class BoEditionService {
 	}
 
 	public EditionBoDisplayer buildDisplayer(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		return new EditionBoDisplayer(findFilms(edition), findSponsors(edition));
 	}
 
 	public EditionForm buildForm(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		return new EditionForm(edition);
 	}
 
 	public void saveEdition(DisplayEdition displayEdition, @Valid EditionForm form) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		edition.setAccentColor(form.getColor());
 		editionRepository.save(edition);
 	}

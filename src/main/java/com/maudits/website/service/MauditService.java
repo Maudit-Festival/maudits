@@ -35,29 +35,19 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MauditService {
-	private final FilmRepository filmRepository;
+	private final CurrentEditionService currentEditionService;
 	private final EditionRepository editionRepository;
+	private final FilmRepository filmRepository;
 	private final ExtraEventRepository extraEventRepository;
 
-	public Edition findEdition(DisplayEdition displayEdition) {
-		switch (displayEdition) {
-		case CURRENT:
-			return editionRepository.findOneByCurrentTrue();
-		case NEXT:
-			return editionRepository.findOneByNextTrue();
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
-		}
-	}
-
 	public FrontPageDisplayer makePageDisplayer(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		return new FrontPageDisplayer(edition);
 	}
 
 	public FilmDetailPageDisplayer findFilmDetailPageDisplayerFromTextualId(DisplayEdition displayEdition,
 			String textualId) throws WrongEditionException {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		Film film = filmRepository.findOneByTextualId(textualId)
 				.or(() -> filmRepository.findById(Long.valueOf(textualId))).orElseThrow();
 //		if (!film.getEdition().equals(edition)) {
@@ -97,7 +87,7 @@ public class MauditService {
 	}
 
 	public HomepageDisplayer makeHomeFilmRecap(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		List<HomePageDayDisplayer> days = findDays(edition);
 		List<SponsorDisplayer> sponsors = new ArrayList<>();
 		for (Sponsor sponsor : edition.getSponsors()) {
@@ -111,7 +101,7 @@ public class MauditService {
 	}
 
 	public ArchivePageDisplayer makeArchivePage(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		List<Edition> pastEditions = editionRepository.findAllByCurrentFalseAndNextFalse();
 		if (displayEdition == DisplayEdition.NEXT) {
 			pastEditions.add(0, editionRepository.findOneByCurrentTrue());
@@ -120,7 +110,7 @@ public class MauditService {
 	}
 
 	public PreviousEditionDisplayer makePreviousEditionPage(String editionCode, DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		Edition archivedEdition = editionRepository.findByName(editionCode).orElseThrow();
 		List<HomePageDayDisplayer> days = findDays(archivedEdition);
 		return new PreviousEditionDisplayer(edition, archivedEdition, days);

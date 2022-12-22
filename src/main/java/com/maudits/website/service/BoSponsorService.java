@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.form.SponsorForm;
-import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.SponsorRepository;
-import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Sponsor;
 
 import lombok.RequiredArgsConstructor;
@@ -19,20 +17,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BoSponsorService {
-	private final SponsorRepository sponsorRepository;
-	private final EditionRepository editionRepository;
+	private final CurrentEditionService currentEditionService;
 	private final UploadService uploadService;
-
-	public Edition findEdition(DisplayEdition displayEdition) {
-		switch (displayEdition) {
-		case CURRENT:
-			return editionRepository.findOneByCurrentTrue();
-		case NEXT:
-			return editionRepository.findOneByNextTrue();
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
-		}
-	}
+	private final SponsorRepository sponsorRepository;
 
 	public SponsorForm createSponsorForm() {
 		return new SponsorForm();
@@ -58,7 +45,7 @@ public class BoSponsorService {
 		sponsor.setName(filterEmpty(form.getName()));
 		sponsor.setTargetUrl(filterEmpty(form.getTargetUrl()));
 
-		sponsor.setEdition(findEdition(edition));
+		sponsor.setEdition(currentEditionService.findEdition(edition));
 
 		var logoFile = form.getLogoFile();
 		if (!logoFile.isEmpty()) {
