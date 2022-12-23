@@ -63,13 +63,23 @@ public class BoEditionService {
 		edition.setTimePeriod(form.getTimePeriod());
 		edition.setTeaserUrl(form.getTeaserUrl());
 
-		var heroFile = form.getHeroFile();
 		String folder = edition.getName();
+
+		var heroFile = form.getHeroFile();
 		if (!heroFile.isEmpty()) {
 			var tmp = heroFile.getOriginalFilename().split("[.]");
 			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
 			var url = uploadService.uploadFile(folder, "hero" + fileExtension, heroFile);
 			edition.setHeroUrl(url);
+		}
+
+		var pdfFile = form.getPdfFile();
+		if (!pdfFile.isEmpty()) {
+			var tmp = pdfFile.getOriginalFilename().split("[.]");
+			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
+			var url = uploadService.uploadFile(folder, "programme_maudit_festival_" + edition.getName() + fileExtension,
+					pdfFile);
+			edition.setPdfUrl(url);
 		}
 
 		editionRepository.save(edition);

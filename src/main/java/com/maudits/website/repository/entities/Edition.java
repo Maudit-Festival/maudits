@@ -33,6 +33,7 @@ public class Edition extends EntityWithId {
 	private String editorialTitle;
 	private String editorial;
 	private String teaserUrl;
+	private String pdfUrl;
 	@OneToMany(mappedBy = "edition")
 	private List<Guest> guests;
 

@@ -19,6 +19,9 @@ public class EditionForm {
 	private String heroUrl;
 	private MultipartFile heroFile;
 
+	private String pdfUrl;
+	private MultipartFile pdfFile;
+
 	private String teaserUrl;
 	// TODO guests
 
@@ -29,5 +32,6 @@ public class EditionForm {
 		this.timePeriod = edition.getTimePeriod();
 		this.teaserUrl = edition.getTeaserUrl();
 		this.heroUrl = edition.getHeroUrl();
+		this.pdfUrl = edition.getPdfUrl();
 	}
 }

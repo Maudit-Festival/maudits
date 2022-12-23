@@ -89,6 +89,14 @@
 					<input id="edition-color" type="color" th:field="*{color}">
 				</p>
 				<p class="form-group">
+					<label for="uploadPdf">Programme pdf :</label>
+					<div>
+						<a th:if="*{pdfUrl} != null" th:href="*{pdfUrl}" th:text="*{pdfUrl}"></a>
+						<input type="file" id="uploadPdf" accept="application/pdf"
+						th:field="*{pdfFile}" th:required="*{pdfUrl == null}" >
+					</div>
+				</p>
+				<p class="form-group">
 					<label for="uploadHeader">Image header :
 						<img id="headerPreview" class="imageUploadPreview d-block" th:src="*{heroUrl}">
 						<input type="file" id="uploadHeader" accept="image/*" class="d-none2"
