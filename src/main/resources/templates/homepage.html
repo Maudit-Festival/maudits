@@ -18,8 +18,8 @@
 	<th:block th:replace="fragments/common :: owa-script" />
 </head>
 
-<body class="homepage" th:with="root = ${page.preview ? '/bo/next/' : '/'}">
-	<nav th:replace="fragments/common.html :: common-navbar(${root})"></nav>
+<body class="homepage">
+	<nav th:replace="fragments/common.html :: common-navbar"></nav>
 	<div class="hero">
 		<div class="container hero_content">
 			<div class="container-home">
@@ -29,7 +29,7 @@
 						<th:block th:text="${page.editionTimePeriod}" />
 						<th:block th:text="${page.editionName}" />
 					</h2>
-					<a th:href="${root + '#programmation'}" class="white-button">En savoir plus</a>
+					<a th:href="${page.root + '#programmation'}" class="white-button">En savoir plus</a>
 				</th:block>
 				<th:block th:unless="${page.currentEvent == null}">
 					<div class="container-home-current-event">
@@ -40,7 +40,7 @@
 							<h1 th:text="${page.currentEvent.title}">Le Maudit Festival</h1>
 							<h2 th:text="${page.currentEvent.dateAndTime}"></h2>
 							<h2 th:text="${page.currentEvent.locationName}"></h2>
-							<a th:href="@{${root + 'film/'+ page.currentEvent.textualId}}" class="white-button">En savoir plus</a>
+							<a th:href="@{${page.root + 'film/'+ page.currentEvent.textualId}}" class="white-button">En savoir plus</a>
 						</div>
 					</div>
 				</th:block>
@@ -83,7 +83,7 @@
 						<div th:text="${film.startTime}"></div>
 						<div th:text="${film.title != null ? film.title : 'Film pas encore annoncé'}"></div>
 						<div th:text="${film.locationName}"></div>
-						<a th:if="${film.textualId != null}" th:href="@{${root + 'film/'+ film.textualId}}" class="know_more_previous_programmation">En savoir plus</a>
+						<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="know_more_previous_programmation">En savoir plus</a>
 					</article>
 				</div>
 			</div>
@@ -152,7 +152,7 @@
 			</div>
 		</div>
 	</div>
-	<footer th:replace="fragments/common.html :: common-footer(${root})">
+	<footer th:replace="fragments/common.html :: common-footer">
 	</footer>
 	<script src="/plugins/slick-1.8.1/slick/slick.min.js" type="text/javascript"></script>
 	<script>

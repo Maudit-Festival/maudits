@@ -85,9 +85,9 @@ public class MauditController {
 		return "history";
 	}
 
-	@GetMapping("editions-precedentes/{editionCode}")
-	public String showEdition(@PathVariable String editionCode, Model model) {
-		model.addAttribute("page", mauditService.makePreviousEditionPage(editionCode, DisplayEdition.CURRENT));
+	@GetMapping("editions-precedentes/{editionName}")
+	public String showEdition(@PathVariable String editionName, Model model) {
+		model.addAttribute("page", mauditService.makePreviousEditionPage(editionName, DisplayEdition.CURRENT));
 		return "previous-edition";
 	}
 

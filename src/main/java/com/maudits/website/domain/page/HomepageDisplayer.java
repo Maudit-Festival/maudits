@@ -15,16 +15,17 @@ public class HomepageDisplayer extends FrontPageDisplayer {
 	private final HomePageCurrentEventDisplayer currentEvent;
 	private final List<SponsorDisplayer> sponsors;
 
-	public HomepageDisplayer(Edition edition, List<HomePageDayDisplayer> days, List<SponsorDisplayer> sponsors) {
-		super(edition);
+	public HomepageDisplayer(Edition edition, List<String> editionNames, List<HomePageDayDisplayer> days,
+			List<SponsorDisplayer> sponsors) {
+		super(edition, editionNames);
 		this.days = days;
 		this.currentEvent = null;
 		this.sponsors = sponsors;
 	}
 
-	public HomepageDisplayer(Edition edition, HomePageCurrentEventDisplayer currentEvent,
+	public HomepageDisplayer(Edition edition, List<String> editionNames, HomePageCurrentEventDisplayer currentEvent,
 			List<SponsorDisplayer> sponsors) {
-		super(edition);
+		super(edition, editionNames);
 		this.days = null;
 		this.currentEvent = currentEvent;
 		this.sponsors = sponsors;

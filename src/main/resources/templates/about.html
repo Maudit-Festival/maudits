@@ -11,8 +11,8 @@
 	<th:block th:replace="fragments/common :: owa-script" />
 </head>
 <!--TODO-->
-<body th:with="root = ${page.preview ? '/bo/next/' : '/'}">
-	<header th:replace="fragments/common.html :: common-navbar(${root})"></header>
+<body>
+	<header th:replace="fragments/common.html :: common-navbar"></header>
 	<section class="hero short-hero">
 	</section>
 	<section class="background_about">
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 	</section>
-	<footer th:replace="fragments/common.html :: common-footer(${root})">
+	<footer th:replace="fragments/common.html :: common-footer">
 	</footer>
 </body>
 </html>

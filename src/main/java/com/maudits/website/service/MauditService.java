@@ -40,9 +40,17 @@ public class MauditService {
 	private final FilmRepository filmRepository;
 	private final ExtraEventRepository extraEventRepository;
 
+	private List<String> findPreviousEditionNames(DisplayEdition displayEdition) {
+		List<Edition> pastEditions = editionRepository.findAllByCurrentFalseAndNextFalse();
+		if (displayEdition == DisplayEdition.NEXT) {
+			pastEditions.add(0, editionRepository.findOneByCurrentTrue());
+		}
+		return pastEditions.stream().map(Edition::getName).toList();
+	}
+
 	public FrontPageDisplayer makePageDisplayer(DisplayEdition displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
-		return new FrontPageDisplayer(edition);
+		return new FrontPageDisplayer(edition, findPreviousEditionNames(displayEdition));
 	}
 
 	public FilmDetailPageDisplayer findFilmDetailPageDisplayerFromTextualId(DisplayEdition displayEdition,
@@ -56,7 +64,7 @@ public class MauditService {
 		if (displayEdition != DisplayEdition.NEXT && film.isNextEdition()) {
 			throw new WrongEditionException();
 		}
-		return new FilmDetailPageDisplayer(edition, film);
+		return new FilmDetailPageDisplayer(edition, findPreviousEditionNames(displayEdition), film);
 	}
 
 	private List<Film> mergeList(List<Film> oldList, List<Film> newList) {
@@ -96,8 +104,9 @@ public class MauditService {
 		Collections.shuffle(sponsors);
 //		return new HomepageDisplayer(edition, days, sponsors);
 		return extraEventRepository.findOneByActive()
-				.map(ea -> new HomepageDisplayer(edition, new HomePageCurrentEventDisplayer(ea.getFilm()), sponsors))
-				.orElse(new HomepageDisplayer(edition, days, sponsors));
+				.map(ea -> new HomepageDisplayer(edition, findPreviousEditionNames(displayEdition),
+						new HomePageCurrentEventDisplayer(ea.getFilm()), sponsors))
+				.orElse(new HomepageDisplayer(edition, findPreviousEditionNames(displayEdition), days, sponsors));
 	}
 
 	public ArchivePageDisplayer makeArchivePage(DisplayEdition displayEdition) {
@@ -109,11 +118,11 @@ public class MauditService {
 		return new ArchivePageDisplayer(edition, pastEditions);
 	}
 
-	public PreviousEditionDisplayer makePreviousEditionPage(String editionCode, DisplayEdition displayEdition) {
+	public PreviousEditionDisplayer makePreviousEditionPage(String editionName, DisplayEdition displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
-		Edition archivedEdition = editionRepository.findByName(editionCode).orElseThrow();
+		Edition archivedEdition = editionRepository.findByName(editionName).orElseThrow();
 		List<HomePageDayDisplayer> days = findDays(archivedEdition);
-		return new PreviousEditionDisplayer(edition, archivedEdition, days);
+		return new PreviousEditionDisplayer(edition, findPreviousEditionNames(displayEdition), archivedEdition, days);
 	}
 
 }

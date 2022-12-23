@@ -9,15 +9,15 @@
 		)" />
 	<th:block th:replace="fragments/common :: owa-script" />
 </head>
-<body th:with="root = ${page.preview ? '/bo/next/' : '/'}">
-	<header th:replace="fragments/common.html :: common-navbar(${root})"></header>
+<body>
+	<header th:replace="fragments/common.html :: common-navbar"></header>
 	<div class="hero short-hero">
 	</div>
 	<section class="p404-section">
 		<h1 class="http-error-code" th:text="${errorCode}">Error Code</h1>
-		<a th:href="${root}" class="btn btn-danger btn-lg http-error-button">Retourner sur la page d'accueil</a>
+		<a th:href="${page.root}" class="btn btn-danger btn-lg http-error-button">Retourner sur la page d'accueil</a>
 	</section>
-	<footer th:replace="fragments/common.html :: common-footer(${root})">
+	<footer th:replace="fragments/common.html :: common-footer">
 	</footer>
 </body>
 </html>
