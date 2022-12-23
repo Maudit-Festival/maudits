@@ -953,6 +953,8 @@ hr {
 */
 .p404-section {
 	text-align: center;
+	border-bottom: 3px solid var(--accent-color);
+	padding-bottom: 2rem;
 }
 .http-error-code{
 	font-size: 15em;
