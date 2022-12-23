@@ -13,6 +13,7 @@ public class FrontPageDisplayer {
 	private final String teaserVideoUrl;
 	private final String heroUrl;
 	private final String accentColor;
+	private final boolean preview;
 
 	public FrontPageDisplayer(Edition edition) {
 		this.editionTimePeriod = edition.getTimePeriod();
@@ -22,5 +23,6 @@ public class FrontPageDisplayer {
 		this.teaserVideoUrl = edition.getTeaserUrl();
 		this.heroUrl = edition.getHeroUrl();
 		this.accentColor = edition.getAccentColor();
+		this.preview = edition.isNext();
 	}
 }
