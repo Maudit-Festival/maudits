@@ -89,7 +89,8 @@
 					</a>
 					<div class="dropdown-menu dropdown_nav_style" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" th:href="${page.root + 'editions-precedentes/avant-le-maudit-festival'}">Historique</a>
-						<a th:each="editionName : ${page.previousEditionNames}" class="dropdown-item" th:href="${page.root + 'editions-precedentes/' + editionName}">2020</a>
+						<a th:each="editionName : ${page.previousEditionNames}" class="dropdown-item" 
+						th:href="${page.root + 'editions-precedentes/' + editionName}" th:text="${editionName}">2020</a>
 					</div>
 				</li>
 				<li class="nav-item">
