@@ -11,7 +11,7 @@
 	<groupId>com.maudit</groupId>
 	<artifactId>website</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>maudit-website</name>
 	<description>Site web des maudits films</description>
 
 	<properties>
