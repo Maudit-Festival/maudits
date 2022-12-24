@@ -77,7 +77,7 @@
 				<div class="previous-programmation-day-recap row">
 					<article th:each="film : ${day.films}">
 						<header>
-							<a th:if="${film.textualId != null}" th:href="@{${'/film/'+film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+							<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
 							<a th:unless="${film.textualId != null}" class="link_img_previous"><img src="/img/unannounced_movie_poster.jpg" class="img-fluid rounded" alt="Poster non dévoilé" loading="lazy"></a>
 						</header>
 						<div th:text="${film.startTime}"></div>
