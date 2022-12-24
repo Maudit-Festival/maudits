@@ -14,6 +14,7 @@ public class HomepageDisplayer extends FrontPageDisplayer {
 	private final List<HomePageDayDisplayer> days;
 	private final HomePageCurrentEventDisplayer currentEvent;
 	private final List<SponsorDisplayer> sponsors;
+	private final String pdfUrl;
 
 	public HomepageDisplayer(Edition edition, List<String> editionNames, List<HomePageDayDisplayer> days,
 			List<SponsorDisplayer> sponsors) {
@@ -21,6 +22,7 @@ public class HomepageDisplayer extends FrontPageDisplayer {
 		this.days = days;
 		this.currentEvent = null;
 		this.sponsors = sponsors;
+		this.pdfUrl = edition.getPdfUrl();
 	}
 
 	public HomepageDisplayer(Edition edition, List<String> editionNames, HomePageCurrentEventDisplayer currentEvent,
@@ -29,5 +31,6 @@ public class HomepageDisplayer extends FrontPageDisplayer {
 		this.days = null;
 		this.currentEvent = currentEvent;
 		this.sponsors = sponsors;
+		this.pdfUrl = null;
 	}
 }

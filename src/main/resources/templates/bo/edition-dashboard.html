@@ -93,7 +93,7 @@
 					<div>
 						<a th:if="*{pdfUrl} != null" th:href="*{pdfUrl}" th:text="*{pdfUrl}"></a>
 						<input type="file" id="uploadPdf" accept="application/pdf"
-						th:field="*{pdfFile}" th:required="*{pdfUrl == null}" >
+						th:field="*{pdfFile}">
 					</div>
 				</p>
 				<p class="form-group">
