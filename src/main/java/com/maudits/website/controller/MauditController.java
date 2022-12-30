@@ -75,7 +75,7 @@ public class MauditController {
 
 	@GetMapping("a-propos-du-maudit-festival")
 	public String showAbout(Model model) {
-		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		model.addAttribute("page", mauditService.makeAboutPageDisplayer(DisplayEdition.CURRENT));
 		return "about";
 	}
 

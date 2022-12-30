@@ -18,6 +18,7 @@ import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.domain.displayer.HomePageFilmDisplayer;
 import com.maudits.website.domain.displayer.SponsorDisplayer;
 import com.maudits.website.domain.exception.WrongEditionException;
+import com.maudits.website.domain.page.AboutPageDisplayer;
 import com.maudits.website.domain.page.ArchivePageDisplayer;
 import com.maudits.website.domain.page.FilmDetailPageDisplayer;
 import com.maudits.website.domain.page.FrontPageDisplayer;
@@ -125,4 +126,8 @@ public class MauditService {
 		return new PreviousEditionDisplayer(edition, findPreviousEditionNames(displayEdition), archivedEdition, days);
 	}
 
+	public FrontPageDisplayer makeAboutPageDisplayer(DisplayEdition displayEdition) {
+		Edition edition = currentEditionService.findEdition(displayEdition);
+		return new AboutPageDisplayer(edition, findPreviousEditionNames(displayEdition));
+	}
 }
