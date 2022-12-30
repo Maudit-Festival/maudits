@@ -12,7 +12,7 @@
 	<script src="/plugins/jquery-3.4.1.min.js"></script>
 	<script src="/plugins/bootstrap-4.1.3.min.js"></script>
 
-	<link rel=”canonical” th:href="${canonicalurl}" />
+	<link rel="canonical" th:href="${canonicalurl}" />
 	<title th:text="${title}">Le Maudit Festival</title>
 	<meta name="description" th:content="${description}"/>
 	<meta property="og:title" th:content="${title}" />
@@ -72,7 +72,7 @@
 		<div class="navbarToggler collapse navbar-collapse nav_style">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item">
-					<a th:href="${page.root + 'a-propos-du-maudit-festival'}">Le Maudit Festival</a>
+					<a th:href="${page.root + 'a-propos-du-maudit-festival'}">Qui sommes-nous ?</a>
 				</li>
 				<li class="nav-item" th:if="${page != null && page.editorial != null}">
 					<a th:href="${page.root + '#editorial'}">Éditorial</a>
@@ -124,7 +124,7 @@
 				<h2>Menu</h2>
 				<ul>
 					<li><a th:href="${page.root}" class="footer_navigation">Accueil</a></li>
-					<li><a th:href="${page.root + 'a-propos-du-maudit-festival'}" class="footer_navigation">Le Maudit Festival</a></li>
+					<li><a th:href="${page.root + 'a-propos-du-maudit-festival'}" class="footer_navigation">Qui sommes-nous ?</a></li>
 					<li><a th:href="${page.root + 'contact'}" class="footer_navigation">Contactez-nous</a></li>
 				</ul>
 			</div>
