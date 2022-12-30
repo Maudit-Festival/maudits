@@ -45,7 +45,7 @@
 		<div class="row edition_content_film">
 			<article th:each="film : ${page.films}" class="col-md-2">
 				<header>
-					<img th:if="${film.posterUrl!= null}" th:src="*{film.posterUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy">
+					<img th:if="${film.posterUrl!= null}" th:src="*{film.posterUrl}" style="height: auto" th:alt="${film.title}">
 				</header>
 					<p th:text="${film.title}"></p>
 					<a th:href="${'film/edit/' + film.id}">Éditer</a>
@@ -55,7 +55,7 @@
 		<div class="row edition_content_film">
 				<article th:each="sponsor : ${page.sponsors}">
 					<header>
-						<img th:src="*{sponsor.logoUrl}" class="img-fluid rounded" th:alt="${sponsor.name}" loading="lazy">
+						<img th:src="*{sponsor.logoUrl}" style="height: auto" th:alt="${sponsor.name}">
 					</header>
 						<p th:text="${sponsor.name}"></p>
 						<a th:href="${'sponsor/edit/' + sponsor.id}">Éditer</a>
