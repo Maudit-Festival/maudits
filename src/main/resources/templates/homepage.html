@@ -91,7 +91,7 @@
 	</div>
 	</section>
 	<div th:if="${page.pdfUrl != null}" class="download-section">
-		<a th:href="${pdfUrl}" target="plaquette">
+		<a th:href="${page.pdfUrl}" target="plaquette">
 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 			<path d="M448.608,351.791c-18.444,0-33.4,14.952-33.4,33.396v52.055H96.788v-52.055c0-18.443-14.952-33.396-33.396-33.396 s-33.396,14.952-33.396,33.396v85.451c0,18.443,14.952,33.4,33.396,33.4h385.217c18.443,0,33.396-14.957,33.396-33.4v-85.451 C482.005,366.743,467.052,351.791,448.608,351.791z"/>
 			<path d="M245.918,387.325c5.563,5.559,14.6,5.559,20.157,0l117.039-117.038c3.41-3.41,4.423-8.532,2.579-13 c-1.844-4.45-6.18-7.351-11.012-7.351h-54.954V34.024c0-14.402-11.661-26.063-26.06-26.063h-75.323 c-14.398,0-26.06,11.66-26.06,26.063v215.912h-54.973c-4.827,0-9.163,2.9-11.007,7.351c-1.844,4.468-0.83,9.59,2.575,13 L245.918,387.325z"/>
@@ -101,7 +101,6 @@
 	<section id="pratique" th:if="${page.currentEvent == null}" class="practical-info-section">
 		<h3 class="section-headline">Infos pratiques</h3>
 		<div class="container-fluid">
-<!--			TODO verifier-->
 			<h4>Tarifs</h4>
 				<ul>
 					<li>Cinéma Juliet Berto : <span class="tarif">6,50€/5,50€</span></li>
@@ -109,7 +108,7 @@
 					<li>Séance‭ ‬de clôture au Ciel : <span class="tarif">5€</span></li>
 
 					<li>Pass 5 films : <span class="tarif">27,50€</span>. Ce passe donne uniquement accès aux séances se déroulant au cinéma Juliet Berto<br/>
-					<li>Séance GrindHouse - double programme : <span class="tarif">12€</span>. Cette séance‭ ‬du samedi‭ ‬22‭ ‬janvier‭ ‬se compose d’un‭ ‬<em>double programme</em>. Le tarif est donc identique que vous assistiez à un ou deux films.</li>
+					<li>Séance GrindHouse - double programme : <span class="tarif">12€</span>. Cette séance‭ ‬du samedi‭ ‬se compose d’un‭ ‬<em>double programme</em>. Le tarif est donc identique que vous assistiez à un ou deux films.</li>
 					<li>Billetterie en ligne : La plupart des séances sont accessibles en prévente :‭ ‬ouvrez l’œil sur nos réseaux sociaux ‭!
 				</ul>
 		</div>
