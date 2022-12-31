@@ -124,7 +124,7 @@ p{
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	min-height: 50em;
+	height: 50em;
 /*	background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/2021/1800.jpg"),linear-gradient(#110e0a,#171c23);*/
 	background-size: cover;
 	background-position: 0% 53%;
@@ -202,7 +202,7 @@ p{
 		display: block;
 	}
 	.hero{
-		min-height: 40em;
+		height: 40em;
 		margin-top:-30px;
 	}
 	.dropdown-menu{
@@ -223,7 +223,7 @@ p{
 		display: block;
 	}
 	.hero{
-		min-height: 30em;
+		height: 30em;
 		margin-top:0px;
 		/*background-size: 250%;*/
 		background-position: 53% 53%;
