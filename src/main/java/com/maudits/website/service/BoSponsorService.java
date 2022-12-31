@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
 
 import com.maudits.website.domain.bo.displayer.SponsorBoDisplayer;
@@ -62,7 +60,7 @@ public class BoSponsorService {
 		}
 	}
 
-	public void saveSponsor(@Valid SponsorForm form) throws IOException {
+	public void saveSponsor(SponsorForm form) throws IOException {
 		Long id = form.getId();
 		Sponsor sponsor = (id != null) ? sponsorRepository.findById(id).orElseThrow() : new Sponsor();
 		sponsor.setName(filterEmpty(form.getName()));

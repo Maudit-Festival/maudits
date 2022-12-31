@@ -2,8 +2,6 @@ package com.maudits.website.controller;
 
 import java.io.IOException;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +46,7 @@ public class BoSponsorsController {
 	}
 
 	@PostMapping("/save-edit")
-	public String saveFilmEdition(@Valid SponsorForm form, Model model) throws IOException {
+	public String saveFilmEdition(SponsorForm form, Model model) throws IOException {
 		boSponsorService.saveSponsor(form);
 		return "redirect:/bo/sponsors";
 	}

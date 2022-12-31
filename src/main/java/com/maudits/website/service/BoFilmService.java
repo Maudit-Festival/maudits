@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
 
 import com.maudits.website.domain.bo.displayer.FilmBoDisplayer;
@@ -62,7 +60,7 @@ public class BoFilmService {
 		}
 	}
 
-	public void saveFilm(@Valid FilmForm form) throws IOException {
+	public void saveFilm(FilmForm form) throws IOException {
 		Long id = form.getId();
 		Film film = (id != null) ? filmRepository.findById(id).orElseThrow() : new Film();
 
