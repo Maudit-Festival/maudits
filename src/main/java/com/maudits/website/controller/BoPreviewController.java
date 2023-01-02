@@ -51,7 +51,7 @@ public class BoPreviewController {
 
 	@GetMapping("a-propos-du-maudit-festival")
 	public String showAbout(Model model) {
-		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.NEXT));
+		model.addAttribute("page", mauditService.makeAboutPageDisplayer(DisplayEdition.NEXT));
 		return "about";
 	}
 
