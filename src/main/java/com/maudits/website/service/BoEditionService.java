@@ -55,10 +55,14 @@ public class BoEditionService {
 		return new EditionForm(edition);
 	}
 
+	private String nullIfEmpty(String string) {
+		return (string != null && string.isBlank()) ? string : null;
+	}
+
 	public void saveEdition(DisplayEdition displayEdition, @Valid EditionForm form) throws IOException {
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		edition.setAccentColor(form.getColor());
-		edition.setEditorial(form.getEditorial());
+		edition.setEditorial(nullIfEmpty(form.getEditorial()));
 		edition.setName(form.getName());
 		edition.setTimePeriod(form.getTimePeriod());
 		edition.setTeaserUrl(form.getTeaserUrl());
