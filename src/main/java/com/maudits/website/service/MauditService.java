@@ -46,7 +46,7 @@ public class MauditService {
 		if (displayEdition == DisplayEdition.NEXT) {
 			pastEditions.add(0, editionRepository.findOneByCurrentTrue());
 		}
-		return pastEditions.stream().map(Edition::getName).toList();
+		return pastEditions.stream().map(Edition::getName).sorted().toList();
 	}
 
 	public FrontPageDisplayer makePageDisplayer(DisplayEdition displayEdition) {
