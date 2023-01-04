@@ -1019,3 +1019,7 @@ hr {
 		margin-bottom: 15px;
 	}
 }
+
+b {
+	font-weight: bold;
+}
