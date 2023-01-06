@@ -56,7 +56,7 @@ public class BoEditionService {
 	}
 
 	private String nullIfEmpty(String string) {
-		return (string != null && string.isBlank()) ? string : null;
+		return (string != null && !string.isBlank()) ? string : null;
 	}
 
 	public void saveEdition(DisplayEdition displayEdition, @Valid EditionForm form) throws IOException {
