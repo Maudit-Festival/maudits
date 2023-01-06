@@ -65,7 +65,7 @@ public class BoEditionService {
 		edition.setEditorial(nullIfEmpty(form.getEditorial()));
 		edition.setName(form.getName());
 		edition.setTimePeriod(form.getTimePeriod());
-		edition.setTeaserUrl(form.getTeaserUrl());
+		edition.setTeaserUrl(nullIfEmpty(form.getTeaserUrl()));
 
 		String folder = edition.getName();
 
