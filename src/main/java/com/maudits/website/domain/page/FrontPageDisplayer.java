@@ -13,6 +13,7 @@ public class FrontPageDisplayer {
 	private final String editorialTitle;
 	private final String editorial;
 	private final String teaserVideoUrl;
+	private final String shareImageUrl;
 	private final String heroUrl;
 	private final String accentColor;
 	private final String root;
@@ -24,6 +25,7 @@ public class FrontPageDisplayer {
 		this.editorialTitle = edition.getEditorialTitle();
 		this.editorial = edition.getEditorial();
 		this.teaserVideoUrl = edition.getTeaserUrl();
+		this.shareImageUrl = edition.getShareImageUrl();
 		this.heroUrl = edition.getHeroUrl();
 		this.accentColor = edition.getAccentColor();
 		this.root = edition.isNext() ? "/bo/next/" : "/";

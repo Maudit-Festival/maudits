@@ -77,6 +77,14 @@ public class BoEditionService {
 			edition.setHeroUrl(url);
 		}
 
+		var shareImageFile = form.getShareImageFile();
+		if (!shareImageFile.isEmpty()) {
+			var tmp = shareImageFile.getOriginalFilename().split("[.]");
+			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
+			var url = uploadService.uploadFile(folder, "share" + fileExtension, shareImageFile);
+			edition.setShareImageUrl(url);
+		}
+
 		var pdfFile = form.getPdfFile();
 		if (!pdfFile.isEmpty()) {
 			var tmp = pdfFile.getOriginalFilename().split("[.]");
