@@ -103,6 +103,13 @@
 						th:field="*{heroFile}" th:required="*{heroUrl == null}" >
 					</label>
 				</p>
+				<p class="form-group">
+					<label for="uploadShareImage">Image à montrer lors du preview des liens sur les réseaux sociaux :
+						<img id="shareImagePreview" class="imageUploadPreview d-block" th:src="*{shareImageUrl}">
+						<input type="file" id="uploadShareImage" accept="image/*" class="d-none2"
+						th:field="*{shareImageFile}" th:required="*{shareImageUrl == null}" >
+					</label>
+				</p>
 
 				<input class="btn btn-primary" type="submit">
 			</form>

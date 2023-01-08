@@ -55,13 +55,17 @@ public class BoEditionService {
 		return new EditionForm(edition);
 	}
 
+	private String nullIfEmpty(String string) {
+		return (string != null && !string.isBlank()) ? string : null;
+	}
+
 	public void saveEdition(DisplayEdition displayEdition, @Valid EditionForm form) throws IOException {
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		edition.setAccentColor(form.getColor());
-		edition.setEditorial(form.getEditorial());
+		edition.setEditorial(nullIfEmpty(form.getEditorial()));
 		edition.setName(form.getName());
 		edition.setTimePeriod(form.getTimePeriod());
-		edition.setTeaserUrl(form.getTeaserUrl());
+		edition.setTeaserUrl(nullIfEmpty(form.getTeaserUrl()));
 
 		String folder = edition.getName();
 
@@ -71,6 +75,14 @@ public class BoEditionService {
 			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
 			var url = uploadService.uploadFile(folder, "hero" + fileExtension, heroFile);
 			edition.setHeroUrl(url);
+		}
+
+		var shareImageFile = form.getShareImageFile();
+		if (!shareImageFile.isEmpty()) {
+			var tmp = shareImageFile.getOriginalFilename().split("[.]");
+			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
+			var url = uploadService.uploadFile(folder, "share" + fileExtension, shareImageFile);
+			edition.setShareImageUrl(url);
 		}
 
 		var pdfFile = form.getPdfFile();

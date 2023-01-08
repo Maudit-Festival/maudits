@@ -23,8 +23,8 @@ public class ContactService {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(contactEmail);
 		message.setTo("terreur.nocturne.asso@gmail.com");
-		message.setSubject("[Formulaire de contact mauditfestival.com] Un nouveau message de " + form.getFirstName()
-				+ " " + form.getLastName() + " ( " + form.getEmailAddress() + ")");
+		message.setSubject(
+				"[Formulaire de contact mauditfestival.com] De " + form.getFirstName() + " " + form.getLastName());
 		message.setReplyTo(form.getEmailAddress());
 		message.setText(form.getMessageContent());
 		try {

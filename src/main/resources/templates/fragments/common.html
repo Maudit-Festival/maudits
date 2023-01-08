@@ -13,12 +13,12 @@
 	<meta name="description" th:content="${description}"/>
 	<meta property="og:title" th:content="${title}" />
 	<meta property="og:description" th:content="${description}" />
-	<meta property="og:image" content="https://lemauditfestival.com/uploads/2022/share.jpg" />
+	<meta property="og:image" th:content="${page.shareImageUrl}" />
 	<meta property="og:type" content="website" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" th:content="${title}" />
 	<meta name="twitter:description" th:content="${description}" />
-	<meta name="twitter:image" content="https://lemauditfestival.com/uploads/2022/share.jpg" />
+	<meta name="twitter:image" th:content="${page.shareImageUrl}" />
 
 	</th:block>
 

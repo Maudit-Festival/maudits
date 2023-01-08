@@ -6,7 +6,7 @@
 		canonicalurl=${'https://lemauditfestival.com/film/'+page.filmDisplayer.textualId},
 		title=${page.filmDisplayer.title + ' - Le Maudit Festival'},
 		description=${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title},
-		page=page
+		page=${page}
 		)" />
 	</th:block>
 	<th:block th:unless="${page.filmDisplayer.director == null}">
@@ -15,7 +15,7 @@
 		title=${page.filmDisplayer.title + ' - Le Maudit Festival'},
 		description=${page.filmDisplayer.date + ' - projection de ' + page.filmDisplayer.title + ' de ' + page.filmDisplayer.director +'. ' +
 		'Un film de ' + page.filmDisplayer.releaseDate + ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting + '.'},
-		page=page
+		page=${page}
 		)" />
 	</th:block>
 

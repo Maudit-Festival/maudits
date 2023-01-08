@@ -28,6 +28,7 @@ public class Edition extends EntityWithId {
 	private String timePeriod;
 
 	private String heroUrl;
+	private String shareImageUrl;
 	private String accentColor;
 
 	private String editorialTitle;

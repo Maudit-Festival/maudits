@@ -16,6 +16,8 @@ public class EditionForm {
 	private String editorial;
 	private String name;
 	private String timePeriod;
+	private String shareImageUrl;
+	private MultipartFile shareImageFile;
 	private String heroUrl;
 	private MultipartFile heroFile;
 
@@ -30,8 +32,9 @@ public class EditionForm {
 		this.editorial = edition.getEditorial();
 		this.name = edition.getName();
 		this.timePeriod = edition.getTimePeriod();
-		this.teaserUrl = edition.getTeaserUrl();
+		this.shareImageUrl = edition.getShareImageUrl();
 		this.heroUrl = edition.getHeroUrl();
 		this.pdfUrl = edition.getPdfUrl();
+		this.teaserUrl = edition.getTeaserUrl();
 	}
 }
