@@ -57,46 +57,26 @@
 	</th:block>
 </head>
 <body>
-	<nav th:fragment="common-navbar" class="navbar navbar-expand-lg">
-		<a class="navbar-brand logo-long-header" th:href="${page.root}"><img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-brand"><span class="navbar-toggler-icon"> <svg th:replace="fragments/svg :: burger-menu"></svg></span></span>
-		</button>
-		<a class="navbarToggler collapse logo-mobile-header" th:href="${page.root}">
-			<img src="/img/logo-cercle.png"  alt="Logo Terreur Nocturne" class="header-logo">
-		</a>
-		<div class="navbarToggler collapse navbar-collapse nav_style">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item">
-					<a th:href="${page.root + 'a-propos-du-maudit-festival'}">Qui sommes-nous ?</a>
-				</li>
-				<li class="nav-item" th:if="${page != null && page.editorial != null}">
-					<a th:href="${page.root + '#editorial'}">Éditorial</a>
-				</li>
-<!--				<li class="nav-item" th:if="${page.teaserVideoUrl != null}">
-					<a href="/#teaser">Teaser</a>
-				</li>-->
-				<li class="nav-item">
-					<a th:href="${page.root + '#programmation'}">Programmation</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="dropdown-toggle navbarDropdownLastEdition" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Editions précédentes
-					</a>
-					<div class="dropdown-menu dropdown_nav_style" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" th:href="${page.root + 'editions-precedentes/avant-le-maudit-festival'}">Historique</a>
-						<a th:each="editionName : ${page.previousEditionNames}" class="dropdown-item" 
+	<nav class="navbar" th:fragment="common-navbar">
+		<label for="mobile_menu">
+			<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo">
+		</label>
+		<input style="display: none;" type="checkbox" id="mobile_menu">
+		<div>
+			<a class="navbar-link" th:href="${page.root + 'a-propos-du-maudit-festival'}">Qui sommes-nous ?</a>
+			<a class="navbar-link" th:if="${page != null && page.editorial != null}" th:href="${page.root + '#editorial'}">Éditorial</a>
+			<a class="navbar-link" th:href="${page.root + '#programmation'}">Programmation</a>
+			<div class="navbarDropdownLastEdition navbar-link" role="button">
+				<label for="previousEditionCheckbox">Editions précédentes</label>
+				<input id="previousEditionCheckbox" type="checkbox" style="display: none;">
+				<div class="dropdown-menu dropdown_nav_style" style="width: 100%;">
+					<a  class="navbar-link" th:href="${page.root + 'editions-precedentes/avant-le-maudit-festival'}">Historique</a>
+					<a th:each="editionName : ${page.previousEditionNames}" class="navbar-link" 
 						th:href="${page.root + 'editions-precedentes/' + editionName}" th:text="${editionName}">2020</a>
-					</div>
-				</li>
-				<li class="nav-item">
-					<a th:href="${page.root + '#pratique'}">Infos pratiques</a>
-				</li>
-				<li class="nav-item">
-					<a th:href="${page.root + 'contact'}">Contact</a>
-				</li>
-
-			</ul>
+				</div>
+			</div>
+			<a class="navbar-link" th:href="${page.root + '#pratique'}">Infos pratiques</a>
+			<a class="navbar-link" th:href="${page.root + 'contact'}">Contact</a>
 		</div>
 	</nav>
 	<footer th:fragment="common-footer">

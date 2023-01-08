@@ -56,7 +56,7 @@
 	<section id="teaser" th:if="${page.teaserVideoUrl != null && page.currentEvent == null}" class='programmation-section'>
 		<div>
 			<h3 class="section-headline">Teaser</h3>
-			<div class="embed-responsive embed-responsive-16by9">
+			<div class="video-container">
 				<iframe class="embed-responsive-item" title="Teaser" loading="lazy" th:src="${page.teaserVideoUrl}" allowfullscreen></iframe>
 			</div>
 		</div>
@@ -71,19 +71,19 @@
 				<span>/</span>
 			</th:block>
 		</div>
-		<div class="day_previous_programmation d-flex flex-wrap">
-		<div th:each="day : ${page.days}" th:id="${day.date}" class="content_previous_list">
+		<div class="day_programmation">
+		<div th:each="day : ${page.days}" th:id="${day.date}" class="programmation_list">
 				<h4 th:text="${day.displayDate}"></h4>
-				<div class="previous-programmation-day-recap row">
+				<div class="programmation-day-recap row">
 					<article th:each="film : ${day.films}">
 						<header>
 							<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
 							<a th:unless="${film.textualId != null}" class="link_img_previous"><img src="/img/unannounced_movie_poster.jpg" class="img-fluid rounded" alt="Poster non dévoilé" loading="lazy"></a>
 						</header>
 						<div th:text="${film.startTime}"></div>
-						<div th:text="${film.title != null ? film.title : 'Film pas encore annoncé'}"></div>
+						<div><span th:text="${film.title != null ? film.title : 'Film pas encore annoncé'}"></span></div>
 						<div th:text="${film.locationName}"></div>
-						<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="know_more_previous_programmation">En savoir plus</a>
+						<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="know_more btn-purple">En savoir plus</a>
 					</article>
 				</div>
 			</div>
