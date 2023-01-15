@@ -10,11 +10,6 @@
 
 	<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.1/slick/slick.css" async/>
 	<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.1/slick/slick-theme.css" async/>
-	<!--
-	<span th:switch="${random}">
-		<link th:case="0" rel="stylesheet" type="text/css" href="/css/conditionnal_0.css" async/>
-	  <link th:case="1" rel="stylesheet" type="text/css" href="/css/conditionnal_1.css" async/>
-	</span>-->
 	<th:block th:replace="fragments/common :: owa-script" />
 </head>
 
@@ -65,30 +60,30 @@
 	<section id="programmation" th:if="${page.currentEvent == null}" class="programmation-section">
 		<h3 class="section-headline">Programmation</h3>
 		<div class="container">
-		<div class="programmation_list_days">
-			<th:block th:each="day : ${page.days}">
-				<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
-				<span>/</span>
-			</th:block>
-		</div>
-		<div class="day_programmation">
-		<div th:each="day : ${page.days}" th:id="${day.date}" class="programmation_list">
-				<h4 th:text="${day.displayDate}"></h4>
-				<div class="programmation-day-recap row">
-					<article th:each="film : ${day.films}">
-						<header>
-							<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
-							<a th:unless="${film.textualId != null}" class="link_img_previous"><img src="/img/unannounced_movie_poster.jpg" class="img-fluid rounded" alt="Poster non dévoilé" loading="lazy"></a>
-						</header>
-						<div th:text="${film.startTime}"></div>
-						<div><span th:text="${film.title != null ? film.title : 'Film pas encore annoncé'}"></span></div>
-						<div th:text="${film.locationName}"></div>
-						<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="know_more btn-purple">En savoir plus</a>
-					</article>
+			<div class="programmation_list_days">
+				<th:block th:each="day : ${page.days}">
+					<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
+					<span>/</span>
+				</th:block>
+			</div>
+			<div class="day_programmation">
+				<div th:each="day : ${page.days}" th:id="${day.date}" class="programmation_list">
+					<h4 th:text="${day.displayDate}"></h4>
+					<div class="programmation-day-recap row">
+						<article th:each="film : ${day.films}">
+							<header>
+								<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+								<a th:unless="${film.textualId != null}" class="link_img_previous"><img src="/img/unannounced_movie_poster.jpg" class="img-fluid rounded" alt="Poster non dévoilé" loading="lazy"></a>
+							</header>
+							<div th:text="${film.startTime}"></div>
+							<div><span th:text="${film.title != null ? film.title : 'Film pas encore annoncé'}"></span></div>
+							<div th:text="${film.locationName}"></div>
+							<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="know_more btn-purple">En savoir plus</a>
+						</article>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</section>
 	<div th:if="${page.pdfUrl != null}" class="download-section">
 		<a th:href="${page.pdfUrl}" target="plaquette">

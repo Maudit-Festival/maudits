@@ -15,44 +15,45 @@
 	<header th:replace="fragments/common.html :: common-navbar"></header>
 	<section class="hero short-hero">
 	</section>
-	<section class="previous_edition">
-		<div class="container-fluid">
-			<div class="col-lg-9 offset-lg-2 col-md-12 previous_main_edition">
-				<div th:if="${page.editorial != null}" class='row previous_edito' id="PreviousEdito">
-					<h2>Éditorial</h2>
-					<p th:utext="${#strings.replace(#strings.escapeXml(page.editorial),'&#10;','&lt;br&gt;')}"></p>
-				</div>
-				<div th:if="${page.teaserVideoUrl != null}" class='row previous_teaser' id="PreviousTeaser">
-					<h2>Teaser</h2>
-					<div class="embed-responsive embed-responsive-16by9">
-						<iframe class="embed-responsive-item" title="Teaser" loading="lazy" th:src="${page.teaserVideoUrl}" allowfullscreen></iframe>
+	<section id="editorial" class='editorial-section'>
+		<div th:if="${page.editorial != null}">
+			<h3 class="section-headline">Éditorial</h3>
+			<p text:bbcode="${page.editorial}"></p>
+		</div>
+	</section>
+	<section id="teaser" th:if="${page.teaserVideoUrl != null}" class="programmation-section">
+		<div>
+			<h3 class="section-headline">Teaser</h3>
+			<div class="video-container">
+				<iframe class="embed-responsive-item" title="Teaser" loading="lazy" th:src="${page.teaserVideoUrl}" allowfullscreen></iframe>
+			</div>
+		</div>
+	</section>
+	<section th:if="${page.guests.size() > 0}" class='guests programmation-section'>
+		<h3 class="section-headline">Invités</h3>
+		<div class="guests-container">
+			<div class="guest-container" th:each="guest : ${page.guests}">
+				<h3 th:text="${guest.name}"></h3>
+				<div>
+					<p class="guest-description" th:text="${guest.description}"></p>
+					<div class="guest_img">
+						<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}" loading="lazy"	class="img-fluid">
 					</div>
 				</div>
-				<div th:if="${page.guests.size() > 0}" class='row previous_guests' id="PreviousGuests">
-					<h2>Invités</h2>
-					<div class="container">
-						<div th:each="guest : ${page.guests}" class="row">
-							<h3 th:text="${guest.name}"></h3>
-							<div class="row">
-								<div class="col-lg-8 col-md-7 col-sm-5">
-									<p th:text="${guest.description}"></p>
-								</div>
-								<div class="col-lg-4 col-md-5 col-sm-7 guest_img">
-									<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}" loading="lazy"	class="img-fluid">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container previous_programmation_list_days programmation_list_days" id="PreviousMovies">
-					<h2>Les Films et évènements</h2>
-					<th:block th:each="day : ${page.days}">
-						<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
-						<span>/</span>
-					</th:block>
-				</div>
-				<div class="day_programmation d-flex flex-wrap">
-				<div th:each="day : ${page.days}" th:id="${day.date}" class="content_previous_list">
+			</div>
+		</div>
+	</section>
+	<section id="programmation" class="programmation-section footer-separator">
+		<h3 class="section-headline">Les Films et évènements</h3>
+		<div class="container">
+			<div class="programmation_list_days">
+				<th:block th:each="day : ${page.days}">
+					<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
+					<span>/</span>
+				</th:block>
+			</div>
+			<div class="day_programmation">
+				<div th:each="day : ${page.days}" th:id="${day.date}" class="programmation_list">
 						<h4 th:text="${day.displayDate}"></h4>
 						<div class="programmation-day-recap row">
 							<article th:each="film : ${day.films}">
@@ -60,7 +61,7 @@
 									<a th:href="@{'/film/'+${film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
 								</header>
 								<div th:text="${film.startTime}"></div>
-								<div th:text="${film.title}"></div>
+								<div><span th:text="${film.title}"></span></div>
 								<div th:text="${film.locationName}"></div>
 								<a th:href="@{'/film/'+${film.textualId}}" class="know_more btn-purple">En savoir plus</a>
 							</article>
