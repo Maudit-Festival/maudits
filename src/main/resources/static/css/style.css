@@ -569,10 +569,44 @@ footer ul li:before{
 .practical-info-section h4 {
 	color: var(--accent-color);
 	font-size: 35px;
+	margin: 0;
 }
 .practical-info-section ul {
 	list-style: none;
+	font-size: 1.1rem;
+	font-weight: lighter;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 }
+
+.practical-info-section li {
+	margin-bottom: 5px;
+}
+
+.practical-container {
+	display: flex;
+}
+
+@media(max-width:999px){
+	.practical-container {
+		flex-flow: column;
+	}
+}
+
+.practical-container > *{
+	width: 100%;
+}
+
+.practical-text {
+	margin-right: 10px;
+}
+
+.practical-text > div {
+	margin-bottom: 20px;
+}
+
 .tarif-comment, .tarif-comment:hover{
 	color: var(--accent-color);
 }
