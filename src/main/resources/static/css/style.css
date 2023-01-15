@@ -834,13 +834,21 @@ footer ul li:before{
 
 .guest-container {
 	max-width: 640px;
-	flex-shrink: 0;
+	flex-shrink: 1;
 	flex-flow: column;
 	display: flex;
 }
 
 .guest-container div {
 	display: flex;
+	align-items: flex-start;
+}
+
+@media(max-width: 699px) {
+	.guest-container div {
+		flex-flow: column-reverse;
+		align-items: center;
+	}
 }
 
 .guest_img{
