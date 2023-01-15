@@ -649,6 +649,9 @@ footer ul li:before{
 /*
 * CONTACT PAGE
 */
+.contact-section {
+	overflow: hidden;
+}
 
 .contact-section > div {
 	max-width: 1140px;
