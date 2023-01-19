@@ -460,6 +460,7 @@ footer ul li:before{
 	width: auto;
 	text-overflow: clip;
 	animation: scroll-text 3s infinite alternate linear;
+	min-width: 100%;
 }
 
 
