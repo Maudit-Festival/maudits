@@ -52,10 +52,20 @@
 		<div>
 			<h3 class="section-headline">Teaser</h3>
 			<div class="video-container">
-				<iframe class="embed-responsive-item" title="Teaser" loading="lazy" th:src="${page.teaserVideoUrl}" allowfullscreen></iframe>
+				<div class="placeholder">
+					<p>Si vous affichez le trailer, Google pourra déposer des cookies sur votre ordinateur.</p>
+					<a class="btn-purple" onclick="showTrailer()">Cliquez ici pour afficher le lecteur YouTube</a>
+				</div>
+				<iframe id="teaser-iframe" class="embed-responsive-item" title="Teaser" allowfullscreen></iframe>
 			</div>
 		</div>
 	</section>
+	<script th:inline="javascript">
+		function showTrailer() {
+			document.getElementById('teaser-iframe').src=/*[[${page.teaserVideoUrl}]]*/ url;
+			document.getElementById('teaser-iframe').style.zIndex = 1;
+		}
+	</script>
 
 	<section id="programmation" th:if="${page.currentEvent == null}" class="programmation-section">
 		<h3 class="section-headline">Programmation</h3>
@@ -121,10 +131,20 @@
 					</p>
 				</div>
 			</div>
-			<div class="map_home container-fluid">
-				<iframe id="gmaps-iframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQr2ekQY5Ri4ERwZyQWVSwYBqVXczaIe0&q=Salle+Juliet+Bertho,+Grenoble" allowfullscreen=""></iframe>
+			<div class="map_home">
+				<div class="placeholder">
+					<p>Si vous affichez la carte, Google pourra déposer des cookies sur votre ordinateur.</p>
+					<a class="btn-purple" onclick="showMap()">Cliquez ici pour afficher Google Maps</a>
+				</div>
+				<iframe id="gmaps-iframe" allowfullscreen=""></iframe>
 			</div>
 		</div>
+		<script>
+			function showMap() {
+				document.getElementById('gmaps-iframe').src='https://www.google.com/maps/embed/v1/place?key=AIzaSyCQr2ekQY5Ri4ERwZyQWVSwYBqVXczaIe0&q=Salle+Juliet+Bertho,+Grenoble';
+				document.getElementById('gmaps-iframe').style.zIndex = 1;
+			}
+		</script>
 
 		<!-- <div>
 			<h4>Programmation off</h4>

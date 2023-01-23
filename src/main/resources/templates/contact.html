@@ -8,7 +8,7 @@
 		page=${page}
 		)" />
 
-	<script src="https://www.google.com/recaptcha/api.js" async></script>
+<!--	<script src="https://www.google.com/recaptcha/api.js" async></script>-->
 
 	<th:block th:replace="fragments/common :: owa-script" />
 </head>
@@ -26,6 +26,10 @@
 			<p th:unless="${error}">Pour toute demande de renseignements, remarques ou envies de partager des informations,
 				n'hésitez pas à remplir le formulaire de contact ci-dessous.</p>
 			<p th:unless="${error}">Nous vous répondrons avec grand plaisir !</p>
+			<div class="captcha-legal-disclaimer">
+				Ce formulaire de contact est protégé par la solution reCAPTCHA de Google. Si vous affichez le captcha, Google pourra déposer des cookies sur votre ordinateur.
+				Voir les <a class="link" href="https://policies.google.com/privacy">règles de confidentialité</a> et <a class="link" href="https://policies.google.com/terms">conditions d'utilisation</a>.
+			</div>
 			<form th:action="@{/contact}" th:method="post" th:object="${form}" th:unless="${success}">
 				<div class="form-group">
 					<input type="text" th:field="*{lastName}" class="form-control" placeholder="Nom" required>
@@ -40,6 +44,7 @@
 					<textarea th:field="*{messageContent}" class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="Message" required></textarea>
 				</div>
 				<div class="form-group contact-captcha-and-send-button">
+					<button type="button" id="captcha-button" class="btn-purple" onclick="loadCaptcha()" style="width: 304px;">Afficher le Captcha Google</button>
 					<div class="g-recaptcha" data-sitekey="6Lc1f8sUAAAAAEny4IOhtnV77Jsb74GWhS2v6cGZ" data-callback="unlock" data-expired-callback="lock"></div>
 					<p id="captcha-error-message" style="color: red; display: none;">**ERROR</p>
 					<button type="submit" id="submit-button" class="btn-purple" disabled>Envoyer</button>
@@ -47,6 +52,15 @@
 			</form>
 		</div>
 	</section>
+	<script>
+		function loadCaptcha() {
+			var s = document.createElement( 'script' );
+			s.setAttribute( 'src', 'https://www.google.com/recaptcha/api.js' );
+			document.body.appendChild( s );
+			document.getElementById("captcha-button").style.display='none';
+			
+		}
+	</script>
 	<script>
 		function unlock() {
 			document.getElementById("submit-button").disabled=false;

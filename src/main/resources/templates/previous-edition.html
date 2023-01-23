@@ -25,10 +25,21 @@
 		<div>
 			<h3 class="section-headline">Teaser</h3>
 			<div class="video-container">
-				<iframe class="embed-responsive-item" title="Teaser" loading="lazy" th:src="${page.teaserVideoUrl}" allowfullscreen></iframe>
+				<div class="placeholder">
+					<p>Si vous affichez le trailer, Google pourra déposer des cookies sur votre ordinateur.</p>
+					<a class="btn-purple" onclick="showTrailer()">Cliquez ici pour afficher le lecteur YouTube</a>
+				</div>
+				<iframe id="teaser-iframe" class="embed-responsive-item" title="Teaser" loading="lazy" allowfullscreen></iframe>
 			</div>
 		</div>
 	</section>
+		<script th:inline="javascript">
+		function showTrailer() {
+			document.getElementById('teaser-iframe').src=/*[[${page.teaserVideoUrl}]]*/ url;
+			document.getElementById('teaser-iframe').style.zIndex = 1;
+		}
+	</script>
+
 	<section th:if="${page.guests.size() > 0}" class='guests programmation-section'>
 		<h3 class="section-headline">Invités</h3>
 		<div class="guests-container">
