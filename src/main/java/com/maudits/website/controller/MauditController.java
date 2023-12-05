@@ -91,4 +91,16 @@ public class MauditController {
 		return "previous-edition";
 	}
 
+	@GetMapping("booth")
+	public String showBoothLogin(Model model) {
+		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		return "booth-connect-form";
+	}
+
+	@PostMapping("booth")
+	public String showBoothPictures(String password, Model model) {
+		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		model.addAttribute("pictures", mauditService.findBoothPictures(password));
+		return "booth-pictures";
+	}
 }

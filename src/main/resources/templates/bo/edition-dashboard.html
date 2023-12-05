@@ -38,6 +38,7 @@
 					<button type="submit" class="btn btn-danger">Publier</button>
 				</form>
 			</li>
+			<li th:if="${edition.name() == 'CURRENT'}"><a href="#boothPicturesAnchor">Mettre les photos booth</a></li>
 		</ul>
 	</div>
 	<main class="admin_main col-md-8">
@@ -111,6 +112,17 @@
 					</label>
 				</p>
 
+				<input class="btn btn-primary" type="submit">
+			</form>
+		</div>
+		<h2 id="boothPicturesAnchor" class="admin_title_next_edition">Envoi des photos booth</h2>
+		<div class="row edition_content_film">
+			<form th:method="post" th:action="@{pictures}" enctype="multipart/form-data" class="container">
+				<div class="col-md-6">
+					<label for="booth-password">Mot de passe :</label>
+					<input id="booth-password" class="form-control" name="password" required/>
+				</div>
+				<input type="file" accept="image/*" name="files" multiple required>
 				<input class="btn btn-primary" type="submit">
 			</form>
 		</div>

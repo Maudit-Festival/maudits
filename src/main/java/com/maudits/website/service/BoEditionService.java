@@ -8,14 +8,18 @@ import java.util.List;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.bo.displayer.EditionBoDisplayer;
 import com.maudits.website.domain.bo.displayer.FilmBoDisplayer;
 import com.maudits.website.domain.bo.displayer.SponsorBoDisplayer;
 import com.maudits.website.domain.form.EditionForm;
+import com.maudits.website.repository.BoothPictureRepository;
 import com.maudits.website.repository.EditionRepository;
+import com.maudits.website.repository.entities.BoothPicture;
 import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Film;
 import com.maudits.website.repository.entities.Sponsor;
@@ -28,6 +32,7 @@ public class BoEditionService {
 	private final CurrentEditionService currentEditionService;
 	private final UploadService uploadService;
 	private final EditionRepository editionRepository;
+	private final BoothPictureRepository boothPictureRepository;
 
 	private List<FilmBoDisplayer> findFilms(Edition edition) {
 		List<FilmBoDisplayer> result = new ArrayList<>();
@@ -115,5 +120,17 @@ public class BoEditionService {
 		newNextEdition.setLastUpdateTime(ZonedDateTime.now());
 		newNextEdition.setNext(true);
 		editionRepository.save(newNextEdition);
+	}
+
+	public void editionPicturesSave(String password, List<MultipartFile> files) throws IOException {
+		Edition edition = currentEditionService.findEdition(DisplayEdition.CURRENT);
+		edition.setBoothPicturesPassword(password);
+		editionRepository.save(edition);
+
+		String folder = edition.getName() + "/booth-pictures";
+		for (MultipartFile file : files) {
+			var url = uploadService.uploadFile(folder, FilenameUtils.getName(file.getOriginalFilename()), file);
+			boothPictureRepository.save(new BoothPicture(url, edition));
+		}
 	}
 }

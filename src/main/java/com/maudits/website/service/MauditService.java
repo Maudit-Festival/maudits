@@ -27,6 +27,7 @@ import com.maudits.website.domain.page.PreviousEditionDisplayer;
 import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.ExtraEventRepository;
 import com.maudits.website.repository.FilmRepository;
+import com.maudits.website.repository.entities.BoothPicture;
 import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Film;
 import com.maudits.website.repository.entities.Sponsor;
@@ -129,5 +130,13 @@ public class MauditService {
 	public FrontPageDisplayer makeAboutPageDisplayer(DisplayEdition displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		return new AboutPageDisplayer(edition, findPreviousEditionNames(displayEdition));
+	}
+
+	public List<String> findBoothPictures(String password) {
+		Edition edition = currentEditionService.findEdition(DisplayEdition.CURRENT);
+		if (!edition.getBoothPicturesPassword().equals(password)) {
+			throw new RuntimeException("Mot de passe incorrect");
+		}
+		return edition.getBoothPictures().stream().map(BoothPicture::getImageUrl).toList();
 	}
 }

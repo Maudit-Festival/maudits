@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<th:block th:replace="fragments/common :: common-header-values (
+		canonicalurl='https://lemauditfestival.com/booth',
+		title='Connexion - Le Maudit Festival',
+		description='',
+		page=${page}
+		)" />
+		
+	<meta name="robots" content="noindex">
+
+	<th:block th:replace="fragments/common :: owa-script" />
+</head>
+
+<body>
+	<header th:replace="fragments/common.html :: common-navbar"></header>
+	<div class="hero short-hero">
+	</div>
+	<section class="contact-section footer-separator">
+		<div class="contact_container">
+			<form th:action="@{/booth}" th:method="post">
+				<div class="form-group">
+					<input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
+				</div>
+				<div class="form-group contact-captcha-and-send-button">
+					<button type="submit" id="submit-button" class="btn-purple">Envoyer</button>
+				</div>
+			</form>
+		</div>
+	</section>
+	<footer th:replace="fragments/common.html :: common-footer">
+	</footer>
+</body>
+
+</html>

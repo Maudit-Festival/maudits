@@ -38,5 +38,9 @@ public class Edition extends EntityWithId {
 	@OneToMany(mappedBy = "edition")
 	private List<Guest> guests;
 
+	private String boothPicturesPassword;
+	@OneToMany(mappedBy = "edition")
+	private List<BoothPicture> boothPictures;
+
 	private ZonedDateTime lastUpdateTime;
 }
