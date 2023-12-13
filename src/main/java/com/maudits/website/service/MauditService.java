@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -55,14 +56,18 @@ public class MauditService {
 		return new FrontPageDisplayer(edition, findPreviousEditionNames(displayEdition));
 	}
 
+	private Optional<Film> findById(String id) {
+		try {
+			return filmRepository.findById(Long.valueOf(id));
+		} catch (NumberFormatException e) {
+			return Optional.empty();
+		}
+	}
+
 	public FilmDetailPageDisplayer findFilmDetailPageDisplayerFromTextualId(DisplayEdition displayEdition,
 			String textualId) throws WrongEditionException {
 		Edition edition = currentEditionService.findEdition(displayEdition);
-		Film film = filmRepository.findOneByTextualId(textualId)
-				.or(() -> filmRepository.findById(Long.valueOf(textualId))).orElseThrow();
-//		if (!film.getEdition().equals(edition)) {
-//			throw new WrongEditionException();
-//		}
+		Film film = filmRepository.findOneByTextualId(textualId).or(() -> findById(textualId)).orElseThrow();
 		if (displayEdition != DisplayEdition.NEXT && film.isNextEdition()) {
 			throw new WrongEditionException();
 		}

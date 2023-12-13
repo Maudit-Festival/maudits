@@ -2,9 +2,9 @@ package com.maudits.website.repository.entities;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 
 import com.maudits.website.repository.entities.utils.EntityWithId;
 

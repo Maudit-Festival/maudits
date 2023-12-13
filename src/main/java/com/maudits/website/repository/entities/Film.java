@@ -5,11 +5,10 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-
 import com.maudits.website.repository.entities.utils.EntityWithId;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

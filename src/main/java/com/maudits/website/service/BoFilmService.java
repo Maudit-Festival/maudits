@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.bo.displayer.ExtraEventBoDisplayer;
@@ -45,14 +44,14 @@ public class BoFilmService {
 		}
 	}
 
-	public Film saveFilm(DisplayEdition displayEdition, @Valid FilmForm form) throws IOException {
+	public Film saveFilm(DisplayEdition displayEdition, @Validated FilmForm form) throws IOException {
 		Long id = form.getId();
 		Film film = (id != null) ? filmRepository.findById(id).orElseThrow() : new Film();
 		film.setEdition(currentEditionService.findEdition(displayEdition));
 		return saveFilm(form, film);
 	}
 
-	public Film saveFilm(@Valid FilmForm form, Film film) throws IOException {
+	public Film saveFilm(@Validated FilmForm form, Film film) throws IOException {
 		film.setTextualId(form.getTextualId());
 		film.setTitle(form.getTitle());
 		film.setDescription(form.getDescription());
@@ -117,7 +116,7 @@ public class BoFilmService {
 		return new ExtraEventForm(extraEventRepository.findById(id).orElseThrow());
 	}
 
-	public void saveExtraEvent(@Valid ExtraEventForm form) throws IOException {
+	public void saveExtraEvent(@Validated ExtraEventForm form) throws IOException {
 		Long eventId = form.getEventId();
 		ExtraEvent event = (eventId != null) ? extraEventRepository.findById(eventId).orElseThrow() : new ExtraEvent();
 		Film film = saveFilm(form, event.getFilm() != null ? event.getFilm() : new Film());

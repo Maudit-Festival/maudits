@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
-	<th:block th:replace="fragments/common :: common-header-values (
+	<th:block th:replace="~{fragments/common :: common-header-values (
 		canonicalurl='https://lemauditfestival.com',
 		title='Le site du Maudit Festival',
 		description='Toutes les informations sur ce festival dédié à un cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, événements.',
 		page=${page}
-		)" />
+		)}" />
 
 	<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.1/slick/slick.css" async/>
 	<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.1/slick/slick-theme.css" async/>
-	<th:block th:replace="fragments/common :: owa-script" />
+	<th:block th:replace="~{fragments/common :: owa-script}" />
 </head>
 
 <body class="homepage">
-	<nav th:replace="fragments/common.html :: common-navbar"></nav>
+	<nav th:replace="~{fragments/common.html :: common-navbar}"></nav>
 	<div class="hero">
 		<div class="container hero_content">
 			<div class="container-home">
@@ -164,7 +164,7 @@
 			</div>
 		</div>
 	</div>
-	<footer th:replace="fragments/common.html :: common-footer">
+	<footer th:replace="~{fragments/common.html :: common-footer}">
 	</footer>
 	<script src="/plugins/slick-1.8.1/slick/slick.min.js" type="text/javascript"></script>
 	<script>

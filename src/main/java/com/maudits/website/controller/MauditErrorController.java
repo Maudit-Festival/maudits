@@ -1,17 +1,16 @@
 package com.maudits.website.controller;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.service.MauditService;
 
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -19,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class MauditErrorController implements ErrorController {
 	private final MauditService mauditService;
 
-	@RequestMapping("/error")
+	@GetMapping("/error")
 	public String handleError(HttpServletRequest request, Model model) {
 		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
 

@@ -4,8 +4,8 @@ import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 import com.maudits.website.repository.entities.utils.EntityWithId;
 

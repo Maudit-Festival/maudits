@@ -2,9 +2,8 @@ package com.maudits.website.service;
 
 import java.io.IOException;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.maudits.website.domain.DisplayEdition;
@@ -39,7 +38,7 @@ public class BoSponsorService {
 		}
 	}
 
-	public void saveSponsor(@PathVariable DisplayEdition edition, @Valid SponsorForm form) throws IOException {
+	public void saveSponsor(@PathVariable DisplayEdition edition, @Validated SponsorForm form) throws IOException {
 		Long id = form.getId();
 		Sponsor sponsor = (id != null) ? sponsorRepository.findById(id).orElseThrow() : new Sponsor();
 		sponsor.setName(filterEmpty(form.getName()));

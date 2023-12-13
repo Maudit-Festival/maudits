@@ -2,10 +2,9 @@ package com.maudits.website.controller;
 
 import java.io.IOException;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +35,7 @@ public class BoFilmController {
 	}
 
 	@PostMapping("save-edit")
-	public String saveFilmEdition(@PathVariable DisplayEdition edition, @Valid FilmForm form, Model model)
+	public String saveFilmEdition(@PathVariable DisplayEdition edition, @Validated FilmForm form, Model model)
 			throws IOException {
 		boFilmService.saveFilm(edition, form);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard";

@@ -5,11 +5,10 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.maudits.website.domain.DisplayEdition;
@@ -64,7 +63,7 @@ public class BoEditionService {
 		return (string != null && !string.isBlank()) ? string : null;
 	}
 
-	public void saveEdition(DisplayEdition displayEdition, @Valid EditionForm form) throws IOException {
+	public void saveEdition(DisplayEdition displayEdition, @Validated EditionForm form) throws IOException {
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		edition.setAccentColor(form.getColor());
 		edition.setEditorial(nullIfEmpty(form.getEditorial()));
