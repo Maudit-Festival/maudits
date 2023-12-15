@@ -32,7 +32,6 @@ public class WebSecurityConfig {
 				.requestMatchers("/bo/**").authenticated()
 				.anyRequest().permitAll())
 			.formLogin(formLogin -> formLogin.permitAll())
-//			.formLogin(formLogin -> formLogin.loginPage("/login").permitAll())
 			.logout(logout -> logout.logoutSuccessUrl("/"));
 		// @formatter:on
 		return http.build();

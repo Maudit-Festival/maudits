@@ -17,9 +17,9 @@
 	</head>
 
 <body class="container-fluid">
-	<header>
-		<a href="/bo" class="col-md-3 col-sm-5 col-6"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="img-fluid"></a>
-	</header>
+<!--	<header>-->
+<!--		<a href="/bo" class="col-md-3 col-sm-5 col-6"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="img-fluid"></a>-->
+<!--	</header>-->
 
 	<form th:action="@{../save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
 		<input type="hidden" th:if="${extraEvent != null}" th:field="*{eventId}">
@@ -29,8 +29,8 @@
 			<input type="text" th:field="*{title}" class="form-control" id="movieName" required>
 	  </div>
 		<div class="form-group">
-			<label for="movieURL">URL du film</label>
-			<input type="text" th:field="*{textualId}" class="form-control" id="movieURL" aria-describedby="urlHelp" required pattern="[-a-z0-9]+">
+			<label for="movieURL">Code du film dans les urls</label>
+			<input type="text" th:field="*{textualId}" class="form-control" id="movieURL" aria-describedby="urlHelp" required pattern="[a-z0-9\-]+">
 			<small id="urlHelp" class="form-text text-muted">Merci de ne pas mettre d'accent et de remplacer les espaces par un underscore ou un tiret</small>
 		</div>
 		<div class="form-group">
@@ -152,5 +152,29 @@ function showPreviewImage(input, image, maxsize) {
 showPreviewImage($("#uploadSample"), $("#filmSamplePreview"), 500000);
 showPreviewImage($("#uploadPoster"), $("#filmPosterPreview"), 500000);
 // showPreviewImage(input, image);
+
+
+let autoid = true;
+let titleInput = $("#movieName");
+let idInput = $("#movieURL");
+
+function sanitize(string) {
+	const regExp = /[^a-z0-9\-]/g
+	return string.toLowerCase().replaceAll(' ', '-').replaceAll('\'', '-').normalize("NFD").replaceAll(regExp, "");
+}
+
+titleInput.on("change", ()=>{
+	let movietitle = titleInput.val();
+	if (autoid) {
+		idInput.val(sanitize(movietitle));
+	}
+	
+})
+
+idInput.on("change", ()=>{
+	autoid = (idInput.val()) ? false : true;
+})
+
+
 </script>
 </html>
