@@ -25,44 +25,44 @@
 	<div class="col-md-3 admin_sidebar">
 		<ul>
 			<li class="line_1"><a href="/bo">&lt;&lt; Back</a></li>
+			<li class="line_1" th:if="${edition.name() == 'CURRENT'}"><a href="/">Preview</a></li>
+			<li class="line_1" th:if="${edition.name() == 'NEXT'}"><a href="/bo/next">Preview</a></li>
 			<li class="line_1"><a href="#filmAnchor">Films</a></li>
-			<li><a href="film/create/new">Ajouter un film</a></li>
-			<li th:if="${edition.name() == 'CURRENT'}"><a href="/">Preview</a></li>
-			<li th:if="${edition.name() == 'NEXT'}"><a href="/bo/next">Preview</a></li>
 			<li class="line_1"><a href="#sponsorAnchor">Sponsors</a></li>
-			<li><a href="sponsor/create/new">Ajouter un sponsor</a></li>
-			<li class="line_1"><a href="#lookAnchor">Configure</a></li>
+			<li class="line_1"><a href="#lookAnchor">Configuration</a></li>
 			<li th:if="${edition.name() == 'NEXT'}">
 				<form th:action="@{current}" th:method="post"
 					onsubmit="return confirm('Êtes vous sûr de vouloir rendre public la nouvelle édition ?');">
 					<button type="submit" class="btn btn-danger">Publier</button>
 				</form>
 			</li>
-			<li th:if="${edition.name() == 'CURRENT'}"><a href="#boothPicturesAnchor">Mettre les photos booth</a></li>
+			<li class="line_1" th:if="${edition.name() == 'CURRENT'}"><a href="#boothPicturesAnchor">Mettre les photos booth</a></li>
 		</ul>
 	</div>
 	<main class="admin_main col-md-8">
 		<h2 id="filmAnchor" class="admin_title_next_edition" >Films </h2>
+		<a class="btn btn-primary" href="film/create/new">Ajouter un film</a>
 		<div class="row edition_content_film">
 			<article th:each="film : ${page.films}" class="col-md-2">
 				<header>
 					<img th:if="${film.posterUrl!= null}" th:src="*{film.posterUrl}" style="height: auto" th:alt="${film.title}">
 				</header>
-					<p th:text="${film.title}"></p>
-					<a th:href="${'film/edit/' + film.id}">Éditer</a>
+				<p th:text="${film.title}"></p>
+				<a th:href="${'film/edit/' + film.id}">Éditer</a>
 			</article>
 		</div>
 		<h2 id="sponsorAnchor" class="admin_title_next_edition" >Sponsor </h2>
+		<a class="btn btn-primary" href="sponsor/create/new">Ajouter un sponsor</a>
 		<div class="row edition_content_film">
-				<article th:each="sponsor : ${page.sponsors}">
-					<header>
-						<img th:src="*{sponsor.logoUrl}" style="height: auto" th:alt="${sponsor.name}">
-					</header>
-						<p th:text="${sponsor.name}"></p>
-						<a th:href="${'sponsor/edit/' + sponsor.id}">Éditer</a>
-				</article>
+			<article th:each="sponsor : ${page.sponsors}">
+				<header>
+					<img th:src="*{sponsor.logoUrl}" style="height: auto" th:alt="${sponsor.name}">
+				</header>
+					<p th:text="${sponsor.name}"></p>
+					<a th:href="${'sponsor/edit/' + sponsor.id}">Éditer</a>
+			</article>
 		</div>
-		<h2 id="lookAnchor" class="admin_title_next_edition">Configure</h2>
+		<h2 id="lookAnchor" class="admin_title_next_edition">Configuration</h2>
 		<div class="row edition_content_film">
 			<form th:method="post" th:action="@{save}" th:object="${form}" enctype="multipart/form-data" class="container">
 				<div class="row form-group">

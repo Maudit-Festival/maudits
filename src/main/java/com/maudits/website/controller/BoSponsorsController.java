@@ -38,13 +38,13 @@ public class BoSponsorsController {
 	public String saveFilmEdition(@PathVariable DisplayEdition edition, @Validated SponsorForm form, Model model)
 			throws IOException {
 		boSponsorService.saveSponsor(edition, form);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard";
+		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#sponsorAnchor";
 	}
 
 	@PostMapping("delete")
 	public String deleteSponsor(@PathVariable DisplayEdition edition, Long id, Model model) throws IOException {
 		boSponsorService.deleteSponsor(id);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard";
+		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#sponsorAnchor";
 	}
 
 }
