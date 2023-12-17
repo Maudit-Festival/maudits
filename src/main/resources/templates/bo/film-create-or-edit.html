@@ -25,6 +25,14 @@
 		<input type="hidden" th:if="${extraEvent != null}" th:field="*{eventId}">
 		<input type="hidden" th:field="*{id}">
 		<div class="form-group">
+			<label for="movieDate">Date de la séance</label>
+			<input type="date" th:field="*{date}" class="form-control" id="movieDate" required>
+		</div>
+		<div class="form-group">
+			<label for="movieTime">Heure de la séance</label>
+			<input type="time" th:field="*{startTime}" class="form-control" id="movieTime">
+		</div>
+		<div class="form-group">
 			<label for="movieName">Titre du film</label>
 			<input type="text" th:field="*{title}" class="form-control" id="movieName" required>
 	  </div>
@@ -33,23 +41,67 @@
 			<input type="text" th:field="*{textualId}" class="form-control" id="movieURL" aria-describedby="urlHelp" required pattern="[a-z0-9\-]+">
 			<small id="urlHelp" class="form-text text-muted">Merci de ne pas mettre d'accent et de remplacer les espaces par un underscore ou un tiret</small>
 		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="movieDirector">Réalisateur</label>
+					<input type="text" th:field="*{director}" class="form-control" id="movieDirector">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="scenarist">Scénariste</label>
+					<input type="text" th:field="*{scenarist}" class="form-control" id="scenarist">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="scenarist">Nationalité</label>
+					<input type="text" th:field="*{nationality}" class="form-control" id="scenarist">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="movieRelase">Date de sortie du film</label>
+					<input type="text" th:field="*{releaseDate}" class="form-control" id="movieRelase">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="movieDuration">Durée du film</label>
+					<input type="text" th:field="*{duration}" class="form-control" id="movieDuration">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="movieCasting">Casting</label>
+					<input type="text" th:field="*{casting}" class="form-control" id="movieCasting">
+				</div>
+			</div>
+		</div>
 		<div class="form-group">
 			<label for="descriptionFilm">Texte descriptif</label>
 			<textarea class="form-control" th:field="*{description}" id="descriptionFilm" rows="3"></textarea>
 			<small class="form-text text-muted">Vous pouvez utiliser les balises [i]<i>italique</i>[/i], [b]<b>gras</b>[/b] et [url="https://lemauditfestival.com"]<a target="_blank" href="https://lemauditfestival.com">lien</a>[/url]</small>
 		</div>
-		<div class="form-group">
-			<label for="movieDate">Date de la séance</label>
-			<input type="date" th:field="*{date}" class="form-control" id="movieDate" required>
-		</div>
-		<div class="form-group">
-			<label for="movieTime">Heure de la séance</label>
-			<input type="time" th:field="*{startTime}" class="form-control" id="movieTime">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="partner">Partenaire de la séance</label>
+					<input type="text" th:field="*{partner}" class="form-control" id="partner">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="movieRated">Classification du film</label>
+					<input type="text" th:field="*{ageRating}" class="form-control" id="movieRated">
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-md-6">
 				<label for="uploadPoster">Poster du film
-				<img id="filmPosterPreview" class="imageUploadPreview" th:src="*{posterUrl}">
+				<img id="filmPosterPreview" class="imageUploadPreview" data-required-size="267x200" th:src="*{posterUrl}">
 				</label>
 				<input type="file" th:field="*{posterFile}" accept="image/*" class="form-control-file" id="uploadPoster" th:required="*{posterUrl == null}">
 			</div>
@@ -58,44 +110,6 @@
 					<img id="filmSamplePreview" class="imageUploadPreview" th:src="*{sampleUrl}">
 				</label>
 				<input type="file" th:field="*{sampleImageFile}" accept="image/*" class="form-control-file" id="uploadSample" th:required="*{posterUrl == null}">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="movieRelase">Date de sortie du film</label>
-					<input type="text" th:field="*{releaseDate}" class="form-control" id="movieRelase">
-				</div>
-				<div class="form-group">
-					<label for="scenarist">Scénariste</label>
-					<input type="text" th:field="*{scenarist}" class="form-control" id="scenarist">
-				</div>
-				<div class="form-group">
-					<label for="scenarist">Nationalité</label>
-					<input type="text" th:field="*{nationality}" class="form-control" id="scenarist">
-				</div>
-				<div class="form-group">
-					<label for="movieCasting">Casting</label>
-					<input type="text" th:field="*{casting}" class="form-control" id="movieCasting">
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="movieDirector">Réalisateur</label>
-					<input type="text" th:field="*{director}" class="form-control" id="movieDirector">
-				</div>
-				<div class="form-group">
-					<label for="movieDuration">Durée du film</label>
-					<input type="text" th:field="*{duration}" class="form-control" id="movieDuration">
-				</div>
-				<div class="form-group">
-					<label for="partner">Partenaire de la séance</label>
-					<input type="text" th:field="*{partner}" class="form-control" id="partner">
-				</div>
-				<div class="form-group">
-					<label for="movieRated">Classification du film</label>
-					<input type="text" th:field="*{ageRating}" class="form-control" id="movieRated">
-				</div>
 			</div>
 		</div>
 		<div class="form-group">
@@ -138,19 +152,34 @@ function showPreviewImage(input, image, maxsize) {
 			if(maxsize && input[0].files[0].size > maxsize){
 				alert("Le fichier est plus gros que la taille maximale de " + maxsize + " octets !");
 				input[0].value = "";
+				return;
 			};
 			var reader = new FileReader();
 
-				reader.onload = function (e) {
-					image.attr('src', e.target.result);
+			reader.onload = function (e) {
+				let requiredSize = image.data("required-size");
+				if (requiredSize) {
+					let requiredHeight = parseInt(requiredSize.split("x")[0]);
+					let requiredWidth = parseInt(requiredSize.split("x")[1]);
+					image.off("load");
+					image.on("load",(function (v) {
+						if (image.width() != requiredWidth || image.height() != requiredHeight) {
+							alert("Le fichier n'est au format requis de " + requiredSize + " pixels !");
+							image.attr('src', "");
+							input[0].value = "";
+							return;
+						}
+					}));
 				}
+				image.attr('src', e.target.result);
+			}
 
 			reader.readAsDataURL(input[0].files[0]);
 		}
 	});
 }
-showPreviewImage($("#uploadSample"), $("#filmSamplePreview"), 500000);
-showPreviewImage($("#uploadPoster"), $("#filmPosterPreview"), 500000);
+showPreviewImage($("#uploadSample"), $("#filmSamplePreview"), 1000000);
+showPreviewImage($("#uploadPoster"), $("#filmPosterPreview"), 100000);
 // showPreviewImage(input, image);
 
 

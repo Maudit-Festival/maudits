@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
 	<th:block th:if="${page.filmDisplayer.director == null}">
-		<th:block th:include="~{fragments/common :: common-header-values (
+		<th:block th:replace="~{fragments/common :: common-header-values (
 		canonicalurl=${'https://lemauditfestival.com/film/'+page.filmDisplayer.textualId},
 		title=${page.filmDisplayer.title + ' - Le Maudit Festival'},
 		description=${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title},
@@ -10,7 +10,7 @@
 		)}" />
 	</th:block>
 	<th:block th:unless="${page.filmDisplayer.director == null}">
-		<th:block th:include="~{fragments/common :: common-header-values (
+		<th:block th:replace="~{fragments/common :: common-header-values (
 		canonicalurl=${'https://lemauditfestival.com/film/'+page.filmDisplayer.textualId},
 		title=${page.filmDisplayer.title + ' - Le Maudit Festival'},
 		description=${page.filmDisplayer.date + ' - projection de ' + page.filmDisplayer.title + ' de ' + page.filmDisplayer.director +'. ' +

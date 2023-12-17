@@ -136,17 +136,18 @@ function showPreviewImage(input, image, maxsize) {
 			if(maxsize && input[0].files[0].size > maxsize){
 				alert("Le fichier est plus gros que la taille maximale de " + maxsize + " octets !");
 				input[0].value = "";
+				return;
 			};
 			var reader = new FileReader();
 
-				reader.onload = function (e) {
-					image.attr('src', e.target.result);
-				}
+			reader.onload = function (e) {
+				image.attr('src', e.target.result);
+			}
 
 			reader.readAsDataURL(input[0].files[0]);
 		}
 	});
 }
-showPreviewImage($("#uploadHero"), $("#headerPreview"), 500000);
+showPreviewImage($("#uploadHeader"), $("#headerPreview"), 500000);
 </script>
 </html>
