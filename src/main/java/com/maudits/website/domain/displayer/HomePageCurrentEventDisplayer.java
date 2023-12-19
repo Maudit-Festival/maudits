@@ -34,7 +34,7 @@ public class HomePageCurrentEventDisplayer {
 		}
 		String date = film.getDate().format(DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.FRANCE));
 		this.dateAndTime = date + " à " + startTime;
-		this.imageUrl = film.getThumbnailPosterUrl();
+		this.imageUrl = film.getPosterUrl();
 		this.locationName = film.getLocationName();
 	}
 }

@@ -32,7 +32,7 @@ public class HomePageFilmDisplayer {
 			} else {
 				this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'mm"));
 			}
-			this.imageUrl = film.getThumbnailPosterUrl();
+			this.imageUrl = film.getPosterUrl();
 			this.locationName = film.getLocationName();
 		} else {
 			this.id = null;

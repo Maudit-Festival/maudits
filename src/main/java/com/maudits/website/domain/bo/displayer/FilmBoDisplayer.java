@@ -13,6 +13,6 @@ public class FilmBoDisplayer {
 	public FilmBoDisplayer(Film film) {
 		this.id = film.getId();
 		this.title = film.getTitle();
-		this.posterUrl = film.getThumbnailPosterUrl();
+		this.posterUrl = film.getPosterUrl();
 	}
 }

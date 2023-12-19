@@ -43,7 +43,7 @@ public class FilmDetailDisplayer {
 			this.startTime = film.getStartTime().format(DateTimeFormatter.ofPattern("HH\'h\'mm"));
 		}
 
-		this.posterUrl = film.getThumbnailPosterUrl();
+		this.posterUrl = film.getPosterUrl();
 		this.sampleImageUrl = film.getSampleImageUrl();
 		this.releaseDate = film.getReleaseDate();
 		this.director = film.getDirector();

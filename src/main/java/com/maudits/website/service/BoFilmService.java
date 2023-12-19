@@ -67,7 +67,6 @@ public class BoFilmService {
 			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
 			var url = uploadService.uploadFile(folder, "poster_" + film.getTextualId() + fileExtension, posterFile);
 			film.setPosterUrl(url);
-			film.setThumbnailPosterUrl(url);
 		}
 		var sampleImageFile = form.getSampleImageFile();
 		if (!sampleImageFile.isEmpty()) {

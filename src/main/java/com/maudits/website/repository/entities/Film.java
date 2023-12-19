@@ -24,7 +24,6 @@ public class Film extends EntityWithId {
 	private LocalDate date;
 	private LocalTime startTime;
 	private String posterUrl;
-	private String thumbnailPosterUrl;
 	private String sampleImageUrl;
 	private String releaseDate;
 	private String director;
