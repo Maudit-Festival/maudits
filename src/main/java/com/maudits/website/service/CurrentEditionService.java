@@ -14,14 +14,11 @@ public class CurrentEditionService {
 	private final EditionRepository editionRepository;
 
 	public Edition findEdition(DisplayEdition displayEdition) {
-		switch (displayEdition) {
-		case CURRENT:
-			return editionRepository.findOneByCurrentTrue();
-		case NEXT:
-			return editionRepository.findOneByNextTrue();
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
-		}
+		return switch (displayEdition) {
+		case CURRENT -> editionRepository.findOneByCurrentTrue();
+		case NEXT -> editionRepository.findOneByNextTrue();
+		default -> throw new IllegalArgumentException("Unexpected value: " + displayEdition);
+		};
 	}
 
 }

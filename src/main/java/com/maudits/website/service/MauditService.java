@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -94,7 +93,7 @@ public class MauditService {
 		for (Entry<LocalDate, List<Film>> entry : films.entrySet()) {
 			LocalDate date = entry.getKey();
 			List<HomePageFilmDisplayer> filmsForDate = entry.getValue().stream().map(HomePageFilmDisplayer::new)
-					.sorted(Comparator.comparing(HomePageFilmDisplayer::getStartTime)).collect(Collectors.toList());
+					.sorted(Comparator.comparing(HomePageFilmDisplayer::getStartTime)).toList();
 			days.add(new HomePageDayDisplayer(date, filmsForDate));
 		}
 		days.sort(Comparator.comparing(HomePageDayDisplayer::getDate));

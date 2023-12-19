@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.ListCrudRepository;
 
 import com.maudits.website.repository.entities.ExtraEvent;
 
-public interface ExtraEventRepository extends CrudRepository<ExtraEvent, Long> {
+public interface ExtraEventRepository extends ListCrudRepository<ExtraEvent, Long> {
 	@Query("select ae from ExtraEvent ae where ae.revealTime < current_timestamp and ae.hideTime > current_timestamp")
 	Optional<ExtraEvent> findOneByActive();
 

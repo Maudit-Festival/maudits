@@ -1,7 +1,6 @@
 package com.maudits.website.domain.page;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.maudits.website.domain.displayer.GuestDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
@@ -26,6 +25,6 @@ public class PreviousEditionDisplayer extends FrontPageDisplayer {
 		this.editorial = shownEdition.getEditorial();
 		this.teaserVideoUrl = shownEdition.getTeaserUrl();
 		this.days = days;
-		this.guests = shownEdition.getGuests().stream().map(GuestDisplayer::new).collect(Collectors.toList());
+		this.guests = shownEdition.getGuests().stream().map(GuestDisplayer::new).toList();
 	}
 }
