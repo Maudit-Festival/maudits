@@ -4,8 +4,8 @@ import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 import com.maudits.website.repository.entities.utils.EntityWithId;
 
@@ -27,11 +27,20 @@ public class Edition extends EntityWithId {
 	private String name;
 	private String timePeriod;
 
+	private String heroUrl;
+	private String shareImageUrl;
+	private String accentColor;
+
 	private String editorialTitle;
 	private String editorial;
 	private String teaserUrl;
+	private String pdfUrl;
 	@OneToMany(mappedBy = "edition")
 	private List<Guest> guests;
+
+	private String boothPicturesPassword;
+	@OneToMany(mappedBy = "edition")
+	private List<BoothPicture> boothPictures;
 
 	private ZonedDateTime lastUpdateTime;
 }

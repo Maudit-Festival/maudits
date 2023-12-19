@@ -9,6 +9,7 @@ import lombok.Getter;
 
 @Getter
 public class FilmDetailDisplayer {
+	private final String textualId;
 	private final String title;
 	private final String description;
 	private final String date;
@@ -28,6 +29,7 @@ public class FilmDetailDisplayer {
 	private final String locationAddress;
 
 	public FilmDetailDisplayer(Film film) {
+		this.textualId = (film.getTextualId() != null) ? film.getTextualId() : film.getId().toString();
 		this.title = film.getTitle();
 		this.description = film.getDescription();
 		this.date = film.getDate().format(DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.FRANCE));

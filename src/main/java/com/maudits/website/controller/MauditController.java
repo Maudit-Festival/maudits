@@ -55,19 +55,52 @@ public class MauditController {
 			success &= contactService.sendEmail(form);
 		}
 		if (success) {
+			model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
 			model.addAttribute("success", true);
 			model.addAttribute("form", form);
 			return "contact";
 		} else {
+			model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
 			model.addAttribute("error", true);
 			model.addAttribute("form", form);
 			return "contact";
 		}
 	}
 
-//	@GetMapping("archive")
-//	public String showArchive(Model model) {
-//		model.addAttribute("page", mauditService.makeArchivePage(DisplayEdition.CURRENT));
-//		return "archive";
-//	}
+	@GetMapping("archive")
+	public String showArchive(Model model) {
+		model.addAttribute("page", mauditService.makeArchivePage(DisplayEdition.CURRENT));
+		return "archive";
+	}
+
+	@GetMapping("a-propos-du-maudit-festival")
+	public String showAbout(Model model) {
+		model.addAttribute("page", mauditService.makeAboutPageDisplayer(DisplayEdition.CURRENT));
+		return "about";
+	}
+
+	@GetMapping("editions-precedentes/avant-le-maudit-festival")
+	public String showHistory(Model model) {
+		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		return "history";
+	}
+
+	@GetMapping("editions-precedentes/{editionName}")
+	public String showEdition(@PathVariable String editionName, Model model) {
+		model.addAttribute("page", mauditService.makePreviousEditionPage(editionName, DisplayEdition.CURRENT));
+		return "previous-edition";
+	}
+
+	@GetMapping("booth")
+	public String showBoothLogin(Model model) {
+		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		return "booth-connect-form";
+	}
+
+	@PostMapping("booth")
+	public String showBoothPictures(String password, Model model) {
+		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		model.addAttribute("pictures", mauditService.findBoothPictures(password));
+		return "booth-pictures";
+	}
 }

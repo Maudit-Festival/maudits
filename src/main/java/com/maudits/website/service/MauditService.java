@@ -8,22 +8,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.displayer.HomePageCurrentEventDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.domain.displayer.HomePageFilmDisplayer;
 import com.maudits.website.domain.displayer.SponsorDisplayer;
 import com.maudits.website.domain.exception.WrongEditionException;
+import com.maudits.website.domain.page.AboutPageDisplayer;
 import com.maudits.website.domain.page.ArchivePageDisplayer;
 import com.maudits.website.domain.page.FilmDetailPageDisplayer;
 import com.maudits.website.domain.page.FrontPageDisplayer;
 import com.maudits.website.domain.page.HomepageDisplayer;
 import com.maudits.website.domain.page.PreviousEditionDisplayer;
 import com.maudits.website.repository.EditionRepository;
+import com.maudits.website.repository.ExtraEventRepository;
 import com.maudits.website.repository.FilmRepository;
+import com.maudits.website.repository.entities.BoothPicture;
 import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Film;
 import com.maudits.website.repository.entities.Sponsor;
@@ -33,37 +38,40 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MauditService {
-	private final FilmRepository filmRepository;
+	private final CurrentEditionService currentEditionService;
 	private final EditionRepository editionRepository;
+	private final FilmRepository filmRepository;
+	private final ExtraEventRepository extraEventRepository;
 
-	public Edition findEdition(DisplayEdition displayEdition) {
-		switch (displayEdition) {
-		case CURRENT:
-			return editionRepository.findOneByCurrentTrue();
-		case NEXT:
-			return editionRepository.findOneByNextTrue();
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + displayEdition);
+	private List<String> findPreviousEditionNames(DisplayEdition displayEdition) {
+		List<Edition> pastEditions = editionRepository.findAllByCurrentFalseAndNextFalse();
+		if (displayEdition == DisplayEdition.NEXT) {
+			pastEditions.add(0, editionRepository.findOneByCurrentTrue());
 		}
+		return pastEditions.stream().map(Edition::getName).sorted().toList();
 	}
 
 	public FrontPageDisplayer makePageDisplayer(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
-		return new FrontPageDisplayer(edition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
+		return new FrontPageDisplayer(edition, findPreviousEditionNames(displayEdition));
+	}
+
+	private Optional<Film> findById(String id) {
+		try {
+			return filmRepository.findById(Long.valueOf(id));
+		} catch (NumberFormatException e) {
+			return Optional.empty();
+		}
 	}
 
 	public FilmDetailPageDisplayer findFilmDetailPageDisplayerFromTextualId(DisplayEdition displayEdition,
 			String textualId) throws WrongEditionException {
-		Edition edition = findEdition(displayEdition);
-		Film film = filmRepository.findOneByTextualId(textualId)
-				.or(() -> filmRepository.findById(Long.valueOf(textualId))).orElseThrow();
-//		if (!film.getEdition().equals(edition)) {
-//			throw new WrongEditionException();
-//		}
-		if (displayEdition != DisplayEdition.NEXT && film.getEdition().isNext()) {
+		Edition edition = currentEditionService.findEdition(displayEdition);
+		Film film = filmRepository.findOneByTextualId(textualId).or(() -> findById(textualId)).orElseThrow();
+		if (displayEdition != DisplayEdition.NEXT && film.isNextEdition()) {
 			throw new WrongEditionException();
 		}
-		return new FilmDetailPageDisplayer(edition, film);
+		return new FilmDetailPageDisplayer(edition, findPreviousEditionNames(displayEdition), film);
 	}
 
 	private List<Film> mergeList(List<Film> oldList, List<Film> newList) {
@@ -94,18 +102,22 @@ public class MauditService {
 	}
 
 	public HomepageDisplayer makeHomeFilmRecap(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		List<HomePageDayDisplayer> days = findDays(edition);
 		List<SponsorDisplayer> sponsors = new ArrayList<>();
 		for (Sponsor sponsor : edition.getSponsors()) {
 			sponsors.add(new SponsorDisplayer(sponsor));
 		}
 		Collections.shuffle(sponsors);
-		return new HomepageDisplayer(edition, days, sponsors);
+//		return new HomepageDisplayer(edition, days, sponsors);
+		return extraEventRepository.findOneByActive()
+				.map(ea -> new HomepageDisplayer(edition, findPreviousEditionNames(displayEdition),
+						new HomePageCurrentEventDisplayer(ea.getFilm()), sponsors))
+				.orElse(new HomepageDisplayer(edition, findPreviousEditionNames(displayEdition), days, sponsors));
 	}
 
 	public ArchivePageDisplayer makeArchivePage(DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
+		Edition edition = currentEditionService.findEdition(displayEdition);
 		List<Edition> pastEditions = editionRepository.findAllByCurrentFalseAndNextFalse();
 		if (displayEdition == DisplayEdition.NEXT) {
 			pastEditions.add(0, editionRepository.findOneByCurrentTrue());
@@ -113,11 +125,23 @@ public class MauditService {
 		return new ArchivePageDisplayer(edition, pastEditions);
 	}
 
-	public PreviousEditionDisplayer makePreviousEditionPage(String editionCode, DisplayEdition displayEdition) {
-		Edition edition = findEdition(displayEdition);
-		Edition archivedEdition = editionRepository.findByName(editionCode).orElseThrow();
+	public PreviousEditionDisplayer makePreviousEditionPage(String editionName, DisplayEdition displayEdition) {
+		Edition edition = currentEditionService.findEdition(displayEdition);
+		Edition archivedEdition = editionRepository.findByName(editionName).orElseThrow();
 		List<HomePageDayDisplayer> days = findDays(archivedEdition);
-		return new PreviousEditionDisplayer(edition, archivedEdition, days);
+		return new PreviousEditionDisplayer(edition, findPreviousEditionNames(displayEdition), archivedEdition, days);
 	}
 
+	public FrontPageDisplayer makeAboutPageDisplayer(DisplayEdition displayEdition) {
+		Edition edition = currentEditionService.findEdition(displayEdition);
+		return new AboutPageDisplayer(edition, findPreviousEditionNames(displayEdition));
+	}
+
+	public List<String> findBoothPictures(String password) {
+		Edition edition = currentEditionService.findEdition(DisplayEdition.CURRENT);
+		if (!edition.getBoothPicturesPassword().equals(password)) {
+			throw new RuntimeException("Mot de passe incorrect");
+		}
+		return edition.getBoothPictures().stream().map(BoothPicture::getImageUrl).toList();
+	}
 }
