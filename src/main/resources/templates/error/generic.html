@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<th:block th:replace="~{fragments/common :: common-header-values (
+		canonicalurl='https://lemauditfestival.com',
+		title='Error - Le Maudit Festival',
+		description='error',
+		page=${page}
+		)}" />
+	<th:block th:replace="~{fragments/common :: owa-script}" />
+</head>
+<body>
+	<header th:replace="~{fragments/common.html :: common-navbar}"></header>
+	<div class="hero short-hero">
+	</div>
+	<section class="p404-section">
+		<h1 class="http-error-code" th:text="${errorCode}">Error Code</h1>
+		<a th:href="${page.root}" class="btn btn-danger btn-lg http-error-button">Retourner sur la page d'accueil</a>
+	</section>
+	<footer th:replace="~{fragments/common.html :: common-footer}">
+	</footer>
+</body>
+</html>

@@ -24,6 +24,10 @@ public class SitemapService {
 		Collection<SitemapUrl> staticPagesUrls = new ArrayList<>();
 		staticPagesUrls.add(new SitemapUrl("https://lemauditfestival.com", SitemapUrl.Priority.HIGH));
 		staticPagesUrls.add(new SitemapUrl("https://lemauditfestival.com/contact", SitemapUrl.Priority.MEDIUM));
+		staticPagesUrls.add(
+				new SitemapUrl("https://lemauditfestival.com/a-propos-du-maudit-festival", SitemapUrl.Priority.MEDIUM));
+		staticPagesUrls.add(new SitemapUrl("https://lemauditfestival.com/editions-precedentes/avant-le-maudit-festival",
+				SitemapUrl.Priority.MEDIUM));
 
 //		staticPagesUrls.add(
 //				new SitemapUrl("https://lemauditfestival.com/a-propos-du-maudit-festival", SitemapUrl.Priority.HIGH));
@@ -36,7 +40,7 @@ public class SitemapService {
 	private Collection<SitemapUrl> listFilmPages() {
 		Collection<SitemapUrl> filmPagesUrls = new ArrayList<>();
 		for (Film film : filmRepository.findAllByEditionNextFalse()) {
-			SitemapUrl.Priority priority = film.getEdition().isCurrent() ? SitemapUrl.Priority.HIGH
+			SitemapUrl.Priority priority = film.isCurrentEdition() ? SitemapUrl.Priority.HIGH
 					: SitemapUrl.Priority.MEDIUM;
 			filmPagesUrls.add(new SitemapUrl("https://lemauditfestival.com/film/" + film.getTextualId(), priority,
 					film.getLastUpdateTime()));
@@ -56,8 +60,8 @@ public class SitemapService {
 	public Sitemap buildSitemap() {
 		Collection<SitemapUrl> xmlUrlset = new ArrayList<>();
 		xmlUrlset.addAll(listStaticPages());
-		xmlUrlset.addAll(listFilmPages());
 		xmlUrlset.addAll(listPastEditionPages());
+		xmlUrlset.addAll(listFilmPages());
 
 		return new Sitemap(xmlUrlset);
 

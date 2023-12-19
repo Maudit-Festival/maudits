@@ -1,5 +1,6 @@
 package com.maudits.website.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,17 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ContactService {
+	@Value("${spring.mail.username}")
+	private String contactEmail;
+
 	private final JavaMailSender mailSender;
 
 	public boolean sendEmail(ContactMessageForm form) {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("contact.maudits@gmail.com");
+		message.setFrom(contactEmail);
 		message.setTo("terreur.nocturne.asso@gmail.com");
-		message.setSubject("[Formulaire de contact mauditfestival.com] Un nouveau message de " + form.getFirstName()
-				+ " " + form.getLastName() + " ( " + form.getEmailAddress() + ")");
+		message.setSubject(
+				"[Formulaire de contact mauditfestival.com] De " + form.getFirstName() + " " + form.getLastName());
 		message.setReplyTo(form.getEmailAddress());
 		message.setText(form.getMessageContent());
 		try {

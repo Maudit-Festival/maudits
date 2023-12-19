@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+	<th:block th:replace="~{fragments/common :: common-header-values (
+		canonicalurl=${'https://lemauditfestival.com/editions-precedentes/'+page.name},
+		title=${'Archive '+ page.name + ' - Le Maudit Festival'},
+		description='Toutes les informations sur ce festival dédié à un cinéma étrange et méconnu à Grenoble : programmation, films, rencontres, événements.',
+		page=${page}
+		)}" />
+
+	<th:block th:replace="~{fragments/common :: owa-script}" />
+</head>
+
+<body>
+	<header th:replace="~{fragments/common.html :: common-navbar}"></header>
+	<section class="hero short-hero">
+	</section>
+	<section id="editorial" class='editorial-section'>
+		<div th:if="${page.editorial != null}">
+			<h3 class="section-headline">Éditorial</h3>
+			<p text:bbcode="${page.editorial}"></p>
+		</div>
+	</section>
+	<section id="teaser" th:if="${page.teaserVideoUrl != null}" class="programmation-section">
+		<div>
+			<h3 class="section-headline">Teaser</h3>
+			<div class="video-container">
+				<div class="placeholder">
+					<p>Si vous affichez le trailer, Google pourra déposer des cookies sur votre ordinateur.</p>
+					<a class="btn-purple" onclick="showTrailer()">Cliquez ici pour afficher le lecteur YouTube</a>
+				</div>
+				<iframe id="teaser-iframe" class="embed-responsive-item" title="Teaser" loading="lazy" allowfullscreen></iframe>
+			</div>
+		</div>
+	</section>
+		<script th:inline="javascript">
+		function showTrailer() {
+			document.getElementById('teaser-iframe').src=/*[[${page.teaserVideoUrl}]]*/ url;
+			document.getElementById('teaser-iframe').style.zIndex = 1;
+		}
+	</script>
+
+	<section th:if="${page.guests.size() > 0}" class='guests programmation-section'>
+		<h3 class="section-headline">Invités</h3>
+		<div class="guests-container">
+			<div class="guest-container" th:each="guest : ${page.guests}">
+				<h3 th:text="${guest.name}"></h3>
+				<div>
+					<p class="guest-description" th:text="${guest.description}"></p>
+					<div class="guest_img">
+						<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}" loading="lazy"	class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="programmation" class="programmation-section footer-separator">
+		<h3 class="section-headline">Les Films et évènements</h3>
+		<div class="container">
+			<div class="programmation_list_days">
+				<th:block th:each="day : ${page.days}">
+					<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
+					<span>/</span>
+				</th:block>
+			</div>
+			<div class="day_programmation">
+				<div th:each="day : ${page.days}" th:id="${day.date}" class="programmation_list">
+						<h4 th:text="${day.displayDate}"></h4>
+						<div class="programmation-day-recap row">
+							<article th:each="film : ${day.films}">
+								<header>
+									<a th:href="@{'/film/'+${film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+								</header>
+								<div th:text="${film.startTime}"></div>
+								<div><span th:text="${film.title}"></span></div>
+								<div th:text="${film.locationName}"></div>
+								<a th:href="@{'/film/'+${film.textualId}}" class="know_more btn-purple">En savoir plus</a>
+							</article>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="~{fragments/common.html :: common-footer}">
+	</footer>
+</body>
+</html>

@@ -18,8 +18,9 @@ public class PreviousEditionDisplayer extends FrontPageDisplayer {
 	private final List<HomePageDayDisplayer> days;
 	private final List<GuestDisplayer> guests;
 
-	public PreviousEditionDisplayer(Edition edition, Edition shownEdition, List<HomePageDayDisplayer> days) {
-		super(edition);
+	public PreviousEditionDisplayer(Edition edition, List<String> editionNames, Edition shownEdition,
+			List<HomePageDayDisplayer> days) {
+		super(edition, editionNames);
 
 		this.name = shownEdition.getName();
 		this.editorial = shownEdition.getEditorial();
