@@ -158,7 +158,7 @@
 		<h3>Merci à nos partenaires</h3>
 		<div class="partner-carroussel">
 			<div th:each="sponsor : ${page.sponsors}">
-				<a th:href="${sponsor.targetUrl}" target="_blank">
+				<a th:href="${sponsor.targetUrl}" target="_blank" th:aria-label="${sponsor.name}" th:title="${sponsor.name}">
 					<div th:style="${'background-image:url(' + sponsor.logoUrl +');'}" class="partner_image"></div>
 				</a>
 			</div>

@@ -14,6 +14,7 @@ import lombok.Setter;
 public class SponsorForm {
 	private Long id;
 	private String name;
+	private String textualId;
 	private String targetUrl;
 
 	private String logoUrl;
@@ -22,6 +23,7 @@ public class SponsorForm {
 	public SponsorForm(Sponsor sponsor) {
 		this.id = sponsor.getId();
 		this.name = sponsor.getName();
+		this.textualId = sponsor.getTextualId();
 		this.logoUrl = sponsor.getLogoUrl();
 		this.targetUrl = sponsor.getTargetUrl();
 	}

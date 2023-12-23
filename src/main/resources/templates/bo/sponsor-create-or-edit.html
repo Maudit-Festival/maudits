@@ -21,10 +21,14 @@
 <!--	</header>-->
 
 	<form th:action="@{../save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
-		<input type="hidden" th:field="*{id}">
+		<input type="hidden" th:field="*{id}" th:unless="${copy}">
 		<div class="form-group">
 			<label for="movieName">Nom du partenaire</label>
-			<input type="text" th:field="*{name}" class="form-control" id="sponsorName" required pattern="[-a-z0-9]+">
+			<input type="text" th:field="*{name}" class="form-control" id="sponsorName" required>
+		</div>
+		<div class="form-group">
+			<label for="movieName">Id du partenaire</label>
+			<input type="text" th:field="*{textualId}" class="form-control" id="sponsorId" required pattern="[a-z0-9\-]+" th:readonly="${copy}">
 		</div>
 		<div class="form-group">
 			<label for="movieURL">URL du site du partenaire</label>
@@ -35,11 +39,13 @@
 			<img id="logoPreview" class="imageUploadPreview" th:src="*{logoUrl}">
 			</label>
 			<input type="file" th:field="*{logoFile}" accept="image/*" class="form-control-file" id="uploadLogo" required>
+			<input type="hidden" th:field="*{logoUrl}" th:if="${copy}">
 		</div>
-		<a href="../../dashboard" class="btn btn-secondary">Annuler</a>
+		<a href="../../dashboard#sponsorAnchor" class="btn btn-secondary" th:unless="${copy}">Annuler</a>
+		<a href="../copy" class="btn btn-secondary" th:if="${copy}">Annuler</a>
 		<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>
 	</form>
-	<form th:action="@{../delete}" th:method="post" th:if="${form.id != null}" 
+	<form th:action="@{../delete}" th:method="post" th:if="${form.id != null}" th:unless="${copy}"
 	onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce sponsor ?');">
 		<input type="hidden" name="id" th:value="${form.id}">
 		<button type="submit" class="btn btn-danger">Supprimer</button>
@@ -63,6 +69,31 @@ function showPreviewImage(input, image, maxsize) {
 		}
 	});
 }
-showPreviewImage($("#uploadLogo"), $("#filmLogoPreview"), 500000);
+showPreviewImage($("#uploadLogo"), $("#logoPreview"), 500000);
+
+</script>
+<script th:unless="${copy}">
+
+let autoid = true;
+let titleInput = $("#sponsorName");
+let idInput = $("#sponsorId");
+
+function sanitize(string) {
+	const regExp = /[^a-z0-9\-]/g
+	return string.toLowerCase().replaceAll(' ', '-').replaceAll('\'', '-').normalize("NFD").replaceAll(regExp, "");
+}
+
+titleInput.on("change", ()=>{
+	let movietitle = titleInput.val();
+	if (autoid) {
+		idInput.val(sanitize(movietitle));
+	}
+	
+})
+
+idInput.on("change", ()=>{
+	autoid = (idInput.val()) ? false : true;
+})
+
 </script>
 </html>
