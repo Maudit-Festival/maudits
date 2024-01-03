@@ -15,6 +15,6 @@ public class SponsorBoDisplayer {
 		this.id = sponsor.getId();
 		this.name = sponsor.getName();
 		this.logoUrl = sponsor.getLogoUrl();
-		this.targetUrlSet = !sponsor.getTargetUrl().isBlank();
+		this.targetUrlSet = sponsor.getTargetUrl() != null && !sponsor.getTargetUrl().isBlank();
 	}
 }

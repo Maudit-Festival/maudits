@@ -34,11 +34,11 @@
 			<label for="movieURL">URL du site du partenaire</label>
 			<input type="text" th:field="*{targetUrl}" class="form-control" id="sponsorURL" required>
 		</div>
-		<div class="form-group">
+		<div class="form-group partner-logo-display">
 			<label for="uploadLogo">Logo du partenaire
 			<img id="logoPreview" class="imageUploadPreview" th:src="*{logoUrl}">
 			</label>
-			<input type="file" th:field="*{logoFile}" accept="image/*" class="form-control-file" id="uploadLogo" required>
+			<input type="file" th:field="*{logoFile}" accept="image/*" class="form-control-file" id="uploadLogo" th:required="*{targetUrl == null}">
 			<input type="hidden" th:field="*{logoUrl}" th:if="${copy}">
 		</div>
 		<a href="../../dashboard#sponsorAnchor" class="btn btn-secondary" th:unless="${copy}">Annuler</a>

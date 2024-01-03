@@ -126,3 +126,8 @@ form{
 .imageUploadPreview{
 	max-width: 100%;
 }
+
+.partner-logo-display {
+	padding: 5px;
+	background: white;
+}

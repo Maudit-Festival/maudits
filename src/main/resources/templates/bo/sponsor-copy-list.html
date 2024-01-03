@@ -27,7 +27,7 @@
 		<a href="../dashboard#sponsorAnchor" class="btn btn-danger">Annuler</a>
 		<div class="row edition_content_film">
 			<article th:each="sponsor : ${sponsors}">
-				<header>
+				<header class="partner-logo-display">
 					<img th:src="*{sponsor.logoUrl}" style="height: auto" th:alt="${sponsor.name}">
 				</header>
 					<p th:text="${sponsor.name}"></p>
