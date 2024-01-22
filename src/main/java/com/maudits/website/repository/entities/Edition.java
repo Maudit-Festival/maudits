@@ -4,11 +4,10 @@ import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-
 import com.maudits.website.repository.entities.utils.EntityWithId;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,7 +30,7 @@ public class Edition extends EntityWithId {
 	private String shareImageUrl;
 	private String accentColor;
 
-	private String editorialTitle;
+//	private String editorialTitle;
 	private String editorial;
 	private String teaserUrl;
 	private String pdfUrl;

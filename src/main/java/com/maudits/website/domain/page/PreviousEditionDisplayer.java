@@ -2,6 +2,7 @@ package com.maudits.website.domain.page;
 
 import java.util.List;
 
+import com.maudits.website.domain.displayer.FrontVisualInfo;
 import com.maudits.website.domain.displayer.GuestDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.repository.entities.Edition;
@@ -17,9 +18,8 @@ public class PreviousEditionDisplayer extends FrontPageDisplayer {
 	private final List<HomePageDayDisplayer> days;
 	private final List<GuestDisplayer> guests;
 
-	public PreviousEditionDisplayer(Edition edition, List<String> editionNames, Edition shownEdition,
-			List<HomePageDayDisplayer> days) {
-		super(edition, editionNames);
+	public PreviousEditionDisplayer(FrontVisualInfo visualInfo, Edition shownEdition, List<HomePageDayDisplayer> days) {
+		super(visualInfo);
 
 		this.name = shownEdition.getName();
 		this.editorial = shownEdition.getEditorial();

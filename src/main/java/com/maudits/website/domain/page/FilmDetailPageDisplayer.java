@@ -1,9 +1,7 @@
 package com.maudits.website.domain.page;
 
-import java.util.List;
-
 import com.maudits.website.domain.displayer.FilmDetailDisplayer;
-import com.maudits.website.repository.entities.Edition;
+import com.maudits.website.domain.displayer.FrontVisualInfo;
 import com.maudits.website.repository.entities.Film;
 
 import lombok.Getter;
@@ -12,8 +10,8 @@ import lombok.Getter;
 public class FilmDetailPageDisplayer extends FrontPageDisplayer {
 	private final FilmDetailDisplayer filmDisplayer;
 
-	public FilmDetailPageDisplayer(Edition edition, List<String> editionNames, Film film) {
-		super(edition, editionNames);
+	public FilmDetailPageDisplayer(FrontVisualInfo visualInfo, Film film) {
+		super(visualInfo);
 		this.filmDisplayer = new FilmDetailDisplayer(film);
 	}
 }

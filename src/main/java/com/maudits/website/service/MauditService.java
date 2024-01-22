@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.displayer.FrontVisualInfo;
 import com.maudits.website.domain.displayer.HomePageCurrentEventDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.domain.displayer.HomePageFilmDisplayer;
@@ -30,6 +31,7 @@ import com.maudits.website.repository.ExtraEventRepository;
 import com.maudits.website.repository.FilmRepository;
 import com.maudits.website.repository.entities.BoothPicture;
 import com.maudits.website.repository.entities.Edition;
+import com.maudits.website.repository.entities.ExtraEvent;
 import com.maudits.website.repository.entities.Film;
 import com.maudits.website.repository.entities.Sponsor;
 
@@ -51,9 +53,15 @@ public class MauditService {
 		return pastEditions.stream().map(Edition::getName).sorted().toList();
 	}
 
-	public FrontPageDisplayer makePageDisplayer(DisplayEdition displayEdition) {
+	private FrontVisualInfo findFrontVisualInfo(DisplayEdition displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
-		return new FrontPageDisplayer(edition, findPreviousEditionNames(displayEdition));
+		List<String> previousEditionNames = findPreviousEditionNames(displayEdition);
+		Optional<ExtraEvent> extraEvent = extraEventRepository.findOneByActive();
+		return new FrontVisualInfo(extraEvent, edition, previousEditionNames);
+	}
+
+	public FrontPageDisplayer makePageDisplayer(DisplayEdition displayEdition) {
+		return new FrontPageDisplayer(findFrontVisualInfo(displayEdition));
 	}
 
 	private Optional<Film> findById(String id) {
@@ -66,12 +74,11 @@ public class MauditService {
 
 	public FilmDetailPageDisplayer findFilmDetailPageDisplayerFromTextualId(DisplayEdition displayEdition,
 			String textualId) throws WrongEditionException {
-		Edition edition = currentEditionService.findEdition(displayEdition);
 		Film film = filmRepository.findOneByTextualId(textualId).or(() -> findById(textualId)).orElseThrow();
 		if (displayEdition != DisplayEdition.NEXT && film.isNextEdition()) {
 			throw new WrongEditionException();
 		}
-		return new FilmDetailPageDisplayer(edition, findPreviousEditionNames(displayEdition), film);
+		return new FilmDetailPageDisplayer(findFrontVisualInfo(displayEdition), film);
 	}
 
 	private List<Film> mergeList(List<Film> oldList, List<Film> newList) {
@@ -117,24 +124,18 @@ public class MauditService {
 	}
 
 	public ArchivePageDisplayer makeArchivePage(DisplayEdition displayEdition) {
-		Edition edition = currentEditionService.findEdition(displayEdition);
 		List<Edition> pastEditions = editionRepository.findAllByCurrentFalseAndNextFalse();
-		if (displayEdition == DisplayEdition.NEXT) {
-			pastEditions.add(0, editionRepository.findOneByCurrentTrue());
-		}
-		return new ArchivePageDisplayer(edition, pastEditions);
+		return new ArchivePageDisplayer(findFrontVisualInfo(displayEdition), pastEditions);
 	}
 
 	public PreviousEditionDisplayer makePreviousEditionPage(String editionName, DisplayEdition displayEdition) {
-		Edition edition = currentEditionService.findEdition(displayEdition);
 		Edition archivedEdition = editionRepository.findByName(editionName).orElseThrow();
 		List<HomePageDayDisplayer> days = findDays(archivedEdition);
-		return new PreviousEditionDisplayer(edition, findPreviousEditionNames(displayEdition), archivedEdition, days);
+		return new PreviousEditionDisplayer(findFrontVisualInfo(displayEdition), archivedEdition, days);
 	}
 
 	public FrontPageDisplayer makeAboutPageDisplayer(DisplayEdition displayEdition) {
-		Edition edition = currentEditionService.findEdition(displayEdition);
-		return new AboutPageDisplayer(edition, findPreviousEditionNames(displayEdition));
+		return new AboutPageDisplayer(findFrontVisualInfo(displayEdition));
 	}
 
 	public List<String> findBoothPictures(String password) {
