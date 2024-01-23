@@ -533,6 +533,11 @@ footer ul li:before{
 	}
 }
 
+
+.guest-description {
+  white-space: pre-wrap;
+}
+
 /*
 * Homepage Download
 */
@@ -565,6 +570,11 @@ footer ul li:before{
 	background: var(--background-gray-color);
 	color: white;
 }
+
+.editorial-section p {
+	white-space: pre-wrap;
+}
+
 .practical-info-section {
 	padding-top: 2%;
 	padding-bottom: 5%;
@@ -865,6 +875,10 @@ footer ul li:before{
 .guest-container div {
 	display: flex;
 	align-items: flex-start;
+}
+
+.guest-container a[href] {
+	color: white; 
 }
 
 @media(max-width: 699px) {

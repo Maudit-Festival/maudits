@@ -29,6 +29,7 @@
 			<li class="line_1" th:if="${edition.name() == 'NEXT'}"><a href="/bo/next">Preview</a></li>
 			<li class="line_1"><a href="#filmAnchor">Films</a></li>
 			<li class="line_1"><a href="#sponsorAnchor">Sponsors</a></li>
+			<li class="line_1"><a href="#guestAnchor">Invités</a></li>
 			<li class="line_1"><a href="#lookAnchor">Configuration</a></li>
 			<li th:if="${edition.name() == 'NEXT'}">
 				<form th:action="@{current}" th:method="post"
@@ -61,6 +62,17 @@
 				</header>
 					<p th:text="${sponsor.name}"></p>
 					<a th:href="${'sponsor/edit/' + sponsor.id}">Éditer</a>
+			</article>
+		</div>
+		<h2 id="guestAnchor" class="admin_title_next_edition" >Invités</h2>
+		<a class="btn btn-primary" href="guest/create/new">Ajouter un invité</a>
+		<div class="row edition_content_film">
+			<article th:each="guest : ${page.guests}">
+				<header class="partner-logo-display">
+					<img th:src="*{guest.pictureUrl}" style="height: auto" th:alt="${guest.name}">
+				</header>
+					<p th:text="${guest.name}"></p>
+					<a th:href="${'guest/edit/' + guest.id}">Éditer</a>
 			</article>
 		</div>
 		<h2 id="lookAnchor" class="admin_title_next_edition">Configuration</h2>

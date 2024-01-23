@@ -103,6 +103,20 @@
 		</svg>
 		Télécharger la programmation</a>
 	</div>
+	<section th:if="${page.guests.size() > 0}" class='guests programmation-section'>
+		<h3 class="section-headline">Invités</h3>
+		<div class="guests-container">
+			<div class="guest-container" th:each="guest : ${page.guests}">
+				<h3 th:text="${guest.name}"></h3>
+				<div>
+					<p class="guest-description" text:bbcode="${guest.description}"></p>
+					<div class="guest_img">
+						<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}" loading="lazy"	class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	<section id="pratique" th:if="${page.currentEvent == null}" class="practical-info-section">
 		<h3 class="section-headline">Infos pratiques</h3>
 		<div class="practical-container">

@@ -2,7 +2,6 @@ package com.maudits.website.service;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
@@ -14,14 +13,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.bo.displayer.EditionBoDisplayer;
 import com.maudits.website.domain.bo.displayer.FilmBoDisplayer;
+import com.maudits.website.domain.bo.displayer.GuestBoDisplayer;
 import com.maudits.website.domain.bo.displayer.SponsorBoDisplayer;
 import com.maudits.website.domain.form.EditionForm;
 import com.maudits.website.repository.BoothPictureRepository;
 import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.entities.BoothPicture;
 import com.maudits.website.repository.entities.Edition;
-import com.maudits.website.repository.entities.Film;
-import com.maudits.website.repository.entities.Sponsor;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,24 +32,20 @@ public class BoEditionService {
 	private final BoothPictureRepository boothPictureRepository;
 
 	private List<FilmBoDisplayer> findFilms(Edition edition) {
-		List<FilmBoDisplayer> result = new ArrayList<>();
-		for (Film film : edition.getFilms()) {
-			result.add(new FilmBoDisplayer(film));
-		}
-		return result;
+		return edition.getFilms().stream().map(FilmBoDisplayer::new).toList();
 	}
 
 	private List<SponsorBoDisplayer> findSponsors(Edition edition) {
-		List<SponsorBoDisplayer> result = new ArrayList<>();
-		for (Sponsor sponsor : edition.getSponsors()) {
-			result.add(new SponsorBoDisplayer(sponsor));
-		}
-		return result;
+		return edition.getSponsors().stream().map(SponsorBoDisplayer::new).toList();
+	}
+
+	private List<GuestBoDisplayer> findGuest(Edition edition) {
+		return edition.getGuests().stream().map(GuestBoDisplayer::new).toList();
 	}
 
 	public EditionBoDisplayer buildDisplayer(DisplayEdition displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
-		return new EditionBoDisplayer(findFilms(edition), findSponsors(edition));
+		return new EditionBoDisplayer(findFilms(edition), findSponsors(edition), findGuest(edition));
 	}
 
 	public EditionForm buildForm(DisplayEdition displayEdition) {

@@ -10,4 +10,5 @@ import lombok.RequiredArgsConstructor;
 public class EditionBoDisplayer {
 	private final List<FilmBoDisplayer> films;
 	private final List<SponsorBoDisplayer> sponsors;
+	private final List<GuestBoDisplayer> guests;
 }
