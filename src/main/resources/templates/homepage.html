@@ -45,7 +45,7 @@
 	<section id="editorial" th:if="${page.editorial != null && page.currentEvent == null}" class='editorial-section'>
 		<div>
 			<h3 class="section-headline">Éditorial</h3>
-			<p text:bbcode="${page.editorial}"></p>
+			<p text:bbcode="${page.editorial}" class="user-format"></p>
 		</div>
 	</section>
 	<section id="teaser" th:if="${page.teaserVideoUrl != null && page.currentEvent == null}" class='programmation-section'>
@@ -109,7 +109,7 @@
 			<div class="guest-container" th:each="guest : ${page.guests}">
 				<h3 th:text="${guest.name}"></h3>
 				<div>
-					<p class="guest-description" text:bbcode="${guest.description}"></p>
+					<p class="guest-description user-format" text:bbcode="${guest.description}"></p>
 					<div class="guest_img">
 						<img th:src="${guest.imageUrl}" th:if="${guest.imageUrl!= null}" loading="lazy"	class="img-fluid">
 					</div>

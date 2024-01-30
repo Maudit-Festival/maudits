@@ -68,6 +68,11 @@ section {
 .error-message {
 	color: red;
 }
+
+.user-format {
+	white-space: pre-wrap;
+}
+
 /*
 * NAVIGATION MENU
 */
@@ -533,11 +538,6 @@ footer ul li:before{
 	}
 }
 
-
-.guest-description {
-  white-space: pre-wrap;
-}
-
 /*
 * Homepage Download
 */
@@ -569,10 +569,6 @@ footer ul li:before{
 .practical-info-section, .contact-section, .p404-section, .editorial-section {
 	background: var(--background-gray-color);
 	color: white;
-}
-
-.editorial-section p {
-	white-space: pre-wrap;
 }
 
 .practical-info-section {
