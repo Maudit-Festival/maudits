@@ -19,14 +19,14 @@
 			<div class="about_sidebar">
 			<h3>La maudite équipe</h3>
 			<ul>
-				<li><span class="span_about_sidebar">Coordination de la programmation</span>&nbsp;: <p>Sarah Onave</p></li>
-				<li><span class="span_about_sidebar">Responsable des copies</span>&nbsp;: <p>Guillaume Pic</p></li>
-				<li><span class="span_about_sidebar">Coordination de la communication</span>&nbsp;: <p>Hélène Godin, Grégory Vaumourin</p></li>
-				<li><span class="span_about_sidebar">Administration</span>&nbsp;: <p>Simon Lassalle</p></li>
-				<li><span class="span_about_sidebar">Développeur web</span>&nbsp;: <p>Jean-Alexandre Anglès d'Auriac</p></li>
-				<li><span class="span_about_sidebar">Conseil collégial</span>&nbsp;: <p>Hélène Godin, Simon Lassalle, Sarah Onave</p></li>
-				<li><span class="span_about_sidebar">Membres bénévoles</span>&nbsp;: <p>Jean-Alexandre Anglès d’Auriac, Enzo Gillet-Lacoste, 
-					Hélène Godin, Simon Lassalle, Sarah Onave, Guillaume Pic, Gregory Vaumourin</p></li>
+				<li th:each="position : ${page.credits}"><span class="span_about_sidebar" th:text="${position.name}">Role</span>&nbsp;: 
+					<p>
+						<th:block th:each="crew, iter : ${position.crews}">
+							<span th:text="${crew}"></span>
+							<th:block th:if="${!iter.last}">, </th:block>
+						</th:block>
+					</p>
+				</li>
 			</ul>
 		</div>
 		<div class="about_main">

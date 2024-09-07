@@ -25,12 +25,15 @@ import com.maudits.website.domain.page.FilmDetailPageDisplayer;
 import com.maudits.website.domain.page.FrontPageDisplayer;
 import com.maudits.website.domain.page.HomepageDisplayer;
 import com.maudits.website.domain.page.PreviousEditionDisplayer;
+import com.maudits.website.repository.CrewRepository;
 import com.maudits.website.repository.EditionRepository;
 import com.maudits.website.repository.ExtraEventRepository;
 import com.maudits.website.repository.FilmRepository;
 import com.maudits.website.repository.entities.BoothPicture;
+import com.maudits.website.repository.entities.Crew;
 import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Film;
+import com.maudits.website.repository.entities.Position;
 import com.maudits.website.repository.entities.Sponsor;
 
 import lombok.RequiredArgsConstructor;
@@ -42,6 +45,7 @@ public class MauditService {
 	private final EditionRepository editionRepository;
 	private final FilmRepository filmRepository;
 	private final ExtraEventRepository extraEventRepository;
+	private final CrewRepository crewRepository;
 
 	private List<String> findPreviousEditionNames(DisplayEdition displayEdition) {
 		List<Edition> pastEditions = editionRepository.findAllByCurrentFalseAndNextFalse();
@@ -134,7 +138,16 @@ public class MauditService {
 
 	public FrontPageDisplayer makeAboutPageDisplayer(DisplayEdition displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
-		return new AboutPageDisplayer(edition, findPreviousEditionNames(displayEdition));
+		Map<Position, List<Crew>> credits = new HashMap<>();
+		List<Crew> crews = crewRepository.findAllByEdition(edition);
+		for (Crew crew : crews) {
+			if (credits.containsKey(crew.getPosition())) {
+				credits.get(crew.getPosition()).add(crew);
+			} else {
+				credits.put(crew.getPosition(), new ArrayList<>(List.of(crew)));
+			}
+		}
+		return new AboutPageDisplayer(edition, findPreviousEditionNames(displayEdition), credits);
 	}
 
 	public List<String> findBoothPictures(String password) {

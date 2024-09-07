@@ -75,6 +75,41 @@
 					<a th:href="${'guest/edit/' + guest.id}">Éditer</a>
 			</article>
 		</div>
+		<h2 id="teamAnchor" class="admin_title_next_edition" >Équipe</h2>
+		<div class="row edition_content_film">
+			<div class="form-group" th:each="position : ${page.positions}" style="width: 100%; display: flex;">
+				<div  class="col-md-6" style="display: flex; flex-direction: column;">
+					<label th:text="${position.name}">Nom de la position</label>
+					<div>
+						<th:block th:each="crew, iter : ${position.crews}" >
+							<button type="button" class="btn btn-secondary" th:text="${crew.firstName + ' ' + crew.lastName}" 
+							data-toggle="collapse" th:data-target="${'#collapsed-crew-form-' + crew.id}" >Name</button>
+						</th:block>
+						<button type="button" class="btn btn-secondary" data-toggle="collapse" th:data-target="${'#collapsed-add-crew-for-pos-' + position.id}">Ajouter</button> 
+					</div>
+				</div>
+				<div th:id="${'crew-forms-' + position.id}" class="col-md-6">
+					<div class="collapse" th:id="${'collapsed-crew-form-' + crew.id}" th:each="crew, iter : ${position.crews}" th:data-parent="${'#crew-forms-' + position.id}">
+						<form th:method="post" th:action="@{${'crew/edit/' + crew.id }}">
+							<input type="hidden" th:value="${position.id}" name="positionId" />
+							<input class="form-control" name="firstName" th:value="${crew.firstName}" placeholder="Prénom" />
+							<input class="form-control" name="lastName" th:value="${crew.lastName}" placeholder="Nom de famille" />
+							<button type="submit" class="btn btn-primary">Modifier</button>
+							<button type="submit" th:form="${'crew-delete-form-' + crew.id }" class="btn btn-danger">Supprimer</button>
+						</form>
+						<form th:id="${'crew-delete-form-' + crew.id }" th:method="post" th:action="@{${'crew/delete/' + crew.id }}"></form>
+					</div>
+					<div class="collapse" th:id="${'collapsed-add-crew-for-pos-' + position.id}" th:data-parent="${'#crew-forms-' + position.id}">
+						<form th:method="post" th:action="@{crew/add}">
+							<input type="hidden" th:value="${position.id}" name="positionId" />
+							<input class="form-control" name="firstName" placeholder="Prénom" />
+							<input class="form-control" name="lastName" placeholder="Nom de famille"/>
+							<button type="submit" class="btn btn-primary">Ajouter</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		<h2 id="lookAnchor" class="admin_title_next_edition">Configuration</h2>
 		<div class="row edition_content_film">
 			<form th:method="post" th:action="@{save}" th:object="${form}" enctype="multipart/form-data" class="container">

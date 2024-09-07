@@ -2,6 +2,7 @@ package com.maudits.website.service;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
@@ -14,12 +15,16 @@ import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.bo.displayer.EditionBoDisplayer;
 import com.maudits.website.domain.bo.displayer.FilmBoDisplayer;
 import com.maudits.website.domain.bo.displayer.GuestBoDisplayer;
+import com.maudits.website.domain.bo.displayer.PositionBoDisplayer;
 import com.maudits.website.domain.bo.displayer.SponsorBoDisplayer;
 import com.maudits.website.domain.form.EditionForm;
 import com.maudits.website.repository.BoothPictureRepository;
+import com.maudits.website.repository.CrewRepository;
 import com.maudits.website.repository.EditionRepository;
+import com.maudits.website.repository.PositionRepository;
 import com.maudits.website.repository.entities.BoothPicture;
 import com.maudits.website.repository.entities.Edition;
+import com.maudits.website.repository.entities.Position;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,6 +35,8 @@ public class BoEditionService {
 	private final UploadService uploadService;
 	private final EditionRepository editionRepository;
 	private final BoothPictureRepository boothPictureRepository;
+	private final PositionRepository positionRepository;
+	private final CrewRepository crewRepository;
 
 	private List<FilmBoDisplayer> findFilms(Edition edition) {
 		return edition.getFilms().stream().map(FilmBoDisplayer::new).toList();
@@ -43,9 +50,19 @@ public class BoEditionService {
 		return edition.getGuests().stream().map(GuestBoDisplayer::new).toList();
 	}
 
+	private List<PositionBoDisplayer> findPositions(Edition edition) {
+		List<PositionBoDisplayer> result = new ArrayList<>();
+		for (Position position : positionRepository.findAllByOrderByPriorityAsc()) {
+			result.add(
+					new PositionBoDisplayer(position, crewRepository.findAllByPositionAndEdition(position, edition)));
+		}
+		return result;
+	}
+
 	public EditionBoDisplayer buildDisplayer(DisplayEdition displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
-		return new EditionBoDisplayer(findFilms(edition), findSponsors(edition), findGuest(edition));
+		return new EditionBoDisplayer(findFilms(edition), findSponsors(edition), findGuest(edition),
+				findPositions(edition));
 	}
 
 	public EditionForm buildForm(DisplayEdition displayEdition) {

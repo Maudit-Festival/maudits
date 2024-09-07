@@ -11,4 +11,5 @@ public class EditionBoDisplayer {
 	private final List<FilmBoDisplayer> films;
 	private final List<SponsorBoDisplayer> sponsors;
 	private final List<GuestBoDisplayer> guests;
+	private final List<PositionBoDisplayer> positions;
 }
