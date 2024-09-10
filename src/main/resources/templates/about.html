@@ -22,8 +22,7 @@
 				<li th:each="position : ${page.credits}"><span class="span_about_sidebar" th:text="${position.name}">Role</span>&nbsp;: 
 					<p>
 						<th:block th:each="crew, iter : ${position.crews}">
-							<span th:text="${crew}"></span>
-							<th:block th:if="${!iter.last}">, </th:block>
+							<span th:text="${crew}"></span><th:block th:if="${!iter.last}">, </th:block>
 						</th:block>
 					</p>
 				</li>
