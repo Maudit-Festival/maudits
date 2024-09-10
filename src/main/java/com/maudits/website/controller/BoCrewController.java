@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maudits.website.domain.DisplayEdition;
 import com.maudits.website.domain.form.CrewForm;
@@ -36,6 +37,13 @@ public class BoCrewController {
 	@PostMapping("delete/{crewId}")
 	public String addCrew(@PathVariable DisplayEdition edition, @PathVariable Long crewId) throws IOException {
 		boCrewService.deleteCrew(edition, crewId);
+		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
+	}
+
+	@PostMapping("position/add")
+	public String addPosition(@PathVariable DisplayEdition edition, @RequestParam String positionName,
+			@RequestParam(required = false) Long previousPositionId) throws IOException {
+		boCrewService.addPosition(positionName, previousPositionId);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
 	}
 }

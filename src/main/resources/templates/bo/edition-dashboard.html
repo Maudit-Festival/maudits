@@ -109,6 +109,19 @@
 					</div>
 				</div>
 			</div>
+			<div class="row container">
+				<label data-bs-toggle="collapse" data-bs-target="#add-position-form" role="button">Ajouter un nouveau poste</label>
+				<form id="add-position-form" class="collapse" th:method="post" th:action="@{crew/position/add}">
+					<label for="input-position-name">Nom du poste</label>
+					<input id="input-position-name" class="form-control" name="positionName" placeholder="Nom du poste"/>
+					<label for="select-position-order">Ordre de la position</label>
+					<select class="form-control" name="previousPositionId">
+						<option value="">Avant toutes les autres</option>
+						<option th:each="position : ${page.positions}" th:text="${position.name}" th:value="${position.id}">Nom de la position</option>
+					</select>
+					<button type="submit" class="btn btn-primary">Créer nouveau poste</button>
+				</form>
+			</div>
 		</div>
 		<h2 id="lookAnchor" class="admin_title_next_edition">Configuration</h2>
 		<div class="row edition_content_film">

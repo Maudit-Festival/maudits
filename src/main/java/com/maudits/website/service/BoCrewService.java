@@ -1,5 +1,7 @@
 package com.maudits.website.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.maudits.website.domain.DisplayEdition;
@@ -42,4 +44,25 @@ public class BoCrewService {
 		crewRepository.delete(crew);
 	}
 
+	public void addPosition(String positionName, Long previousPositionId) {
+		List<Position> currentPositions = positionRepository.findAllByOrderByPriorityAsc();
+		if (previousPositionId == null) {
+			currentPositions.stream().forEach(p -> p.setPriority(p.getPriority() + 1));
+			currentPositions.add(new Position(positionName, 0));
+		} else {
+			boolean afterTarget = false;
+			int newPositionPriority = 0;
+			for (Position position : currentPositions) {
+				if (afterTarget) {
+					position.setPriority(position.getPriority() + 1);
+				}
+				if (position.getId() == previousPositionId) {
+					afterTarget = true;
+					newPositionPriority = position.getPriority() + 1;
+				}
+			}
+			currentPositions.add(new Position(positionName, newPositionPriority));
+		}
+		positionRepository.saveAll(currentPositions);
+	}
 }
