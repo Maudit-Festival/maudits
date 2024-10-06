@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.form.GuestForm;
 import com.maudits.website.repository.GuestRepository;
 import com.maudits.website.repository.entities.Guest;
@@ -27,7 +27,7 @@ public class BoGuestService {
 		return new GuestForm(guestRepository.findById(id).orElseThrow());
 	}
 
-	public Guest saveGuest(DisplayEdition displayEdition, @Validated GuestForm form) throws IOException {
+	public Guest saveGuest(Display displayEdition, @Validated GuestForm form) throws IOException {
 		Long id = form.getId();
 		Guest guest = (id != null) ? guestRepository.findById(id).orElseThrow() : new Guest();
 		guest.setEdition(currentEditionService.findEdition(displayEdition));

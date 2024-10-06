@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.service.MauditService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class GlobalControllerExceptionHandler {
 	@ExceptionHandler(NoSuchElementException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public String showMissingPage(Model model) {
-		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		model.addAttribute("page", mauditService.makeFrontPage(Display.CURRENT));
 		return "error/404";
 	}
 }

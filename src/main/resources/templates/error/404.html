@@ -16,7 +16,7 @@
 	<section class="p404-section footer-separator">
 		<h1 class="http-error-code">404</h1>
 		<h2 class="http-error-message">La page recherchée n'existe pas</h2>
-		<a th:href="${page.root}" class="btn-purple">Retourner sur la page d'accueil</a>
+		<a th:href="${page.currentRoot}" class="btn-purple">Retourner sur la page d'accueil</a>
 	</section>
 	<footer th:replace="~{fragments/common.html :: common-footer}">
 	</footer>

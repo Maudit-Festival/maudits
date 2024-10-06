@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.bo.displayer.EditionBoDisplayer;
 import com.maudits.website.domain.bo.displayer.FilmBoDisplayer;
 import com.maudits.website.domain.bo.displayer.GuestBoDisplayer;
@@ -59,13 +59,13 @@ public class BoEditionService {
 		return result;
 	}
 
-	public EditionBoDisplayer buildDisplayer(DisplayEdition displayEdition) {
+	public EditionBoDisplayer buildDisplayer(Display displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		return new EditionBoDisplayer(findFilms(edition), findSponsors(edition), findGuest(edition),
 				findPositions(edition));
 	}
 
-	public EditionForm buildForm(DisplayEdition displayEdition) {
+	public EditionForm buildForm(Display displayEdition) {
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		return new EditionForm(edition);
 	}
@@ -74,7 +74,7 @@ public class BoEditionService {
 		return (string != null && !string.isBlank()) ? string : null;
 	}
 
-	public void saveEdition(DisplayEdition displayEdition, @Validated EditionForm form) throws IOException {
+	public void saveEdition(Display displayEdition, @Validated EditionForm form) throws IOException {
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		edition.setAccentColor(form.getColor());
 		edition.setEditorial(nullIfEmpty(form.getEditorial()));
@@ -114,8 +114,8 @@ public class BoEditionService {
 
 	@Transactional
 	public void makeEditionCurrent() {
-		Edition previousCurrentEdition = currentEditionService.findEdition(DisplayEdition.CURRENT);
-		Edition previousNextEdition = currentEditionService.findEdition(DisplayEdition.NEXT);
+		Edition previousCurrentEdition = currentEditionService.findEdition(Display.CURRENT);
+		Edition previousNextEdition = currentEditionService.findEdition(Display.NEXT);
 		Edition newNextEdition = new Edition();
 
 		previousCurrentEdition.setCurrent(false);
@@ -133,7 +133,7 @@ public class BoEditionService {
 	}
 
 	public void editionPicturesSave(String password, List<MultipartFile> files) throws IOException {
-		Edition edition = currentEditionService.findEdition(DisplayEdition.CURRENT);
+		Edition edition = currentEditionService.findEdition(Display.CURRENT);
 		edition.setBoothPicturesPassword(password);
 		editionRepository.save(edition);
 

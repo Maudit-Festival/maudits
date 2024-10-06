@@ -9,7 +9,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.bo.displayer.SponsorBoDisplayer;
 import com.maudits.website.domain.form.SponsorForm;
 import com.maudits.website.repository.SponsorRepository;
@@ -43,7 +43,7 @@ public class BoSponsorService {
 		}
 	}
 
-	public void saveSponsor(DisplayEdition edition, @Validated SponsorForm form) throws IOException {
+	public void saveSponsor(Display edition, @Validated SponsorForm form) throws IOException {
 		Long id = form.getId();
 		Sponsor sponsor = (id != null) ? sponsorRepository.findById(id).orElseThrow() : new Sponsor();
 		sponsor.setName(filterEmpty(form.getName()));
@@ -73,7 +73,7 @@ public class BoSponsorService {
 		sponsorRepository.deleteById(id);
 	}
 
-	public List<SponsorBoDisplayer> findSponsorsAvailableForCopy(DisplayEdition displayEdition) {
+	public List<SponsorBoDisplayer> findSponsorsAvailableForCopy(Display displayEdition) {
 		Map<String, Sponsor> map = new HashMap<>();
 		for (Sponsor sponsor : sponsorRepository.findAll()) {
 			map.merge(sponsor.getTextualId(), sponsor, (s1, s2) -> s1.getDate().isAfter(s2.getDate()) ? s1 : s2);

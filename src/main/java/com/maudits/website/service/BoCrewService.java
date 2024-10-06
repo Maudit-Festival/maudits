@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.form.CrewForm;
 import com.maudits.website.repository.CrewRepository;
 import com.maudits.website.repository.PositionRepository;
@@ -21,13 +21,13 @@ public class BoCrewService {
 	private final PositionRepository positionRepository;
 	private final CrewRepository crewRepository;
 
-	public void saveCrew(DisplayEdition displayEdition, CrewForm form) {
+	public void saveCrew(Display displayEdition, CrewForm form) {
 		Position position = positionRepository.findById(form.getPositionId()).orElseThrow();
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		crewRepository.save(new Crew(form.getFirstName(), form.getLastName(), position, edition));
 	}
 
-	public void editCrew(DisplayEdition displayEdition, Long crewId, CrewForm form) {
+	public void editCrew(Display displayEdition, Long crewId, CrewForm form) {
 		Position position = positionRepository.findById(form.getPositionId()).orElseThrow();
 		Edition edition = currentEditionService.findEdition(displayEdition);
 		Crew crew = crewRepository.findById(crewId).orElseThrow();
@@ -39,7 +39,7 @@ public class BoCrewService {
 		crewRepository.save(crew);
 	}
 
-	public void deleteCrew(DisplayEdition edition, Long crewId) {
+	public void deleteCrew(Display edition, Long crewId) {
 		Crew crew = crewRepository.findById(crewId).orElseThrow();
 		crewRepository.delete(crew);
 	}

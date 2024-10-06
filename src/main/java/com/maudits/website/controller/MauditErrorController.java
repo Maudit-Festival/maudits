@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.service.MauditService;
 
 import jakarta.servlet.RequestDispatcher;
@@ -20,7 +20,7 @@ public class MauditErrorController implements ErrorController {
 
 	@GetMapping("/error")
 	public String handleError(HttpServletRequest request, Model model) {
-		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.CURRENT));
+		model.addAttribute("page", mauditService.makeFrontPage(Display.CURRENT));
 
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 

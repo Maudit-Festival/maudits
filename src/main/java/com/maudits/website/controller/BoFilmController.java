@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.form.FilmForm;
 import com.maudits.website.service.BoFilmService;
 
@@ -23,7 +23,7 @@ public class BoFilmController {
 	private final BoFilmService boFilmService;
 
 	@GetMapping("create/new")
-	public String showFilmCreationCurrentEdition(@PathVariable DisplayEdition edition, Model model) {
+	public String showFilmCreationCurrentEdition(@PathVariable Display edition, Model model) {
 		model.addAttribute("form", boFilmService.createFilmForm());
 		return "bo/film-create-or-edit";
 	}
@@ -35,14 +35,14 @@ public class BoFilmController {
 	}
 
 	@PostMapping("save-edit")
-	public String saveFilmEdition(@PathVariable DisplayEdition edition, @Validated FilmForm form, Model model)
+	public String saveFilmEdition(@PathVariable Display edition, @Validated FilmForm form, Model model)
 			throws IOException {
 		boFilmService.saveFilm(edition, form);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard";
 	}
 
 	@PostMapping("delete")
-	public String deleteFilm(@PathVariable DisplayEdition edition, Long id, Model model) throws IOException {
+	public String deleteFilm(@PathVariable Display edition, Long id, Model model) throws IOException {
 		boFilmService.deleteFilm(id);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard";
 	}

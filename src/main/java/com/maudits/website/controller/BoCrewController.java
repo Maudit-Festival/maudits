@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.form.CrewForm;
 import com.maudits.website.service.BoCrewService;
 
@@ -22,26 +22,26 @@ public class BoCrewController {
 	private final BoCrewService boCrewService;
 
 	@PostMapping("add")
-	public String addCrew(@PathVariable DisplayEdition edition, @Validated CrewForm form) throws IOException {
+	public String addCrew(@PathVariable Display edition, @Validated CrewForm form) throws IOException {
 		boCrewService.saveCrew(edition, form);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
 	}
 
 	@PostMapping("edit/{crewId}")
-	public String editCrew(@PathVariable DisplayEdition edition, @PathVariable Long crewId, @Validated CrewForm form)
+	public String editCrew(@PathVariable Display edition, @PathVariable Long crewId, @Validated CrewForm form)
 			throws IOException {
 		boCrewService.editCrew(edition, crewId, form);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
 	}
 
 	@PostMapping("delete/{crewId}")
-	public String addCrew(@PathVariable DisplayEdition edition, @PathVariable Long crewId) throws IOException {
+	public String addCrew(@PathVariable Display edition, @PathVariable Long crewId) throws IOException {
 		boCrewService.deleteCrew(edition, crewId);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
 	}
 
 	@PostMapping("position/add")
-	public String addPosition(@PathVariable DisplayEdition edition, @RequestParam String positionName,
+	public String addPosition(@PathVariable Display edition, @RequestParam String positionName,
 			@RequestParam(required = false) Long previousPositionId) throws IOException {
 		boCrewService.addPosition(positionName, previousPositionId);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";

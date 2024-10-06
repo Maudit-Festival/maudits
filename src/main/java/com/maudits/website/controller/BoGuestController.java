@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.form.GuestForm;
 import com.maudits.website.service.BoGuestService;
 
@@ -23,7 +23,7 @@ public class BoGuestController {
 	private final BoGuestService boGuestService;
 
 	@GetMapping("create/new")
-	public String createGuest(@PathVariable DisplayEdition edition, Model model) {
+	public String createGuest(@PathVariable Display edition, Model model) {
 		model.addAttribute("form", boGuestService.createGuestForm());
 		return "bo/guest-create-or-edit";
 	}
@@ -35,14 +35,14 @@ public class BoGuestController {
 	}
 
 	@PostMapping("save-edit")
-	public String saveGuest(@PathVariable DisplayEdition edition, @Validated GuestForm form, Model model)
+	public String saveGuest(@PathVariable Display edition, @Validated GuestForm form, Model model)
 			throws IOException {
 		boGuestService.saveGuest(edition, form);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#guestAnchor";
 	}
 
 	@PostMapping("delete")
-	public String deleteGuest(@PathVariable DisplayEdition edition, Long id, Model model) throws IOException {
+	public String deleteGuest(@PathVariable Display edition, Long id, Model model) throws IOException {
 		boGuestService.deleteGuest(id);
 		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#guestAnchor";
 	}

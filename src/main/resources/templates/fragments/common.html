@@ -63,20 +63,21 @@
 		</label>
 		<input style="display: none;" type="checkbox" id="mobile_menu">
 		<div>
-			<a class="navbar-link" th:href="${page.root + 'a-propos-du-maudit-festival'}">Qui sommes-nous ?</a>
-			<a class="navbar-link" th:if="${page != null && page.editorial != null}" th:href="${page.root + '#editorial'}">Éditorial</a>
-			<a class="navbar-link" th:href="${page.root + '#programmation'}">Programmation</a>
+			<a class="navbar-link" th:href="${page.currentEditionPrefix + 'a-propos-du-maudit-festival'}">Qui sommes-nous ?</a>
+			<a class="navbar-link" th:if="${page != null && page.editorial != null}" th:href="${page.currentEditionHomepageUrl + '#editorial'}">Éditorial</a>
+			<a class="navbar-link" th:href="${page.currentEditionHomepageUrl + '#programmation'}">Programmation</a>
 			<div class="navbarDropdownLastEdition navbar-link" role="button">
 				<label for="previousEditionCheckbox">Editions précédentes</label>
 				<input id="previousEditionCheckbox" type="checkbox" style="display: none;">
 				<div class="dropdown-menu dropdown_nav_style" style="width: 100%;">
-					<a  class="navbar-link" th:href="${page.root + 'editions-precedentes/avant-le-maudit-festival'}">Historique</a>
-					<a th:each="editionName : ${page.previousEditionNames}" class="navbar-link" 
-						th:href="${page.root + 'editions-precedentes/' + editionName}" th:text="${editionName}">2020</a>
+					<a  class="navbar-link" th:href="${page.findEditionHomepageUrlNyName('avant-le-maudit-festival')}">Historique</a>
+					<a th:each="editionName : ${page.previousEditionNames}" class="navbar-link" th:unless="${editionName == page.editionName}"
+						th:href="${page.findEditionHomepageUrlNyName(editionName)}" th:text="${editionName}">2020</a>
+					<a class="navbar-link" th:href="${page.currentRoot}" th:if="${page.pastEdition}">Retour à l'édition courante</a>
 				</div>
 			</div>
-			<a class="navbar-link" th:href="${page.root + '#pratique'}">Infos pratiques</a>
-			<a class="navbar-link" th:href="${page.root + 'contact'}">Contact</a>
+			<a class="navbar-link" th:href="${page.currentEditionHomepageUrl + '#pratique'}" th:unless="${page.pastEdition}">Infos pratiques</a>
+			<a class="navbar-link" th:href="${page.currentEditionPrefix + 'contact'}" th:unless="${page.pastEdition}">Contact</a>
 		</div>
 	</nav>
 	<footer th:fragment="common-footer">
@@ -86,12 +87,12 @@
 					<h2>Le Maudit Festival</h2>
 					<th:block th:if="${page}">
 					Édition <th:block th:text="${page.editionName}"/> : <th:block th:text="${page.editionTimePeriod}"/>
-					<a th:href="${page.root}"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
+					<a th:href="${page.currentEditionPrefix}"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
 					Terreur Nocturne - <th:block th:text="${page.editionName}"/>
 					</th:block>
 					<th:block th:unless="${page}">
 					Le maudit Festival, par Terreur Nocturne
-					<a th:href="${page.root}"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
+					<a th:href="${page.currentEditionHomepageUrl}"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
 					Terreur Nocturne
 					</th:block>
 				</div>
@@ -99,9 +100,9 @@
 			<div>
 				<h2>Menu</h2>
 				<ul>
-					<li><a th:href="${page.root}" class="footer_navigation">Accueil</a></li>
-					<li><a th:href="${page.root + 'a-propos-du-maudit-festival'}" class="footer_navigation">Qui sommes-nous ?</a></li>
-					<li><a th:href="${page.root + 'contact'}" class="footer_navigation">Contactez-nous</a></li>
+					<li><a th:href="${page.currentEditionHomepageUrl}" class="footer_navigation">Accueil</a></li>
+					<li><a th:href="${page.currentEditionPrefix + '/a-propos-du-maudit-festival'}" class="footer_navigation">Qui sommes-nous ?</a></li>
+					<li><a th:href="${page.currentRoot + 'contact'}" class="footer_navigation">Contactez-nous</a></li>
 					<li><a href="/uploads/press/MauditFestival.pdf" target="_blank" class="footer_navigation">Presse</a></li>
 				</ul>
 			</div>

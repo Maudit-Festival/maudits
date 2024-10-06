@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.exception.WrongEditionException;
 import com.maudits.website.domain.form.ContactMessageForm;
 import com.maudits.website.service.MauditService;
@@ -21,7 +21,13 @@ public class BoPreviewController {
 
 	@GetMapping("")
 	public String previewNextEdition(Model model) {
-		model.addAttribute("page", mauditService.makeHomeFilmRecap(DisplayEdition.NEXT));
+		model.addAttribute("page", mauditService.makeHomeFilmRecap(Display.NEXT));
+		return "homepage";
+	}
+
+	@GetMapping("editions-precedentes/{editionName}")
+	public String showPreviousEditionHomePageP(@PathVariable String editionName, Model model) {
+		model.addAttribute("page", mauditService.makeHomeFilmRecap(Display.NEXT, editionName));
 		return "homepage";
 	}
 
@@ -29,7 +35,7 @@ public class BoPreviewController {
 	public String showFilm(@PathVariable String textualId, Model model) {
 		try {
 			model.addAttribute("page",
-					mauditService.findFilmDetailPageDisplayerFromTextualId(DisplayEdition.NEXT, textualId));
+					mauditService.findFilmDetailPageDisplayerFromTextualId(Display.NEXT, textualId));
 			return "film-details";
 		} catch (WrongEditionException e) {
 			return "redirect:/bo/next";
@@ -38,32 +44,27 @@ public class BoPreviewController {
 
 	@GetMapping("contact")
 	public String showContactPage(Model model) {
-		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.NEXT));
+		model.addAttribute("page", mauditService.makeFrontPage(Display.NEXT));
 		model.addAttribute("form", new ContactMessageForm());
 		return "contact";
 	}
 
-	@GetMapping("archive")
-	public String showArchive(Model model) {
-		model.addAttribute("page", mauditService.makeArchivePage(DisplayEdition.NEXT));
-		return "archive";
-	}
-
 	@GetMapping("a-propos-du-maudit-festival")
 	public String showAbout(Model model) {
-		model.addAttribute("page", mauditService.makeAboutPageDisplayer(DisplayEdition.NEXT));
+		model.addAttribute("page", mauditService.makeAboutPageDisplayer(Display.NEXT));
+		return "about";
+	}
+
+	@GetMapping("editions-precedentes/{editionName}/a-propos-du-maudit-festival")
+	public String showAboutPreviousEdition(@PathVariable String editionName, Model model) {
+		model.addAttribute("page", mauditService.makeAboutPageDisplayer(Display.NEXT, editionName));
 		return "about";
 	}
 
 	@GetMapping("editions-precedentes/avant-le-maudit-festival")
 	public String showHistory(Model model) {
-		model.addAttribute("page", mauditService.makePageDisplayer(DisplayEdition.NEXT));
+		model.addAttribute("page", mauditService.makeFrontPage(Display.NEXT));
 		return "history";
 	}
 
-	@GetMapping("editions-precedentes/{editionCode}")
-	public String showEdition(@PathVariable String editionCode, Model model) {
-		model.addAttribute("page", mauditService.makePreviousEditionPage(editionCode, DisplayEdition.NEXT));
-		return "previous-edition";
-	}
 }

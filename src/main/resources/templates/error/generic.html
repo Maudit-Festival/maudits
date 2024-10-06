@@ -15,7 +15,7 @@
 	</div>
 	<section class="p404-section">
 		<h1 class="http-error-code" th:text="${errorCode}">Error Code</h1>
-		<a th:href="${page.root}" class="btn btn-danger btn-lg http-error-button">Retourner sur la page d'accueil</a>
+		<a th:href="${page.currentRoot}" class="btn btn-danger btn-lg http-error-button">Retourner sur la page d'accueil</a>
 	</section>
 	<footer th:replace="~{fragments/common.html :: common-footer}">
 	</footer>

@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 import com.maudits.website.domain.bo.displayer.ExtraEventBoDisplayer;
 import com.maudits.website.domain.form.ExtraEventForm;
 import com.maudits.website.domain.form.FilmForm;
@@ -44,7 +44,7 @@ public class BoFilmService {
 		}
 	}
 
-	public Film saveFilm(DisplayEdition displayEdition, @Validated FilmForm form) throws IOException {
+	public Film saveFilm(Display displayEdition, @Validated FilmForm form) throws IOException {
 		Long id = form.getId();
 		Film film = (id != null) ? filmRepository.findById(id).orElseThrow() : new Film();
 		film.setEdition(currentEditionService.findEdition(displayEdition));

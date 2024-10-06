@@ -1,5 +1,5 @@
 package com.maudits.website.domain;
 
-public enum DisplayEdition {
+public enum Display {
 	CURRENT, NEXT
 }

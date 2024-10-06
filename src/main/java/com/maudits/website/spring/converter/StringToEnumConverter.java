@@ -2,11 +2,11 @@ package com.maudits.website.spring.converter;
 
 import org.springframework.core.convert.converter.Converter;
 
-import com.maudits.website.domain.DisplayEdition;
+import com.maudits.website.domain.Display;
 
-public class StringToEnumConverter implements Converter<String, DisplayEdition> {
+public class StringToEnumConverter implements Converter<String, Display> {
 	@Override
-	public DisplayEdition convert(String source) {
-		return DisplayEdition.valueOf(source.toUpperCase());
+	public Display convert(String source) {
+		return Display.valueOf(source.toUpperCase());
 	}
 }

@@ -24,7 +24,7 @@
 						<th:block th:text="${page.editionTimePeriod}" />
 						<th:block th:text="${page.editionName}" />
 					</h2>
-					<a th:href="${page.root + '#programmation'}" class="white-button">En savoir plus</a>
+					<a th:href="${page.currentEditionHomepageUrl + '#programmation'}" class="white-button">En savoir plus</a>
 				</th:block>
 				<th:block th:unless="${page.currentEvent == null}">
 					<div class="container-home-current-event">
@@ -35,7 +35,7 @@
 							<h1 th:text="${page.currentEvent.title}">Le Maudit Festival</h1>
 							<h2 th:text="${page.currentEvent.dateAndTime}"></h2>
 							<h2 th:text="${page.currentEvent.locationName}"></h2>
-							<a th:href="@{${page.root + 'film/'+ page.currentEvent.textualId}}" class="white-button">En savoir plus</a>
+							<a th:href="@{${page.currentRoot + 'film/'+ page.currentEvent.textualId}}" class="white-button">En savoir plus</a>
 						</div>
 					</div>
 				</th:block>
@@ -82,13 +82,13 @@
 					<div class="programmation-day-recap row">
 						<article th:each="film : ${day.films}">
 							<header>
-								<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+								<a th:if="${film.textualId != null}" th:href="@{${page.currentRoot + 'film/'+ film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
 								<a th:unless="${film.textualId != null}" class="link_img_previous"><img src="/img/unannounced_movie_poster.jpg" class="img-fluid rounded" alt="Poster non dévoilé" loading="lazy"></a>
 							</header>
 							<div th:text="${film.startTime}"></div>
 							<div><span th:text="${film.title != null ? film.title : 'Film pas encore annoncé'}"></span></div>
 							<div th:text="${film.locationName}"></div>
-							<a th:if="${film.textualId != null}" th:href="@{${page.root + 'film/'+ film.textualId}}" class="know_more btn-purple">En savoir plus</a>
+							<a th:if="${film.textualId != null}" th:href="@{${page.currentRoot + 'film/'+ film.textualId}}" class="know_more btn-purple">En savoir plus</a>
 						</article>
 					</div>
 				</div>
