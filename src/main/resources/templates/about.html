@@ -17,7 +17,7 @@
 	<section class="background_about footer-separator">
 		<div class="about-container">
 			<div class="about_sidebar">
-			<h3>La maudite équipe</h3>
+			<h3>La maudite équipe <th:block th:text="${page.editionName}"/></h3>
 			<ul>
 				<li th:each="position : ${page.credits}"><span class="span_about_sidebar" th:text="${position.name}">Role</span>&nbsp;: 
 					<p>
