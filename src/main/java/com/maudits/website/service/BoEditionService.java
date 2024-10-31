@@ -12,11 +12,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.maudits.website.domain.Display;
-import com.maudits.website.domain.bo.displayer.EditionBoDisplayer;
-import com.maudits.website.domain.bo.displayer.FilmBoDisplayer;
-import com.maudits.website.domain.bo.displayer.GuestBoDisplayer;
-import com.maudits.website.domain.bo.displayer.PositionBoDisplayer;
-import com.maudits.website.domain.bo.displayer.SponsorBoDisplayer;
+import com.maudits.website.domain.admin.displayer.EditionBoDisplayer;
+import com.maudits.website.domain.admin.displayer.FilmBoDisplayer;
+import com.maudits.website.domain.admin.displayer.GuestBoDisplayer;
+import com.maudits.website.domain.admin.displayer.PositionBoDisplayer;
+import com.maudits.website.domain.admin.displayer.SponsorBoDisplayer;
 import com.maudits.website.domain.form.EditionForm;
 import com.maudits.website.repository.BoothPictureRepository;
 import com.maudits.website.repository.CrewRepository;

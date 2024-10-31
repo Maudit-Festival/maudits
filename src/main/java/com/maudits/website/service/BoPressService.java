@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.maudits.website.domain.bo.displayer.PressLogoDisplayer;
+import com.maudits.website.domain.admin.displayer.PressLogoDisplayer;
 import com.maudits.website.domain.form.PressLogoForm;
 import com.maudits.website.repository.PressLogoRepository;
 import com.maudits.website.repository.entities.PressLogo;

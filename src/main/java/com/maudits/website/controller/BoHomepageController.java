@@ -8,10 +8,10 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("bo")
+@RequestMapping("admin")
 public class BoHomepageController {
 	@GetMapping("")
 	public String showHomepage() {
-		return "bo/homepage";
+		return "admin/homepage";
 	}
 }

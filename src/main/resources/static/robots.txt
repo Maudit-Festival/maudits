@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
-Disallow: /bo
+Disallow: /admin
 Sitemap: https://www.festivaldesmauditsfilms.com/sitemap.xml

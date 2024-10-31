@@ -1,4 +1,4 @@
-package com.maudits.website.domain.bo.displayer;
+package com.maudits.website.domain.admin.displayer;
 
 import java.util.List;
 

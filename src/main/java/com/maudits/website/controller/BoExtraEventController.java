@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("bo/extraevent")
+@RequestMapping("admin/extraevent")
 public class BoExtraEventController {
 	private final BoFilmService boService;
 
@@ -25,33 +25,33 @@ public class BoExtraEventController {
 	public String showExtraEvents(Model model) {
 		model.addAttribute("currentExtraEvents", boService.findCurrentExtraEvents());
 		model.addAttribute("pastExtraEvents", boService.findPastExtraEvents());
-		return "bo/extra-event-dashboard";
+		return "admin/extra-event-dashboard";
 	}
 
 	@GetMapping("create/new")
 	public String showExtraEventCreation(Model model) {
 		model.addAttribute("form", boService.createExtraEvent());
 		model.addAttribute("extraEvent", true);
-		return "bo/film-create-or-edit";
+		return "admin/film-create-or-edit";
 	}
 
 	@GetMapping("edit/{id}")
 	public String showExtraEventEdition(@PathVariable Long id, Model model) {
 		model.addAttribute("form", boService.findExtraEventFormFromId(id));
 		model.addAttribute("extraEvent", true);
-		return "bo/film-create-or-edit";
+		return "admin/film-create-or-edit";
 	}
 
 	@PostMapping("save-edit")
 	public String saveExtraEventEdition(@Validated ExtraEventForm form, Model model) throws IOException {
 		boService.saveExtraEvent(form);
-		return "redirect:/bo/extraevent/dashboard";
+		return "redirect:/admin/extraevent/dashboard";
 	}
 
 	@PostMapping("delete")
 	public String deleteExtraEvent(Long id, Model model) throws IOException {
 		boService.deleteExtraEvent(id);
-		return "redirect:/bo/extraevent/dashboard";
+		return "redirect:/admin/extraevent/dashboard";
 	}
 
 }

@@ -18,32 +18,31 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("bo/{edition}/guest")
+@RequestMapping("admin/{edition}/guest")
 public class BoGuestController {
 	private final BoGuestService boGuestService;
 
 	@GetMapping("create/new")
 	public String createGuest(@PathVariable Display edition, Model model) {
 		model.addAttribute("form", boGuestService.createGuestForm());
-		return "bo/guest-create-or-edit";
+		return "admin/guest-create-or-edit";
 	}
 
 	@GetMapping("edit/{id}")
 	public String editGuest(@PathVariable Long id, Model model) {
 		model.addAttribute("form", boGuestService.findGuestFormFromId(id));
-		return "bo/guest-create-or-edit";
+		return "admin/guest-create-or-edit";
 	}
 
 	@PostMapping("save-edit")
-	public String saveGuest(@PathVariable Display edition, @Validated GuestForm form, Model model)
-			throws IOException {
+	public String saveGuest(@PathVariable Display edition, @Validated GuestForm form, Model model) throws IOException {
 		boGuestService.saveGuest(edition, form);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#guestAnchor";
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard#guestAnchor";
 	}
 
 	@PostMapping("delete")
 	public String deleteGuest(@PathVariable Display edition, Long id, Model model) throws IOException {
 		boGuestService.deleteGuest(id);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#guestAnchor";
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard#guestAnchor";
 	}
 }

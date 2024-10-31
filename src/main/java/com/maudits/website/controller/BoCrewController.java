@@ -17,33 +17,33 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("bo/{edition}/crew")
+@RequestMapping("admin/{edition}/crew")
 public class BoCrewController {
 	private final BoCrewService boCrewService;
 
 	@PostMapping("add")
 	public String addCrew(@PathVariable Display edition, @Validated CrewForm form) throws IOException {
 		boCrewService.saveCrew(edition, form);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
 	}
 
 	@PostMapping("edit/{crewId}")
 	public String editCrew(@PathVariable Display edition, @PathVariable Long crewId, @Validated CrewForm form)
 			throws IOException {
 		boCrewService.editCrew(edition, crewId, form);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
 	}
 
 	@PostMapping("delete/{crewId}")
 	public String addCrew(@PathVariable Display edition, @PathVariable Long crewId) throws IOException {
 		boCrewService.deleteCrew(edition, crewId);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
 	}
 
 	@PostMapping("position/add")
 	public String addPosition(@PathVariable Display edition, @RequestParam String positionName,
 			@RequestParam(required = false) Long previousPositionId) throws IOException {
 		boCrewService.addPosition(positionName, previousPositionId);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard#teamAnchor";
 	}
 }

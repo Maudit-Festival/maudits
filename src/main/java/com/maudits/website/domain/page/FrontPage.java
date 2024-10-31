@@ -43,7 +43,7 @@ public class FrontPage {
 	}
 
 	public String getCurrentRoot() {
-		return preview ? "/bo/next" : "/";
+		return preview ? "/admin/next" : "/";
 	}
 
 	private String addFinalSeparator(String string) {

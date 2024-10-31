@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("bo/{edition}")
+@RequestMapping("admin/{edition}")
 public class BoEditionController {
 	private final BoEditionService boEditionService;
 
@@ -29,13 +29,13 @@ public class BoEditionController {
 		model.addAttribute("edition", edition);
 		model.addAttribute("page", boEditionService.buildDisplayer(edition));
 		model.addAttribute("form", boEditionService.buildForm(edition));
-		return "bo/edition-dashboard";
+		return "admin/edition-dashboard";
 	}
 
 	@PostMapping("save")
 	public String editionSave(@PathVariable Display edition, @Validated EditionForm form) throws IOException {
 		boEditionService.saveEdition(edition, form);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard";
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard";
 	}
 
 	@PostMapping("current")
@@ -44,7 +44,7 @@ public class BoEditionController {
 			throw new RuntimeException();
 		}
 		boEditionService.makeEditionCurrent();
-		return "redirect:/bo/" + Display.CURRENT.name().toLowerCase() + "/dashboard";
+		return "redirect:/admin/" + Display.CURRENT.name().toLowerCase() + "/dashboard";
 	}
 
 	@PostMapping("pictures")
@@ -54,6 +54,6 @@ public class BoEditionController {
 			throw new RuntimeException();
 		}
 		boEditionService.editionPicturesSave(password, files);
-		return "redirect:/bo/" + edition.name().toLowerCase() + "/dashboard";
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard";
 	}
 }

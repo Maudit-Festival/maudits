@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import com.maudits.website.domain.Display;
-import com.maudits.website.domain.bo.displayer.SponsorBoDisplayer;
+import com.maudits.website.domain.admin.displayer.SponsorBoDisplayer;
 import com.maudits.website.domain.form.SponsorForm;
 import com.maudits.website.repository.SponsorRepository;
 import com.maudits.website.repository.entities.Edition;

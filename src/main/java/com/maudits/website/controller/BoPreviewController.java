@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("bo/next")
+@RequestMapping("admin/next")
 public class BoPreviewController {
 	private final MauditService mauditService;
 
@@ -34,11 +34,10 @@ public class BoPreviewController {
 	@GetMapping("film/{textualId}")
 	public String showFilm(@PathVariable String textualId, Model model) {
 		try {
-			model.addAttribute("page",
-					mauditService.findFilmDetailPageDisplayerFromTextualId(Display.NEXT, textualId));
+			model.addAttribute("page", mauditService.findFilmDetailPageDisplayerFromTextualId(Display.NEXT, textualId));
 			return "film-details";
 		} catch (WrongEditionException e) {
-			return "redirect:/bo/next";
+			return "redirect:/admin/next";
 		}
 	}
 

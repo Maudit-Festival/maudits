@@ -29,7 +29,7 @@ public class WebSecurityConfig {
 		// @formatter:off
 		http.authorizeHttpRequests(
 			authorize -> authorize
-				.requestMatchers("/bo/**").authenticated()
+				.requestMatchers("/admin/**").authenticated()
 				.anyRequest().permitAll())
 			.formLogin(formLogin -> formLogin.permitAll())
 			.logout(logout -> logout.logoutSuccessUrl("/"));

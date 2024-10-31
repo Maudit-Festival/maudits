@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import com.maudits.website.domain.Display;
-import com.maudits.website.domain.bo.displayer.ExtraEventBoDisplayer;
+import com.maudits.website.domain.admin.displayer.ExtraEventBoDisplayer;
 import com.maudits.website.domain.form.ExtraEventForm;
 import com.maudits.website.domain.form.FilmForm;
 import com.maudits.website.repository.ExtraEventRepository;
