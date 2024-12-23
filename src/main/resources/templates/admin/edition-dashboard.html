@@ -34,8 +34,8 @@
 			<li class="line_1"><a href="#lookAnchor">Configuration</a></li>
 			<li th:if="${edition.name() == 'NEXT'}">
 				<form th:action="@{current}" th:method="post"
-					onsubmit="return confirm('Êtes vous sûr de vouloir rendre public la nouvelle édition ?');">
-					<button type="submit" th:disabled="${true}" class="btn btn-danger">Publier</button>
+					onsubmit="return confirm('Êtes vous sûr de vouloir rendre publique la nouvelle édition ?');">
+					<button type="submit" class="btn btn-danger">Publier</button>
 				</form>
 			</li>
 			<li class="line_1" th:if="${edition.name() == 'CURRENT'}"><a href="#boothPicturesAnchor">Mettre les photos booth</a></li>
