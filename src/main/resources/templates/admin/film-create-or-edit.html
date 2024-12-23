@@ -39,7 +39,7 @@
 		<div class="form-group">
 			<label for="movieURL">Code du film dans les urls</label>
 			<input type="text" th:field="*{textualId}" class="form-control" id="movieURL" aria-describedby="urlHelp" required pattern="[a-z0-9\-]+">
-			<small id="urlHelp" class="form-text text-muted">Merci de ne pas mettre d'accent et de remplacer les espaces par un underscore ou un tiret</small>
+			<small id="urlHelp" class="form-text text-white-50">Merci de ne pas mettre d'accent et de remplacer les espaces par un underscore ou un tiret</small>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
@@ -82,7 +82,7 @@
 		<div class="form-group">
 			<label for="descriptionFilm">Texte descriptif</label>
 			<textarea class="form-control" th:field="*{description}" id="descriptionFilm" rows="3"></textarea>
-			<small class="form-text text-muted">Vous pouvez utiliser les balises [i]<i>italique</i>[/i], [b]<b>gras</b>[/b] et [url="https://lemauditfestival.com"]<a target="_blank" href="https://lemauditfestival.com">lien</a>[/url]</small>
+			<small class="form-text text-white-50">Vous pouvez utiliser les balises [i]<i>italique</i>[/i], [b]<b>gras</b>[/b] et [url="https://lemauditfestival.com"]<a target="_blank" href="https://lemauditfestival.com">lien</a>[/url]</small>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
