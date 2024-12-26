@@ -6,7 +6,7 @@
 		canonicalurl=${'https://lemauditfestival.com/film/'+page.filmDisplayer.textualId},
 		title=${page.filmDisplayer.title + ' - Le Maudit Festival'},
 		description=${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title},
-		page=${page}
+		shareImageUrl=${page.filmDisplayer.posterUrl}
 		)}" />
 	</th:block>
 	<th:block th:unless="${page.filmDisplayer.director == null}">
@@ -15,28 +15,10 @@
 		title=${page.filmDisplayer.title + ' - Le Maudit Festival'},
 		description=${page.filmDisplayer.date + ' - projection de ' + page.filmDisplayer.title + ' de ' + page.filmDisplayer.director +'. ' +
 		'Un film de ' + page.filmDisplayer.releaseDate + ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting + '.'},
-		page=${page}
+		shareImageUrl=${page.filmDisplayer.posterUrl}
 		)}" />
 	</th:block>
 
-	<!-- Open Graph meta pour Facebook -->
-	<meta property="og:title" th:content="${page.filmDisplayer.title + ' - Le Maudit Festival'}" />
-	<meta property="og:url" content="https://www.festivaldesmauditsfilms.com/" />
-	<meta th:if="${page.filmDisplayer.posterUrl != null}" property="og:image" th:content="${'https://www.festivaldesmauditsfilms.com'+page.filmDisplayer.posterUrl}" />
-	<meta th:if="${page.filmDisplayer.director != null}" property="og:description" th:content="${page.filmDisplayer.date + ' - projection de ' +page.filmDisplayer.title + ' de ' +page.filmDisplayer.director +'. Un film de '
-	+ page.filmDisplayer.releaseDate+ ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting} + '.'" />
-	<meta th:if="${page.filmDisplayer.director == null}" property="og:description" th:content="${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title}" />
-	<meta property="og:site_name" content="Le Maudit Festival" />
-	<meta property="og:type" content="article" />
-	<!-- Card meta pour Twitter -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@MauditFestival">
-	<meta name="twitter:title" th:content="${page.filmDisplayer.title + ' - Le Maudit Festival'}" />
-	<meta th:if="${page.filmDisplayer.director != null}" name="twitter:description" th:content="${page.filmDisplayer.date + ' - projection de ' +page.filmDisplayer.title + ' de ' +page.filmDisplayer.director +'. Un film de '
-	+ page.filmDisplayer.releaseDate+ ' - '+ page.filmDisplayer.nationality + '. Avec ' + page.filmDisplayer.casting} + '.'" />
-	<meta th:if="${page.filmDisplayer.director == null}" name="twitter:description" th:content="${page.filmDisplayer.date + ' - ' +page.filmDisplayer.title}" />
-	<!-- Twitter summary card avec image large de 280x150px -->
-	<meta th:if="${page.filmDisplayer.posterUrl != null}" name="twitter:image:src" th:content="${'https://www.festivaldesmauditsfilms.com'+page.filmDisplayer.posterUrl}" />
 	<th:block th:replace="~{fragments/common :: owa-script}" />
 </head>
 

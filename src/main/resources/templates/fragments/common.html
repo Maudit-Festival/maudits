@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<th:block th:fragment="common-header-values(canonicalurl, title, description, page)">
+	<th:block th:fragment="common-header-values(canonicalurl, title, description, shareImageUrl)">
 	<link rel="icon" href="/favicon.ico" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,12 +13,12 @@
 	<meta name="description" th:content="${description}"/>
 	<meta property="og:title" th:content="${title}" />
 	<meta property="og:description" th:content="${description}" />
-	<meta property="og:image" th:content="${page.shareImageUrl}" />
+	<meta property="og:image" th:content="${shareImageUrl}" />
 	<meta property="og:type" content="website" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" th:content="${title}" />
 	<meta name="twitter:description" th:content="${description}" />
-	<meta name="twitter:image" th:content="${page.shareImageUrl}" />
+	<meta name="twitter:image" th:content="${shareImageUrl}" />
 
 	</th:block>
 
