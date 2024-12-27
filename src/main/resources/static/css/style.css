@@ -1030,3 +1030,16 @@ hr {
 .link:hover {
 	color: var(--accent-color);
 }
+
+.trigger-warnings, #trigger-warnings-checkbox {
+	display: none;
+}
+
+#trigger-warnings-checkbox:checked ~ .trigger-warnings-trigger {
+	display: none;
+}
+
+
+#trigger-warnings-checkbox:checked ~ .trigger-warnings {
+	display: block;
+}

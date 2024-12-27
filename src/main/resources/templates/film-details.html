@@ -49,6 +49,13 @@
 				<div th:if="${page.filmDisplayer.nationality != null}" th:text="${page.filmDisplayer.nationality}">Belgo-Hongrois</div>
 				<div th:if="${page.filmDisplayer.casting != null}" th:text="${'Avec ' + page.filmDisplayer.casting}">avec Bugs Bunny</div>
 				<div class="partnership" th:if="${page.filmDisplayer.partner != null && page.filmDisplayer.partner != ''}" th:text="${'En partenariat avec ' + page.filmDisplayer.partner}">avec Bugs Bunny</div>
+				<div class="partnership" th:if="${page.filmDisplayer.sponsor != null && page.filmDisplayer.sponsor != ''}" th:text="${'Séance sponsorisée par ' + page.filmDisplayer.sponsor}">Sponsorisé par Mattel</div>
+
+				<th:block th:if="${page.filmDisplayer.triggerWarnings != null && page.filmDisplayer.triggerWarnings != ''}">
+					<input type="checkbox" id="trigger-warnings-checkbox">
+					<label class="trigger-warnings-trigger" for="trigger-warnings-checkbox">Cliquez pour afficher les</br>avertissements de contenu</label>
+					<label class="trigger-warnings" for="trigger-warnings-checkbox" th:text="${page.filmDisplayer.triggerWarnings}">avec Bugs Bunny</label>
+				</th:block>
 
 				<a class="btn-purple" th:if="${page.filmDisplayer.buyUrl != null}" th:href="${page.filmDisplayer.buyUrl}" target="maudit-shop">
 					Acheter ma place

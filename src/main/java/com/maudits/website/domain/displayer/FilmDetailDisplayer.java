@@ -27,6 +27,8 @@ public class FilmDetailDisplayer {
 	private final String ageRating;
 	private final String locationName;
 	private final String locationAddress;
+	private final String sponsor;
+	private final String triggerWarnings;
 
 	public FilmDetailDisplayer(Film film) {
 		this.textualId = (film.getTextualId() != null) ? film.getTextualId() : film.getId().toString();
@@ -56,5 +58,7 @@ public class FilmDetailDisplayer {
 		this.ageRating = film.getAgeRating();
 		this.locationName = film.getLocationName();
 		this.locationAddress = film.getLocationAddress();
+		this.sponsor = film.getSponsor();
+		this.triggerWarnings = film.getTriggerWarnings();
 	}
 }

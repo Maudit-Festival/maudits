@@ -88,6 +88,8 @@ public class BoFilmService {
 		film.setAgeRating(filterEmpty(form.getAgeRating()));
 		film.setLocationName(filterEmpty(form.getLocationName()));
 		film.setLocationAddress(filterEmpty(form.getLocationAddress()));
+		film.setSponsor(form.getSponsor());
+		film.setTriggerWarnings(form.getTriggerWarnings());
 
 		film.setLastUpdateTime(ZonedDateTime.now());
 

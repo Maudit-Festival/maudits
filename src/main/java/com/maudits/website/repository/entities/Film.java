@@ -36,6 +36,8 @@ public class Film extends EntityWithId {
 	private String ageRating;
 	private String locationName;
 	private String locationAddress;
+	private String sponsor;
+	private String triggerWarnings;
 
 	private LocalDateTime revealTime;
 

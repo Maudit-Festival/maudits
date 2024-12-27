@@ -45,6 +45,8 @@ public class FilmForm {
 	private String ageRating;
 	private String locationName;
 	private String locationAddress;
+	private String sponsor;
+	private String triggerWarnings;
 
 	public FilmForm(Film film) {
 		this.id = film.getId();
@@ -66,6 +68,8 @@ public class FilmForm {
 		this.ageRating = film.getAgeRating();
 		this.locationName = film.getLocationName();
 		this.locationAddress = film.getLocationAddress();
+		this.sponsor = film.getSponsor();
+		this.triggerWarnings = film.getTriggerWarnings();
 
 		this.posterUrl = film.getPosterUrl();
 		this.sampleUrl = film.getSampleImageUrl();

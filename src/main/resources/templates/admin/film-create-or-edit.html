@@ -99,6 +99,20 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="sponsor">Sponsor</label>
+					<input type="text" th:field="*{sponsor}" class="form-control" id="sponsor">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="triggerWarnings">Avertissements de contenu</label>
+					<input type="text" th:field="*{triggerWarnings}" class="form-control" id="triggerWarnings">
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="form-group col-md-6">
 				<label for="uploadPoster">Poster du film
 				<img id="filmPosterPreview" class="imageUploadPreview" data-required-size="267x200" th:src="*{posterUrl}">
