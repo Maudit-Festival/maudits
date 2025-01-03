@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title th:if="${form.title != null}"  th:text="${'Édition de ' + form.title}">Titre du film</title>
+		<title th:if="${form.title != null}" th:text="${'Édition de ' + form.title}">Titre du film</title>
 		<title th:if="${form.title == null}">Création d'un nouveau film</title>
 		<link rel="icon" href="/favicon.ico" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -35,7 +35,7 @@
 		<div class="form-group">
 			<label for="movieName">Titre du film</label>
 			<input type="text" th:field="*{title}" class="form-control" id="movieName" required>
-	  </div>
+		</div>
 		<div class="form-group">
 			<label for="movieURL">Code du film dans les urls</label>
 			<input type="text" th:field="*{textualId}" class="form-control" id="movieURL" aria-describedby="urlHelp" required pattern="[a-z0-9\-]+">
@@ -115,7 +115,7 @@
 		<div class="row">
 			<div class="form-group col-md-6">
 				<label for="uploadPoster">Poster du film
-				<img id="filmPosterPreview" class="imageUploadPreview" data-required-size="267x200" th:src="*{posterUrl}">
+					<img id="filmPosterPreview" class="imageUploadPreview" data-required-size="200x267" th:src="*{posterUrl}">
 				</label>
 				<input type="file" th:field="*{posterFile}" accept="image/*" class="form-control-file" id="uploadPoster" th:required="*{posterUrl == null}">
 			</div>
@@ -149,8 +149,8 @@
 			<input type="datetime-local" th:field="*{revealTime}" class="form-control" id="revealTime">
 		</div>
 
-	<a href="../../dashboard" class="btn btn-secondary">Annuler</a>
-	<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>
+		<a href="../../dashboard" class="btn btn-secondary">Annuler</a>
+		<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>
 	</form>
 	<form th:action="@{../delete}" th:method="post" th:if="${form.id != null}"
 	onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce film ?');">
@@ -173,8 +173,8 @@ function showPreviewImage(input, image, maxsize) {
 			reader.onload = function (e) {
 				let requiredSize = image.data("required-size");
 				if (requiredSize) {
-					let requiredHeight = parseInt(requiredSize.split("x")[0]);
-					let requiredWidth = parseInt(requiredSize.split("x")[1]);
+					let requiredWidth = parseInt(requiredSize.split("x")[0]);
+					let requiredHeight = parseInt(requiredSize.split("x")[1]);
 					image.off("load");
 					image.on("load",(function (v) {
 						if (image.width() != requiredWidth || image.height() != requiredHeight) {
