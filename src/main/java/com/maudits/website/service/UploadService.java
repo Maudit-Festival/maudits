@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UploadService {
 	public String uploadFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
-		Path uploadPath = Paths.get("uploads/" + uploadDir);
+		Path uploadPath = Path.of("uploads/" + uploadDir);
 
 		if (!Files.exists(uploadPath)) {
 			Files.createDirectories(uploadPath);

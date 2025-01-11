@@ -1,7 +1,6 @@
 package com.maudits.website.spring;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -23,7 +22,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	}
 
 	private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
-		Path uploadDir = Paths.get(dirName);
+		Path uploadDir = Path.of(dirName);
 		String uploadPath = uploadDir.toFile().getAbsolutePath();
 
 		if (dirName.startsWith("../"))
