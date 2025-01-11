@@ -23,21 +23,26 @@ public class BoFilmController {
 	private final BoFilmService boFilmService;
 
 	@GetMapping("create/new")
-	public String showFilmCreationCurrentEdition(@PathVariable Display edition, Model model) {
+	public String showFilmCreateForm(@PathVariable Display edition, Model model) {
 		model.addAttribute("form", boFilmService.createFilmForm());
 		return "admin/film-create-or-edit";
 	}
 
 	@GetMapping("edit/{id}")
-	public String showFilmEdition(@PathVariable Long id, Model model) {
+	public String showFilmEditForm(@PathVariable Long id, Model model) {
 		model.addAttribute("form", boFilmService.findFilmFormFromId(id));
 		return "admin/film-create-or-edit";
 	}
 
 	@PostMapping("save-edit")
-	public String saveFilmEdition(@PathVariable Display edition, @Validated FilmForm form, Model model)
-			throws IOException {
-		boFilmService.saveFilm(edition, form);
+	public String saveFilmByForm(@PathVariable Display edition, @Validated FilmForm form) throws IOException {
+		boFilmService.saveWithoutPublishingFilm(edition, form);
+		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard";
+	}
+
+	@PostMapping("save-edit-publish")
+	public String saveAndPublishFilmByForm(@PathVariable Display edition, @Validated FilmForm form) throws IOException {
+		boFilmService.saveAndPublishFilm(edition, form);
 		return "redirect:/admin/" + edition.name().toLowerCase() + "/dashboard";
 	}
 

@@ -1,6 +1,7 @@
 package com.maudits.website.service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -52,9 +53,9 @@ public class BoFilmService {
 	}
 
 	public Film saveFilm(@Validated FilmForm form, Film film) throws IOException {
-		film.setTextualId(form.getTextualId());
-		film.setTitle(form.getTitle());
-		film.setDescription(form.getDescription());
+		film.setTextualId(filterEmpty(form.getTextualId()));
+		film.setTitle(filterEmpty(form.getTitle()));
+		film.setDescription(filterEmpty(form.getDescription()));
 		film.setDate(form.getDate());
 		film.setStartTime(form.getStartTime());
 		film.setRevealTime(form.getRevealTime());
@@ -132,4 +133,14 @@ public class BoFilmService {
 		extraEventRepository.deleteById(id);
 	}
 
+	public void saveAndPublishFilm(Display edition, FilmForm form) throws IOException {
+		if (form.getRevealTime() == null)
+			form.setRevealTime(LocalDateTime.now());
+		saveFilm(edition, form);
+	}
+
+	public void saveWithoutPublishingFilm(Display edition, FilmForm form) throws IOException {
+		form.setRevealTime(null);
+		saveFilm(edition, form);
+	}
 }

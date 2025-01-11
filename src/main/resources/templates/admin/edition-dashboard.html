@@ -32,9 +32,9 @@
 			<li class="line_1"><a href="#guestAnchor">Invités</a></li>
 			<li class="line_1"><a href="#teamAnchor">Équipe</a></li>
 			<li class="line_1"><a href="#lookAnchor">Configuration</a></li>
-			<li th:if="${edition.name() == 'NEXT'}">
+			<li th:if="${(edition.name() == 'NEXT') && (form.name != '')}">
 				<form th:action="@{current}" th:method="post"
-					onsubmit="return confirm('Êtes vous sûr de vouloir rendre publique la nouvelle édition ?');">
+					onsubmit="return confirm('Êtes vous sûr de vouloir rendre publique la nouvelle édition ? Avez-vous bien renseigné les horaires des films et vérifié que la couleur d\'accent est lisible ?');">
 					<button type="submit" class="btn btn-danger">Publier</button>
 				</form>
 			</li>
@@ -42,88 +42,90 @@
 		</ul>
 	</div>
 	<main class="admin_main col-md-8">
-		<h2 id="filmAnchor" class="admin_title_next_edition" >Films </h2>
-		<a class="btn btn-primary" href="film/create/new">Ajouter un film</a>
-		<div class="row edition_content_film">
-			<article th:each="film : ${page.films}">
-				<header>
-					<img th:if="${film.posterUrl!= null}" th:src="*{film.posterUrl}" style="height: auto" th:alt="${film.title}">
-				</header>
-				<p th:text="${film.title}"></p>
-				<a th:href="${'film/edit/' + film.id}">Éditer</a>
-			</article>
-		</div>
-		<h2 id="sponsorAnchor" class="admin_title_next_edition" >Sponsor </h2>
-		<a class="btn btn-primary" href="sponsor/create/new">Ajouter un sponsor</a>
-		<a class="btn btn-primary" href="sponsor/copy">Copier un sponsor</a>
-		<div class="row edition_content_film">
-			<article th:each="sponsor : ${page.sponsors}">
-				<header class="partner-logo-display">
-					<img th:src="*{sponsor.logoUrl}" style="height: auto" th:alt="${sponsor.name}">
-				</header>
-					<p th:text="${sponsor.name}"></p>
-					<a th:href="${'sponsor/edit/' + sponsor.id}">Éditer</a>
-			</article>
-		</div>
-		<h2 id="guestAnchor" class="admin_title_next_edition" >Invités</h2>
-		<a class="btn btn-primary" href="guest/create/new">Ajouter un invité</a>
-		<div class="row edition_content_film">
-			<article th:each="guest : ${page.guests}">
-				<header class="partner-logo-display">
-					<img th:src="*{guest.pictureUrl}" style="height: auto" th:alt="${guest.name}">
-				</header>
-					<p th:text="${guest.name}"></p>
-					<a th:href="${'guest/edit/' + guest.id}">Éditer</a>
-			</article>
-		</div>
-		<h2 id="teamAnchor" class="admin_title_next_edition" >Équipe</h2>
-		<div class="row edition_content_film">
-			<div class="form-group" th:each="position : ${page.positions}" style="width: 100%; display: flex;">
-				<div  class="col-md-6" style="display: flex; flex-direction: column;">
-					<label th:text="${position.name}">Nom de la position</label>
-					<div>
-						<th:block th:each="crew, iter : ${position.crews}" >
-							<button type="button" class="btn btn-secondary" th:text="${crew.firstName + ' ' + crew.lastName}" 
-							data-bs-toggle="collapse" th:data-bs-target="${'#collapsed-crew-form-' + crew.id}" >Name</button>
-						</th:block>
-						<button type="button" class="btn btn-secondary" data-bs-toggle="collapse" th:data-bs-target="${'#collapsed-add-crew-for-pos-' + position.id}">Ajouter</button> 
+		<th:block th:if="${form.name != ''}">
+			<h2 id="filmAnchor" class="admin_title_next_edition" >Films </h2>
+			<a class="btn btn-primary" href="film/create/new">Ajouter un film</a>
+			<div class="row edition_content_film">
+				<article th:each="film : ${page.films}">
+					<header>
+						<img th:src="${(film.posterUrl == null) ? '/img/unannounced_movie_poster.jpg' : film.posterUrl}" style="height: auto" th:alt="${film.title}">
+					</header>
+					<p th:text="${(film.title == null) ? 'Titre pas encore annoncé' : film.title}"></p>
+					<a th:href="${'film/edit/' + film.id}">Éditer</a>
+				</article>
+			</div>
+			<h2 id="sponsorAnchor" class="admin_title_next_edition" >Sponsor </h2>
+			<a class="btn btn-primary" href="sponsor/create/new">Ajouter un sponsor</a>
+			<a class="btn btn-primary" href="sponsor/copy">Copier un sponsor</a>
+			<div class="row edition_content_film">
+				<article th:each="sponsor : ${page.sponsors}">
+					<header class="partner-logo-display">
+						<img th:src="*{sponsor.logoUrl}" style="height: auto" th:alt="${sponsor.name}">
+					</header>
+						<p th:text="${sponsor.name}"></p>
+						<a th:href="${'sponsor/edit/' + sponsor.id}">Éditer</a>
+				</article>
+			</div>
+			<h2 id="guestAnchor" class="admin_title_next_edition" >Invités</h2>
+			<a class="btn btn-primary" href="guest/create/new">Ajouter un invité</a>
+			<div class="row edition_content_film">
+				<article th:each="guest : ${page.guests}">
+					<header class="partner-logo-display">
+						<img th:src="*{guest.pictureUrl}" style="height: auto" th:alt="${guest.name}">
+					</header>
+						<p th:text="${guest.name}"></p>
+						<a th:href="${'guest/edit/' + guest.id}">Éditer</a>
+				</article>
+			</div>
+			<h2 id="teamAnchor" class="admin_title_next_edition" >Équipe</h2>
+			<div class="row edition_content_film">
+				<div class="form-group" th:each="position : ${page.positions}" style="width: 100%; display: flex;">
+					<div  class="col-md-6" style="display: flex; flex-direction: column;">
+						<label th:text="${position.name}">Nom de la position</label>
+						<div>
+							<th:block th:each="crew, iter : ${position.crews}" >
+								<button type="button" class="btn btn-secondary" th:text="${crew.firstName + ' ' + crew.lastName}" 
+								data-bs-toggle="collapse" th:data-bs-target="${'#collapsed-crew-form-' + crew.id}" >Name</button>
+							</th:block>
+							<button type="button" class="btn btn-secondary" data-bs-toggle="collapse" th:data-bs-target="${'#collapsed-add-crew-for-pos-' + position.id}">Ajouter</button> 
+						</div>
+					</div>
+					<div th:id="${'crew-forms-' + position.id}" class="col-md-6">
+						<div class="collapse" th:id="${'collapsed-crew-form-' + crew.id}" th:each="crew, iter : ${position.crews}" th:data-parent="${'#crew-forms-' + position.id}">
+							<form th:method="post" th:action="@{${'crew/edit/' + crew.id }}">
+								<input type="hidden" th:value="${position.id}" name="positionId" />
+								<input class="form-control" name="firstName" th:value="${crew.firstName}" placeholder="Prénom" />
+								<input class="form-control" name="lastName" th:value="${crew.lastName}" placeholder="Nom de famille" />
+								<button type="submit" class="btn btn-primary">Modifier</button>
+								<button type="submit" th:form="${'crew-delete-form-' + crew.id }" class="btn btn-danger">Supprimer</button>
+							</form>
+							<form th:id="${'crew-delete-form-' + crew.id }" th:method="post" th:action="@{${'crew/delete/' + crew.id }}"></form>
+						</div>
+						<div class="collapse" th:id="${'collapsed-add-crew-for-pos-' + position.id}" th:data-parent="${'#crew-forms-' + position.id}">
+							<form th:method="post" th:action="@{crew/add}">
+								<input type="hidden" th:value="${position.id}" name="positionId" />
+								<input class="form-control" name="firstName" placeholder="Prénom" />
+								<input class="form-control" name="lastName" placeholder="Nom de famille"/>
+								<button type="submit" class="btn btn-primary">Ajouter</button>
+							</form>
+						</div>
 					</div>
 				</div>
-				<div th:id="${'crew-forms-' + position.id}" class="col-md-6">
-					<div class="collapse" th:id="${'collapsed-crew-form-' + crew.id}" th:each="crew, iter : ${position.crews}" th:data-parent="${'#crew-forms-' + position.id}">
-						<form th:method="post" th:action="@{${'crew/edit/' + crew.id }}">
-							<input type="hidden" th:value="${position.id}" name="positionId" />
-							<input class="form-control" name="firstName" th:value="${crew.firstName}" placeholder="Prénom" />
-							<input class="form-control" name="lastName" th:value="${crew.lastName}" placeholder="Nom de famille" />
-							<button type="submit" class="btn btn-primary">Modifier</button>
-							<button type="submit" th:form="${'crew-delete-form-' + crew.id }" class="btn btn-danger">Supprimer</button>
-						</form>
-						<form th:id="${'crew-delete-form-' + crew.id }" th:method="post" th:action="@{${'crew/delete/' + crew.id }}"></form>
-					</div>
-					<div class="collapse" th:id="${'collapsed-add-crew-for-pos-' + position.id}" th:data-parent="${'#crew-forms-' + position.id}">
-						<form th:method="post" th:action="@{crew/add}">
-							<input type="hidden" th:value="${position.id}" name="positionId" />
-							<input class="form-control" name="firstName" placeholder="Prénom" />
-							<input class="form-control" name="lastName" placeholder="Nom de famille"/>
-							<button type="submit" class="btn btn-primary">Ajouter</button>
-						</form>
-					</div>
+				<div class="row container">
+					<label data-bs-toggle="collapse" data-bs-target="#add-position-form" role="button">Ajouter un nouveau poste</label>
+					<form id="add-position-form" class="collapse" th:method="post" th:action="@{crew/position/add}">
+						<label for="input-position-name">Nom du poste</label>
+						<input id="input-position-name" class="form-control" name="positionName" placeholder="Nom du poste"/>
+						<label for="select-position-order">Ordre de la position</label>
+						<select class="form-control" name="previousPositionId">
+							<option value="">Avant toutes les autres</option>
+							<option th:each="position : ${page.positions}" th:text="${position.name}" th:value="${position.id}">Nom de la position</option>
+						</select>
+						<button type="submit" class="btn btn-primary">Créer nouveau poste</button>
+					</form>
 				</div>
 			</div>
-			<div class="row container">
-				<label data-bs-toggle="collapse" data-bs-target="#add-position-form" role="button">Ajouter un nouveau poste</label>
-				<form id="add-position-form" class="collapse" th:method="post" th:action="@{crew/position/add}">
-					<label for="input-position-name">Nom du poste</label>
-					<input id="input-position-name" class="form-control" name="positionName" placeholder="Nom du poste"/>
-					<label for="select-position-order">Ordre de la position</label>
-					<select class="form-control" name="previousPositionId">
-						<option value="">Avant toutes les autres</option>
-						<option th:each="position : ${page.positions}" th:text="${position.name}" th:value="${position.id}">Nom de la position</option>
-					</select>
-					<button type="submit" class="btn btn-primary">Créer nouveau poste</button>
-				</form>
-			</div>
-		</div>
+		</th:block>
 		<h2 id="lookAnchor" class="admin_title_next_edition">Configuration</h2>
 		<div class="row edition_content_film">
 			<form th:method="post" th:action="@{save}" th:object="${form}" enctype="multipart/form-data" class="container">
@@ -177,17 +179,19 @@
 				<input class="btn btn-primary" type="submit">
 			</form>
 		</div>
-		<h2 id="boothPicturesAnchor" class="admin_title_next_edition">Envoi des photos booth</h2>
-		<div class="row edition_content_film">
-			<form th:method="post" th:action="@{pictures}" enctype="multipart/form-data" class="container">
-				<div class="col-md-6">
-					<label for="booth-password">Mot de passe :</label>
-					<input id="booth-password" class="form-control" name="password" required/>
-				</div>
-				<input type="file" accept="image/*" name="files" multiple required>
-				<input class="btn btn-primary" type="submit">
-			</form>
-		</div>
+		<th:block th:if="${form.name != ''}">
+			<h2 id="boothPicturesAnchor" class="admin_title_next_edition">Envoi des photos booth</h2>
+			<div class="row edition_content_film">
+				<form th:method="post" th:action="@{pictures}" enctype="multipart/form-data" class="container">
+					<div class="col-md-6">
+						<label for="booth-password">Mot de passe :</label>
+						<input id="booth-password" class="form-control" name="password" required/>
+					</div>
+					<input type="file" accept="image/*" name="files" multiple required>
+					<input class="btn btn-primary" type="submit">
+				</form>
+			</div>
+		</th:block>
 	</main>
 </section>
 </body>

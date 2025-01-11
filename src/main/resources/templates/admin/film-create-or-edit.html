@@ -30,15 +30,15 @@
 		</div>
 		<div class="form-group">
 			<label for="movieTime">Heure de la séance</label>
-			<input type="time" th:field="*{startTime}" class="form-control" id="movieTime">
+			<input type="time" th:field="*{startTime}" class="form-control" id="movieTime" required>
 		</div>
 		<div class="form-group">
 			<label for="movieName">Titre du film</label>
-			<input type="text" th:field="*{title}" class="form-control" id="movieName" required>
+			<input type="text" th:field="*{title}" class="form-control jsRequiredForPublication" id="movieName" required>
 		</div>
 		<div class="form-group">
 			<label for="movieURL">Code du film dans les urls</label>
-			<input type="text" th:field="*{textualId}" class="form-control" id="movieURL" aria-describedby="urlHelp" required pattern="[a-z0-9\-]+">
+			<input type="text" th:field="*{textualId}" class="form-control jsRequiredForPublication" id="movieURL" aria-describedby="urlHelp" required pattern="[a-z0-9\-]+">
 			<small id="urlHelp" class="form-text text-white-50">Merci de ne pas mettre d'accent et de remplacer les espaces par un underscore ou un tiret</small>
 		</div>
 		<div class="row">
@@ -117,13 +117,13 @@
 				<label for="uploadPoster">Poster du film
 					<img id="filmPosterPreview" class="imageUploadPreview" data-required-size="200x267" th:src="*{posterUrl}">
 				</label>
-				<input type="file" th:field="*{posterFile}" accept="image/*" class="form-control-file" id="uploadPoster" th:required="*{posterUrl == null}">
+				<input type="file" th:field="*{posterFile}" accept="image/*" class="form-control-file jsRequiredForPublication" id="uploadPoster" th:required="*{posterUrl == null}">
 			</div>
 			<div class="form-group col-md-6">
 				<label for="uploadSample">Extrait du film
 					<img id="filmSamplePreview" class="imageUploadPreview" th:src="*{sampleUrl}">
 				</label>
-				<input type="file" th:field="*{sampleImageFile}" accept="image/*" class="form-control-file" id="uploadSample" th:required="*{posterUrl == null}">
+				<input type="file" th:field="*{sampleImageFile}" accept="image/*" class="form-control-file jsRequiredForPublication" id="uploadSample" th:required="*{posterUrl == null}">
 			</div>
 		</div>
 		<div class="form-group">
@@ -150,10 +150,12 @@
 		</div>
 
 		<a href="../../dashboard" class="btn btn-secondary">Annuler</a>
-		<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'">Créer</button>
+		<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'"
+			onclick="return validateForPreview()" th:if="*{revealTime == null}">Créer</button>
+		<button type="submit" class="btn btn-primary" th:formaction="@{../save-edit-publish}" 
+			th:text="*{revealTime == null} ? 'Publier' : 'Éditer'">Publier</button>
 	</form>
-	<form th:action="@{../delete}" th:method="post" th:if="${form.id != null}"
-	onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce film ?');">
+	<form th:action="@{../delete}" th:method="post" th:if="${form.id != null}" onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce film ?');">
 		<input type="hidden" name="id" th:value="${extraEvent != null ? form.eventId : form.id}">
 		<button type="submit" class="btn btn-danger">Supprimer</button>
 	</form>
@@ -218,6 +220,18 @@ idInput.on("change", ()=>{
 	autoid = (idInput.val()) ? false : true;
 })
 
+function validateForPreview() {
+	let oneRequiredInputIsNotSet  = $("[required]:not(.jsRequiredForPublication)").is(
+		(idx, elem)=> {
+			return $(elem).val() == '';
+		}
+	);
+	if (!oneRequiredInputIsNotSet) {
+		// Every actually required input is there, we can safely remove the "false" required attributes 
+		// as the form is going to be submitted and we will leave/refresh the page
+		$(".jsRequiredForPublication").attr('required', false)
+	}
+}
 
 </script>
 </html>
