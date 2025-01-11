@@ -80,7 +80,9 @@ public class MauditService {
 		if (display != Display.NEXT && film.isNextEdition()) {
 			throw new WrongEditionException();
 		}
-		FrontPageDisplayer frontPageDisplayer = makeFrontPageDisplayer(display, film.getEdition());
+		FrontPageDisplayer frontPageDisplayer = (film.getEdition() != null)
+				? makeFrontPageDisplayer(display, film.getEdition())
+				: makeFrontPageDisplayer(display);
 		return new FilmDetailPage(frontPageDisplayer, film);
 	}
 
