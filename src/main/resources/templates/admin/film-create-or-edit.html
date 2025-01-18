@@ -17,84 +17,93 @@
 	</head>
 
 <body class="container-fluid">
-<!--	<header>-->
-<!--		<a href="/admin" class="col-md-3 col-sm-5 col-6"><img src="/img/logo-terreur-nocture.png" alt="Logo Terreur Nocturne" class="img-fluid"></a>-->
-<!--	</header>-->
-
-	<form th:action="@{../save-edit}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
+	<form th:action="@{${ actionBaseUrl + '/save-edit'}}" th:method="post" th:object="${form}" enctype="multipart/form-data" class="container">
 		<input type="hidden" th:if="${extraEvent != null}" th:field="*{eventId}">
 		<input type="hidden" th:field="*{id}">
 		<div class="form-group">
 			<label for="movieDate">Date de la séance</label>
-			<input type="date" th:field="*{date}" class="form-control" id="movieDate" required>
+			<input type="date"  th:errorclass="is-invalid" th:field="*{date}" class="form-control" id="movieDate" required>
+			<div class="invalid-feedback" th:if="${#fields.hasErrors('date')}" th:text="${#fields.errors('date')}"></div>
 		</div>
 		<div class="form-group">
 			<label for="movieTime">Heure de la séance</label>
-			<input type="time" th:field="*{startTime}" class="form-control" id="movieTime" required>
+			<input type="time" th:errorclass="is-invalid" th:field="*{startTime}" class="form-control" id="movieTime" required>
+			<div class="invalid-feedback" th:if="${#fields.hasErrors('startTime')}" th:text="${#fields.errors('startTime')}"></div>
 		</div>
 		<div class="form-group">
 			<label for="movieName">Titre du film</label>
-			<input type="text" th:field="*{title}" class="form-control jsRequiredForPublication" id="movieName" required>
+			<input type="text" th:errorclass="is-invalid" th:field="*{title}" class="form-control jsRequiredForPublication" id="movieName" required>
+			<div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:text="${#fields.errors('title')}"></div>
 		</div>
 		<div class="form-group">
 			<label for="movieURL">Code du film dans les urls</label>
-			<input type="text" th:field="*{textualId}" class="form-control jsRequiredForPublication" id="movieURL" aria-describedby="urlHelp" required pattern="[a-z0-9\-]+">
+			<input type="text" th:errorclass="is-invalid"  th:field="*{textualId}" class="form-control jsRequiredForPublication" id="movieURL" aria-describedby="urlHelp" required pattern="[a-z0-9\-]+">
 			<small id="urlHelp" class="form-text text-white-50">Merci de ne pas mettre d'accent et de remplacer les espaces par un underscore ou un tiret</small>
+			<div class="invalid-feedback" th:if="${#fields.hasErrors('textualId')}" th:text="${#fields.errors('textualId')}"></div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="movieDirector">Réalisateur</label>
-					<input type="text" th:field="*{director}" class="form-control" id="movieDirector">
+					<input type="text" th:errorclass="is-invalid" th:field="*{director}" class="form-control" id="movieDirector">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('director')}" th:text="${#fields.errors('director')}"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="scenarist">Scénariste</label>
-					<input type="text" th:field="*{scenarist}" class="form-control" id="scenarist">
+					<input type="text" th:errorclass="is-invalid" th:field="*{scenarist}" class="form-control" id="scenarist">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('scenarist')}" th:text="${#fields.errors('scenarist')}"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<label for="scenarist">Nationalité</label>
-					<input type="text" th:field="*{nationality}" class="form-control" id="scenarist">
+					<label for="nationality">Nationalité</label>
+					<input type="text" th:errorclass="is-invalid" th:field="*{nationality}" class="form-control" id="nationality">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('nationality')}" th:text="${#fields.errors('nationality')}"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="movieRelase">Date de sortie du film</label>
-					<input type="text" th:field="*{releaseDate}" class="form-control" id="movieRelase">
+					<input type="text" th:errorclass="is-invalid" th:field="*{releaseDate}" class="form-control" id="movieRelase">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('releaseDate')}" th:text="${#fields.errors('releaseDate')}"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="movieDuration">Durée du film</label>
-					<input type="text" th:field="*{duration}" class="form-control" id="movieDuration">
+					<input type="text" th:errorclass="is-invalid" th:field="*{duration}" class="form-control" id="movieDuration">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('duration')}" th:text="${#fields.errors('duration')}"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="movieCasting">Casting</label>
-					<input type="text" th:field="*{casting}" class="form-control" id="movieCasting">
+					<input type="text" th:errorclass="is-invalid" th:field="*{casting}" class="form-control" id="movieCasting">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('casting')}" th:text="${#fields.errors('casting')}"></div>
 				</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="descriptionFilm">Texte descriptif</label>
-			<textarea class="form-control" th:field="*{description}" id="descriptionFilm" rows="3"></textarea>
+			<textarea class="form-control" th:errorclass="is-invalid" th:field="*{description}" id="descriptionFilm" rows="3"></textarea>
+			<div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:text="${#fields.errors('description')}"></div>
 			<small class="form-text text-white-50">Vous pouvez utiliser les balises [i]<i>italique</i>[/i], [b]<b>gras</b>[/b] et [url="https://lemauditfestival.com"]<a target="_blank" href="https://lemauditfestival.com">lien</a>[/url]</small>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="partner">Partenaire de la séance</label>
-					<input type="text" th:field="*{partner}" class="form-control" id="partner">
+					<input type="text" th:errorclass="is-invalid" th:field="*{partner}" class="form-control" id="partner">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('partner')}" th:text="${#fields.errors('partner')}"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="movieRated">Classification du film</label>
-					<input type="text" th:field="*{ageRating}" class="form-control" id="movieRated">
+					<input type="text" th:errorclass="is-invalid" th:field="*{ageRating}" class="form-control" id="movieRated">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('ageRating')}" th:text="${#fields.errors('ageRating')}"></div>
 				</div>
 			</div>
 		</div>
@@ -102,13 +111,15 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="sponsor">Sponsor</label>
-					<input type="text" th:field="*{sponsor}" class="form-control" id="sponsor">
+					<input type="text" th:errorclass="is-invalid" th:field="*{sponsor}" class="form-control" id="sponsor">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('sponsor')}" th:text="${#fields.errors('sponsor')}"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="triggerWarnings">Avertissements de contenu</label>
-					<input type="text" th:field="*{triggerWarnings}" class="form-control" id="triggerWarnings">
+					<input type="text" th:errorclass="is-invalid" th:field="*{triggerWarnings}" class="form-control" id="triggerWarnings">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('triggerWarnings')}" th:text="${#fields.errors('triggerWarnings')}"></div>
 				</div>
 			</div>
 		</div>
@@ -117,45 +128,51 @@
 				<label for="uploadPoster">Poster du film
 					<img id="filmPosterPreview" class="imageUploadPreview" data-required-size="200x267" th:src="*{posterUrl}">
 				</label>
+				<input type="hidden" th:field="*{posterUrl}"th:if="*{posterUrl != null}">
 				<input type="file" th:field="*{posterFile}" accept="image/*" class="form-control-file jsRequiredForPublication" id="uploadPoster" th:required="*{posterUrl == null}">
 			</div>
 			<div class="form-group col-md-6">
 				<label for="uploadSample">Extrait du film
 					<img id="filmSamplePreview" class="imageUploadPreview" th:src="*{sampleUrl}">
 				</label>
+				<input type="hidden" th:field="*{sampleUrl}"th:if="*{sampleUrl != null}">
 				<input type="file" th:field="*{sampleImageFile}" accept="image/*" class="form-control-file jsRequiredForPublication" id="uploadSample" th:required="*{posterUrl == null}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="movieTickets">Lien URL de la billetterie</label>
-			<input type="text" th:field="*{buyUrl}" class="form-control" id="movieTickets">
+			<input type="text" th:errorclass="is-invalid" th:field="*{buyUrl}" class="form-control" id="movieTickets">
+			<div class="invalid-feedback" th:if="${#fields.hasErrors('buyUrl')}" th:text="${#fields.errors('buyUrl')}"></div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="locationName">Nom du lieu de la séance</label>
-					<input type="text" th:field="*{locationName}" class="form-control" id="locationName">
+					<input type="text" th:errorclass="is-invalid" th:field="*{locationName}" class="form-control" id="locationName">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('locationName')}" th:text="${#fields.errors('locationName')}"></div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="locationAddress">Addresse du lieu de la séance</label>
-					<input type="text" th:field="*{locationAddress}" class="form-control" id="locationAddress">
+					<input type="text" th:errorclass="is-invalid" th:field="*{locationAddress}" class="form-control" id="locationAddress">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('locationAddress')}" th:text="${#fields.errors('locationAddress')}"></div>
 				</div>
 			</div>
 		</div>
 		<div class="">
 			<label for="revealTime">Date d'annonce du film</label>
-			<input type="datetime-local" th:field="*{revealTime}" class="form-control" id="revealTime">
+			<input type="datetime-local" th:errorclass="is-invalid" th:field="*{revealTime}" class="form-control" id="revealTime">
+			<div class="invalid-feedback" th:if="${#fields.hasErrors('revealTime')}" th:text="${#fields.errors('revealTime')}"></div>
 		</div>
 
-		<a href="../../dashboard" class="btn btn-secondary">Annuler</a>
+		<a th:href="@{${ back }}" class="btn btn-secondary">Annuler</a>
 		<button type="submit" class="btn btn-primary" th:text="*{id == null} ? 'Créer' : 'Éditer'"
-			onclick="return validateForPreview()" th:if="*{revealTime == null}">Créer</button>
-		<button type="submit" class="btn btn-primary" th:formaction="@{../save-edit-publish}" 
+			onclick="return validateForPreview()" th:if="*{revealTime == null}" th:unless="${extraEvent}">Créer</button>
+		<button type="submit" class="btn btn-primary" th:formaction="@{${ actionBaseUrl + '/save-edit-publish'}}" 
 			th:text="*{revealTime == null} ? 'Publier' : 'Éditer'">Publier</button>
 	</form>
-	<form th:action="@{../delete}" th:method="post" th:if="${form.id != null}" onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce film ?');">
+	<form th:action="@{${ actionBaseUrl + '/delete'}}" th:method="post" th:if="${form.id != null}" onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce film ?');">
 		<input type="hidden" name="id" th:value="${extraEvent != null ? form.eventId : form.id}">
 		<button type="submit" class="btn btn-danger">Supprimer</button>
 	</form>

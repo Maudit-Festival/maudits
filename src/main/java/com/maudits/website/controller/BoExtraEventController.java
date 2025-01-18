@@ -4,8 +4,10 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("admin/extraevent")
 public class BoExtraEventController {
 	private final BoFilmService boService;
+
+	@ModelAttribute
+	public void setAction(Model model) {
+		model.addAttribute("actionBaseUrl", "/admin/extraevent");
+		model.addAttribute("back", "/admin/extraevent/dashboard");
+	}
 
 	@GetMapping("dashboard")
 	public String showExtraEvents(Model model) {
@@ -42,8 +50,13 @@ public class BoExtraEventController {
 		return "admin/film-create-or-edit";
 	}
 
-	@PostMapping("save-edit")
-	public String saveExtraEventEdition(@Validated ExtraEventForm form, Model model) throws IOException {
+	@PostMapping("save-edit-publish")
+	public String saveExtraEventEdition(@Validated @ModelAttribute("form") ExtraEventForm form,
+			BindingResult bindingResult, Model model) throws IOException {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("extraEvent", true);
+			return "admin/film-create-or-edit";
+		}
 		boService.saveExtraEvent(form);
 		return "redirect:/admin/extraevent/dashboard";
 	}
