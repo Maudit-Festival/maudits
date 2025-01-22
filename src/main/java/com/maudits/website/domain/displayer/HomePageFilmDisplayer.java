@@ -18,7 +18,7 @@ public class HomePageFilmDisplayer {
 	private final String locationName;
 
 	public HomePageFilmDisplayer(Film film) {
-		if (film.getRevealTime() == null || film.getRevealTime().isBefore(LocalDateTime.now())) {
+		if (film.getRevealTime() != null && film.getRevealTime().isBefore(LocalDateTime.now())) {
 			this.id = film.getId();
 			this.textualId = film.getTextualId();
 			this.title = film.getTitle();
