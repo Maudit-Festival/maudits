@@ -21,6 +21,7 @@ public class FrontPage {
 //	private final String basePrefix;
 //	private final String editionPrefix;
 //	private final String homepageUrl;
+	private final String buyPassUrl;
 	private final boolean preview;
 	private final boolean pastEdition;
 	private final List<String> previousEditionNames;
@@ -36,6 +37,7 @@ public class FrontPage {
 		this.shareImageUrl = edition.getShareImageUrl();
 		this.heroUrl = edition.getHeroUrl();
 		this.accentColor = edition.getAccentColor();
+		this.buyPassUrl = edition.getBuyPassUrl();
 		this.preview = display == Display.NEXT;
 		boolean showcasingCurrentEdition = display == Display.NEXT ? edition.isNext() : edition.isCurrent();
 		this.pastEdition = !(showcasingCurrentEdition);

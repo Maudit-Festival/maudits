@@ -129,7 +129,10 @@
 						<li>Séance de clôture au Ciel : <span class="tarif">5€</span></li>
 		
 						<li>Pass 6 films : <span class="tarif">30€</span>. Ce passe ne permet de prendre que 2 places au maximum par séance, et donne uniquement accès aux séances se déroulant au cinéma Juliet Berto et au Ciel. 
-							Disponible à la vente <a class="link" href="https://www.helloasso.com/associations/terreur-nocturne/evenements/pass-6-places" target="_blank">ici</a>.</li>
+							<th:block th:if="${page.buyPassUrl != null}">
+								Disponible à la vente <a class="link" th:href="${page.buyPassUrl}" target="_blank">ici</a>.
+							</th:block>
+						</li>
 						<li>Séance GrindHouse - double programme : <span class="tarif">12€</span>. Cette séance du samedi se compose d’un <em>double programme</em>. Le tarif est donc identique que vous assistiez à un ou deux films.</li>
 						<li>Billetterie en ligne : La plupart des séances sont accessibles en prévente : ouvrez l’œil sur nos réseaux sociaux!</li>
 					</ul>

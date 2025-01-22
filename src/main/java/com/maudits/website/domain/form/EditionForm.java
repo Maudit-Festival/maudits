@@ -21,11 +21,12 @@ public class EditionForm {
 	private String heroUrl;
 	private MultipartFile heroFile;
 
+	private String buyPassUrl;
+
 	private String pdfUrl;
 	private MultipartFile pdfFile;
 
 	private String teaserUrl;
-	// TODO guests
 
 	public EditionForm(Edition edition) {
 		this.color = edition.getAccentColor();
@@ -36,5 +37,6 @@ public class EditionForm {
 		this.heroUrl = edition.getHeroUrl();
 		this.pdfUrl = edition.getPdfUrl();
 		this.teaserUrl = edition.getTeaserUrl();
+		this.buyPassUrl = edition.getBuyPassUrl();
 	}
 }

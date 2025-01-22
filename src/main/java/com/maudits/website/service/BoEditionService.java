@@ -81,6 +81,7 @@ public class BoEditionService {
 		edition.setName(form.getName());
 		edition.setTimePeriod(form.getTimePeriod());
 		edition.setTeaserUrl(nullIfEmpty(form.getTeaserUrl()));
+		edition.setBuyPassUrl(form.getBuyPassUrl());
 
 		String folder = edition.getName();
 
