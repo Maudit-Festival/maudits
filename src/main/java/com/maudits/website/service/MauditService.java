@@ -17,6 +17,7 @@ import com.maudits.website.domain.Display;
 import com.maudits.website.domain.displayer.FrontPageDisplayer;
 import com.maudits.website.domain.displayer.HomePageCurrentEventDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
+import com.maudits.website.domain.displayer.HomePageEventDisplayer;
 import com.maudits.website.domain.displayer.HomePageFilmDisplayer;
 import com.maudits.website.domain.displayer.SponsorDisplayer;
 import com.maudits.website.domain.exception.WrongEditionException;
@@ -101,7 +102,8 @@ public class MauditService {
 		List<HomePageDayDisplayer> days = new ArrayList<>();
 		Map<LocalDate, List<Film>> films = new HashMap<>();
 		for (Film film : edition.getFilms()) {
-			films.merge(film.getDate(), List.of(film), this::mergeList);
+			if (film.getDate().isAfter(edition.getFirstDay()) && film.getDate().isBefore(edition.getLastDay()))
+				films.merge(film.getDate(), List.of(film), this::mergeList);
 		}
 		for (Entry<LocalDate, List<Film>> entry : films.entrySet()) {
 			LocalDate date = entry.getKey();
@@ -126,7 +128,27 @@ public class MauditService {
 
 	private HomePage makeHomeFilmRecap(FrontPageDisplayer frontPageDisplayer) {
 		Edition edition = frontPageDisplayer.getEdition();
-		List<HomePageDayDisplayer> days = findDays(edition);
+
+		List<HomePageDayDisplayer> days = new ArrayList<>();
+		List<HomePageEventDisplayer> beforeEvents = new ArrayList<>();
+		List<HomePageEventDisplayer> afterEvents = new ArrayList<>();
+		Map<LocalDate, List<Film>> films = new HashMap<>();
+		for (Film film : edition.getFilms()) {
+			if (film.getDate().isBefore(edition.getFirstDay())) {
+				beforeEvents.add(new HomePageEventDisplayer(film));
+			} else if (film.getDate().isAfter(edition.getLastDay())) {
+				afterEvents.add(new HomePageEventDisplayer(film));
+			} else
+				films.merge(film.getDate(), List.of(film), this::mergeList);
+		}
+		for (Entry<LocalDate, List<Film>> entry : films.entrySet()) {
+			LocalDate date = entry.getKey();
+			List<HomePageFilmDisplayer> filmsForDate = entry.getValue().stream().map(HomePageFilmDisplayer::new)
+					.sorted(Comparator.comparing(HomePageFilmDisplayer::getStartTime)).collect(Collectors.toList());
+			days.add(new HomePageDayDisplayer(date, filmsForDate));
+		}
+		days.sort(Comparator.comparing(HomePageDayDisplayer::getDate));
+
 		List<SponsorDisplayer> sponsors = new ArrayList<>();
 		for (Sponsor sponsor : edition.getSponsors()) {
 			sponsors.add(new SponsorDisplayer(sponsor));
@@ -134,7 +156,7 @@ public class MauditService {
 		Collections.shuffle(sponsors);
 		return extraEventRepository.findOneByActive()
 				.map(ea -> new HomePage(frontPageDisplayer, new HomePageCurrentEventDisplayer(ea.getFilm()), sponsors))
-				.orElse(new HomePage(frontPageDisplayer, days, sponsors));
+				.orElse(new HomePage(frontPageDisplayer, beforeEvents, afterEvents, days, sponsors));
 	}
 
 //	public PreviousEditionPage makePreviousEditionPage(String editionName, Display display) {

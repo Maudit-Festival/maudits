@@ -80,6 +80,8 @@ public class BoEditionService {
 		edition.setEditorial(nullIfEmpty(form.getEditorial()));
 		edition.setName(form.getName());
 		edition.setTimePeriod(form.getTimePeriod());
+		edition.setFirstDay(form.getFirstDay());
+		edition.setLastDay(form.getLastDay());
 		edition.setTeaserUrl(nullIfEmpty(form.getTeaserUrl()));
 		edition.setBuyPassUrl(form.getBuyPassUrl());
 

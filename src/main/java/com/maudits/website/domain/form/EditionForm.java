@@ -1,5 +1,9 @@
 package com.maudits.website.domain.form;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.maudits.website.repository.entities.Edition;
@@ -16,6 +20,10 @@ public class EditionForm {
 	private String editorial;
 	private String name;
 	private String timePeriod;
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate firstDay;
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate lastDay;
 	private String shareImageUrl;
 	private MultipartFile shareImageFile;
 	private String heroUrl;
@@ -33,6 +41,8 @@ public class EditionForm {
 		this.editorial = edition.getEditorial();
 		this.name = edition.getName();
 		this.timePeriod = edition.getTimePeriod();
+		this.firstDay = edition.getFirstDay();
+		this.lastDay = edition.getLastDay();
 		this.shareImageUrl = edition.getShareImageUrl();
 		this.heroUrl = edition.getHeroUrl();
 		this.pdfUrl = edition.getPdfUrl();

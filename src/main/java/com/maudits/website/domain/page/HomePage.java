@@ -7,6 +7,7 @@ import com.maudits.website.domain.displayer.FrontPageDisplayer;
 import com.maudits.website.domain.displayer.GuestDisplayer;
 import com.maudits.website.domain.displayer.HomePageCurrentEventDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
+import com.maudits.website.domain.displayer.HomePageEventDisplayer;
 import com.maudits.website.domain.displayer.SponsorDisplayer;
 import com.maudits.website.repository.entities.Edition;
 
@@ -14,14 +15,20 @@ import lombok.Getter;
 
 @Getter
 public class HomePage extends FrontPage {
+	private final List<HomePageEventDisplayer> beforeEvents;
+	private final List<HomePageEventDisplayer> afterEvents;
 	private final List<HomePageDayDisplayer> days;
 	private final HomePageCurrentEventDisplayer currentEvent;
 	private final List<SponsorDisplayer> sponsors;
 	private final List<GuestDisplayer> guests;
 	private final String pdfUrl;
 
-	public HomePage(FrontPageDisplayer displayer, List<HomePageDayDisplayer> days, List<SponsorDisplayer> sponsors) {
+	public HomePage(FrontPageDisplayer displayer, List<HomePageEventDisplayer> beforeEvents,
+			List<HomePageEventDisplayer> afterEvents, List<HomePageDayDisplayer> days,
+			List<SponsorDisplayer> sponsors) {
 		super(displayer);
+		this.beforeEvents = beforeEvents;
+		this.afterEvents = afterEvents;
 		this.days = days;
 		this.currentEvent = null;
 		this.sponsors = sponsors;
@@ -34,6 +41,8 @@ public class HomePage extends FrontPage {
 			List<SponsorDisplayer> sponsors) {
 		super(displayer);
 		this.days = null;
+		this.beforeEvents = null;
+		this.afterEvents = null;
 		this.currentEvent = currentEvent;
 		this.guests = new ArrayList<>();
 		this.sponsors = sponsors;

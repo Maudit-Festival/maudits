@@ -414,6 +414,55 @@ footer ul li:before{
 	background-color: var(--background-gray-color);
 }
 
+
+.off_programmation_line {
+	display: flex;
+	align-items: baseline;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: end;
+}
+
+.off_programmation_line :first-child {
+	text-transform: capitalize;
+}
+
+.off_programmation .relator {
+	flex-grow: 1;
+	border-bottom: dotted;
+	min-width: 4px;
+}
+
+.off_programmation_link {
+	display: none;
+}
+
+.off_programmation_link a {
+	color: var(--accent-color);
+}
+
+@media(max-width:999px){
+	.off_programmation_link {
+		display: initial;
+		text-wrap: auto;
+	}
+	
+	.off_programmation_button {
+		display: none;
+	}
+}
+
+@media(max-width: 588px) {
+	.off_programmation_line {
+		flex-direction: column;
+	}
+
+	.off_programmation .relator {
+		border-bottom: hidden;
+	}
+}
+
+
 .programmation_list_days{
 	text-align: center;
 	padding-top: 3%;
@@ -1043,4 +1092,12 @@ hr {
 
 #trigger-warnings-checkbox:checked ~ .trigger-warnings {
 	display: block;
+}
+
+.off_programmation {
+	font-size: 1.20em;
+}
+
+.off_programmation li::marker, .off_programmation .separator {
+  color: var(--accent-color);
 }

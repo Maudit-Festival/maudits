@@ -139,6 +139,16 @@
 						<input id="edition-duration" class="form-control" th:field="*{timePeriod}" placeholder="Du 20 au 27 Janvier">
 					</div>
 				</div>
+				<div class="row form-group">
+					<div class="col-md-6">
+						<label for="firstDay">Premier jour "on" :</label>
+						<input id="firstDay" class="form-control" th:field="*{firstDay}" type="date">
+					</div>
+					<div class="col-md-6">
+						<label for="lastDay">Dernier jour "on" :</label>
+						<input id="lastDay" class="form-control" th:field="*{lastDay}" type="date">
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="edition-teaser">Teaser :</label>
 					<input id="edition-teaser" class="form-control" th:field="*{teaserUrl}" placeholder="https://www.youtube-nocookie.com/embed/???">

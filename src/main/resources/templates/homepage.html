@@ -70,6 +70,24 @@
 	<section id="programmation" th:if="${page.currentEvent == null}" class="programmation-section">
 		<h3 class="section-headline">Programmation</h3>
 		<div class="container">
+			<div class="off_programmation" th:unless="${page.beforeEvents.isEmpty()}">
+				<h3>Avant le festival</h3>
+				<ul>
+					<li th:each="event : ${page.beforeEvents}">
+						<div class="off_programmation_line">
+							<span th:text="${event.displayDate}">Le 12 Décembre <span class="separator">:</span></span>
+							<div class="relator"></div> 
+							<span class="off_programmation_button">
+								<th:block th:text="${event.title}">The Fantasy of the Deer Warrior</th:block> 
+								<a class="know_more btn-purple" th:href="@{${page.currentRoot + 'film/'+ event.textualId}}">En savoir plus</a>
+							</span>
+							<span class="off_programmation_link">
+								<a th:href="@{${page.currentRoot + 'film/'+ event.textualId}}" th:text="${event.title}">The Fantasy of the Deer Warrior</a>
+							</span>
+						</div>
+					</li>
+				</ul>
+			</div>
 			<div class="programmation_list_days">
 				<th:block th:each="day : ${page.days}">
 					<a th:text="${day.displayDate}" th:href="'#'+${day.date}"></a>
@@ -92,6 +110,24 @@
 						</article>
 					</div>
 				</div>
+			</div>
+			<div class="off_programmation" th:unless="${page.afterEvents.isEmpty()}">
+				<h3>Après le festival</h3>
+				<ul>
+					<li th:each="event : ${page.afterEvents}">
+						<div class="off_programmation_line">
+							<span th:text="${event.displayDate}">Le 12 Décembre <span class="separator">:</span></span>
+							<div class="relator"></div> 
+							<span class="off_programmation_button">
+								<th:block th:text="${event.title}">The Fantasy of the Deer Warrior</th:block> 
+								<a class="know_more btn-purple" th:href="@{${page.currentRoot + 'film/'+ event.textualId}}">En savoir plus</a>
+							</span>
+							<span class="off_programmation_link">
+								<a th:href="@{${page.currentRoot + 'film/'+ event.textualId}}" th:text="${event.title}">The Fantasy of the Deer Warrior</a>
+							</span>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</section>
