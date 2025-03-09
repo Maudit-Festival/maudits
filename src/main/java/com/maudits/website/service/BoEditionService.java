@@ -30,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoEditionService {
 	private final CurrentEditionService currentEditionService;
 	private final UploadService uploadService;

@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.maudits.website.domain.Display;
 import com.maudits.website.domain.displayer.FrontPageDisplayer;
@@ -40,6 +41,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MauditService {
 	private final CurrentEditionService currentEditionService;
 	private final EditionRepository editionRepository;
