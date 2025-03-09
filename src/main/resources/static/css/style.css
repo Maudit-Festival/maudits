@@ -1072,12 +1072,12 @@ hr {
 	margin-top: 0;
 }
 
-.link {
+.link, .bbcode a[href] {
 	color: white;
 	text-decoration: underline;
 }
 
-.link:hover {
+.link:hover, .bbcode a[href]:hover {
 	color: var(--accent-color);
 }
 

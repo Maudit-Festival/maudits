@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.maudits.website.repository.entities.utils.EntityWithId;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -22,6 +23,8 @@ public class Edition extends EntityWithId {
 	private Collection<Film> films;
 	@OneToMany(mappedBy = "edition")
 	private Collection<Sponsor> sponsors;
+	@OneToMany(mappedBy = "edition", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Collection<Ticket> tickets;
 	private boolean current;
 	private boolean next;
 	private String name;

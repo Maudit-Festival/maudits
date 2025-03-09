@@ -10,6 +10,7 @@ import com.maudits.website.domain.displayer.HomePageDayDisplayer;
 import com.maudits.website.domain.displayer.HomePageEventDisplayer;
 import com.maudits.website.domain.displayer.SponsorDisplayer;
 import com.maudits.website.repository.entities.Edition;
+import com.maudits.website.repository.entities.Ticket;
 
 import lombok.Getter;
 
@@ -21,6 +22,7 @@ public class HomePage extends FrontPage {
 	private final HomePageCurrentEventDisplayer currentEvent;
 	private final List<SponsorDisplayer> sponsors;
 	private final List<GuestDisplayer> guests;
+	private final List<String> tickets;
 	private final String pdfUrl;
 
 	public HomePage(FrontPageDisplayer displayer, List<HomePageEventDisplayer> beforeEvents,
@@ -34,6 +36,7 @@ public class HomePage extends FrontPage {
 		this.sponsors = sponsors;
 		Edition edition = displayer.getEdition();
 		this.guests = edition.getGuests().stream().map(GuestDisplayer::new).toList();
+		this.tickets = edition.getTickets().stream().map(Ticket::getText).toList();
 		this.pdfUrl = edition.getPdfUrl();
 	}
 
@@ -46,6 +49,7 @@ public class HomePage extends FrontPage {
 		this.currentEvent = currentEvent;
 		this.guests = new ArrayList<>();
 		this.sponsors = sponsors;
+		this.tickets = new ArrayList<>();
 		this.pdfUrl = null;
 	}
 }

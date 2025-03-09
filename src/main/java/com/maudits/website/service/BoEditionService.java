@@ -25,6 +25,7 @@ import com.maudits.website.repository.PositionRepository;
 import com.maudits.website.repository.entities.BoothPicture;
 import com.maudits.website.repository.entities.Edition;
 import com.maudits.website.repository.entities.Position;
+import com.maudits.website.repository.entities.Ticket;
 
 import lombok.RequiredArgsConstructor;
 
@@ -111,6 +112,13 @@ public class BoEditionService {
 			var url = uploadService.uploadFile(folder, "programme_maudit_festival_" + edition.getName() + fileExtension,
 					pdfFile);
 			edition.setPdfUrl(url);
+		}
+
+		edition.getTickets().clear();
+		String tickets = form.getTickets().replace('\r', '\n');
+		tickets = tickets.replace("\n+", "\n");
+		for (String ticketText : form.getTickets().split("\n")) {
+			edition.getTickets().add(new Ticket(ticketText, edition));
 		}
 
 		editionRepository.save(edition);
