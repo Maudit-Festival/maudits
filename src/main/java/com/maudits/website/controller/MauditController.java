@@ -91,6 +91,12 @@ public class MauditController {
 		return "history";
 	}
 
+	@GetMapping("admin/history")
+	public String showHistoryUpcoming(Model model) {
+		model.addAttribute("page", mauditService.makeFrontPage(Display.CURRENT));
+		return "history-upcoming";
+	}
+
 	@GetMapping("booth")
 	public String showBoothLogin(Model model) {
 		model.addAttribute("page", mauditService.makeFrontPage(Display.CURRENT));
