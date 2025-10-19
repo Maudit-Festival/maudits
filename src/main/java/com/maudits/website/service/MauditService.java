@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.maudits.website.domain.Display;
+import com.maudits.website.domain.displayer.EditionRoleDisplayer;
 import com.maudits.website.domain.displayer.FrontPageDisplayer;
 import com.maudits.website.domain.displayer.HomePageCurrentEventDisplayer;
 import com.maudits.website.domain.displayer.HomePageDayDisplayer;
@@ -119,16 +120,16 @@ public class MauditService {
 
 	public HomePage makeHomeFilmRecap(Display display) {
 		FrontPageDisplayer frontPageDisplayer = makeFrontPageDisplayer(display);
-		return makeHomeFilmRecap(frontPageDisplayer);
+		return makeHomeFilmRecap(frontPageDisplayer, false);
 	}
 
 	public HomePage makeHomeFilmRecap(Display display, String editionName) {
 		Edition archivedEdition = editionRepository.findByName(editionName).orElseThrow();
 		FrontPageDisplayer frontPageDisplayer = makeFrontPageDisplayer(display, archivedEdition);
-		return makeHomeFilmRecap(frontPageDisplayer);
+		return makeHomeFilmRecap(frontPageDisplayer, true);
 	}
 
-	private HomePage makeHomeFilmRecap(FrontPageDisplayer frontPageDisplayer) {
+	private HomePage makeHomeFilmRecap(FrontPageDisplayer frontPageDisplayer, boolean history) {
 		Edition edition = frontPageDisplayer.getEdition();
 
 		List<HomePageDayDisplayer> days = new ArrayList<>();
@@ -156,9 +157,12 @@ public class MauditService {
 			sponsors.add(new SponsorDisplayer(sponsor));
 		}
 		Collections.shuffle(sponsors);
+
+		List<EditionRoleDisplayer> credits = history ? BuildCredits(edition) : null;
+
 		return extraEventRepository.findOneByActive()
 				.map(ea -> new HomePage(frontPageDisplayer, new HomePageCurrentEventDisplayer(ea.getFilm()), sponsors))
-				.orElse(new HomePage(frontPageDisplayer, beforeEvents, afterEvents, days, sponsors));
+				.orElse(new HomePage(frontPageDisplayer, beforeEvents, afterEvents, days, sponsors, credits));
 	}
 
 //	public PreviousEditionPage makePreviousEditionPage(String editionName, Display display) {
@@ -168,7 +172,7 @@ public class MauditService {
 //		return new PreviousEditionPage(edition, findPreviousEditionNames(display), display, archivedEdition, days);
 //	}
 
-	public FrontPage makeAboutPageDisplayer(Display display) {
+	public AboutPage makeAboutPageDisplayer(Display display) {
 		FrontPageDisplayer displayer = makeFrontPageDisplayer(display);
 		return makeAboutPageDisplayer(displayer);
 	}
@@ -179,9 +183,9 @@ public class MauditService {
 		return makeAboutPageDisplayer(displayer);
 	}
 
-	private FrontPage makeAboutPageDisplayer(FrontPageDisplayer displayer) {
+	private List<EditionRoleDisplayer> BuildCredits(Edition edition) {
 		Map<Position, List<Crew>> credits = new HashMap<>();
-		List<Crew> crews = crewRepository.findAllByEdition(displayer.getEdition());
+		List<Crew> crews = crewRepository.findAllByEdition(edition);
 		for (Crew crew : crews) {
 			if (credits.containsKey(crew.getPosition())) {
 				credits.get(crew.getPosition()).add(crew);
@@ -189,7 +193,18 @@ public class MauditService {
 				credits.put(crew.getPosition(), new ArrayList<>(List.of(crew)));
 			}
 		}
-		return new AboutPage(displayer, credits);
+		List<EditionRoleDisplayer> creditDisplayers = new ArrayList<>();
+		List<Position> positions = new ArrayList<>(credits.keySet());
+		positions.sort(Comparator.comparing(c -> c.getPriority()));
+		for (Position key : positions) {
+			creditDisplayers.add(new EditionRoleDisplayer(key, credits.get(key)));
+		}
+
+		return creditDisplayers;
+	}
+
+	private AboutPage makeAboutPageDisplayer(FrontPageDisplayer displayer) {
+		return new AboutPage(displayer, BuildCredits(displayer.getEdition()));
 	}
 
 	public List<String> findBoothPictures(String password) {

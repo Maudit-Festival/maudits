@@ -16,36 +16,15 @@
 <body class="homepage">
 	<nav th:replace="~{fragments/common.html :: common-navbar}"></nav>
 	<div class="hero">
-		<div class="container hero_content">
-			<div class="container-home">
-				<th:block th:if="${page.currentEvent == null}">
-					<h1>Le Maudit Festival</h1>
-					<h2>
-						<th:block th:text="${page.editionTimePeriod}" />
-						<th:block th:text="${page.editionName}" />
-					</h2>
-					<a th:href="${page.currentEditionHomepageUrl + '#programmation'}" class="white-button">En savoir plus</a>
-				</th:block>
-				<th:block th:unless="${page.currentEvent == null}">
-					<div class="container-home-current-event">
-						<div>
-							<img th:src="${page.currentEvent.imageUrl}" class="current-event-img rounded" th:alt="${page.currentEvent.title}">
-						</div>
-						<div>
-							<h1 th:text="${page.currentEvent.title}">Le Maudit Festival</h1>
-							<h2 th:text="${page.currentEvent.dateAndTime}"></h2>
-							<h2 th:text="${page.currentEvent.locationName}"></h2>
-							<a th:href="@{${page.currentRoot + 'film/'+ page.currentEvent.textualId}}" class="white-button">En savoir plus</a>
-						</div>
-					</div>
-				</th:block>
-			</div>
-		</div>
+		<img th:src="${page.heroUrl}" />
 	</div>
 	<section id="editorial" th:if="${page.editorial != null && page.currentEvent == null}" class='editorial-section'>
 		<div>
 			<h3 class="section-headline">Éditorial</h3>
-			<p text:bbcode="${page.editorial}" class="user-format"></p>
+			<div class="editorial-and-poster">
+				<p text:bbcode="${page.editorial}" class="user-format"></p>
+				<img style="max-width: 500px;" th:src="${page.posterUrl}" th:if="${page.posterUrl != null}"/>
+			</div>
 		</div>
 	</section>
 	<section id="teaser" th:if="${page.teaserVideoUrl != null && page.currentEvent == null}" class='programmation-section'>
@@ -153,6 +132,18 @@
 			</div>
 		</div>
 	</section>
+	<section class="programmation-section" th:if="${page.credits != null}">
+		<h3 class="section-headline">La maudite équipe <th:block th:text="${page.editionName}"/></h3>
+		<ul>
+			<li th:each="position : ${page.credits}"><span class="span_about_sidebar" th:text="${position.name}">Role</span>&nbsp;: 
+				<p>
+					<th:block th:each="crew, iter : ${position.crews}">
+						<span th:text="${crew}"></span><th:block th:if="${!iter.last}">, </th:block>
+					</th:block>
+				</p>
+			</li>
+		</ul>
+	</section>
 	<section id="pratique" th:if="${page.currentEvent == null}" class="practical-info-section">
 		<h3 class="section-headline">Infos pratiques</h3>
 		<div class="practical-container">
@@ -174,13 +165,6 @@
 						</ul>
 					</p>
 				</div>
-			</div>
-			<div class="map_home">
-				<div class="placeholder">
-					<p>Si vous affichez la carte, Google pourra déposer des cookies sur votre ordinateur.</p>
-					<a class="btn-purple" onclick="showMap()">Cliquez ici pour afficher Google Maps</a>
-				</div>
-				<iframe id="gmaps-iframe" allowfullscreen=""></iframe>
 			</div>
 		</div>
 		<script>

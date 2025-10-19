@@ -78,20 +78,29 @@ section {
 */
 .navbar{
 	background: var(--accent-color);
- 	position: fixed; 
-	top: 10px;
+	position: sticky;
+	top: 0;
 	display: inline-flex;
 	align-items: center;
 	padding: 10px;
-	margin-top: 50px;
 	z-index: 100;
+	width: 100vw;
+	box-sizing: border-box;
 }
+
+#mobile_menu + div {
+	display: flex;
+	flex-grow: 1;}
+
+
 .header-logo {
 	width: 50px;
+	display: none;
 }
 
 .navbar .navbar-link{
 	color: white;
+	fill: white;
 	display: inline-block;
 	padding: 10px 0;
 	margin: 0 10px;
@@ -104,6 +113,23 @@ section {
 	border-color: white;
 	color: white;
 	text-decoration: none;
+}
+
+.navbar .spacer {
+	flex-grow:1;
+}
+
+.navbar .navbar-social-link {
+	color: white;
+	fill: white;
+	padding: 10px 0;
+	border-bottom: solid 2px transparent;
+}
+
+.navbar .navbar-social-link svg {
+	height: 20px;
+	width: 25px;
+	padding: 0;
 }
 
 .navbarDropdownLastEdition{
@@ -138,7 +164,14 @@ section {
 
 @media(max-width: 999px) {
 	.navbar {
+	 	position: fixed;
 		align-items: flex-start;
+		top: 60px;
+		width: auto;
+	}
+
+	.header-logo {
+		display: inline;
 	}
 
 	.navbar .navbar-link {
@@ -156,6 +189,11 @@ section {
 	#mobile_menu:checked + div {
 		display: block;
 	}
+	
+	.navbar .navbar-social-link {
+		display: none;
+	}
+	
 }
 
 input[type=checkbox]:checked + .dropdown_nav_style{
@@ -176,46 +214,13 @@ input[type=checkbox]:checked + .dropdown_nav_style{
 * HEADER
 */
 
-.hero {
+.hero, .short-hero {
 	display: flex;
-	height: 50em;
-	background-size: cover;
-	background-position: 0% 50%;
-	color: white;
-	overflow: auto;
 }
-.short-hero {
-	height: 20em;
-	background-size: cover;
-}
-.hero_content{
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	display: flex;	
+
+.hero > img, .short-hero > img {
 	width: 100%;
 }
-.hero h2::first-letter {
-	text-transform: capitalize;
-}
-
-@media (max-width: 999px) {
-	.hero{
-		height: 40em;
-	}
-	.short-hero {
-		height: 15em;
-	}
-}
-@media (max-width: 700px) {
-	.hero{
-		height: 30em;
-	}
-	.short-hero {
-		height: 10em;
-	}
-}
-
 
 .white-button {
 	display: inline-block;
@@ -362,7 +367,10 @@ footer ul li:before{
 	width: 100%;
 	padding-bottom: 56.25%;
 	background-color: rgb(0, 0, 0, 0.5);
+	max-width: 1000px;
+	margin: auto;
 }
+
 .video-container iframe {
 	position: absolute;
 	top: 0;
@@ -1100,4 +1108,26 @@ hr {
 
 .off_programmation li::marker, .off_programmation .separator {
   color: var(--accent-color);
+}
+
+.editorial-section .editorial-and-poster {
+	display: flex; 
+	flex-direction: row;
+}
+
+.editorial-section .editorial-and-poster img {
+	max-width: 500px;
+	width: 25vw;
+	margin: 20px 0 auto 60px;
+}
+
+@media(max-width: 999px) {
+	.editorial-section .editorial-and-poster {
+		flex-direction: column;
+	}
+	
+	.editorial-section .editorial-and-poster img {
+		width: auto;
+		margin: auto;
+	}
 }

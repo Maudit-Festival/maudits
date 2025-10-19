@@ -65,18 +65,17 @@
 			</div>
 			<div class="day_programmation">
 				<div th:each="day : ${page.days}" th:id="${day.date}" class="programmation_list">
-						<h4 th:text="${day.displayDate}"></h4>
-						<div class="programmation-day-recap row">
-							<article th:each="film : ${day.films}">
-								<header>
-									<a th:href="@{'/film/'+${film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
-								</header>
-								<div th:text="${film.startTime}"></div>
-								<div><span th:text="${film.title}"></span></div>
-								<div th:text="${film.locationName}"></div>
-								<a th:href="@{'/film/'+${film.textualId}}" class="know_more btn-purple">En savoir plus</a>
-							</article>
-						</div>
+					<h4 th:text="${day.displayDate}"></h4>
+					<div class="programmation-day-recap row">
+						<article th:each="film : ${day.films}">
+							<header>
+								<a th:href="@{'/film/'+${film.textualId}}" class="link_img_previous"><img th:src="*{film.imageUrl}" class="img-fluid rounded" th:alt="${film.title}" loading="lazy"></a>
+							</header>
+							<div th:text="${film.startTime}"></div>
+							<div><span th:text="${film.title}"></span></div>
+							<div th:text="${film.locationName}"></div>
+							<a th:href="@{'/film/'+${film.textualId}}" class="know_more btn-purple">En savoir plus</a>
+						</article>
 					</div>
 				</div>
 			</div>

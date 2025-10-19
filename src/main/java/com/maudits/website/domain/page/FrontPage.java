@@ -48,20 +48,20 @@ public class FrontPage {
 		return preview ? "/admin/next" : "/";
 	}
 
-	private String addFinalSeparator(String string) {
-		return string.endsWith("/") ? string : string + "/";
-	}
-
-	public String getCurrentEditionHomepageUrl() {
-		return pastEdition ? addFinalSeparator(getCurrentRoot()) + "editions-precedentes/" + editionName
-				: getCurrentRoot();
-	}
-
-	public String getCurrentEditionPrefix() {
-		return addFinalSeparator(getCurrentEditionHomepageUrl());
-	}
-
-	public String findEditionHomepageUrlNyName(String editionName) {
-		return addFinalSeparator(getCurrentRoot()) + "editions-precedentes/" + editionName;
-	}
+//	private String addFinalSeparator(String string) {
+//		return string.endsWith("/") ? string : string + "/";
+//	}
+//
+//	public String getCurrentEditionHomepageUrl() {
+//		return pastEdition ? addFinalSeparator(getCurrentRoot()) + "editions-precedentes/" + editionName
+//				: getCurrentRoot();
+//	}
+//
+//	public String getCurrentEditionPrefix() {
+//		return addFinalSeparator(getCurrentEditionHomepageUrl());
+//	}
+//
+//	public String findEditionHomepageUrlByName(String editionName) {
+//		return addFinalSeparator(getCurrentRoot()) + "editions-precedentes/" + editionName;
+//	}
 }

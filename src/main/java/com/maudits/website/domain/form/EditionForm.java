@@ -30,6 +30,8 @@ public class EditionForm {
 	private MultipartFile shareImageFile;
 	private String heroUrl;
 	private MultipartFile heroFile;
+	private String posterUrl;
+	private MultipartFile posterFile;
 
 	private String buyPassUrl;
 
@@ -52,6 +54,7 @@ public class EditionForm {
 		this.pdfUrl = edition.getPdfUrl();
 		this.teaserUrl = edition.getTeaserUrl();
 		this.buyPassUrl = edition.getBuyPassUrl();
+		this.posterUrl = edition.getPosterUrl();
 		this.tickets = edition.getTickets().stream().map(Ticket::getText).collect(Collectors.joining("\n"));
 	}
 }

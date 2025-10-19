@@ -30,7 +30,7 @@ public class MauditController {
 	}
 
 	@GetMapping("editions-precedentes/{editionName}")
-	public String showPreviousEditionHomePageP(@PathVariable String editionName, Model model) {
+	public String showPreviousEditionHomePage(@PathVariable String editionName, Model model) {
 		model.addAttribute("page", mauditService.makeHomeFilmRecap(Display.CURRENT, editionName));
 		return "homepage";
 	}

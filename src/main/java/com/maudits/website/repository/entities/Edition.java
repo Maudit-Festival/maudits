@@ -36,6 +36,8 @@ public class Edition extends EntityWithId {
 	private String shareImageUrl;
 	private String accentColor;
 
+	private String posterUrl;
+
 	private String editorialTitle;
 	private String editorial;
 	private String teaserUrl;

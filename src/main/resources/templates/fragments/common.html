@@ -48,36 +48,40 @@
 	:root {
 	--accent-color: [[${page.accentColor}]];
 	}
-	
-	.hero {
-		background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("[[${page.heroUrl}]]"), linear-gradient(#110e0a,#171c23);
-	}
-
 	</style>
 	</th:block>
 </head>
 <body>
 	<nav class="navbar" th:fragment="common-navbar">
-		<label for="mobile_menu">
-			<img src="/img/logo-cercle.png" alt="Logo Terreur Nocturne" class="header-logo">
+		<label for="mobile_menu" class="header-logo">
+			<svg th:replace="~{fragments/svg :: burger-menu}" ></svg>
 		</label>
 		<input style="display: none;" type="checkbox" id="mobile_menu">
 		<div>
-			<a class="navbar-link" th:href="${page.currentEditionPrefix + 'a-propos-du-maudit-festival'}">Qui sommes-nous ?</a>
-			<a class="navbar-link" th:if="${page != null && page.editorial != null}" th:href="${page.currentEditionHomepageUrl + '#editorial'}">Éditorial</a>
-			<a class="navbar-link" th:href="${page.currentEditionHomepageUrl + '#programmation'}">Programmation</a>
+			<a class="navbar-link" th:if="${page != null && page.editorial != null}" href="/#editorial">Éditorial</a>
+			<a class="navbar-link" href="/#programmation">Programmation</a>
+			<a class="navbar-link" href="/#pratique" th:unless="${page.pastEdition}">Infos pratiques</a>
+			<a class="navbar-link" href="/a-propos-du-maudit-festival">Qui sommes-nous ?</a>
 			<div class="navbarDropdownLastEdition navbar-link" role="button">
 				<label for="previousEditionCheckbox">Editions précédentes</label>
 				<input id="previousEditionCheckbox" type="checkbox" style="display: none;">
 				<div class="dropdown-menu dropdown_nav_style" style="width: 100%;">
-					<a  class="navbar-link" th:href="${page.findEditionHomepageUrlNyName('avant-le-maudit-festival')}">Historique</a>
-					<a th:each="editionName : ${page.previousEditionNames}" class="navbar-link" th:unless="${editionName == page.editionName}"
-						th:href="${page.findEditionHomepageUrlNyName(editionName)}" th:text="${editionName}">2020</a>
-					<a class="navbar-link" th:href="${page.currentRoot}" th:if="${page.pastEdition}">Retour à l'édition courante</a>
+					<a  class="navbar-link" href="/editions-precedentes/avant-le-maudit-festival">Historique</a>
+					<a th:each="editionName : ${page.previousEditionNames}" class="navbar-link" 
+						th:href="${'/editions-precedentes/' + editionName}" th:text="${editionName}">2020</a>
 				</div>
 			</div>
-			<a class="navbar-link" th:href="${page.currentEditionHomepageUrl + '#pratique'}" th:unless="${page.pastEdition}">Infos pratiques</a>
-			<a class="navbar-link" th:href="${page.currentEditionPrefix + 'contact'}" th:unless="${page.pastEdition}">Contact</a>
+			<div class="spacer"></div>
+			<a class="navbar-social-link" href="https://mastodon.social/@lemauditfestival" target="_blank" aria-label="Mastodon">
+				<svg th:replace="~{fragments/svg :: mastodon-logo}"></svg>
+			</a>
+			<a class="navbar-social-link" href="https://www.facebook.com/LeMauditFestival/" target="_blank" aria-label="Facebook" rel="noreferrer">
+				<svg th:replace="~{fragments/svg :: facebook-logo}"></svg>
+			</a>
+			<a class="navbar-social-link" href="https://www.instagram.com/lemauditfestival/" target="_blank" aria-label="Instagram" rel="noreferrer">
+				<svg th:replace="~{fragments/svg :: instagram-logo}"></svg>
+			</a>
+			<a class="navbar-link" href="/contact">Contact</a>
 		</div>
 	</nav>
 	<footer th:fragment="common-footer">
@@ -87,12 +91,12 @@
 					<h2>Le Maudit Festival</h2>
 					<th:block th:if="${page}">
 					Édition <th:block th:text="${page.editionName}"/> : <th:block th:text="${page.editionTimePeriod}"/>
-					<a th:href="${page.currentEditionPrefix}"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
+					<img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo">
 					Terreur Nocturne - <th:block th:text="${page.editionName}"/>
 					</th:block>
 					<th:block th:unless="${page}">
 					Le maudit Festival, par Terreur Nocturne
-					<a th:href="${page.currentEditionHomepageUrl}"><img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo"></a>
+					<img src="/img/logo-terreur-nocture.png" alt="Terreur Nocturne" class="footer-logo">
 					Terreur Nocturne
 					</th:block>
 				</div>
@@ -100,9 +104,9 @@
 			<div>
 				<h2>Menu</h2>
 				<ul>
-					<li><a th:href="${page.currentEditionHomepageUrl}" class="footer_navigation">Accueil</a></li>
-					<li><a th:href="${page.currentEditionPrefix + '/a-propos-du-maudit-festival'}" class="footer_navigation">Qui sommes-nous ?</a></li>
-					<li><a th:href="${page.currentRoot + 'contact'}" class="footer_navigation">Contactez-nous</a></li>
+					<li><a href="/" class="footer_navigation">Accueil</a></li>
+					<li><a href="/a-propos-du-maudit-festival" class="footer_navigation">Qui sommes-nous ?</a></li>
+					<li><a href="/contact" class="footer_navigation">Contactez-nous</a></li>
 					<li><a href="/uploads/press/MauditFestival.pdf" target="_blank" class="footer_navigation">Presse</a></li>
 				</ul>
 			</div>
@@ -114,9 +118,6 @@
 					</a>
 					<a href="https://www.facebook.com/LeMauditFestival/" target="_blank" aria-label="Facebook" rel="noreferrer">
 						<svg th:replace="~{fragments/svg :: facebook-logo}"></svg>
-					</a>
-					<a href="https://twitter.com/MauditFestival" target="_blank" aria-label="Twitter" rel="noreferrer">
-						<svg th:replace="~{fragments/svg :: twitter-logo}"></svg>
 					</a>
 					<a href="https://www.instagram.com/lemauditfestival/" target="_blank" aria-label="Instagram" rel="noreferrer">
 						<svg th:replace="~{fragments/svg :: instagram-logo}"></svg>

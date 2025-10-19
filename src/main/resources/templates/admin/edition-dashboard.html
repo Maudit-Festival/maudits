@@ -180,7 +180,7 @@
 					<div>
 						<a th:if="*{pdfUrl} != null" th:href="*{pdfUrl}" th:text="*{pdfUrl}"></a>
 						<input type="file" id="uploadPdf" accept="application/pdf"
-						th:field="*{pdfFile}">
+						th:field="*{pdfFile}"/>
 					</div>
 				</p>
 				<p class="form-group">
@@ -188,6 +188,13 @@
 						<img id="headerPreview" class="imageUploadPreview d-block" th:src="*{heroUrl}">
 						<input type="file" id="uploadHeader" accept="image/*" class="d-none2"
 						th:field="*{heroFile}" th:required="*{heroUrl == null}" >
+					</label>
+				</p>
+				<p class="form-group">
+					<label for="uploadPoster">Affiche :
+						<img id="posterPreview" class="imageUploadPreview d-block" th:src="*{posterUrl}">
+						<input type="file" id="uploadPoster" accept="image/*" class="d-none2"
+						th:field="*{posterFile}">
 					</label>
 				</p>
 				<p class="form-group">
@@ -237,5 +244,6 @@ function showPreviewImage(input, image, maxsize) {
 	});
 }
 showPreviewImage($("#uploadHeader"), $("#headerPreview"), 500000);
+showPreviewImage($("#uploadPoster"), $("#posterPreview"), 500000);
 </script>
 </html>

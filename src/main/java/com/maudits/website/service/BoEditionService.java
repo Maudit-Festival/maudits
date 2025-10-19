@@ -105,6 +105,14 @@ public class BoEditionService {
 			edition.setShareImageUrl(url);
 		}
 
+		var posterImageFile = form.getPosterFile();
+		if (!posterImageFile.isEmpty()) {
+			var tmp = posterImageFile.getOriginalFilename().split("[.]");
+			String fileExtension = (tmp.length > 0) ? "." + tmp[tmp.length - 1] : "";
+			var url = uploadService.uploadFile(folder, "poster" + fileExtension, posterImageFile);
+			edition.setPosterUrl(url);
+		}
+
 		var pdfFile = form.getPdfFile();
 		if (!pdfFile.isEmpty()) {
 			var tmp = pdfFile.getOriginalFilename().split("[.]");

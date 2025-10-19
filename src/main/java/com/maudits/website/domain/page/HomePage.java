@@ -3,6 +3,7 @@ package com.maudits.website.domain.page;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.maudits.website.domain.displayer.EditionRoleDisplayer;
 import com.maudits.website.domain.displayer.FrontPageDisplayer;
 import com.maudits.website.domain.displayer.GuestDisplayer;
 import com.maudits.website.domain.displayer.HomePageCurrentEventDisplayer;
@@ -24,10 +25,12 @@ public class HomePage extends FrontPage {
 	private final List<GuestDisplayer> guests;
 	private final List<String> tickets;
 	private final String pdfUrl;
+	private final String posterUrl;
+	private final List<EditionRoleDisplayer> credits;
 
 	public HomePage(FrontPageDisplayer displayer, List<HomePageEventDisplayer> beforeEvents,
-			List<HomePageEventDisplayer> afterEvents, List<HomePageDayDisplayer> days,
-			List<SponsorDisplayer> sponsors) {
+			List<HomePageEventDisplayer> afterEvents, List<HomePageDayDisplayer> days, List<SponsorDisplayer> sponsors,
+			List<EditionRoleDisplayer> credits) {
 		super(displayer);
 		this.beforeEvents = beforeEvents;
 		this.afterEvents = afterEvents;
@@ -38,6 +41,8 @@ public class HomePage extends FrontPage {
 		this.guests = edition.getGuests().stream().map(GuestDisplayer::new).toList();
 		this.tickets = edition.getTickets().stream().map(Ticket::getText).toList();
 		this.pdfUrl = edition.getPdfUrl();
+		this.posterUrl = edition.getPosterUrl();
+		this.credits = credits;
 	}
 
 	public HomePage(FrontPageDisplayer displayer, HomePageCurrentEventDisplayer currentEvent,
@@ -51,5 +56,7 @@ public class HomePage extends FrontPage {
 		this.sponsors = sponsors;
 		this.tickets = new ArrayList<>();
 		this.pdfUrl = null;
+		this.posterUrl = null;
+		this.credits = null;
 	}
 }
