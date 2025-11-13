@@ -120,17 +120,17 @@ public class MauditService {
 
 	public HomePage makeHomeFilmRecap(Display display) {
 		FrontPageDisplayer frontPageDisplayer = makeFrontPageDisplayer(display);
-		return makeHomeFilmRecap(frontPageDisplayer, false);
+		return makeHomeFilmRecap(frontPageDisplayer, null);
 	}
 
 	public HomePage makeHomeFilmRecap(Display display, String editionName) {
 		Edition archivedEdition = editionRepository.findByName(editionName).orElseThrow();
-		FrontPageDisplayer frontPageDisplayer = makeFrontPageDisplayer(display, archivedEdition);
-		return makeHomeFilmRecap(frontPageDisplayer, true);
+		FrontPageDisplayer frontPageDisplayer = makeFrontPageDisplayer(display);
+		return makeHomeFilmRecap(frontPageDisplayer, archivedEdition);
 	}
 
-	private HomePage makeHomeFilmRecap(FrontPageDisplayer frontPageDisplayer, boolean history) {
-		Edition edition = frontPageDisplayer.getEdition();
+	private HomePage makeHomeFilmRecap(FrontPageDisplayer frontPageDisplayer, Edition historyEdition) {
+		Edition edition = (historyEdition != null) ? historyEdition : frontPageDisplayer.getEdition();
 
 		List<HomePageDayDisplayer> days = new ArrayList<>();
 		List<HomePageEventDisplayer> beforeEvents = new ArrayList<>();
@@ -158,11 +158,11 @@ public class MauditService {
 		}
 		Collections.shuffle(sponsors);
 
-		List<EditionRoleDisplayer> credits = history ? BuildCredits(edition) : null;
+		List<EditionRoleDisplayer> credits = historyEdition != null ? BuildCredits(edition) : null;
 
 		return extraEventRepository.findOneByActive()
 				.map(ea -> new HomePage(frontPageDisplayer, new HomePageCurrentEventDisplayer(ea.getFilm()), sponsors))
-				.orElse(new HomePage(frontPageDisplayer, beforeEvents, afterEvents, days, sponsors, credits));
+				.orElse(new HomePage(frontPageDisplayer, edition, beforeEvents, afterEvents, days, sponsors, credits));
 	}
 
 //	public PreviousEditionPage makePreviousEditionPage(String editionName, Display display) {
@@ -174,12 +174,6 @@ public class MauditService {
 
 	public AboutPage makeAboutPageDisplayer(Display display) {
 		FrontPageDisplayer displayer = makeFrontPageDisplayer(display);
-		return makeAboutPageDisplayer(displayer);
-	}
-
-	public FrontPage makeAboutPageDisplayer(Display display, String editionName) {
-		Edition edition = editionRepository.findByName(editionName).orElseThrow();
-		FrontPageDisplayer displayer = makeFrontPageDisplayer(display, edition);
 		return makeAboutPageDisplayer(displayer);
 	}
 

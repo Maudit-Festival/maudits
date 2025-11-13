@@ -58,7 +58,7 @@
 		</label>
 		<input style="display: none;" type="checkbox" id="mobile_menu">
 		<div>
-			<a class="navbar-link" th:if="${page != null && page.editorial != null}" href="/#editorial">Éditorial</a>
+			<a class="navbar-link" th:if="${page != null && page.hasEditorial}" href="/#editorial">Éditorial</a>
 			<a class="navbar-link" href="/#programmation">Programmation</a>
 			<a class="navbar-link" href="/#pratique" th:unless="${page.pastEdition}">Infos pratiques</a>
 			<a class="navbar-link" href="/a-propos-du-maudit-festival">Qui sommes-nous ?</a>
@@ -72,9 +72,6 @@
 				</div>
 			</div>
 			<div class="spacer"></div>
-			<a class="navbar-social-link" href="https://mastodon.social/@lemauditfestival" target="_blank" aria-label="Mastodon">
-				<svg th:replace="~{fragments/svg :: mastodon-logo}"></svg>
-			</a>
 			<a class="navbar-social-link" href="https://www.facebook.com/LeMauditFestival/" target="_blank" aria-label="Facebook" rel="noreferrer">
 				<svg th:replace="~{fragments/svg :: facebook-logo}"></svg>
 			</a>

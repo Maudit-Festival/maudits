@@ -79,12 +79,6 @@ public class MauditController {
 		return "about";
 	}
 
-	@GetMapping("editions-precedentes/{editionName}/a-propos-du-maudit-festival")
-	public String showAboutPreviousEdition(@PathVariable String editionName, Model model) {
-		model.addAttribute("page", mauditService.makeAboutPageDisplayer(Display.CURRENT, editionName));
-		return "about";
-	}
-
 	@GetMapping("editions-precedentes/avant-le-maudit-festival")
 	public String showHistory(Model model) {
 		model.addAttribute("page", mauditService.makeFrontPage(Display.CURRENT));

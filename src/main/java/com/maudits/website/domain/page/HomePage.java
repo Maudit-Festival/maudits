@@ -17,6 +17,9 @@ import lombok.Getter;
 
 @Getter
 public class HomePage extends FrontPage {
+	private final String editorialTitle;
+	private final String editorial;
+	private final String teaserVideoUrl;
 	private final List<HomePageEventDisplayer> beforeEvents;
 	private final List<HomePageEventDisplayer> afterEvents;
 	private final List<HomePageDayDisplayer> days;
@@ -27,27 +30,34 @@ public class HomePage extends FrontPage {
 	private final String pdfUrl;
 	private final String posterUrl;
 	private final List<EditionRoleDisplayer> credits;
+	private final boolean ShowPracticalInfos;
 
-	public HomePage(FrontPageDisplayer displayer, List<HomePageEventDisplayer> beforeEvents,
+	public HomePage(FrontPageDisplayer displayer, Edition edition, List<HomePageEventDisplayer> beforeEvents,
 			List<HomePageEventDisplayer> afterEvents, List<HomePageDayDisplayer> days, List<SponsorDisplayer> sponsors,
 			List<EditionRoleDisplayer> credits) {
-		super(displayer);
+		super(displayer, edition);
+		this.editorialTitle = edition.getEditorialTitle();
+		this.editorial = edition.getEditorial();
+		this.teaserVideoUrl = edition.getTeaserUrl();
 		this.beforeEvents = beforeEvents;
 		this.afterEvents = afterEvents;
 		this.days = days;
 		this.currentEvent = null;
 		this.sponsors = sponsors;
-		Edition edition = displayer.getEdition();
 		this.guests = edition.getGuests().stream().map(GuestDisplayer::new).toList();
 		this.tickets = edition.getTickets().stream().map(Ticket::getText).toList();
 		this.pdfUrl = edition.getPdfUrl();
 		this.posterUrl = edition.getPosterUrl();
 		this.credits = credits;
+		this.ShowPracticalInfos = displayer.getEdition().equals(edition);
 	}
 
 	public HomePage(FrontPageDisplayer displayer, HomePageCurrentEventDisplayer currentEvent,
 			List<SponsorDisplayer> sponsors) {
 		super(displayer);
+		this.editorialTitle = null;
+		this.editorial = null;
+		this.teaserVideoUrl = null;
 		this.days = null;
 		this.beforeEvents = null;
 		this.afterEvents = null;
@@ -58,5 +68,6 @@ public class HomePage extends FrontPage {
 		this.pdfUrl = null;
 		this.posterUrl = null;
 		this.credits = null;
+		this.ShowPracticalInfos = false;
 	}
 }

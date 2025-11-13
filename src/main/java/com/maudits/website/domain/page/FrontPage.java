@@ -12,34 +12,32 @@ import lombok.Getter;
 public class FrontPage {
 	private final String editionTimePeriod;
 	private final String editionName;
-	private final String editorialTitle;
-	private final String editorial;
-	private final String teaserVideoUrl;
+	private final boolean hasEditorial;
 	private final String shareImageUrl;
 	private final String heroUrl;
 	private final String accentColor;
-//	private final String basePrefix;
-//	private final String editionPrefix;
-//	private final String homepageUrl;
 	private final String buyPassUrl;
 	private final boolean preview;
 	private final boolean pastEdition;
 	private final List<String> previousEditionNames;
 
 	public FrontPage(FrontPageDisplayer displayer) {
-		Edition edition = displayer.getEdition();
+		this(displayer, displayer.getEdition());
+	}
+
+	public FrontPage(FrontPageDisplayer displayer, Edition shownEdition) {
+		Edition currentEdition = displayer.getEdition();
 		Display display = displayer.getDisplay();
-		this.editionTimePeriod = edition.getTimePeriod();
-		this.editionName = edition.getName();
-		this.editorialTitle = edition.getEditorialTitle();
-		this.editorial = edition.getEditorial();
-		this.teaserVideoUrl = edition.getTeaserUrl();
-		this.shareImageUrl = edition.getShareImageUrl();
-		this.heroUrl = edition.getHeroUrl();
-		this.accentColor = edition.getAccentColor();
-		this.buyPassUrl = edition.getBuyPassUrl();
+		this.editionTimePeriod = currentEdition.getTimePeriod();
+		this.editionName = currentEdition.getName();
+		this.hasEditorial = currentEdition.getEditorial() != null && !currentEdition.getEditorial().isBlank();
+		this.shareImageUrl = currentEdition.getShareImageUrl();
+		this.heroUrl = shownEdition.getHeroUrl();
+		this.accentColor = shownEdition.getAccentColor();
+		this.buyPassUrl = currentEdition.getBuyPassUrl();
 		this.preview = display == Display.NEXT;
-		boolean showcasingCurrentEdition = display == Display.NEXT ? edition.isNext() : edition.isCurrent();
+		boolean showcasingCurrentEdition = display == Display.NEXT ? currentEdition.isNext()
+				: currentEdition.isCurrent();
 		this.pastEdition = !(showcasingCurrentEdition);
 		this.previousEditionNames = displayer.getPreviousEditionsNames();
 	}

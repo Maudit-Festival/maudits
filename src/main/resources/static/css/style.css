@@ -71,6 +71,7 @@ section {
 
 .user-format {
 	white-space: pre-wrap;
+	text-align: justify;
 }
 
 /*
@@ -84,7 +85,7 @@ section {
 	align-items: center;
 	padding: 10px;
 	z-index: 100;
-	width: 100vw;
+	width: 100%;
 	box-sizing: border-box;
 }
 
