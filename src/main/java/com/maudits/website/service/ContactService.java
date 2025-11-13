@@ -27,7 +27,8 @@ public class ContactService {
 		message.setSubject(
 				"[Formulaire de contact mauditfestival.com] De " + form.getFirstName() + " " + form.getLastName());
 		message.setReplyTo(form.getEmailAddress());
-		message.setText(form.getMessageContent());
+		message.setText("Message de " + form.getFirstName() + " " + form.getLastName() + " (" + form.getEmailAddress()
+				+ ") : " + form.getMessageContent());
 		try {
 			mailSender.send(message);
 			return true;
